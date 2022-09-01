@@ -5,6 +5,8 @@ Module conexion
     'Defino Cadena Conexion'
     Public cadena_conexion As String = "server=localhost; user id=root; Database=pruebabiblioteca"
 
+    Public GLO_CambiosSocios As Integer = 0
+
     'Defino GloConexion Como Conexion MySql'
     Public GloconexionDB As New MySql.Data.MySqlClient.MySqlConnection
     Public Glocomando As New MySql.Data.MySqlClient.MySqlCommand

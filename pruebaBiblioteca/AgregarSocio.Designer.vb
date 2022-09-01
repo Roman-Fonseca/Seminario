@@ -32,7 +32,7 @@ Partial Class AgregarSocio
         Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.txtDireccion = New System.Windows.Forms.TextBox()
         Me.txtEstado = New System.Windows.Forms.TextBox()
-        Me.txtAgregarSocio = New System.Windows.Forms.Button()
+        Me.btnAgregarSocio = New System.Windows.Forms.Button()
         Me.btnLimpiarCampos = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -117,15 +117,15 @@ Partial Class AgregarSocio
         Me.txtEstado.Size = New System.Drawing.Size(143, 20)
         Me.txtEstado.TabIndex = 9
         '
-        'txtAgregarSocio
+        'btnAgregarSocio
         '
-        Me.txtAgregarSocio.BackColor = System.Drawing.Color.YellowGreen
-        Me.txtAgregarSocio.Location = New System.Drawing.Point(516, 286)
-        Me.txtAgregarSocio.Name = "txtAgregarSocio"
-        Me.txtAgregarSocio.Size = New System.Drawing.Size(81, 46)
-        Me.txtAgregarSocio.TabIndex = 10
-        Me.txtAgregarSocio.Text = "Agregar Socio"
-        Me.txtAgregarSocio.UseVisualStyleBackColor = False
+        Me.btnAgregarSocio.BackColor = System.Drawing.Color.YellowGreen
+        Me.btnAgregarSocio.Location = New System.Drawing.Point(516, 286)
+        Me.btnAgregarSocio.Name = "btnAgregarSocio"
+        Me.btnAgregarSocio.Size = New System.Drawing.Size(81, 46)
+        Me.btnAgregarSocio.TabIndex = 10
+        Me.btnAgregarSocio.Text = "Agregar Socio"
+        Me.btnAgregarSocio.UseVisualStyleBackColor = False
         '
         'btnLimpiarCampos
         '
@@ -153,7 +153,7 @@ Partial Class AgregarSocio
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnLimpiarCampos)
-        Me.Controls.Add(Me.txtAgregarSocio)
+        Me.Controls.Add(Me.btnAgregarSocio)
         Me.Controls.Add(Me.txtEstado)
         Me.Controls.Add(Me.txtDireccion)
         Me.Controls.Add(Me.txtTelefono)
@@ -181,7 +181,7 @@ Partial Class AgregarSocio
     Friend WithEvents txtTelefono As TextBox
     Friend WithEvents txtDireccion As TextBox
     Friend WithEvents txtEstado As TextBox
-    Friend WithEvents txtAgregarSocio As Button
+    Friend WithEvents btnAgregarSocio As Button
     Friend WithEvents btnLimpiarCampos As Button
     Friend WithEvents btnCancelar As Button
 End Class
