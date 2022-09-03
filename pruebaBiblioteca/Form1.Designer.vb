@@ -24,6 +24,8 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.btnConectar = New System.Windows.Forms.Button()
         Me.btnSocios = New System.Windows.Forms.Button()
+        Me.btnLibros = New System.Windows.Forms.Button()
+        Me.btnEjemplares = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnConectar
@@ -44,11 +46,31 @@ Partial Class Form1
         Me.btnSocios.Text = "Socios"
         Me.btnSocios.UseVisualStyleBackColor = True
         '
+        'btnLibros
+        '
+        Me.btnLibros.Location = New System.Drawing.Point(65, 123)
+        Me.btnLibros.Name = "btnLibros"
+        Me.btnLibros.Size = New System.Drawing.Size(203, 81)
+        Me.btnLibros.TabIndex = 3
+        Me.btnLibros.Text = "Libros"
+        Me.btnLibros.UseVisualStyleBackColor = True
+        '
+        'btnEjemplares
+        '
+        Me.btnEjemplares.Location = New System.Drawing.Point(65, 221)
+        Me.btnEjemplares.Name = "btnEjemplares"
+        Me.btnEjemplares.Size = New System.Drawing.Size(203, 81)
+        Me.btnEjemplares.TabIndex = 4
+        Me.btnEjemplares.Text = "Ejemplares"
+        Me.btnEjemplares.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnEjemplares)
+        Me.Controls.Add(Me.btnLibros)
         Me.Controls.Add(Me.btnSocios)
         Me.Controls.Add(Me.btnConectar)
         Me.Name = "Form1"
@@ -59,4 +81,6 @@ Partial Class Form1
 
     Friend WithEvents btnConectar As Button
     Friend WithEvents btnSocios As Button
+    Friend WithEvents btnLibros As Button
+    Friend WithEvents btnEjemplares As Button
 End Class

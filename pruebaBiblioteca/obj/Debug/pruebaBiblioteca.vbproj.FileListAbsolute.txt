@@ -25,3 +25,8 @@ C:\Users\Roman\Desktop\visualStudio\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\
 C:\Users\Roman\Desktop\visualStudio\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.pdb
 C:\Users\Roman\Desktop\visualStudio\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.AgregarSocio.resources
 C:\Users\Roman\Desktop\visualStudio\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.Socios.resources
+C:\Users\Roman\Desktop\visualStudio\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.AgregarUbicacion.resources
+C:\Users\Roman\Desktop\visualStudio\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.CargarLibro.resources
+C:\Users\Roman\Desktop\visualStudio\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.AgregarEditorial.resources
+C:\Users\Roman\Desktop\visualStudio\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.AgregarCategoria.resources
+C:\Users\Roman\Desktop\visualStudio\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.AgregarAutor.resources

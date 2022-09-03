@@ -78,13 +78,49 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarCategoria.Designer.vb">
+      <DependentUpon>AgregarCategoria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarCategoria.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarEditorial.Designer.vb">
+      <DependentUpon>AgregarEditorial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarEditorial.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AgregarSocio.Designer.vb">
       <DependentUpon>AgregarSocio.vb</DependentUpon>
     </Compile>
     <Compile Include="AgregarSocio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AgregarUbicacion.Designer.vb">
+      <DependentUpon>AgregarUbicacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarUbicacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarAutor.Designer.vb">
+      <DependentUpon>AgregarAutor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarAutor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarLibro.Designer.vb">
+      <DependentUpon>CargarLibro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CargarLibro.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="conexion.vb" />
+    <Compile Include="Ejemplares.Designer.vb">
+      <DependentUpon>Ejemplares.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ejemplares.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -117,8 +153,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AgregarCategoria.resx">
+      <DependentUpon>AgregarCategoria.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarEditorial.resx">
+      <DependentUpon>AgregarEditorial.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AgregarSocio.resx">
       <DependentUpon>AgregarSocio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarUbicacion.resx">
+      <DependentUpon>AgregarUbicacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarAutor.resx">
+      <DependentUpon>AgregarAutor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CargarLibro.resx">
+      <DependentUpon>CargarLibro.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>

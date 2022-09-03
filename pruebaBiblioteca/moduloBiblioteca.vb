@@ -159,5 +159,173 @@ Module moduloBiblioteca
         AgregarSocio.txtEstado.Clear()
     End Sub
 
+    Public Function altaUbicacion() As Boolean
+        Dim LOC_consulta As String
+
+        Try
+
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into ubicacion_libro (piso,sector,estante) values('" & AgregarUbicacion.txtPiso.Text & "','" & AgregarUbicacion.txtSector.Text & "','" & AgregarUbicacion.txtEstante.Text & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se agregó ubicación correctamente")
+                Return True
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        End Try
+
+        Return False
+    End Function
+
+    Public Sub limpiarCamposAgregarUbicacion()
+        AgregarUbicacion.txtPiso.Clear()
+        AgregarUbicacion.txtSector.Clear()
+        AgregarUbicacion.txtEstante.Clear()
+    End Sub
+
+    Public Function altaEditorial() As Boolean
+        Dim LOC_consulta As String
+
+        Try
+
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into editorial (nombre_editorial,contacto,localizacion) values('" & AgregarEditorial.txtNombreEditorial.Text & "','" & AgregarEditorial.txtContactoEditorial.Text & "','" & AgregarEditorial.txtLocalizacionEditorial.Text & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se agregó editorial correctamente")
+                Return True
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        End Try
+
+        Return False
+    End Function
+
+    Public Sub limpiarCamposAgregarEditorial()
+        AgregarEditorial.txtNombreEditorial.Clear()
+        AgregarEditorial.txtContactoEditorial.Clear()
+        AgregarEditorial.txtLocalizacionEditorial.Clear()
+
+    End Sub
+
+    Public Sub CargarComboUbicacion()
+        If ConexionMySQL() Then
+            Glocomando.CommandText = "select cod_ubicacion_libro, piso, sector, estante from ubicacion_libro"
+            Glocomando.CommandType = CommandType.Text
+            Glocomando.Connection = GloconexionDB
+
+            Glodatareader = Glocomando.ExecuteReader
+
+            Dim dt As New DataTable
+            dt.Load(Glodatareader)
+
+            CargarLibro.cbxUbicacion.DataSource = dt
+            CargarLibro.cbxUbicacion.DisplayMember = "cod_ubicacion_libro"
+            CargarLibro.cbxUbicacion.ValueMember = "cod_ubicacion_libro"
+            CargarLibro.cbxUbicacion.SelectedIndex = -1
+            CargarLibro.cbxUbicacion.Text = "Selecione un codigo de ubicacion"
+
+            Glodatareader.Close()
+            GloconexionDB.Close()
+        End If
+    End Sub
+
+    Public Sub CargarComboEditorial()
+        If ConexionMySQL() Then
+            Glocomando.CommandText = "select cod_editorial, nombre_editorial, contacto, localizacion from editorial"
+            Glocomando.CommandType = CommandType.Text
+            Glocomando.Connection = GloconexionDB
+
+            Glodatareader = Glocomando.ExecuteReader
+
+            Dim dt As New DataTable
+            dt.Load(Glodatareader)
+
+            CargarLibro.cbxEditorial.DataSource = dt
+            CargarLibro.cbxEditorial.DisplayMember = "nombre_editorial"
+            CargarLibro.cbxEditorial.ValueMember = "cod_editorial"
+            CargarLibro.cbxEditorial.SelectedIndex = -1
+            CargarLibro.cbxEditorial.Text = "Selecione una editorial"
+
+            Glodatareader.Close()
+            GloconexionDB.Close()
+        End If
+    End Sub
+
+    Public Function altaCategoria() As Boolean
+        Dim LOC_consulta As String
+
+        Try
+
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into categoria (nombre_categoria) values('" & AgregarCategoria.txtNombreCategoria.Text & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se agregó categoria correctamente")
+                Return True
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        End Try
+
+        Return False
+    End Function
+
+    Public Sub CargarComboCategoria()
+        If ConexionMySQL() Then
+            Glocomando.CommandText = "select cod_categoria, nombre_categoria from categoria"
+            Glocomando.CommandType = CommandType.Text
+            Glocomando.Connection = GloconexionDB
+
+            Glodatareader = Glocomando.ExecuteReader
+
+            Dim dt As New DataTable
+            dt.Load(Glodatareader)
+
+            CargarLibro.cbxCategoria.DataSource = dt
+            CargarLibro.cbxCategoria.DisplayMember = "nombre_categoria"
+            CargarLibro.cbxCategoria.ValueMember = "cod_categoria"
+            CargarLibro.cbxCategoria.SelectedIndex = -1
+            CargarLibro.cbxCategoria.Text = "Selecione una categoria"
+
+            Glodatareader.Close()
+            GloconexionDB.Close()
+        End If
+    End Sub
+
+    Public Function altaAutor() As Boolean
+        Dim LOC_consulta As String
+
+        Try
+
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into autor (apellido,nacionalidad,nombre) values('" & AgregarAutor.txtApellido.Text & "','" & AgregarAutor.txtNacionalidad.Text & "','" & AgregarAutor.txtNombre.Text & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se agregó autor correctamente")
+                Return True
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        End Try
+
+        Return False
+    End Function
+
+    Public Sub limpiarCamposAgregarAutor()
+        AgregarAutor.txtNombre.Clear()
+        AgregarAutor.txtApellido.Clear()
+        AgregarAutor.txtNacionalidad.Clear()
+    End Sub
 
 End Module

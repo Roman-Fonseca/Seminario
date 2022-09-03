@@ -18,4 +18,12 @@ Public Class Form1
         moduloBiblioteca.mostrarSocios()
         Socios.ShowDialog()
     End Sub
+
+    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles btnLibros.Click
+        CargarLibro.ShowDialog()
+    End Sub
+
+    Private Sub Button1_Click_4(sender As Object, e As EventArgs) Handles btnEjemplares.Click
+
+    End Sub
 End Class
