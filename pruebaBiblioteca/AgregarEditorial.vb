@@ -4,7 +4,7 @@
     End Sub
 
     Private Sub btnLimpiarCamposEditorial_Click(sender As Object, e As EventArgs) Handles btnLimpiarCamposEditorial.Click
-        moduloBiblioteca.limpiarCamposAgregarEditorial()
+        LimpiarCampos.limpiarCamposAgregarEditorial()
     End Sub
 
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
@@ -18,7 +18,7 @@
 
     Private Sub btnGuardarEditorial_Click(sender As Object, e As EventArgs) Handles btnGuardarEditorial.Click
         moduloBiblioteca.altaEditorial()
-        moduloBiblioteca.limpiarCamposAgregarEditorial()
+        LimpiarCampos.limpiarCamposAgregarEditorial()
         Me.Close()
     End Sub
 End Class

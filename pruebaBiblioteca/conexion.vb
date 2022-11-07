@@ -3,7 +3,7 @@ Imports MySql.Data.MySqlClient
 
 Module conexion
     'Defino Cadena Conexion'
-    Public cadena_conexion As String = "server=localhost; user id=root; Database=pruebabiblioteca"
+    Public cadena_conexion As String = "server=localhost; user id=root; Database=pruebabiblioteca;convert zero datetime=True"
 
     Public GLO_CambiosSocios As Integer = 0
 

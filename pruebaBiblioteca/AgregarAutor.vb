@@ -1,11 +1,11 @@
 ﻿Public Class AgregarAutor
     Private Sub btnGuardarAutor_Click(sender As Object, e As EventArgs) Handles btnGuardarAutor.Click
         moduloBiblioteca.altaAutor()
-        moduloBiblioteca.limpiarCamposAgregarAutor()
+        LimpiarCampos.limpiarCamposAgregarAutor()
     End Sub
 
     Private Sub btnLimpiarCamposAutor_Click(sender As Object, e As EventArgs) Handles btnLimpiarCamposAutor.Click
-        moduloBiblioteca.limpiarCamposSocio()
+        LimpiarCampos.limpiarCamposSocio()
     End Sub
 
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
@@ -15,5 +15,9 @@
         If a = MsgBoxResult.Yes Then
             Me.Close()
         End If
+    End Sub
+
+    Private Sub txtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
+
     End Sub
 End Class

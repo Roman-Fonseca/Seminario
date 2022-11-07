@@ -90,10 +90,34 @@
     <Compile Include="AgregarEditorial.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AgregarEjemplar.Designer.vb">
+      <DependentUpon>AgregarEjemplar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarEjemplar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarPlazoPrestamo.Designer.vb">
+      <DependentUpon>AgregarPlazoPrestamo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarPlazoPrestamo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarPrestamo.Designer.vb">
+      <DependentUpon>AgregarPrestamo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarPrestamo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AgregarSocio.Designer.vb">
       <DependentUpon>AgregarSocio.vb</DependentUpon>
     </Compile>
     <Compile Include="AgregarSocio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgregarTipoEjemplar.Designer.vb">
+      <DependentUpon>AgregarTipoEjemplar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarTipoEjemplar.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AgregarUbicacion.Designer.vb">
@@ -108,10 +132,10 @@
     <Compile Include="AgregarAutor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CargarLibro.Designer.vb">
-      <DependentUpon>CargarLibro.vb</DependentUpon>
+    <Compile Include="AgregarLibro.Designer.vb">
+      <DependentUpon>AgregarLibro.vb</DependentUpon>
     </Compile>
-    <Compile Include="CargarLibro.vb">
+    <Compile Include="AgregarLibro.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="conexion.vb" />
@@ -128,6 +152,7 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LimpiarCampos.vb" />
     <Compile Include="moduloBiblioteca.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -145,6 +170,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Prestamos.Designer.vb">
+      <DependentUpon>Prestamos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Prestamos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeleccionAutor.Designer.vb">
+      <DependentUpon>SeleccionAutor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionAutor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Socios.Designer.vb">
       <DependentUpon>Socios.vb</DependentUpon>
     </Compile>
@@ -159,8 +196,20 @@
     <EmbeddedResource Include="AgregarEditorial.resx">
       <DependentUpon>AgregarEditorial.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AgregarEjemplar.resx">
+      <DependentUpon>AgregarEjemplar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarPlazoPrestamo.resx">
+      <DependentUpon>AgregarPlazoPrestamo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarPrestamo.resx">
+      <DependentUpon>AgregarPrestamo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AgregarSocio.resx">
       <DependentUpon>AgregarSocio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarTipoEjemplar.resx">
+      <DependentUpon>AgregarTipoEjemplar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarUbicacion.resx">
       <DependentUpon>AgregarUbicacion.vb</DependentUpon>
@@ -168,8 +217,11 @@
     <EmbeddedResource Include="AgregarAutor.resx">
       <DependentUpon>AgregarAutor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CargarLibro.resx">
-      <DependentUpon>CargarLibro.vb</DependentUpon>
+    <EmbeddedResource Include="AgregarLibro.resx">
+      <DependentUpon>AgregarLibro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ejemplares.resx">
+      <DependentUpon>Ejemplares.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
@@ -179,6 +231,12 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prestamos.resx">
+      <DependentUpon>Prestamos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeleccionAutor.resx">
+      <DependentUpon>SeleccionAutor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Socios.resx">
       <DependentUpon>Socios.vb</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿Public Class AgregarSocio
     Private Sub AgregarSocio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        moduloBiblioteca.limpiarCamposSocio()
+        LimpiarCampos.limpiarCamposSocio()
         If Me.Text = "Modificar Socio" Then
 
             moduloBiblioteca.ConsultarSocioModificar()
@@ -34,7 +34,7 @@
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btnLimpiarCampos.Click
-        moduloBiblioteca.limpiarCamposSocio()
+        LimpiarCampos.limpiarCamposSocio()
     End Sub
 
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles btnCancelar.Click

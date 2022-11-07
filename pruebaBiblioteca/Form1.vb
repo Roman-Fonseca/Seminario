@@ -20,10 +20,22 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles btnLibros.Click
-        CargarLibro.ShowDialog()
+        AgregarLibro.ShowDialog()
     End Sub
 
     Private Sub Button1_Click_4(sender As Object, e As EventArgs) Handles btnEjemplares.Click
+        Ejemplares.ShowDialog()
+    End Sub
 
+    Private Sub btnPrestamos_Click(sender As Object, e As EventArgs) Handles btnPrestamos.Click
+        Prestamos.ShowDialog()
+    End Sub
+
+    Private Sub btnPlazoPrestamo_Click(sender As Object, e As EventArgs) Handles btnPlazoPrestamo.Click
+        AgregarPlazoPrestamo.ShowDialog()
+    End Sub
+
+    Private Sub Button1_Click_5(sender As Object, e As EventArgs) Handles Button1.Click
+        moduloBiblioteca.prueba()
     End Sub
 End Class

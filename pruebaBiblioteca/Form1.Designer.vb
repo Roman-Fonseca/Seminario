@@ -26,6 +26,10 @@ Partial Class Form1
         Me.btnSocios = New System.Windows.Forms.Button()
         Me.btnLibros = New System.Windows.Forms.Button()
         Me.btnEjemplares = New System.Windows.Forms.Button()
+        Me.btnPrestamos = New System.Windows.Forms.Button()
+        Me.btnPlazoPrestamo = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.dtpFechaDevolucion = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
         'btnConectar
@@ -64,11 +68,50 @@ Partial Class Form1
         Me.btnEjemplares.Text = "Ejemplares"
         Me.btnEjemplares.UseVisualStyleBackColor = True
         '
+        'btnPrestamos
+        '
+        Me.btnPrestamos.Location = New System.Drawing.Point(65, 322)
+        Me.btnPrestamos.Name = "btnPrestamos"
+        Me.btnPrestamos.Size = New System.Drawing.Size(203, 81)
+        Me.btnPrestamos.TabIndex = 5
+        Me.btnPrestamos.Text = "Prestamos"
+        Me.btnPrestamos.UseVisualStyleBackColor = True
+        '
+        'btnPlazoPrestamo
+        '
+        Me.btnPlazoPrestamo.Location = New System.Drawing.Point(585, 123)
+        Me.btnPlazoPrestamo.Name = "btnPlazoPrestamo"
+        Me.btnPlazoPrestamo.Size = New System.Drawing.Size(83, 47)
+        Me.btnPlazoPrestamo.TabIndex = 6
+        Me.btnPlazoPrestamo.Text = "Plazo Prestamo"
+        Me.btnPlazoPrestamo.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(585, 221)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(83, 47)
+        Me.Button1.TabIndex = 7
+        Me.Button1.Text = "Probar Hora y fecha"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'dtpFechaDevolucion
+        '
+        Me.dtpFechaDevolucion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFechaDevolucion.Location = New System.Drawing.Point(585, 301)
+        Me.dtpFechaDevolucion.Name = "dtpFechaDevolucion"
+        Me.dtpFechaDevolucion.Size = New System.Drawing.Size(134, 20)
+        Me.dtpFechaDevolucion.TabIndex = 8
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.dtpFechaDevolucion)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnPlazoPrestamo)
+        Me.Controls.Add(Me.btnPrestamos)
         Me.Controls.Add(Me.btnEjemplares)
         Me.Controls.Add(Me.btnLibros)
         Me.Controls.Add(Me.btnSocios)
@@ -83,4 +126,8 @@ Partial Class Form1
     Friend WithEvents btnSocios As Button
     Friend WithEvents btnLibros As Button
     Friend WithEvents btnEjemplares As Button
+    Friend WithEvents btnPrestamos As Button
+    Friend WithEvents btnPlazoPrestamo As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents dtpFechaDevolucion As DateTimePicker
 End Class

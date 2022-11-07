@@ -13,6 +13,9 @@
     Private Sub btnEliminarSocio_Click(sender As Object, e As EventArgs) Handles btnEliminarSocio.Click
         moduloBiblioteca.EliminarSocio()
         moduloBiblioteca.mostrarSocios()
+    End Sub
+
+    Private Sub Socios_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class

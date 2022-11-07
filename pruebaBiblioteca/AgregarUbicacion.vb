@@ -10,7 +10,7 @@
     End Sub
 
     Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
-        moduloBiblioteca.limpiarCamposAgregarUbicacion()
+        LimpiarCampos.limpiarCamposAgregarUbicacion()
     End Sub
 
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click

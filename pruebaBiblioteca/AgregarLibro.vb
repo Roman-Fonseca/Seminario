@@ -1,4 +1,4 @@
-﻿Public Class CargarLibro
+﻿Public Class AgregarLibro
     Private Sub lblTitulo_Click(sender As Object, e As EventArgs) Handles lblTitulo.Click
 
     End Sub
@@ -52,5 +52,22 @@
         If a = MsgBoxResult.Yes Then
             Me.Close()
         End If
+    End Sub
+
+    Private Sub btnSeleccionarAutor_Click(sender As Object, e As EventArgs) Handles btnSeleccionarAutor.Click
+        SeleccionAutor.ShowDialog()
+    End Sub
+
+    Private Sub btnLimpiarCamposAutor_Click(sender As Object, e As EventArgs) Handles btnLimpiarCamposAutor.Click
+        LimpiarCampos.limpiarCamposCargarLibro()
+    End Sub
+
+    Private Sub btnGuardarAutor_Click(sender As Object, e As EventArgs) Handles btnGuardarAutor.Click
+        moduloBiblioteca.altaLibro()
+
+    End Sub
+
+    Private Sub Label3_Click_1(sender As Object, e As EventArgs) Handles Label3.Click
+
     End Sub
 End Class
