@@ -74,4 +74,18 @@ Public Class Form1
     Private Sub TodosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TodosToolStripMenuItem.Click
         Ejemplares.ShowDialog()
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        'Captura la fecha Actual con formato
+        Dim fecha_actual As Date
+        fecha_actual = Format(Today, "yyyy-MM-dd")
+        MsgBox(fecha_actual)
+
+        'Captura la hora actual con formato
+        Dim hora_actual As DateTime
+        hora_actual = Format(TimeOfDay, "Long Time")
+        MsgBox(hora_actual)
+
+    End Sub
 End Class

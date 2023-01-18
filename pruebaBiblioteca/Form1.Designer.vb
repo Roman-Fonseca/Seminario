@@ -57,6 +57,7 @@ Partial Class Form1
         Me.PlazosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgregarPlazoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerPlazosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -174,32 +175,32 @@ Partial Class Form1
         'AgregarPrestamoToolStripMenuItem
         '
         Me.AgregarPrestamoToolStripMenuItem.Name = "AgregarPrestamoToolStripMenuItem"
-        Me.AgregarPrestamoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgregarPrestamoToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.AgregarPrestamoToolStripMenuItem.Text = "Agregar prestamo"
         '
         'VerPrestamosToolStripMenuItem
         '
         Me.VerPrestamosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TodosToolStripMenuItem1, Me.EnProcesoToolStripMenuItem, Me.AtrasadosToolStripMenuItem})
         Me.VerPrestamosToolStripMenuItem.Name = "VerPrestamosToolStripMenuItem"
-        Me.VerPrestamosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VerPrestamosToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.VerPrestamosToolStripMenuItem.Text = "Ver prestamos"
         '
         'TodosToolStripMenuItem1
         '
         Me.TodosToolStripMenuItem1.Name = "TodosToolStripMenuItem1"
-        Me.TodosToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.TodosToolStripMenuItem1.Size = New System.Drawing.Size(132, 22)
         Me.TodosToolStripMenuItem1.Text = "Todos"
         '
         'EnProcesoToolStripMenuItem
         '
         Me.EnProcesoToolStripMenuItem.Name = "EnProcesoToolStripMenuItem"
-        Me.EnProcesoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EnProcesoToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.EnProcesoToolStripMenuItem.Text = "En proceso"
         '
         'AtrasadosToolStripMenuItem
         '
         Me.AtrasadosToolStripMenuItem.Name = "AtrasadosToolStripMenuItem"
-        Me.AtrasadosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AtrasadosToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.AtrasadosToolStripMenuItem.Text = "Atrasados"
         '
         'EjemplaresToolStripMenuItem
@@ -212,20 +213,20 @@ Partial Class Form1
         'AgregarEjemplarToolStripMenuItem
         '
         Me.AgregarEjemplarToolStripMenuItem.Name = "AgregarEjemplarToolStripMenuItem"
-        Me.AgregarEjemplarToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgregarEjemplarToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.AgregarEjemplarToolStripMenuItem.Text = "Agregar ejemplar"
         '
         'VerEjemplaresToolStripMenuItem
         '
         Me.VerEjemplaresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TodosToolStripMenuItem, Me.EliminadosToolStripMenuItem, Me.PrestadosToolStripMenuItem})
         Me.VerEjemplaresToolStripMenuItem.Name = "VerEjemplaresToolStripMenuItem"
-        Me.VerEjemplaresToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VerEjemplaresToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.VerEjemplaresToolStripMenuItem.Text = "Ver Ejemplares"
         '
         'TodosToolStripMenuItem
         '
         Me.TodosToolStripMenuItem.Name = "TodosToolStripMenuItem"
-        Me.TodosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.TodosToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
         Me.TodosToolStripMenuItem.Text = "Todos"
         '
         'EliminadosToolStripMenuItem
@@ -288,20 +289,30 @@ Partial Class Form1
         'AgregarPlazoToolStripMenuItem
         '
         Me.AgregarPlazoToolStripMenuItem.Name = "AgregarPlazoToolStripMenuItem"
-        Me.AgregarPlazoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgregarPlazoToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.AgregarPlazoToolStripMenuItem.Text = "Agregar Plazo"
         '
         'VerPlazosToolStripMenuItem
         '
         Me.VerPlazosToolStripMenuItem.Name = "VerPlazosToolStripMenuItem"
-        Me.VerPlazosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VerPlazosToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.VerPlazosToolStripMenuItem.Text = "Ver Plazos"
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(407, 289)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(83, 47)
+        Me.Button2.TabIndex = 11
+        Me.Button2.Text = "Prueba horario"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 409)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.dtpFechaDevolucion)
         Me.Controls.Add(Me.Button1)
@@ -356,4 +367,5 @@ Partial Class Form1
     Friend WithEvents PlazosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AgregarPlazoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerPlazosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button2 As Button
 End Class
