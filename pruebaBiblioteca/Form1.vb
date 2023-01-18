@@ -38,4 +38,40 @@ Public Class Form1
     Private Sub Button1_Click_5(sender As Object, e As EventArgs) Handles Button1.Click
         moduloBiblioteca.prueba()
     End Sub
+
+    Private Sub AgregarPrestamoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPrestamoToolStripMenuItem.Click
+        AgregarPrestamo.Text = "Agregar Prestamo"
+        AgregarPrestamo.btnFinalizarPrestamo.Hide()
+        AgregarPrestamo.ShowDialog()
+    End Sub
+
+    Private Sub SociosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SociosToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub VerSociosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerSociosToolStripMenuItem.Click
+        moduloBiblioteca.mostrarSocios()
+        Socios.ShowDialog()
+    End Sub
+
+    Private Sub AgregarSocioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarSocioToolStripMenuItem.Click
+        AgregarSocio.Text = "Agregar Socio"
+        AgregarSocio.ShowDialog()
+    End Sub
+
+    Private Sub TodosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles TodosToolStripMenuItem1.Click
+        Prestamos.ShowDialog()
+    End Sub
+
+    Private Sub AgregarEjemplarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarEjemplarToolStripMenuItem.Click
+        AgregarEjemplar.ShowDialog()
+    End Sub
+
+    Private Sub AgregarPlazoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPlazoToolStripMenuItem.Click
+        AgregarPlazoPrestamo.ShowDialog()
+    End Sub
+
+    Private Sub TodosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TodosToolStripMenuItem.Click
+        Ejemplares.ShowDialog()
+    End Sub
 End Class

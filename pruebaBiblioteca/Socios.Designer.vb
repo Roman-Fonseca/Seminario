@@ -75,6 +75,7 @@ Partial Class Socios
         Me.Controls.Add(Me.btnAgregarSocio)
         Me.Controls.Add(Me.listaSocios)
         Me.Name = "Socios"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Socios"
         CType(Me.listaSocios, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

@@ -31,13 +31,14 @@ Partial Class Prestamos
         Me.btnPrestamosVencidos = New System.Windows.Forms.Button()
         Me.lblFiltrar = New System.Windows.Forms.Label()
         Me.btnTodosLosPrestamos = New System.Windows.Forms.Button()
+        Me.btnFinalizarPrestamo = New System.Windows.Forms.Button()
         CType(Me.dgvPrestamos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpbPrestamo.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnAgregar
         '
-        Me.btnAgregar.Location = New System.Drawing.Point(753, 493)
+        Me.btnAgregar.Location = New System.Drawing.Point(564, 408)
         Me.btnAgregar.Name = "btnAgregar"
         Me.btnAgregar.Size = New System.Drawing.Size(74, 34)
         Me.btnAgregar.TabIndex = 1
@@ -46,7 +47,7 @@ Partial Class Prestamos
         '
         'btnModificar
         '
-        Me.btnModificar.Location = New System.Drawing.Point(833, 493)
+        Me.btnModificar.Location = New System.Drawing.Point(644, 408)
         Me.btnModificar.Name = "btnModificar"
         Me.btnModificar.Size = New System.Drawing.Size(74, 34)
         Me.btnModificar.TabIndex = 2
@@ -55,7 +56,7 @@ Partial Class Prestamos
         '
         'btnEliminar
         '
-        Me.btnEliminar.Location = New System.Drawing.Point(916, 493)
+        Me.btnEliminar.Location = New System.Drawing.Point(727, 408)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(74, 34)
         Me.btnEliminar.TabIndex = 3
@@ -122,16 +123,28 @@ Partial Class Prestamos
         Me.btnTodosLosPrestamos.Text = "Todos los prestamos"
         Me.btnTodosLosPrestamos.UseVisualStyleBackColor = True
         '
+        'btnFinalizarPrestamo
+        '
+        Me.btnFinalizarPrestamo.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnFinalizarPrestamo.Location = New System.Drawing.Point(450, 408)
+        Me.btnFinalizarPrestamo.Name = "btnFinalizarPrestamo"
+        Me.btnFinalizarPrestamo.Size = New System.Drawing.Size(74, 34)
+        Me.btnFinalizarPrestamo.TabIndex = 5
+        Me.btnFinalizarPrestamo.Text = "Finalizar prestamo"
+        Me.btnFinalizarPrestamo.UseVisualStyleBackColor = False
+        '
         'Prestamos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1004, 539)
+        Me.ClientSize = New System.Drawing.Size(825, 454)
+        Me.Controls.Add(Me.btnFinalizarPrestamo)
         Me.Controls.Add(Me.gpbPrestamo)
         Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.btnModificar)
         Me.Controls.Add(Me.btnAgregar)
         Me.Name = "Prestamos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prestamos"
         CType(Me.dgvPrestamos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gpbPrestamo.ResumeLayout(False)
@@ -148,4 +161,5 @@ Partial Class Prestamos
     Friend WithEvents btnPrestamosVencidos As Button
     Friend WithEvents lblFiltrar As Label
     Friend WithEvents btnPrestamosVencidosDevueltos As Button
+    Friend WithEvents btnFinalizarPrestamo As Button
 End Class

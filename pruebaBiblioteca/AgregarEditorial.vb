@@ -20,5 +20,6 @@
         moduloBiblioteca.altaEditorial()
         LimpiarCampos.limpiarCamposAgregarEditorial()
         Me.Close()
+        moduloBiblioteca.CargarComboEditorial()
     End Sub
 End Class

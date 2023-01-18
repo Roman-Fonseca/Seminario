@@ -233,6 +233,7 @@ Partial Class AgregarEjemplar
         Me.Controls.Add(Me.txtNumeroEjemplar)
         Me.Controls.Add(Me.lblNumeroEjemplar)
         Me.Name = "AgregarEjemplar"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AgregarEjemplar"
         CType(Me.dgvLibros, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

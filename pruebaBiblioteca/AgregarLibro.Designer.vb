@@ -234,7 +234,7 @@ Partial Class AgregarLibro
         Me.txtCod_libro.Size = New System.Drawing.Size(156, 20)
         Me.txtCod_libro.TabIndex = 22
         '
-        'CargarLibro
+        'AgregarLibro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -261,7 +261,7 @@ Partial Class AgregarLibro
         Me.Controls.Add(Me.lblTitulo)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtIsbn)
-        Me.Name = "CargarLibro"
+        Me.Name = "AgregarLibro"
         Me.Text = "CargarLibro"
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -38,7 +38,7 @@
 
     End Sub
 
-    Private Sub txtTipoPrestamo_TextChanged(sender As Object, e As EventArgs) Handles txtTipoPrestamo.TextChanged
+    Private Sub txtTipoPrestamo_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -58,7 +58,7 @@
         Me.txtBuscarEjemplar.Clear()
         Me.txtBuscarSocio.Clear()
         Me.txtHoraDevolucion.Clear()
-        Me.txtTipoPrestamo.Clear()
+        Me.cbxTipoPrestamo.ResetText()
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles BotonAgregarPrestamo.Click
@@ -75,17 +75,17 @@
         'moduloBiblioteca.altaPrestamo_ejemplar()
     End Sub
 
-    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles btnAgregarEjemplar.Click
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs)
         Dim COD_Ejemplar_agregar_list As Integer
         COD_Ejemplar_agregar_list = Me.dgvEjemplar.SelectedRows.Item(0).Cells(0).Value
-        Me.listBoxEjemplares.Items.Insert(0, COD_Ejemplar_agregar_list)
+        'Me.listBoxEjemplares.Items.Insert(0, COD_Ejemplar_agregar_list)
     End Sub
 
-    Private Sub btnEliminarEjemplar_Click(sender As Object, e As EventArgs) Handles btnEliminarEjemplar.Click
-        Dim COD_Eliminar_Ejemplar_list As Integer
-        COD_Eliminar_Ejemplar_list = Me.listBoxEjemplares.SelectedItem
-        MsgBox(COD_Eliminar_Ejemplar_list)
-        Me.listBoxEjemplares.Items.Remove(Me.listBoxEjemplares.SelectedItem)
+    Private Sub btnEliminarEjemplar_Click(sender As Object, e As EventArgs)
+        'Dim COD_Eliminar_Ejemplar_list As Integer
+        'COD_Eliminar_Ejemplar_list = 'Me.listBoxEjemplares.SelectedItem
+        'MsgBox(COD_Eliminar_Ejemplar_list)
+        'Me.listBoxEjemplares.Items.Remove(Me.listBoxEjemplares.SelectedItem)
     End Sub
 
     Private Sub Label2_Click(sender As Object, e As EventArgs) 

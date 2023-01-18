@@ -20,8 +20,8 @@
 
     Private Sub btnSeleccionarAutor_Click(sender As Object, e As EventArgs) Handles btnSeleccionarAutor.Click
         GLO_CodAutor = Me.dgvAutor.SelectedRows.Item(0).Cells(0).Value
-        GLO_ApellidoAutor = Me.dgvAutor.SelectedRows.Item(0).Cells(1).Value
-        GLO_NombreAutor = Me.dgvAutor.SelectedRows.Item(0).Cells(3).Value
+        GLO_ApellidoAutor = Me.dgvAutor.SelectedRows.Item(0).Cells(2).Value
+        GLO_NombreAutor = Me.dgvAutor.SelectedRows.Item(0).Cells(1).Value
         Me.Close()
         AgregarLibro.txtAutor.Text = GLO_NombreAutor.ToString + " " + GLO_ApellidoAutor.ToString
     End Sub

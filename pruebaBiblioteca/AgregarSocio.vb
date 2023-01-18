@@ -40,4 +40,8 @@
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles btnCancelar.Click
         Me.Close()
     End Sub
+
+    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
+
+    End Sub
 End Class

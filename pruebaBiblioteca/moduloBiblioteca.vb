@@ -7,13 +7,13 @@ Imports MySql.Data.MySqlClient
 Module moduloBiblioteca
     Public GLO_CodSocioModificar As Integer
     Public GLO_CodSocioPrestamo As Integer
+    Public GLO_CodEjemplarPrestamo As Integer 'Esta variable se utiliza a la hora de realizar un prestamo y toma el valor del cod_ejemplar prestado
     Public GLO_CodAutor As Integer  'Esta variable se utilza especialmenet para mostrar el autor seleccionado a la hora de cargar un LIBRO'
     Public GLO_ApellidoAutor As String
     Public GLO_NombreAutor As String
     Public cod_prestamo_modificar As Integer
     Public cod_prestamo_socio As Integer
     Public GLOBAL_DIA_ACTUAL As Date
-
 
     Public GLO_CodLibro As Integer
     Public GLO_TituloLibro As String
@@ -328,7 +328,7 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into tipo_ejemplar (nombre_Tipo) values('" & AgregarTipoEjemplar.txtNombreTipoEjemplar.Text & "')"
+                LOC_consulta = "insert into tipo_ejemplar (descripcion) values('" & AgregarTipoEjemplar.txtNombreTipoEjemplar.Text & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó Tipo Ejemplar correctamente")
@@ -563,7 +563,7 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into plazo_prestamo (descripcion_plazo,dias_prestamo) values('" & AgregarPlazoPrestamo.txtDescripcion.Text & "','" & AgregarPlazoPrestamo.txtDias.Text & "')"
+                LOC_consulta = "insert into plazo_prestamo (descripcion_plazo,dias_plazo) values('" & AgregarPlazoPrestamo.txtDescripcion.Text & "','" & AgregarPlazoPrestamo.txtDias.Text & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó plazo prestamo correctamente")
@@ -624,6 +624,7 @@ Module moduloBiblioteca
     Public Function altaPrestamo() As Boolean
         Dim LOC_consulta As String
         GLO_CodSocioPrestamo = AgregarPrestamo.dgvSocio.SelectedRows.Item(0).Cells(0).Value
+        GLO_CodEjemplarPrestamo = AgregarPrestamo.dgvEjemplar.SelectedRows.Item(0).Cells(0).Value
 
         'Capturo fecha actual del sistema
         Dim fechaPrestamoDate As Date
@@ -662,9 +663,9 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into prestamo_socio (tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,
-                                hora_devolucion,cod_socio) 
-                                values('" & AgregarPrestamo.txtTipoPrestamo.Text & "','" & fechaPrestamoString & "','" & horaPrestamo & "','" & fechaDevolucionString & "'
-                                ,'" & hora_devolucionString & "','" & GLO_CodSocioPrestamo & "')"
+                                hora_devolucion,cod_socio,cod_ejemplar_libro) 
+                                values('" & AgregarPrestamo.cbxTipoPrestamo.Text & "','" & fechaPrestamoString & "','" & horaPrestamo & "','" & fechaDevolucionString & "'
+                                ,'" & hora_devolucionString & "','" & GLO_CodSocioPrestamo & "','" & GLO_CodEjemplarPrestamo & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó prestamo correctamente")
@@ -796,7 +797,7 @@ Module moduloBiblioteca
             Dim row As DataRow = dt.Rows(dt.Rows.Count - 1)
 
             Try
-                AgregarPrestamo.txtTipoPrestamo.Text = CStr(row("tipo_prestamo"))
+                AgregarPrestamo.cbxTipoPrestamo.Text = CStr(row("tipo_prestamo"))
                 AgregarPrestamo.dtpFechaDevolucion.Value = CStr(row("fecha_devolucion"))
                 AgregarPrestamo.txtHoraDevolucion.Text = row("hora_devolucion").ToString
                 AgregarPrestamo.txtBuscarSocio.Text = CStr(row("cod_socio"))
@@ -846,7 +847,7 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "update prestamo_socio set
-                tipo_prestamo = '" & AgregarPrestamo.txtTipoPrestamo.Text & "', 
+                tipo_prestamo = '" & AgregarPrestamo.cbxTipoPrestamo.Text & "', 
                 fecha_devolucion ='" & AgregarPrestamo.dtpFechaDevolucion.Value.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture) & "', 
                 hora_devolucion='" & AgregarPrestamo.txtHoraDevolucion.Text & "', 
                 cod_socio= '" & 1 & "' where cod_prestamo_socio= " & cod_prestamo_modificar & ""
@@ -890,11 +891,17 @@ Module moduloBiblioteca
         Dim horaPrestamo As DateTime
         horaPrestamo = TimeOfDay
 
+
+        'Capturo la fecha_devolucion_real del prestamo
+        Dim fecha_devolucion_real As Date
+        fecha_devolucion_real = Today
+
+        'Update
         Try
 
             If ConexionMySQL() Then
                 LOC_consulta = "update prestamo_socio set
-                tipo_prestamo = '" & AgregarPrestamo.txtTipoPrestamo.Text & "', 
+                tipo_prestamo = '" & AgregarPrestamo.cbxTipoPrestamo.Text & "', 
                 fecha_devolucion ='" & AgregarPrestamo.dtpFechaDevolucion.Value.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture) & "', 
                 hora_devolucion='" & AgregarPrestamo.txtHoraDevolucion.Text & "', 
                 fecha_devolucion_real='" & fechaPrestamoString & "',
@@ -910,6 +917,10 @@ Module moduloBiblioteca
                 GloconexionDB.Close()
                 Return True
             End If
+
+            'Comparo fecha_devolución con fecha_devolucion_real 
+
+            GLO_CodEjemplarPrestamo = AgregarPrestamo.dgvEjemplar.SelectedRows.Item(0).Cells(0).Value
 
             'Convierto la fechaDevolucionDate en string
             'Dim fechaDevolucionString As String

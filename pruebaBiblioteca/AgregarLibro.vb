@@ -70,4 +70,8 @@
     Private Sub Label3_Click_1(sender As Object, e As EventArgs) Handles Label3.Click
 
     End Sub
+
+    Private Sub txtAutor_TextChanged(sender As Object, e As EventArgs) Handles txtAutor.TextChanged
+
+    End Sub
 End Class

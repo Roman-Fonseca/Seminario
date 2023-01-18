@@ -35,12 +35,14 @@ Partial Class AgregarSocio
         Me.btnAgregarSocio = New System.Windows.Forms.Button()
         Me.btnLimpiarCampos = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblNombre
         '
         Me.lblNombre.AutoSize = True
-        Me.lblNombre.Location = New System.Drawing.Point(45, 40)
+        Me.lblNombre.Location = New System.Drawing.Point(13, 40)
         Me.lblNombre.Name = "lblNombre"
         Me.lblNombre.Size = New System.Drawing.Size(47, 13)
         Me.lblNombre.TabIndex = 0
@@ -49,7 +51,7 @@ Partial Class AgregarSocio
         'lblApellido
         '
         Me.lblApellido.AutoSize = True
-        Me.lblApellido.Location = New System.Drawing.Point(45, 112)
+        Me.lblApellido.Location = New System.Drawing.Point(13, 93)
         Me.lblApellido.Name = "lblApellido"
         Me.lblApellido.Size = New System.Drawing.Size(47, 13)
         Me.lblApellido.TabIndex = 1
@@ -67,7 +69,7 @@ Partial Class AgregarSocio
         'lblDireccion
         '
         Me.lblDireccion.AutoSize = True
-        Me.lblDireccion.Location = New System.Drawing.Point(415, 40)
+        Me.lblDireccion.Location = New System.Drawing.Point(383, 40)
         Me.lblDireccion.Name = "lblDireccion"
         Me.lblDireccion.Size = New System.Drawing.Size(55, 13)
         Me.lblDireccion.TabIndex = 3
@@ -76,7 +78,7 @@ Partial Class AgregarSocio
         'lblEstadoSocio
         '
         Me.lblEstadoSocio.AutoSize = True
-        Me.lblEstadoSocio.Location = New System.Drawing.Point(415, 99)
+        Me.lblEstadoSocio.Location = New System.Drawing.Point(383, 96)
         Me.lblEstadoSocio.Name = "lblEstadoSocio"
         Me.lblEstadoSocio.Size = New System.Drawing.Size(43, 13)
         Me.lblEstadoSocio.TabIndex = 4
@@ -84,14 +86,14 @@ Partial Class AgregarSocio
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(98, 37)
+        Me.txtNombre.Location = New System.Drawing.Point(66, 40)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(143, 20)
         Me.txtNombre.TabIndex = 5
         '
         'txtApellido
         '
-        Me.txtApellido.Location = New System.Drawing.Point(98, 109)
+        Me.txtApellido.Location = New System.Drawing.Point(66, 93)
         Me.txtApellido.Name = "txtApellido"
         Me.txtApellido.Size = New System.Drawing.Size(143, 20)
         Me.txtApellido.TabIndex = 6
@@ -105,14 +107,14 @@ Partial Class AgregarSocio
         '
         'txtDireccion
         '
-        Me.txtDireccion.Location = New System.Drawing.Point(476, 37)
+        Me.txtDireccion.Location = New System.Drawing.Point(444, 40)
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(143, 20)
         Me.txtDireccion.TabIndex = 8
         '
         'txtEstado
         '
-        Me.txtEstado.Location = New System.Drawing.Point(476, 96)
+        Me.txtEstado.Location = New System.Drawing.Point(444, 93)
         Me.txtEstado.Name = "txtEstado"
         Me.txtEstado.Size = New System.Drawing.Size(143, 20)
         Me.txtEstado.TabIndex = 9
@@ -120,7 +122,7 @@ Partial Class AgregarSocio
         'btnAgregarSocio
         '
         Me.btnAgregarSocio.BackColor = System.Drawing.Color.YellowGreen
-        Me.btnAgregarSocio.Location = New System.Drawing.Point(516, 286)
+        Me.btnAgregarSocio.Location = New System.Drawing.Point(487, 261)
         Me.btnAgregarSocio.Name = "btnAgregarSocio"
         Me.btnAgregarSocio.Size = New System.Drawing.Size(81, 46)
         Me.btnAgregarSocio.TabIndex = 10
@@ -130,7 +132,7 @@ Partial Class AgregarSocio
         'btnLimpiarCampos
         '
         Me.btnLimpiarCampos.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnLimpiarCampos.Location = New System.Drawing.Point(614, 286)
+        Me.btnLimpiarCampos.Location = New System.Drawing.Point(391, 261)
         Me.btnLimpiarCampos.Name = "btnLimpiarCampos"
         Me.btnLimpiarCampos.Size = New System.Drawing.Size(81, 46)
         Me.btnLimpiarCampos.TabIndex = 11
@@ -139,33 +141,46 @@ Partial Class AgregarSocio
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(707, 286)
+        Me.btnCancelar.Location = New System.Drawing.Point(581, 261)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(81, 46)
         Me.btnCancelar.TabIndex = 12
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.txtApellido)
+        Me.GroupBox1.Controls.Add(Me.lblApellido)
+        Me.GroupBox1.Controls.Add(Me.lblNombre)
+        Me.GroupBox1.Controls.Add(Me.txtEstado)
+        Me.GroupBox1.Controls.Add(Me.txtNombre)
+        Me.GroupBox1.Controls.Add(Me.txtDireccion)
+        Me.GroupBox1.Controls.Add(Me.lblEstadoSocio)
+        Me.GroupBox1.Controls.Add(Me.lblDireccion)
+        Me.GroupBox1.Location = New System.Drawing.Point(32, 18)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(628, 208)
+        Me.GroupBox1.TabIndex = 13
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Datos socio"
+        '
         'AgregarSocio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(702, 323)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnLimpiarCampos)
         Me.Controls.Add(Me.btnAgregarSocio)
-        Me.Controls.Add(Me.txtEstado)
-        Me.Controls.Add(Me.txtDireccion)
         Me.Controls.Add(Me.txtTelefono)
-        Me.Controls.Add(Me.txtApellido)
-        Me.Controls.Add(Me.txtNombre)
-        Me.Controls.Add(Me.lblEstadoSocio)
-        Me.Controls.Add(Me.lblDireccion)
         Me.Controls.Add(Me.lblTelefono)
-        Me.Controls.Add(Me.lblApellido)
-        Me.Controls.Add(Me.lblNombre)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Name = "AgregarSocio"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AgregarSocio"
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -184,4 +199,5 @@ Partial Class AgregarSocio
     Friend WithEvents btnAgregarSocio As Button
     Friend WithEvents btnLimpiarCampos As Button
     Friend WithEvents btnCancelar As Button
+    Friend WithEvents GroupBox1 As GroupBox
 End Class
