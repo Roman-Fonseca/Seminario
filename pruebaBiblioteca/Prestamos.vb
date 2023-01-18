@@ -43,37 +43,45 @@ Public Class Prestamos
     End Sub
 
     Private Sub btnFinalizarPrestamo_Click(sender As Object, e As EventArgs) Handles btnFinalizarPrestamo.Click
+        moduloBiblioteca.finalizarPrestamoAtajo()
         'Capturo fecha_devolucion
         Dim fecha_devolucion As Date
         fecha_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(4).Value
-
         'Capturo hora_devolucion
-        Dim hora_devolucion As DateTime
+        Dim hora_devolucion As Date
         hora_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(5).Value.ToString
-
+        'Capturo fecha_actual
+        Dim fecha_actual As DateTime
+        fecha_actual = Today
+        'Capturo hora_actual
         Dim hora_actual As DateTime
         hora_actual = TimeOfDay
 
-        MsgBox("La fecha Actual es: " & fecha_devolucion)
-        MsgBox("La hora actual es: " & hora_actual)
-        MsgBox("la hora_devolucion es: " & hora_devolucion)
+        moduloBiblioteca.compararFechas(fecha_devolucion, fecha_actual, hora_devolucion, hora_actual)
 
-        If hora_devolucion > hora_actual Then
-            MsgBox("Hora devolución es mayor")
-        Else
-            MsgBox("Hora devolución es menor")
-        End If
+    End Sub
 
+    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Close()
+    End Sub
 
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+        'Capturo fecha_devolucion
+        Dim fecha_devolucion As Date
+        fecha_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(4).Value
         'Capturo fecha_actual
-        'Dim fecha_actual As Date
-        'fecha_actual = Today
-        'If fecha_devolucion >= fecha_actual Then
-        'MsgBox("El prestamo no está atrasado")
-        'Else
-        'MsgBox("El prestamo está atrasado")
-        'End If
+        Dim fecha_actual As DateTime
+        fecha_actual = Today
 
-        'MsgBox(fecha_devolucion)
+        Dim msg
+        msg = DateDiff("d", fecha_devolucion, fecha_actual)
+        MsgBox(msg)
+
+        Dim dias
+        dias = DateDiff("d", fecha_devolucion, fecha_actual)
+        MsgBox("---- " & dias)
+
+
+
     End Sub
 End Class

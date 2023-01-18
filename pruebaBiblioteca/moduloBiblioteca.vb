@@ -747,7 +747,7 @@ Module moduloBiblioteca
 
     Public Sub mostrarPrestamos()
         'Mostrar prestamos pendientes de finalizar
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,cod_socio from prestamo_socio"
+        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio from prestamo_socio"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -935,6 +935,76 @@ Module moduloBiblioteca
 
         Return False
     End Function
+
+    Public Function finalizarPrestamoAtajo() As Boolean
+        Dim LOC_consulta As String
+
+        'Capturo cod_prestamo
+        cod_prestamo_modificar = Prestamos.dgvPrestamos.SelectedRows.Item(0).Cells(0).Value
+
+        'Capturo fecha actual del sistema
+        Dim fecha_actual As Date
+        fecha_actual = Today
+
+        'Convierto la fecha actual en string
+        Dim fecha_actual_string As String
+        fecha_actual_string = fecha_actual.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+
+        'Capturo la hora actual del sistema
+        Dim hora_actual As DateTime
+        hora_actual = TimeOfDay
+
+        'Capturo fecha_devolucion
+        Dim fecha_devolucion As Date
+        fecha_devolucion = Prestamos.dgvPrestamos.SelectedRows.Item(0).Cells(4).Value
+
+
+        'Capturo hora_devolución
+        Dim hora_devolucion As DateTime
+        fecha_devolucion = Prestamos.dgvPrestamos.SelectedRows.Item(0).Cells(5).Value.ToString
+
+        'Update
+        Try
+
+            If ConexionMySQL() Then
+                LOC_consulta = "update prestamo_socio set
+                fecha_devolucion_real='" & fecha_actual_string & "',
+                hora_devolucion_real='" & hora_actual & "' where cod_prestamo_socio= " & cod_prestamo_modificar & ""
+                MsgBox(LOC_consulta)
+                Glocomando.CommandText = LOC_consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+                Glodatareader = Glocomando.ExecuteReader
+            End If
+            Glodatareader.Close()
+            MsgBox("Se finalizo prestamo correctamente")
+            GloconexionDB.Close()
+            Return True
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            GloconexionDB.Close()
+            Return False
+        End Try
+
+
+    End Function
+
+    Public Function compararFechas(fecha_devolucion As Date, fecha_actual As Date, hora_devolucion As DateTime,
+                                   hora_actual As DateTime) As Boolean
+        If (fecha_actual > fecha_devolucion) Then
+            MsgBox("Prestamo atrasado")
+        ElseIf fecha_actual = fecha_devolucion Then
+            If hora_actual > hora_devolucion Then
+                MsgBox("Prestamo atrasado")
+            Else
+                MsgBox("Faltan Horas")
+            End If
+        Else
+            MsgBox("El prestamo no está atrasado")
+        End If
+    End Function
+
 
     Public Sub mostrarPrestamosVencidos()
         'Capturo la fecha Actual
