@@ -631,7 +631,7 @@ Module moduloBiblioteca
         fechaPrestamoDate = Today
 
         'Convierto la fecha actual en string
-        Dim fechaPrestamoString As Date
+        Dim fechaPrestamoString As String
         fechaPrestamoString = fechaPrestamoDate.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
 
         'Convierto la fechaPrestamoString a fechaPrestamoDate
