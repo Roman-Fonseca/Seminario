@@ -54,9 +54,14 @@ Public Class Prestamos
         Dim hora_actual As DateTime
         hora_actual = TimeOfDay
 
+        MsgBox("La fecha Actual es: " & fecha_devolucion)
+        MsgBox("La hora actual es: " & hora_actual)
+        MsgBox("la hora_devolucion es: " & hora_devolucion)
 
-        If DateTime.Compare(hora_devolucion, hora_actual) > 0 Then
-            MsgBox("Atrasado")
+        If hora_devolucion > hora_actual Then
+            MsgBox("Hora devolución es mayor")
+        Else
+            MsgBox("Hora devolución es menor")
         End If
 
 
