@@ -258,25 +258,25 @@ Partial Class Form1
         '
         Me.AgregarParametroToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SanciónEsperaToolStripMenuItem, Me.SanciónDineroToolStripMenuItem})
         Me.AgregarParametroToolStripMenuItem.Name = "AgregarParametroToolStripMenuItem"
-        Me.AgregarParametroToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
+        Me.AgregarParametroToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgregarParametroToolStripMenuItem.Text = "Agregar parametro"
         '
         'SanciónEsperaToolStripMenuItem
         '
         Me.SanciónEsperaToolStripMenuItem.Name = "SanciónEsperaToolStripMenuItem"
-        Me.SanciónEsperaToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
-        Me.SanciónEsperaToolStripMenuItem.Text = "Sanción espera"
+        Me.SanciónEsperaToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SanciónEsperaToolStripMenuItem.Text = "Parametro espera"
         '
         'SanciónDineroToolStripMenuItem
         '
         Me.SanciónDineroToolStripMenuItem.Name = "SanciónDineroToolStripMenuItem"
-        Me.SanciónDineroToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
-        Me.SanciónDineroToolStripMenuItem.Text = "Sanción dinero "
+        Me.SanciónDineroToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SanciónDineroToolStripMenuItem.Text = "Parametro dinero "
         '
         'VerParametrosToolStripMenuItem
         '
         Me.VerParametrosToolStripMenuItem.Name = "VerParametrosToolStripMenuItem"
-        Me.VerParametrosToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
+        Me.VerParametrosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.VerParametrosToolStripMenuItem.Text = "Ver parametros"
         '
         'PlazosToolStripMenuItem
@@ -289,13 +289,13 @@ Partial Class Form1
         'AgregarPlazoToolStripMenuItem
         '
         Me.AgregarPlazoToolStripMenuItem.Name = "AgregarPlazoToolStripMenuItem"
-        Me.AgregarPlazoToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.AgregarPlazoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgregarPlazoToolStripMenuItem.Text = "Agregar Plazo"
         '
         'VerPlazosToolStripMenuItem
         '
         Me.VerPlazosToolStripMenuItem.Name = "VerPlazosToolStripMenuItem"
-        Me.VerPlazosToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.VerPlazosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.VerPlazosToolStripMenuItem.Text = "Ver Plazos"
         '
         'Button2

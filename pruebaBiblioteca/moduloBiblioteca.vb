@@ -1023,6 +1023,20 @@ Module moduloBiblioteca
         MsgBox(resultado)
         Return resultado
     End Function
+    Public Function EstaDevuelto(fecha_devolucion_real As Date) As Boolean
+        Dim fecha_vacia As Date
+
+        Try
+            If fecha_devolucion_real = fecha_vacia Then
+                Return True
+            Else
+                MsgBox("El prestamo ya está finalizado")
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Function
 
 
 
@@ -1039,7 +1053,7 @@ Module moduloBiblioteca
         horaActual = TimeOfDay
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,cod_socio from prestamo_socio where '" & dia_actual_string & "' >= fecha_devolucion AND hora_devolucion > '" & horaActual & "' AND fecha_devolucion_real  = '0000-00-00'"
+        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio from prestamo_socio where '" & dia_actual_string & "' >= fecha_devolucion AND hora_devolucion > '" & horaActual & "' AND fecha_devolucion_real  = '0000-00-00'"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1080,7 +1094,7 @@ Module moduloBiblioteca
         horaActual = TimeOfDay
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,cod_socio,fecha_devolucion_real,hora_devolucion_real from prestamo_socio where '" & dia_actual_string & "' > fecha_devolucion AND hora_devolucion < '" & horaActual & "' AND fecha_devolucion_real IS NOT NULL OR fecha_devolucion_real != '0000-00-00'"
+        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio from prestamo_socio where '" & dia_actual_string & "' > fecha_devolucion AND hora_devolucion < '" & horaActual & "' AND fecha_devolucion_real IS NOT NULL OR fecha_devolucion_real != '0000-00-00'"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1108,5 +1122,27 @@ Module moduloBiblioteca
             MsgBox("Error en la conexion")
         End Try
     End Sub
+    Public Function cargarParametro() As Boolean
+        Dim LOC_consulta As String
+        Try
+
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into parametro_espera (nombre_parametro,minimo,maximo,dias_sancion) 
+                values('" & AgregarParametroEspera.txtNombreParametro.Text & "','" & AgregarParametroEspera.txtMinimo.Text & "'
+                ,'" & AgregarParametroEspera.txtMaximo.Text & "','" & AgregarParametroEspera.txtSancion.Text & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se agregó parametro correctamente")
+                Return True
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        End Try
+
+        Return False
+    End Function
+
 
 End Module

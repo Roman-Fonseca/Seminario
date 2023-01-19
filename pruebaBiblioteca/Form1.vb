@@ -92,4 +92,12 @@ Public Class Form1
     Private Sub Button3_Click(sender As Object, e As EventArgs)
 
     End Sub
+
+    Private Sub SanciónEsperaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanciónEsperaToolStripMenuItem.Click
+        AgregarParametroEspera.ShowDialog()
+    End Sub
+
+    Private Sub SanciónDineroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanciónDineroToolStripMenuItem.Click
+
+    End Sub
 End Class

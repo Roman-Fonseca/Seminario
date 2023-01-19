@@ -96,6 +96,12 @@
     <Compile Include="AgregarEjemplar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AgregarParametroEspera.Designer.vb">
+      <DependentUpon>AgregarParametroEspera.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarParametroEspera.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AgregarPlazoPrestamo.Designer.vb">
       <DependentUpon>AgregarPlazoPrestamo.vb</DependentUpon>
     </Compile>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarEjemplar.resx">
       <DependentUpon>AgregarEjemplar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarParametroEspera.resx">
+      <DependentUpon>AgregarParametroEspera.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarPlazoPrestamo.resx">
       <DependentUpon>AgregarPlazoPrestamo.vb</DependentUpon>

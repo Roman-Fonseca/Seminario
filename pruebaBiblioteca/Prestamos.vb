@@ -44,7 +44,9 @@ Public Class Prestamos
     End Sub
 
     Private Sub btnFinalizarPrestamo_Click(sender As Object, e As EventArgs) Handles btnFinalizarPrestamo.Click
-        moduloBiblioteca.finalizarPrestamoAtajo()
+        'Capturo la fecha_devolucion_real
+        Dim fecha_devolucion_real As Date
+        fecha_devolucion_real = Me.dgvPrestamos.SelectedRows.Item(0).Cells(6).Value
         'Capturo fecha_devolucion
         Dim fecha_devolucion As Date
         fecha_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(4).Value
@@ -58,7 +60,10 @@ Public Class Prestamos
         Dim hora_actual As DateTime
         hora_actual = TimeOfDay
 
-        moduloBiblioteca.compararFechas(fecha_devolucion, fecha_actual, hora_devolucion, hora_actual)
+        If EstaDevuelto(fecha_devolucion_real) Then
+            moduloBiblioteca.finalizarPrestamoAtajo()
+            moduloBiblioteca.compararFechas(fecha_devolucion, fecha_actual, hora_devolucion, hora_actual)
+        End If
 
     End Sub
 
