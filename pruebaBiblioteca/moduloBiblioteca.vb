@@ -993,10 +993,10 @@ Module moduloBiblioteca
     Public Function compararFechas(fecha_devolucion As Date, fecha_actual As Date, hora_devolucion As DateTime,
                                    hora_actual As DateTime) As Boolean
         If (fecha_actual > fecha_devolucion) Then
-            MsgBox("Prestamo atrasado")
+            MsgBox("Prestamo atrasado por " & diffDias(fecha_devolucion, fecha_actual) & " dia/s")
         ElseIf fecha_actual = fecha_devolucion Then
             If hora_actual > hora_devolucion Then
-                MsgBox("Prestamo atrasado")
+                MsgBox("Prestamo atrasado por ")
             Else
                 MsgBox("Faltan Horas")
             End If
@@ -1004,6 +1004,26 @@ Module moduloBiblioteca
             MsgBox("El prestamo no está atrasado")
         End If
     End Function
+
+    Public Function diffDias(fecha_devolucion As Date, fecha_actual As Date)
+        Dim dias
+        dias = DateDiff("d", fecha_devolucion, fecha_actual)
+        Return dias
+    End Function
+
+    Public Sub diffHoras(hora_devolucion As DateTime, hora_actual As DateTime)
+        Dim hora1 As DateTime = DateTime.Parse(hora_devolucion)
+
+        Dim hora2 As DateTime = DateTime.Parse(hora_actual)
+
+        Dim hora As TimeSpan = hora2.Subtract(hora1)
+
+        Dim resultado As String = String.Format("{0}:{1}:{2}", hora.Hours, hora.Minutes, hora.Seconds)
+
+        MsgBox(resultado)
+    End Sub
+
+
 
 
     Public Sub mostrarPrestamosVencidos()

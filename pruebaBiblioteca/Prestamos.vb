@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Security.Cryptography.X509Certificates
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar
 
 Public Class Prestamos
@@ -66,6 +67,7 @@ Public Class Prestamos
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+
         'Capturo fecha_devolucion
         Dim fecha_devolucion As Date
         fecha_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(4).Value
@@ -73,13 +75,18 @@ Public Class Prestamos
         Dim fecha_actual As DateTime
         fecha_actual = Today
 
-        Dim msg
-        msg = DateDiff("d", fecha_devolucion, fecha_actual)
-        MsgBox(msg)
+        moduloBiblioteca.diffDias(fecha_devolucion, fecha_actual)
 
-        Dim dias
-        dias = DateDiff("d", fecha_devolucion, fecha_actual)
-        MsgBox("---- " & dias)
+        'Capturo hora_devolucion
+        Dim hora_devolucion As DateTime
+        hora_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(5).Value.ToString
+
+        'Capturo hora_actual
+        Dim hora_actual As DateTime
+        hora_actual = TimeOfDay.ToString
+
+        moduloBiblioteca.diffHoras(hora_devolucion, hora_actual)
+
 
 
 
