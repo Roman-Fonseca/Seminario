@@ -998,7 +998,7 @@ Module moduloBiblioteca
             If hora_actual > hora_devolucion Then
                 MsgBox("Prestamo atrasado por ")
             Else
-                MsgBox("Faltan Horas")
+                MsgBox("Faltan " & diffHoras(hora_devolucion, hora_actual) & " minutos")
             End If
         Else
             MsgBox("El prestamo no está atrasado")
@@ -1011,7 +1011,7 @@ Module moduloBiblioteca
         Return dias
     End Function
 
-    Public Sub diffHoras(hora_devolucion As DateTime, hora_actual As DateTime)
+    Public Function diffHoras(hora_actual As DateTime, hora_devolucion As DateTime) As String
         Dim hora1 As DateTime = DateTime.Parse(hora_devolucion)
 
         Dim hora2 As DateTime = DateTime.Parse(hora_actual)
@@ -1021,7 +1021,8 @@ Module moduloBiblioteca
         Dim resultado As String = String.Format("{0}:{1}:{2}", hora.Hours, hora.Minutes, hora.Seconds)
 
         MsgBox(resultado)
-    End Sub
+        Return resultado
+    End Function
 
 
 
