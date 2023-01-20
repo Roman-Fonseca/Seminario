@@ -100,4 +100,8 @@ Public Class Form1
     Private Sub SanciónDineroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanciónDineroToolStripMenuItem.Click
 
     End Sub
+
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles btnListaSancion.Click
+        'moduloBiblioteca.calcularSancion()
+    End Sub
 End Class

@@ -21,6 +21,13 @@ Module conexion
         Return True
     End Function
 
+    Public Sub abrirConexionMySql()
+        If GloconexionDB.State = ConnectionState.Closed Then
+            GloconexionDB.ConnectionString = cadena_conexion
+            GloconexionDB.Open()
+        End If
+    End Sub
+
     Public Sub probarConexion()
         Dim verdadero = ConexionMySQL()
         If verdadero = True Then

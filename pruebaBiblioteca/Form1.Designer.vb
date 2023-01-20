@@ -58,7 +58,10 @@ Partial Class Form1
         Me.AgregarPlazoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerPlazosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnListaSancion = New System.Windows.Forms.Button()
+        Me.listaSancion = New System.Windows.Forms.DataGridView()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.listaSancion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnConectar
@@ -258,25 +261,25 @@ Partial Class Form1
         '
         Me.AgregarParametroToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SanciónEsperaToolStripMenuItem, Me.SanciónDineroToolStripMenuItem})
         Me.AgregarParametroToolStripMenuItem.Name = "AgregarParametroToolStripMenuItem"
-        Me.AgregarParametroToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgregarParametroToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.AgregarParametroToolStripMenuItem.Text = "Agregar parametro"
         '
         'SanciónEsperaToolStripMenuItem
         '
         Me.SanciónEsperaToolStripMenuItem.Name = "SanciónEsperaToolStripMenuItem"
-        Me.SanciónEsperaToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SanciónEsperaToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.SanciónEsperaToolStripMenuItem.Text = "Parametro espera"
         '
         'SanciónDineroToolStripMenuItem
         '
         Me.SanciónDineroToolStripMenuItem.Name = "SanciónDineroToolStripMenuItem"
-        Me.SanciónDineroToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SanciónDineroToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.SanciónDineroToolStripMenuItem.Text = "Parametro dinero "
         '
         'VerParametrosToolStripMenuItem
         '
         Me.VerParametrosToolStripMenuItem.Name = "VerParametrosToolStripMenuItem"
-        Me.VerParametrosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VerParametrosToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.VerParametrosToolStripMenuItem.Text = "Ver parametros"
         '
         'PlazosToolStripMenuItem
@@ -289,13 +292,13 @@ Partial Class Form1
         'AgregarPlazoToolStripMenuItem
         '
         Me.AgregarPlazoToolStripMenuItem.Name = "AgregarPlazoToolStripMenuItem"
-        Me.AgregarPlazoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgregarPlazoToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.AgregarPlazoToolStripMenuItem.Text = "Agregar Plazo"
         '
         'VerPlazosToolStripMenuItem
         '
         Me.VerPlazosToolStripMenuItem.Name = "VerPlazosToolStripMenuItem"
-        Me.VerPlazosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VerPlazosToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
         Me.VerPlazosToolStripMenuItem.Text = "Ver Plazos"
         '
         'Button2
@@ -307,11 +310,30 @@ Partial Class Form1
         Me.Button2.Text = "Prueba horario"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'btnListaSancion
+        '
+        Me.btnListaSancion.Location = New System.Drawing.Point(407, 350)
+        Me.btnListaSancion.Name = "btnListaSancion"
+        Me.btnListaSancion.Size = New System.Drawing.Size(83, 47)
+        Me.btnListaSancion.TabIndex = 12
+        Me.btnListaSancion.Text = "ListaSancion"
+        Me.btnListaSancion.UseVisualStyleBackColor = True
+        '
+        'listaSancion
+        '
+        Me.listaSancion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.listaSancion.Location = New System.Drawing.Point(298, 133)
+        Me.listaSancion.Name = "listaSancion"
+        Me.listaSancion.Size = New System.Drawing.Size(192, 115)
+        Me.listaSancion.TabIndex = 13
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 409)
+        Me.Controls.Add(Me.listaSancion)
+        Me.Controls.Add(Me.btnListaSancion)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.dtpFechaDevolucion)
@@ -328,6 +350,7 @@ Partial Class Form1
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.listaSancion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -368,4 +391,6 @@ Partial Class Form1
     Friend WithEvents AgregarPlazoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerPlazosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button2 As Button
+    Friend WithEvents btnListaSancion As Button
+    Friend WithEvents listaSancion As DataGridView
 End Class

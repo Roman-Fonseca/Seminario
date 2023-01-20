@@ -3,6 +3,7 @@ Imports System.Globalization
 Imports System.Reflection.Emit
 Imports System.Security.Cryptography.X509Certificates
 Imports MySql.Data.MySqlClient
+Imports Mysqlx.XDevAPI.Relational
 
 Module moduloBiblioteca
     Public GLO_CodSocioModificar As Integer
@@ -1004,10 +1005,15 @@ Module moduloBiblioteca
             MsgBox("El prestamo no está atrasado")
         End If
     End Function
+    Public Sub aplicarSancionEspera(fecha_devolucion As Date, fecha_actual As Date)
+        Dim dias_diferencia As Integer
+        dias_diferencia = diffDias(fecha_devolucion, fecha_actual)
+        MsgBox("La diferencia de dias es: " & dias_diferencia)
+    End Sub
 
     Public Function diffDias(fecha_devolucion As Date, fecha_actual As Date)
         Dim dias
-        dias = DateDiff("d", fecha_devolucion, fecha_actual)
+        dias = Math.Abs(DateDiff("d", fecha_devolucion, fecha_actual))
         Return dias
     End Function
 
@@ -1023,7 +1029,7 @@ Module moduloBiblioteca
         MsgBox(resultado)
         Return resultado
     End Function
-    Public Function EstaDevuelto(fecha_devolucion_real As Date) As Boolean
+    Public Function NoEstaDevuelto(fecha_devolucion_real As Date) As Boolean
         Dim fecha_vacia As Date
 
         Try
@@ -1039,7 +1045,38 @@ Module moduloBiblioteca
     End Function
 
 
+    Public Function calcularSancion(fecha_devolucion As Date, fecha_actual As Date) As DataTable
+        Dim dias As Integer
+        Dim dias_sancion As Integer
+        Dim minimo As Integer
+        Dim bandera As Integer
+        Dim pruebaMinimo As Integer
+        dias = diffDias(fecha_devolucion, fecha_actual)
+        Dim consulta As String = "select cod_parametro,nombre_parametro,minimo,maximo,dias_sancion from parametro_espera"
+        If GloconexionDB.State = ConnectionState.Closed Then
+            GloconexionDB.ConnectionString = cadena_conexion
+            GloconexionDB.Open()
+        End If
 
+        Dim command As New MySqlCommand(consulta, GloconexionDB)
+        Dim reader As MySqlDataReader = command.ExecuteReader()
+
+        While reader.Read()
+            If (bandera = 0) Then
+                pruebaMinimo = Convert.ToInt32(reader("minimo"))
+                MsgBox(pruebaMinimo)
+                If dias >= Convert.ToInt32(reader("minimo")) & dias < Convert.ToInt32(reader("maximo")) Then
+                    MsgBox("tttt")
+                    bandera += 1
+                End If
+            End If
+        End While
+
+        reader.Close()
+
+
+
+    End Function
 
     Public Sub mostrarPrestamosVencidos()
         'Capturo la fecha Actual

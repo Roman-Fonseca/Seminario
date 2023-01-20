@@ -29,14 +29,17 @@ Public Class Prestamos
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnTodosLosPrestamos.Click
         moduloBiblioteca.mostrarPrestamos()
+        'Me.btnFinalizarPrestamo.Hide()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnPrestamosVencidos.Click
         moduloBiblioteca.mostrarPrestamosVencidos()
+        Me.btnFinalizarPrestamo.Show()
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btnPrestamosVencidosDevueltos.Click
         moduloBiblioteca.mostrarPrestamosVencidosDevueltos()
+        Me.btnFinalizarPrestamo.Hide()
     End Sub
 
     Private Sub Button1_Click_2(sender As Object, e As EventArgs)
@@ -60,9 +63,13 @@ Public Class Prestamos
         Dim hora_actual As DateTime
         hora_actual = TimeOfDay
 
-        If EstaDevuelto(fecha_devolucion_real) Then
+        If NoEstaDevuelto(fecha_devolucion_real) Then
             moduloBiblioteca.finalizarPrestamoAtajo()
-            moduloBiblioteca.compararFechas(fecha_devolucion, fecha_actual, hora_devolucion, hora_actual)
+        End If
+
+        If fecha_devolucion < fecha_actual Then
+            moduloBiblioteca.aplicarSancionEspera(fecha_devolucion, fecha_actual)
+            moduloBiblioteca.calcularSancion(fecha_devolucion, fecha_actual)
         End If
 
     End Sub
