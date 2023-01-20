@@ -1005,10 +1005,39 @@ Module moduloBiblioteca
             MsgBox("El prestamo no está atrasado")
         End If
     End Function
-    Public Sub aplicarSancionEspera(fecha_devolucion As Date, fecha_actual As Date)
-        Dim dias_diferencia As Integer
-        dias_diferencia = diffDias(fecha_devolucion, fecha_actual)
-        MsgBox("La diferencia de dias es: " & dias_diferencia)
+    Public Sub aplicarSancionEspera(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime,
+                                   hora_actual As DateTime)
+        Dim LOC_consulta As String
+
+        'Convierto la fecha_actual en string
+        Dim fecha_inicio As String
+        fecha_inicio = fecha_actual.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+
+        Dim fecha_finalizacion As Date
+        Dim dias_sancion As Integer
+        Dim hora_finalizacion As DateTime
+        hora_finalizacion = "0 : 00:00"
+        dias_sancion = calcularSancion(fecha_devolucion, fecha_actual)
+        'Prueba motivo
+        Dim motivo As String
+        motivo = "Prestamo atrasado"
+        fecha_finalizacion = DateAdd("d", dias_sancion, Today)
+
+        'Convierto la fecha_actual en string
+        Dim fecha_finalizacion_str As String = fecha_finalizacion.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+
+        Try
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into sancion_prestamo_espera (fecha_inicio,hora_inicio,fecha_finalizacion,hora_finalizacion,motivo,cod_prestamo_socio) values('" & fecha_inicio & "','" & hora_actual & "','" & fecha_finalizacion_str & "','" & hora_finalizacion & "','" & motivo & "','" & cod_prestamo_socio & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se agregó sancion_espera correctamente")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        'moduloBiblioteca.calcularSancion(fecha_devolucion, fecha_actual)
     End Sub
 
     Public Function diffDias(fecha_devolucion As Date, fecha_actual As Date)
@@ -1045,12 +1074,12 @@ Module moduloBiblioteca
     End Function
 
 
-    Public Function calcularSancion(fecha_devolucion As Date, fecha_actual As Date) As DataTable
+    Public Function calcularSancion(fecha_devolucion As Date, fecha_actual As Date) As Integer
         Dim dias As Integer
         Dim dias_sancion As Integer
         Dim minimo As Integer
         Dim bandera As Integer
-        Dim pruebaMinimo As Integer
+        Dim maximo As Integer
         dias = diffDias(fecha_devolucion, fecha_actual)
         Dim consulta As String = "select cod_parametro,nombre_parametro,minimo,maximo,dias_sancion from parametro_espera"
         If GloconexionDB.State = ConnectionState.Closed Then
@@ -1061,21 +1090,28 @@ Module moduloBiblioteca
         Dim command As New MySqlCommand(consulta, GloconexionDB)
         Dim reader As MySqlDataReader = command.ExecuteReader()
 
+        bandera = 0
+
         While reader.Read()
             If (bandera = 0) Then
-                pruebaMinimo = Convert.ToInt32(reader("minimo"))
-                MsgBox(pruebaMinimo)
-                If dias >= Convert.ToInt32(reader("minimo")) & dias < Convert.ToInt32(reader("maximo")) Then
-                    MsgBox("tttt")
-                    bandera += 1
+                minimo = Convert.ToInt32(reader("minimo"))
+                maximo = Convert.ToInt32(reader("maximo"))
+                dias_sancion = Convert.ToInt32(reader("dias_sancion"))
+                If dias >= minimo Then
+                    If dias <= maximo Then
+                        MsgBox("Corresponde sancion de " & dias_sancion & " dias")
+                        bandera += 1
+                    End If
                 End If
             End If
         End While
 
+        If bandera = 0 Then
+            MsgBox("Fuera de rango")
+        End If
+
         reader.Close()
-
-
-
+        Return dias_sancion
     End Function
 
     Public Sub mostrarPrestamosVencidos()
@@ -1090,7 +1126,7 @@ Module moduloBiblioteca
         horaActual = TimeOfDay
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio from prestamo_socio where '" & dia_actual_string & "' >= fecha_devolucion AND hora_devolucion > '" & horaActual & "' AND fecha_devolucion_real  = '0000-00-00'"
+        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio from prestamo_socio where '" & dia_actual_string & "' >= fecha_devolucion AND fecha_devolucion_real  = '0000-00-00'"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta

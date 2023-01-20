@@ -62,16 +62,22 @@ Public Class Prestamos
         'Capturo hora_actual
         Dim hora_actual As DateTime
         hora_actual = TimeOfDay
+        'Capturo  cod_socio
+        Dim cod_socio As Integer
+        cod_socio = Me.dgvPrestamos.SelectedRows.Item(0).Cells(8).Value
+        'Capturo  cod_prestamo_socio
+        Dim cod_prestamo_socio As Integer
+        cod_prestamo_socio = Me.dgvPrestamos.SelectedRows.Item(0).Cells(0).Value
 
         If NoEstaDevuelto(fecha_devolucion_real) Then
             moduloBiblioteca.finalizarPrestamoAtajo()
         End If
 
         If fecha_devolucion < fecha_actual Then
-            moduloBiblioteca.aplicarSancionEspera(fecha_devolucion, fecha_actual)
-            moduloBiblioteca.calcularSancion(fecha_devolucion, fecha_actual)
+            moduloBiblioteca.aplicarSancionEspera(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual)
         End If
 
+        moduloBiblioteca.mostrarPrestamosVencidos()
     End Sub
 
     Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
@@ -102,5 +108,19 @@ Public Class Prestamos
 
 
 
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Button3_Click_1(sender As Object, e As EventArgs)
+        'Capturo fecha_devolucion
+        Dim fecha_devolucion As Date
+        fecha_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(4).Value
+        'Capturo fecha_actual
+        Dim fecha_actual As DateTime
+        fecha_actual = Today
+        MsgBox(calcularSancion(fecha_devolucion, fecha_actual))
     End Sub
 End Class

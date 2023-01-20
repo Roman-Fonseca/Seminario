@@ -60,6 +60,7 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.btnListaSancion = New System.Windows.Forms.Button()
         Me.listaSancion = New System.Windows.Forms.DataGridView()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.listaSancion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -327,11 +328,21 @@ Partial Class Form1
         Me.listaSancion.Size = New System.Drawing.Size(192, 115)
         Me.listaSancion.TabIndex = 13
         '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(678, 191)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(83, 47)
+        Me.Button3.TabIndex = 14
+        Me.Button3.Text = "Probar parse"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 409)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.listaSancion)
         Me.Controls.Add(Me.btnListaSancion)
         Me.Controls.Add(Me.Button2)
@@ -393,4 +404,5 @@ Partial Class Form1
     Friend WithEvents Button2 As Button
     Friend WithEvents btnListaSancion As Button
     Friend WithEvents listaSancion As DataGridView
+    Friend WithEvents Button3 As Button
 End Class
