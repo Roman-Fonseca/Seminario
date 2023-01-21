@@ -34,6 +34,7 @@ Partial Class Prestamos
         Me.btnFinalizarPrestamo = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.dgvPrestamos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpbPrestamo.SuspendLayout()
         Me.SuspendLayout()
@@ -153,11 +154,21 @@ Partial Class Prestamos
         Me.Button2.Text = "Calcular diferencia dias"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(275, 408)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(97, 34)
+        Me.Button3.TabIndex = 8
+        Me.Button3.Text = "Probar"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'Prestamos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(958, 454)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnFinalizarPrestamo)
@@ -186,4 +197,5 @@ Partial Class Prestamos
     Friend WithEvents btnFinalizarPrestamo As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class

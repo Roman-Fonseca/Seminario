@@ -1,7 +1,10 @@
 ﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
 Imports System.Security.Cryptography.X509Certificates
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar
+Imports System.Windows.Input
+Imports MySql.Data.MySqlClient
 
 Public Class Prestamos
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
@@ -122,5 +125,48 @@ Public Class Prestamos
         Dim fecha_actual As DateTime
         fecha_actual = Today
         MsgBox(calcularSancion(fecha_devolucion, fecha_actual))
+    End Sub
+
+    Private Sub Button3_Click_2(sender As Object, e As EventArgs) Handles Button3.Click
+        GLO_CodSocioModificar = Me.dgvPrestamos.SelectedRows.Item(0).Cells(8).Value
+        Dim Sql As String = "Select contador_prestamos From socio where cod_socio=" & GLO_CodSocioModificar
+        Dim contador_prestamos As Integer
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As String = Trim(Datos("contador_prestamos"))
+
+                    'Vemos que contiene la variable asignada para la direccion URL extraida
+                    MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
+
+                    'Imprimimos en el cuadro de texto la direccion URL
+                    contador_prestamos = VARIABLE_QUE_CONTENDRA_EL_VALOR
+
+                    'Lanzamos la direccion web al navegador para imprimerla en pantalla
+                    'WebBrowser1.Navigate(VARIABLE_QUE_CONTENDRA_EL_VALOR )
+
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+
+
+    End Sub
+
+    Private Sub gpbPrestamo_Enter(sender As Object, e As EventArgs) Handles gpbPrestamo.Enter
+
     End Sub
 End Class
