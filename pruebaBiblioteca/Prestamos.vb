@@ -77,7 +77,11 @@ Public Class Prestamos
         End If
 
         If fecha_devolucion < fecha_actual Then
-            moduloBiblioteca.aplicarSancionEspera(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual)
+            MsgBox("El prestamo esta atrasado por " & diffDias(fecha_devolucion, fecha_actual) & " dia/s y " & diffHoras(hora_actual, hora_devolucion) & " horas", MsgBoxStyle.Information)
+            Decision.btnEspera.Text = moduloBiblioteca.CalcularSancionEsperaDias(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual)
+            Decision.Show()
+        ElseIf fecha_devolucion = fecha_actual Then
+            MsgBox("El prestamo está atrasado por " & diffHoras(hora_actual, hora_devolucion) & "Horas", MsgBoxStyle.Information)
         End If
 
         moduloBiblioteca.mostrarPrestamosVencidos()

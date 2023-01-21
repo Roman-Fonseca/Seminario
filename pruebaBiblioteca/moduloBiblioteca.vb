@@ -996,20 +996,6 @@ Module moduloBiblioteca
 
     End Function
 
-    Public Function compararFechas(fecha_devolucion As Date, fecha_actual As Date, hora_devolucion As DateTime,
-                                   hora_actual As DateTime) As Boolean
-        If (fecha_actual > fecha_devolucion) Then
-            MsgBox("Prestamo atrasado por " & diffDias(fecha_devolucion, fecha_actual) & " dia/s")
-        ElseIf fecha_actual = fecha_devolucion Then
-            If hora_actual > hora_devolucion Then
-                MsgBox("Prestamo atrasado por ")
-            Else
-                MsgBox("Faltan " & diffHoras(hora_devolucion, hora_actual) & " minutos")
-            End If
-        Else
-            MsgBox("El prestamo no está atrasado")
-        End If
-    End Function
     Public Sub aplicarSancionEspera(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime,
                                    hora_actual As DateTime)
         Dim LOC_consulta As String
@@ -1044,6 +1030,25 @@ Module moduloBiblioteca
 
         'moduloBiblioteca.calcularSancion(fecha_devolucion, fecha_actual)
     End Sub
+
+    Public Function CalcularSancionEsperaDias(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime,
+                                   hora_actual As DateTime)
+        Dim LOC_consulta As String
+
+        'Convierto la fecha_actual en string
+        Dim fecha_inicio As String
+        fecha_inicio = fecha_actual.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+
+        Dim fecha_finalizacion As Date
+        Dim dias_sancion As Integer
+        Dim hora_finalizacion As DateTime
+        hora_finalizacion = "0 : 00:00"
+        dias_sancion = calcularSancion(fecha_devolucion, fecha_actual)
+        Return dias_sancion
+
+    End Function
+
+
 
     Public Function diffDias(fecha_devolucion As Date, fecha_actual As Date)
         Dim dias

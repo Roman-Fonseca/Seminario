@@ -145,6 +145,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="conexion.vb" />
+    <Compile Include="Decision.Designer.vb">
+      <DependentUpon>Decision.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Decision.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Ejemplares.Designer.vb">
       <DependentUpon>Ejemplares.vb</DependentUpon>
     </Compile>
@@ -228,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarLibro.resx">
       <DependentUpon>AgregarLibro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Decision.resx">
+      <DependentUpon>Decision.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ejemplares.resx">
       <DependentUpon>Ejemplares.vb</DependentUpon>

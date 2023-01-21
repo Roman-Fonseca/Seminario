@@ -115,3 +115,4 @@ C:\Users\fonse\Documents\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBibli
 C:\Users\fonse\Documents\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.xml
 C:\Users\fonse\Documents\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.pdb
 C:\Users\fonse\Documents\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.AgregarParametroEspera.resources
+C:\Users\fonse\Documents\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.Decision.resources
