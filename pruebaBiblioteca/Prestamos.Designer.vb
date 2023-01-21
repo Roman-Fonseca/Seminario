@@ -35,6 +35,7 @@ Partial Class Prestamos
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         CType(Me.dgvPrestamos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpbPrestamo.SuspendLayout()
         Me.SuspendLayout()
@@ -163,11 +164,21 @@ Partial Class Prestamos
         Me.Button3.Text = "Probar"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(127, 408)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(97, 34)
+        Me.Button4.TabIndex = 9
+        Me.Button4.Text = "Estado Socio"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
         'Prestamos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(958, 454)
+        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -198,4 +209,5 @@ Partial Class Prestamos
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
 End Class

@@ -62,17 +62,18 @@
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles BotonAgregarPrestamo.Click
+        GLO_CodSocioPrestamo = Me.dgvSocio.SelectedRows.Item(0).Cells(0).Value
         If Me.Text = "Agregar Prestamo" Then
-            moduloBiblioteca.altaPrestamo()
-        Else
+            If moduloBiblioteca.verificarEstadoSocio(GLO_CodSocioPrestamo) Then
+                moduloBiblioteca.altaPrestamo()
+            Else
+                MsgBox("El socio está sancionado", vbCritical)
+            End If
+        End If
+        If Me.Text = "Modificar Prestamo" Then
             moduloBiblioteca.modificarPrestamo()
         End If
-        'If AgregarPrestamo.txt = "Agregar Prestamo" Then
 
-        'End If
-
-        'moduloBiblioteca.altaPrestamo()
-        'moduloBiblioteca.altaPrestamo_ejemplar()
     End Sub
 
     Private Sub Button3_Click_1(sender As Object, e As EventArgs)

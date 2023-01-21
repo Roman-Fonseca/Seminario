@@ -659,6 +659,10 @@ Module moduloBiblioteca
         'Convierto la fechaDevolucionString a fechaDevolucionDate
         'fechaDevolucionDate = Date.ParseExact(fechaDevolucionString, "yyyy/MM/dd", CultureInfo.CurrentCulture, DateTimeStyles.None)
 
+        Dim contador_prestamos As Integer
+        contador_prestamos = moduloBiblioteca.tomar_contador_prestamos(GLO_CodSocioPrestamo)
+
+
         'Alta prestamo
         Try
 
@@ -670,6 +674,7 @@ Module moduloBiblioteca
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó prestamo correctamente")
+                moduloBiblioteca.actualizarContadorPrestamo(contador_prestamos, GLO_CodSocioPrestamo)
                 Return True
             End If
 
@@ -1216,8 +1221,103 @@ Module moduloBiblioteca
 
         Return False
     End Function
+    Public Function tomar_contador_prestamos(GloCodSocioModificar As Integer) As Integer
+        Dim Sql As String = "Select contador_prestamos From socio where cod_socio=" & GloCodSocioModificar
+        Dim contador_prestamos As Integer
+        Dim Conexion As New MySqlConnection(cadena_conexion)
 
+        Dim consulta As New MySqlCommand(Sql, Conexion)
 
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("contador_prestamos"))
+
+                    'Vemos que contiene la variable asignada para la direccion URL extraida
+                    'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
+
+                    'Imprimimos en el cuadro de texto la direccion URL
+                    contador_prestamos = VARIABLE_QUE_CONTENDRA_EL_VALOR
+
+                    Return contador_prestamos
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Sub actualizarContadorPrestamo(contador_prestamos As Integer, cod_socio As Integer)
+        Dim LOC_consulta As String
+        Dim suma = 1 + contador_prestamos
+        Try
+
+            If ConexionMySQL() Then
+                LOC_consulta = "update socio set contador_prestamos ='" & suma & "' where cod_socio= " & cod_socio & ""
+                MsgBox(LOC_consulta)
+                Glocomando.CommandText = LOC_consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+                Glodatareader = Glocomando.ExecuteReader
+                Glodatareader.Close()
+                MsgBox("Se Modificó Correctamente")
+                GloconexionDB.Close()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            GloconexionDB.Close()
+        End Try
+    End Sub
+    Public Function tomarEstadoSocio(cod_socio As Integer) As String
+        Dim Sql As String = "Select estado_socio from socio where cod_socio=" & cod_socio
+        Dim estado_socio As String
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As String = Trim(Datos("estado_socio"))
+
+                    'Vemos que contiene la variable asignada para la direccion URL extraida
+                    'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
+
+                    'Imprimimos en el cuadro de texto la direccion URL
+                    estado_socio = VARIABLE_QUE_CONTENDRA_EL_VALOR
+
+                    Return estado_socio
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Function verificarEstadoSocio(cod_socio As Integer) As Boolean
+        If tomarEstadoSocio(cod_socio) = "Habilitado" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 
 
 End Module
