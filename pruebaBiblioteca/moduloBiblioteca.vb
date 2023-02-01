@@ -238,7 +238,7 @@ Module moduloBiblioteca
 
     Public Sub CargarComboUbicacion()
         If ConexionMySQL() Then
-            Glocomando.CommandText = "select cod_ubicacion_libro, piso, sector, estante from ubicacion_libro"
+            Glocomando.CommandText = "select cod_ubicacion, piso, sector, estante from ubicacion_libro"
             Glocomando.CommandType = CommandType.Text
             Glocomando.Connection = GloconexionDB
 
@@ -248,8 +248,8 @@ Module moduloBiblioteca
             dt.Load(Glodatareader)
 
             AgregarLibro.cbxUbicacion.DataSource = dt
-            AgregarLibro.cbxUbicacion.DisplayMember = "cod_ubicacion_libro"
-            AgregarLibro.cbxUbicacion.ValueMember = "cod_ubicacion_libro"
+            AgregarLibro.cbxUbicacion.DisplayMember = "cod_ubicacion"
+            AgregarLibro.cbxUbicacion.ValueMember = "cod_ubicacion"
             AgregarLibro.cbxUbicacion.SelectedIndex = -1
             AgregarLibro.cbxUbicacion.Text = "Selecione un codigo de ubicacion"
 
@@ -260,7 +260,7 @@ Module moduloBiblioteca
 
     Public Sub CargarComboEditorial()
         If ConexionMySQL() Then
-            Glocomando.CommandText = "select cod_editorial, nombre_editorial, contacto, localizacion from editorial"
+            Glocomando.CommandText = "select cod_editorial, nombre, contacto,ubicacion from editorial"
             Glocomando.CommandType = CommandType.Text
             Glocomando.Connection = GloconexionDB
 
@@ -270,7 +270,7 @@ Module moduloBiblioteca
             dt.Load(Glodatareader)
 
             AgregarLibro.cbxEditorial.DataSource = dt
-            AgregarLibro.cbxEditorial.DisplayMember = "nombre_editorial"
+            AgregarLibro.cbxEditorial.DisplayMember = "nombre"
             AgregarLibro.cbxEditorial.ValueMember = "cod_editorial"
             AgregarLibro.cbxEditorial.SelectedIndex = -1
             AgregarLibro.cbxEditorial.Text = "Selecione una editorial"
@@ -303,7 +303,7 @@ Module moduloBiblioteca
 
     Public Sub CargarComboCategoria()
         If ConexionMySQL() Then
-            Glocomando.CommandText = "select cod_categoria, nombre_categoria from categoria"
+            Glocomando.CommandText = "select cod_categoria, nombre from categoria"
             Glocomando.CommandType = CommandType.Text
             Glocomando.Connection = GloconexionDB
 
@@ -313,7 +313,7 @@ Module moduloBiblioteca
             dt.Load(Glodatareader)
 
             AgregarLibro.cbxCategoria.DataSource = dt
-            AgregarLibro.cbxCategoria.DisplayMember = "nombre_categoria"
+            AgregarLibro.cbxCategoria.DisplayMember = "nombre"
             AgregarLibro.cbxCategoria.ValueMember = "cod_categoria"
             AgregarLibro.cbxCategoria.SelectedIndex = -1
             AgregarLibro.cbxCategoria.Text = "Selecione una categoria"
@@ -490,7 +490,7 @@ Module moduloBiblioteca
 
     Public Sub CargarComboPlazoPrestamo()
         If ConexionMySQL() Then
-            Glocomando.CommandText = "select cod_plazo_prestamo,descripcion_plazo from plazo_prestamo"
+            Glocomando.CommandText = "select cod_plazo_prestamo,descripcion from plazo_prestamo"
             Glocomando.CommandType = CommandType.Text
             Glocomando.Connection = GloconexionDB
 
@@ -561,7 +561,7 @@ Module moduloBiblioteca
         Try
             'Alta ejemplar'
             If ConexionMySQL() Then
-                LOC_consulta = "insert into ejemplar_libro(estado,num_ejemplar,cod_tipo_ejemplar,cod_libro,cod_plazo_prestamo)
+                LOC_consulta = "insert into ejemplar(estado,numero_ejemplar,cod_tipo_ejemplar,cod_libro,cod_plazo_prestamo)
                 values('" & AgregarEjemplar.cbxEstado.Text & "','" & AgregarEjemplar.txtNumeroEjemplar.Text & "','" & AgregarEjemplar.cbxTipoEjemplar.SelectedValue & "',
                 '" & GLO_CodLibro & "', '" & AgregarEjemplar.cbxPlazoPrestamo.SelectedValue & "'
                 )"
@@ -1491,7 +1491,7 @@ Module moduloBiblioteca
     End Function
 
     Public Function tomar_estado_ejemplar(cod_ejemplar As Integer) As String
-        Dim Sql As String = "Select estado from ejemplar_libro where cod_ejemplar_libro=" & cod_ejemplar
+        Dim Sql As String = "Select estado from ejemplar where cod_ejemplar=" & cod_ejemplar
         Dim estado As String
         Dim Conexion As New MySqlConnection(cadena_conexion)
 
@@ -1538,8 +1538,8 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "update ejemplar_libro set 
-                estado ='" & estado & "' where cod_ejemplar_libro = " & cod_ejemplar & ""
+                LOC_consulta = "update ejemplar set 
+                estado ='" & estado & "' where cod_ejemplar = " & cod_ejemplar & ""
                 MsgBox(LOC_consulta)
                 Glocomando.CommandText = LOC_consulta
                 Glocomando.CommandType = CommandType.Text
