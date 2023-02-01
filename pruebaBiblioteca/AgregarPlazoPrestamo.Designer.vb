@@ -92,6 +92,7 @@ Partial Class AgregarPlazoPrestamo
         Me.Controls.Add(Me.lblDias)
         Me.Controls.Add(Me.lblDescripcion)
         Me.Name = "AgregarPlazoPrestamo"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AgregarPlazoPrestamo"
         Me.ResumeLayout(False)
         Me.PerformLayout()

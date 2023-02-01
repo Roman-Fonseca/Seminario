@@ -26,7 +26,6 @@ Partial Class AgregarParametroEspera
         Me.lblMinimo = New System.Windows.Forms.Label()
         Me.lblMaximo = New System.Windows.Forms.Label()
         Me.lblDiasSancion = New System.Windows.Forms.Label()
-        Me.txtNombreParametro = New System.Windows.Forms.TextBox()
         Me.txtMinimo = New System.Windows.Forms.TextBox()
         Me.txtMaximo = New System.Windows.Forms.TextBox()
         Me.txtSancion = New System.Windows.Forms.TextBox()
@@ -40,14 +39,13 @@ Partial Class AgregarParametroEspera
         Me.lblNombreParametro.AutoSize = True
         Me.lblNombreParametro.Location = New System.Drawing.Point(6, 35)
         Me.lblNombreParametro.Name = "lblNombreParametro"
-        Me.lblNombreParametro.Size = New System.Drawing.Size(97, 13)
+        Me.lblNombreParametro.Size = New System.Drawing.Size(0, 13)
         Me.lblNombreParametro.TabIndex = 0
-        Me.lblNombreParametro.Text = "Nombre parametro:"
         '
         'lblMinimo
         '
         Me.lblMinimo.AutoSize = True
-        Me.lblMinimo.Location = New System.Drawing.Point(57, 80)
+        Me.lblMinimo.Location = New System.Drawing.Point(57, 34)
         Me.lblMinimo.Name = "lblMinimo"
         Me.lblMinimo.Size = New System.Drawing.Size(43, 13)
         Me.lblMinimo.TabIndex = 1
@@ -56,7 +54,7 @@ Partial Class AgregarParametroEspera
         'lblMaximo
         '
         Me.lblMaximo.AutoSize = True
-        Me.lblMaximo.Location = New System.Drawing.Point(57, 130)
+        Me.lblMaximo.Location = New System.Drawing.Point(57, 84)
         Me.lblMaximo.Name = "lblMaximo"
         Me.lblMaximo.Size = New System.Drawing.Size(46, 13)
         Me.lblMaximo.TabIndex = 2
@@ -65,43 +63,36 @@ Partial Class AgregarParametroEspera
         'lblDiasSancion
         '
         Me.lblDiasSancion.AutoSize = True
-        Me.lblDiasSancion.Location = New System.Drawing.Point(27, 175)
+        Me.lblDiasSancion.Location = New System.Drawing.Point(27, 129)
         Me.lblDiasSancion.Name = "lblDiasSancion"
         Me.lblDiasSancion.Size = New System.Drawing.Size(76, 13)
         Me.lblDiasSancion.TabIndex = 3
         Me.lblDiasSancion.Text = "Sancion(días):"
         '
-        'txtNombreParametro
-        '
-        Me.txtNombreParametro.Location = New System.Drawing.Point(118, 35)
-        Me.txtNombreParametro.Name = "txtNombreParametro"
-        Me.txtNombreParametro.Size = New System.Drawing.Size(170, 20)
-        Me.txtNombreParametro.TabIndex = 4
-        '
         'txtMinimo
         '
-        Me.txtMinimo.Location = New System.Drawing.Point(118, 77)
+        Me.txtMinimo.Location = New System.Drawing.Point(118, 31)
         Me.txtMinimo.Name = "txtMinimo"
         Me.txtMinimo.Size = New System.Drawing.Size(170, 20)
         Me.txtMinimo.TabIndex = 5
         '
         'txtMaximo
         '
-        Me.txtMaximo.Location = New System.Drawing.Point(118, 127)
+        Me.txtMaximo.Location = New System.Drawing.Point(118, 81)
         Me.txtMaximo.Name = "txtMaximo"
         Me.txtMaximo.Size = New System.Drawing.Size(170, 20)
         Me.txtMaximo.TabIndex = 6
         '
         'txtSancion
         '
-        Me.txtSancion.Location = New System.Drawing.Point(118, 172)
+        Me.txtSancion.Location = New System.Drawing.Point(118, 126)
         Me.txtSancion.Name = "txtSancion"
         Me.txtSancion.Size = New System.Drawing.Size(170, 20)
         Me.txtSancion.TabIndex = 7
         '
         'btnLimpiar
         '
-        Me.btnLimpiar.Location = New System.Drawing.Point(27, 255)
+        Me.btnLimpiar.Location = New System.Drawing.Point(27, 192)
         Me.btnLimpiar.Name = "btnLimpiar"
         Me.btnLimpiar.Size = New System.Drawing.Size(75, 23)
         Me.btnLimpiar.TabIndex = 8
@@ -110,7 +101,7 @@ Partial Class AgregarParametroEspera
         '
         'Cancelar
         '
-        Me.Cancelar.Location = New System.Drawing.Point(118, 255)
+        Me.Cancelar.Location = New System.Drawing.Point(118, 192)
         Me.Cancelar.Name = "Cancelar"
         Me.Cancelar.Size = New System.Drawing.Size(75, 23)
         Me.Cancelar.TabIndex = 9
@@ -119,7 +110,7 @@ Partial Class AgregarParametroEspera
         '
         'btnGuardar
         '
-        Me.btnGuardar.Location = New System.Drawing.Point(213, 255)
+        Me.btnGuardar.Location = New System.Drawing.Point(213, 192)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardar.TabIndex = 10
@@ -130,14 +121,13 @@ Partial Class AgregarParametroEspera
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(318, 290)
+        Me.ClientSize = New System.Drawing.Size(301, 229)
         Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.Cancelar)
         Me.Controls.Add(Me.btnLimpiar)
         Me.Controls.Add(Me.txtSancion)
         Me.Controls.Add(Me.txtMaximo)
         Me.Controls.Add(Me.txtMinimo)
-        Me.Controls.Add(Me.txtNombreParametro)
         Me.Controls.Add(Me.lblDiasSancion)
         Me.Controls.Add(Me.lblMaximo)
         Me.Controls.Add(Me.lblMinimo)
@@ -154,7 +144,6 @@ Partial Class AgregarParametroEspera
     Friend WithEvents lblMinimo As Label
     Friend WithEvents lblMaximo As Label
     Friend WithEvents lblDiasSancion As Label
-    Friend WithEvents txtNombreParametro As TextBox
     Friend WithEvents txtMinimo As TextBox
     Friend WithEvents txtMaximo As TextBox
     Friend WithEvents txtSancion As TextBox

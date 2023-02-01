@@ -15,7 +15,6 @@ Module moduloBiblioteca
     Public cod_prestamo_modificar As Integer
     Public cod_prestamo_socio As Integer
     Public GLOBAL_DIA_ACTUAL As Date
-
     Public GLO_CodLibro As Integer
     Public GLO_TituloLibro As String
 
@@ -24,11 +23,22 @@ Module moduloBiblioteca
 
     Public Function cargarSocio() As Boolean
         Dim LOC_consulta As String
+        'Convierto la fecha actual en string
+        Dim fechaRegistro As String
+        fechaRegistro = Today.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+        'Capturo Fecha nacimiento
+
+        Dim f_nacimiento As Date
+        f_nacimiento = Format(AgregarSocio.dtpFechaNacimiento.Value, "short date")
+        'Convierto fecha nacimiento en string   
+        Dim f_nacimientoStr As String
+        f_nacimientoStr = f_nacimiento.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+
 
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into socio (nombre,apellido,telefono,direccion,estado_socio) values('" & AgregarSocio.txtNombre.Text & "','" & AgregarSocio.txtApellido.Text & "','" & AgregarSocio.txtTelefono.Text & "','" & AgregarSocio.txtDireccion.Text & "','" & AgregarSocio.txtEstado.Text & "')"
+                LOC_consulta = "insert into socio (nombre,apellido,fecha_nacimiento,dni,telefono,direccion,estado_socio,fecha_registro) values('" & AgregarSocio.txtNombre.Text & "','" & AgregarSocio.txtApellido.Text & "','" & f_nacimientoStr & "'," & AgregarSocio.txtDni.Text & ",'" & AgregarSocio.txtTelefono.Text & "','" & AgregarSocio.txtDireccion.Text & "','Habilitado','" & fechaRegistro & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó correctamente")
@@ -44,7 +54,7 @@ Module moduloBiblioteca
     End Function
 
     Public Sub mostrarSocios()
-        Dim Consulta As String = "select cod_socio,nombre,apellido,telefono,direccion,contador_prestamos,estado_socio from socio"
+        Dim Consulta As String = "select cod_socio,nombre,apellido,dni,telefono,direccion,contador_prestamos,estado_socio from socio"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -75,7 +85,8 @@ Module moduloBiblioteca
     Public Sub ConsultarSocioModificar()
 
         GLO_CodSocioModificar = Socios.listaSocios.SelectedRows.Item(0).Cells(0).Value
-        Dim Consulta As String = "Select nombre,apellido,telefono,direccion,estado_socio from socio where cod_socio= " & GLO_CodSocioModificar
+        'Dim Consulta As String = "Select nombre,apellido,telefono,direccion,estado_socio from socio where cod_socio= " & GLO_CodSocioModificar
+        Dim Consulta As String = "Select nombre,apellido,dni,fecha_nacimiento,direccion,telefono,estado_socio from socio where cod_socio= " & GLO_CodSocioModificar
 
 
         If conexion.ConexionMySQL() Then
@@ -96,6 +107,7 @@ Module moduloBiblioteca
 
                 AgregarSocio.txtNombre.Text = Trim((CStr(row("nombre"))))
                 AgregarSocio.txtApellido.Text = Trim((CStr(row("apellido"))))
+                AgregarSocio.txtDni.Text = Trim((CStr(row("dni"))))
                 AgregarSocio.txtTelefono.Text = Trim((CStr(row("telefono"))))
                 AgregarSocio.txtDireccion.Text = Trim((CStr(row("direccion"))))
                 AgregarSocio.txtEstado.Text = Trim((CStr(row("estado_socio"))))
@@ -400,6 +412,7 @@ Module moduloBiblioteca
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó libro correctamente")
+                limpiarCamposCargarLibro()
                 Return True
             End If
 
@@ -564,7 +577,7 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into plazo_prestamo (descripcion_plazo,dias_plazo) values('" & AgregarPlazoPrestamo.txtDescripcion.Text & "','" & AgregarPlazoPrestamo.txtDias.Text & "')"
+                LOC_consulta = "insert into plazo_prestamo (descripcion,dias_plazo) values('" & AgregarPlazoPrestamo.txtDescripcion.Text & "','" & AgregarPlazoPrestamo.txtDias.Text & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó plazo prestamo correctamente")
@@ -752,8 +765,7 @@ Module moduloBiblioteca
     End Sub
 
     Public Sub mostrarPrestamos()
-        'Mostrar prestamos pendientes de finalizar
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio from prestamo_socio"
+        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio, cod_ejemplar_libro from prestamo_socio"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1019,10 +1031,35 @@ Module moduloBiblioteca
 
         Try
             If ConexionMySQL() Then
-                LOC_consulta = "insert into sancion_prestamo_espera (fecha_inicio,hora_inicio,fecha_finalizacion,hora_finalizacion,motivo,cod_prestamo_socio) values('" & fecha_inicio & "','" & hora_actual & "','" & fecha_finalizacion_str & "','" & hora_finalizacion & "','" & motivo & "','" & cod_prestamo_socio & "')"
+                LOC_consulta = "insert into prestamo_atrasado (fecha_inicio,hora_inicio,fecha_finalizacion,hora_finalizacion,motivo,cod_prestamo_socio) values('" & fecha_inicio & "','" & hora_actual & "','" & fecha_finalizacion_str & "','" & hora_finalizacion & "','" & motivo & "','" & cod_prestamo_socio & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó sancion_espera correctamente")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        'moduloBiblioteca.calcularSancion(fecha_devolucion, fecha_actual)
+    End Sub
+
+    Public Sub registrarPagoSancion(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer)
+        Dim LOC_consulta As String
+        Dim pago As Double
+        pago = calcularSancionPago(fecha_devolucion, fecha_actual)
+        'Prueba motivo
+        Dim motivo As String
+        motivo = "Prestamo atrasado"
+        'Convierto la fecha actual en string
+        Dim fecha As String
+        fecha = fecha_actual.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+
+        Try
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into sancion_paga (fecha,pago,motivo,cod_prestamo_socio) values('" & fecha & "','" & pago & "','" & motivo & "','" & cod_prestamo_socio & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se agregó registro_pago correctamente")
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -1045,6 +1082,15 @@ Module moduloBiblioteca
         hora_finalizacion = "0 : 00:00"
         dias_sancion = calcularSancion(fecha_devolucion, fecha_actual)
         Return dias_sancion
+
+    End Function
+
+    Public Function CalcularSancionPago(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime,
+                                   hora_actual As DateTime)
+        Dim LOC_consulta As String
+        Dim pago As Double
+        pago = calcularSancionPago(fecha_devolucion, fecha_actual)
+        Return pago
 
     End Function
 
@@ -1091,7 +1137,7 @@ Module moduloBiblioteca
         Dim bandera As Integer
         Dim maximo As Integer
         dias = diffDias(fecha_devolucion, fecha_actual)
-        Dim consulta As String = "select cod_parametro,nombre_parametro,minimo,maximo,dias_sancion from parametro_espera"
+        Dim consulta As String = "select cod_parametro,minimo,maximo,dias_sancion from parametro_espera"
         If GloconexionDB.State = ConnectionState.Closed Then
             GloconexionDB.ConnectionString = cadena_conexion
             GloconexionDB.Open()
@@ -1124,6 +1170,46 @@ Module moduloBiblioteca
         Return dias_sancion
     End Function
 
+    Public Function calcularSancionPago(fecha_devolucion As Date, fecha_actual As Date) As Integer
+        Dim dias As Integer
+        Dim pago As Double
+        Dim minimo As Integer
+        Dim bandera As Integer
+        Dim maximo As Integer
+        dias = diffDias(fecha_devolucion, fecha_actual)
+        Dim consulta As String = "select cod_parametro,minimo,maximo,pago_correspondiente from parametro_pago"
+        If GloconexionDB.State = ConnectionState.Closed Then
+            GloconexionDB.ConnectionString = cadena_conexion
+            GloconexionDB.Open()
+        End If
+
+        Dim command As New MySqlCommand(consulta, GloconexionDB)
+        Dim reader As MySqlDataReader = command.ExecuteReader()
+
+        bandera = 0
+
+        While reader.Read()
+            If (bandera = 0) Then
+                minimo = Convert.ToInt32(reader("minimo"))
+                maximo = Convert.ToInt32(reader("maximo"))
+                pago = Convert.ToInt32(reader("pago_correspondiente"))
+                If dias >= minimo Then
+                    If dias <= maximo Then
+                        MsgBox("Corresponde sancion de " & pago & " pesos")
+                        bandera += 1
+                    End If
+                End If
+            End If
+        End While
+
+        If bandera = 0 Then
+            MsgBox("Fuera de rango")
+        End If
+
+        reader.Close()
+        Return pago
+    End Function
+
     Public Sub mostrarPrestamosVencidos()
         'Capturo la fecha Actual
         GLOBAL_DIA_ACTUAL = Today
@@ -1136,7 +1222,7 @@ Module moduloBiblioteca
         horaActual = TimeOfDay
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio from prestamo_socio where '" & dia_actual_string & "' >= fecha_devolucion AND fecha_devolucion_real  = '0000-00-00'"
+        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio,cod_ejemplar_libro from prestamo_socio where '" & dia_actual_string & "' >= fecha_devolucion AND fecha_devolucion_real  = '0000-00-00'"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1210,8 +1296,8 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into parametro_espera (nombre_parametro,minimo,maximo,dias_sancion) 
-                values('" & AgregarParametroEspera.txtNombreParametro.Text & "','" & AgregarParametroEspera.txtMinimo.Text & "'
+                LOC_consulta = "insert into parametro_espera (minimo,maximo,dias_sancion) 
+                values('" & AgregarParametroEspera.txtMinimo.Text & "'
                 ,'" & AgregarParametroEspera.txtMaximo.Text & "','" & AgregarParametroEspera.txtSancion.Text & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
@@ -1323,6 +1409,187 @@ Module moduloBiblioteca
             Return False
         End If
     End Function
+
+    Public Sub mostrarSancionesPago()
+        Dim Consulta As String = "SELECT cod_sancion_paga, fecha, pago, motivo, cod_prestamo_socio FROM sancion_paga"
+        Try
+            If ConexionMySQL() Then
+                Glocomando.CommandText = Consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+
+                Glodatareader = Glocomando.ExecuteReader
+
+
+                Dim dt As New DataTable
+                dt.Load(Glodatareader)
+
+
+                SancionesPago.dgvSancionesPago.DataSource = dt
+
+
+                Glodatareader.Close()
+                GloconexionDB.Close()
+            Else
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            MsgBox("Error en la conexion")
+        End Try
+    End Sub
+
+    Public Function tomarCantidadPrestamosEnElDia(cod_socio As Integer) As Integer
+        Dim fecha As Date
+        fecha = Today
+
+        'Convierto la fecha actual en string
+        Dim fechaS As String
+        fechaS = fecha.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture)
+
+        MsgBox(fechaS)
+
+        Dim Sql As String = "Select count(*) from prestamo_socio where fecha_prestamo = '" & fechaS & "' and cod_socio = " & cod_socio & " "
+        Dim cantidad As Integer
+
+        Using conn As New MySqlConnection(conexion.cadena_conexion)
+            conn.Open()
+            Dim cmd As New MySqlCommand(Sql, conn)
+            cantidad = Convert.ToInt32(cmd.ExecuteScalar())
+        End Using
+
+        MsgBox(cantidad)
+
+        Return cantidad
+    End Function
+
+    Public Function tomar_estado_ejemplar(cod_ejemplar As Integer) As String
+        Dim Sql As String = "Select estado from ejemplar_libro where cod_ejemplar_libro=" & cod_ejemplar
+        Dim estado As String
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As String = Trim(Datos("estado"))
+
+                    'Vemos que contiene la variable asignada para la direccion URL extraida
+                    'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
+
+                    'Imprimimos en el cuadro de texto la direccion URL
+                    estado = VARIABLE_QUE_CONTENDRA_EL_VALOR
+
+                    Return estado
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Function compararEstadoEjemplar(cod_ejemplar)
+        If moduloBiblioteca.tomar_estado_ejemplar(cod_ejemplar).Equals("Sin Prestar") Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Public Sub cambiarEstadoEjemplar(cod_ejemplar As Integer, estado As String)
+        Dim LOC_consulta As String
+
+        Try
+
+            If ConexionMySQL() Then
+                LOC_consulta = "update ejemplar_libro set 
+                estado ='" & estado & "' where cod_ejemplar_libro = " & cod_ejemplar & ""
+                MsgBox(LOC_consulta)
+                Glocomando.CommandText = LOC_consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+                Glodatareader = Glocomando.ExecuteReader
+                Glodatareader.Close()
+                MsgBox("Se Modificó Correctamente")
+                GloconexionDB.Close()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            GloconexionDB.Close()
+
+        End Try
+    End Sub
+
+    Public Sub mostrarLibros()
+        Dim Consulta As String = "SELECT * FROM libro"
+        Try
+            If ConexionMySQL() Then
+                Glocomando.CommandText = Consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+
+                Glodatareader = Glocomando.ExecuteReader
+
+
+                Dim dt As New DataTable
+                dt.Load(Glodatareader)
+
+
+                Libros.dgvLibros.DataSource = dt
+
+
+                Glodatareader.Close()
+                GloconexionDB.Close()
+            Else
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            MsgBox("Error en la conexion")
+        End Try
+    End Sub
+    Public Function modificarLibro() As Boolean
+
+    End Function
+
+    Public Sub cargarTablaCategoria()
+        Dim Consulta As String = "SELECT cod_categoria, nombre_categoria FROM categoria"
+        Try
+            If ConexionMySQL() Then
+                Glocomando.CommandText = Consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+
+                Glodatareader = Glocomando.ExecuteReader
+
+
+                Dim dt As New DataTable
+                dt.Load(Glodatareader)
+
+
+                AgregarLibro.dgvCategoria.DataSource = dt
+
+
+                Glodatareader.Close()
+                GloconexionDB.Close()
+            Else
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            MsgBox("Error en la conexion")
+        End Try
+    End Sub
+
 
 
 End Module

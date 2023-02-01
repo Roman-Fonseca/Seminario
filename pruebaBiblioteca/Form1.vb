@@ -11,23 +11,25 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Dim fecha As Date
+        fecha = Today
+        Label1.Text = fecha
     End Sub
 
-    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles btnSocios.Click
+    Private Sub Button1_Click_2(sender As Object, e As EventArgs)
         moduloBiblioteca.mostrarSocios()
         Socios.ShowDialog()
     End Sub
 
-    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles btnLibros.Click
+    Private Sub Button1_Click_3(sender As Object, e As EventArgs)
         AgregarLibro.ShowDialog()
     End Sub
 
-    Private Sub Button1_Click_4(sender As Object, e As EventArgs) Handles btnEjemplares.Click
+    Private Sub Button1_Click_4(sender As Object, e As EventArgs)
         Ejemplares.ShowDialog()
     End Sub
 
-    Private Sub btnPrestamos_Click(sender As Object, e As EventArgs) Handles btnPrestamos.Click
+    Private Sub btnPrestamos_Click(sender As Object, e As EventArgs)
         Prestamos.ShowDialog()
     End Sub
 
@@ -56,6 +58,8 @@ Public Class Form1
 
     Private Sub AgregarSocioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarSocioToolStripMenuItem.Click
         AgregarSocio.Text = "Agregar Socio"
+        AgregarSocio.txtEstado.Hide()
+        AgregarSocio.lblEstadoSocio.Hide()
         AgregarSocio.ShowDialog()
     End Sub
 
@@ -98,7 +102,7 @@ Public Class Form1
     End Sub
 
     Private Sub SanciónDineroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanciónDineroToolStripMenuItem.Click
-
+        AgregarParametroPago.ShowDialog()
     End Sub
 
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles btnListaSancion.Click
@@ -113,5 +117,29 @@ Public Class Form1
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
 
+    End Sub
+
+    Private Sub PrestamosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrestamosToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub PagoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagoToolStripMenuItem.Click
+        SancionesPago.ShowDialog()
+    End Sub
+
+    Private Sub VerLibrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerLibrosToolStripMenuItem.Click
+        AgregarLibro.ShowDialog()
+    End Sub
+
+    Private Sub VerLibrosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles VerLibrosToolStripMenuItem1.Click
+        Libros.ShowDialog()
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        informeSocio.ShowDialog()
+    End Sub
+
+    Private Sub SociosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SociosToolStripMenuItem1.Click
+        informeSocios.ShowDialog()
     End Sub
 End Class

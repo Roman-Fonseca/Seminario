@@ -23,7 +23,7 @@ Partial Class Decision
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.btnEspera = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnSancionPago = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
@@ -35,14 +35,13 @@ Partial Class Decision
         Me.btnEspera.TabIndex = 0
         Me.btnEspera.UseVisualStyleBackColor = True
         '
-        'Button2
+        'btnSancionPago
         '
-        Me.Button2.Location = New System.Drawing.Point(203, 117)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnSancionPago.Location = New System.Drawing.Point(203, 117)
+        Me.btnSancionPago.Name = "btnSancionPago"
+        Me.btnSancionPago.Size = New System.Drawing.Size(75, 23)
+        Me.btnSancionPago.TabIndex = 1
+        Me.btnSancionPago.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -60,7 +59,7 @@ Partial Class Decision
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(330, 240)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.btnSancionPago)
         Me.Controls.Add(Me.btnEspera)
         Me.Name = "Decision"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -71,6 +70,6 @@ Partial Class Decision
     End Sub
 
     Friend WithEvents btnEspera As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btnSancionPago As Button
     Friend WithEvents Label1 As Label
 End Class

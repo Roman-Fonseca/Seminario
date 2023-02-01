@@ -16,7 +16,6 @@
     Private Sub limpiarCampos()
         Me.txtMaximo.Clear()
         Me.txtMinimo.Clear()
-        Me.txtNombreParametro.Clear()
         Me.txtSancion.Clear()
     End Sub
 End Class

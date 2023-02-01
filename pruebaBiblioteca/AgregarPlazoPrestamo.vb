@@ -7,6 +7,7 @@
         moduloBiblioteca.altaPlazoPrestamo()
         Me.txtDescripcion.Clear()
         Me.txtDias.Clear()
+        Me.Close()
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtDescripcion.TextChanged

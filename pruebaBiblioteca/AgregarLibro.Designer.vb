@@ -44,6 +44,15 @@ Partial Class AgregarLibro
         Me.txtAutor = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtCod_libro = New System.Windows.Forms.TextBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.dgvCategoria = New System.Windows.Forms.DataGridView()
+        Me.btnCategoria = New System.Windows.Forms.Button()
+        Me.listBoxCategoria = New System.Windows.Forms.ListBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.dgvCategoria, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtIsbn
@@ -56,7 +65,7 @@ Partial Class AgregarLibro
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(49, 88)
+        Me.Label1.Location = New System.Drawing.Point(35, 73)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(35, 13)
         Me.Label1.TabIndex = 1
@@ -65,7 +74,7 @@ Partial Class AgregarLibro
         'lblTitulo
         '
         Me.lblTitulo.AutoSize = True
-        Me.lblTitulo.Location = New System.Drawing.Point(49, 145)
+        Me.lblTitulo.Location = New System.Drawing.Point(37, 114)
         Me.lblTitulo.Name = "lblTitulo"
         Me.lblTitulo.Size = New System.Drawing.Size(36, 13)
         Me.lblTitulo.TabIndex = 2
@@ -73,7 +82,7 @@ Partial Class AgregarLibro
         '
         'txtTitulo
         '
-        Me.txtTitulo.Location = New System.Drawing.Point(93, 142)
+        Me.txtTitulo.Location = New System.Drawing.Point(81, 114)
         Me.txtTitulo.Name = "txtTitulo"
         Me.txtTitulo.Size = New System.Drawing.Size(156, 20)
         Me.txtTitulo.TabIndex = 3
@@ -81,7 +90,7 @@ Partial Class AgregarLibro
         'lblUbicacion
         '
         Me.lblUbicacion.AutoSize = True
-        Me.lblUbicacion.Location = New System.Drawing.Point(29, 206)
+        Me.lblUbicacion.Location = New System.Drawing.Point(17, 157)
         Me.lblUbicacion.Name = "lblUbicacion"
         Me.lblUbicacion.Size = New System.Drawing.Size(58, 13)
         Me.lblUbicacion.TabIndex = 4
@@ -90,7 +99,7 @@ Partial Class AgregarLibro
         'lblEditorial
         '
         Me.lblEditorial.AutoSize = True
-        Me.lblEditorial.Location = New System.Drawing.Point(38, 257)
+        Me.lblEditorial.Location = New System.Drawing.Point(28, 202)
         Me.lblEditorial.Name = "lblEditorial"
         Me.lblEditorial.Size = New System.Drawing.Size(47, 13)
         Me.lblEditorial.TabIndex = 5
@@ -98,7 +107,7 @@ Partial Class AgregarLibro
         '
         'btnAgregarUbicacion
         '
-        Me.btnAgregarUbicacion.Location = New System.Drawing.Point(255, 201)
+        Me.btnAgregarUbicacion.Location = New System.Drawing.Point(243, 154)
         Me.btnAgregarUbicacion.Name = "btnAgregarUbicacion"
         Me.btnAgregarUbicacion.Size = New System.Drawing.Size(46, 23)
         Me.btnAgregarUbicacion.TabIndex = 6
@@ -107,7 +116,7 @@ Partial Class AgregarLibro
         '
         'btnAgregarEditorial
         '
-        Me.btnAgregarEditorial.Location = New System.Drawing.Point(255, 252)
+        Me.btnAgregarEditorial.Location = New System.Drawing.Point(243, 199)
         Me.btnAgregarEditorial.Name = "btnAgregarEditorial"
         Me.btnAgregarEditorial.Size = New System.Drawing.Size(46, 23)
         Me.btnAgregarEditorial.TabIndex = 7
@@ -117,7 +126,7 @@ Partial Class AgregarLibro
         'cbxUbicacion
         '
         Me.cbxUbicacion.FormattingEnabled = True
-        Me.cbxUbicacion.Location = New System.Drawing.Point(93, 203)
+        Me.cbxUbicacion.Location = New System.Drawing.Point(81, 154)
         Me.cbxUbicacion.Name = "cbxUbicacion"
         Me.cbxUbicacion.Size = New System.Drawing.Size(156, 21)
         Me.cbxUbicacion.TabIndex = 8
@@ -125,7 +134,7 @@ Partial Class AgregarLibro
         'cbxEditorial
         '
         Me.cbxEditorial.FormattingEnabled = True
-        Me.cbxEditorial.Location = New System.Drawing.Point(93, 252)
+        Me.cbxEditorial.Location = New System.Drawing.Point(81, 199)
         Me.cbxEditorial.Name = "cbxEditorial"
         Me.cbxEditorial.Size = New System.Drawing.Size(156, 21)
         Me.cbxEditorial.TabIndex = 9
@@ -133,7 +142,7 @@ Partial Class AgregarLibro
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(29, 301)
+        Me.Label2.Location = New System.Drawing.Point(20, 240)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(55, 13)
         Me.Label2.TabIndex = 10
@@ -142,14 +151,14 @@ Partial Class AgregarLibro
         'cbxCategoria
         '
         Me.cbxCategoria.FormattingEnabled = True
-        Me.cbxCategoria.Location = New System.Drawing.Point(93, 298)
+        Me.cbxCategoria.Location = New System.Drawing.Point(81, 240)
         Me.cbxCategoria.Name = "cbxCategoria"
         Me.cbxCategoria.Size = New System.Drawing.Size(156, 21)
         Me.cbxCategoria.TabIndex = 11
         '
         'btnAgregarCategoria
         '
-        Me.btnAgregarCategoria.Location = New System.Drawing.Point(255, 299)
+        Me.btnAgregarCategoria.Location = New System.Drawing.Point(243, 240)
         Me.btnAgregarCategoria.Name = "btnAgregarCategoria"
         Me.btnAgregarCategoria.Size = New System.Drawing.Size(46, 23)
         Me.btnAgregarCategoria.TabIndex = 12
@@ -159,7 +168,7 @@ Partial Class AgregarLibro
         'lblAutor
         '
         Me.lblAutor.AutoSize = True
-        Me.lblAutor.Location = New System.Drawing.Point(513, 31)
+        Me.lblAutor.Location = New System.Drawing.Point(38, 286)
         Me.lblAutor.Name = "lblAutor"
         Me.lblAutor.Size = New System.Drawing.Size(35, 13)
         Me.lblAutor.TabIndex = 13
@@ -167,7 +176,7 @@ Partial Class AgregarLibro
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(713, 28)
+        Me.Button1.Location = New System.Drawing.Point(243, 281)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(46, 23)
         Me.Button1.TabIndex = 15
@@ -176,7 +185,7 @@ Partial Class AgregarLibro
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(713, 357)
+        Me.btnCancelar.Location = New System.Drawing.Point(623, 421)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelar.TabIndex = 18
@@ -185,7 +194,7 @@ Partial Class AgregarLibro
         '
         'btnLimpiarCamposAutor
         '
-        Me.btnLimpiarCamposAutor.Location = New System.Drawing.Point(620, 357)
+        Me.btnLimpiarCamposAutor.Location = New System.Drawing.Point(542, 421)
         Me.btnLimpiarCamposAutor.Name = "btnLimpiarCamposAutor"
         Me.btnLimpiarCamposAutor.Size = New System.Drawing.Size(75, 23)
         Me.btnLimpiarCamposAutor.TabIndex = 17
@@ -194,7 +203,7 @@ Partial Class AgregarLibro
         '
         'btnGuardarAutor
         '
-        Me.btnGuardarAutor.Location = New System.Drawing.Point(516, 357)
+        Me.btnGuardarAutor.Location = New System.Drawing.Point(704, 421)
         Me.btnGuardarAutor.Name = "btnGuardarAutor"
         Me.btnGuardarAutor.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardarAutor.TabIndex = 16
@@ -203,7 +212,7 @@ Partial Class AgregarLibro
         '
         'btnSeleccionarAutor
         '
-        Me.btnSeleccionarAutor.Location = New System.Drawing.Point(713, 62)
+        Me.btnSeleccionarAutor.Location = New System.Drawing.Point(243, 310)
         Me.btnSeleccionarAutor.Name = "btnSeleccionarAutor"
         Me.btnSeleccionarAutor.Size = New System.Drawing.Size(46, 23)
         Me.btnSeleccionarAutor.TabIndex = 19
@@ -212,9 +221,9 @@ Partial Class AgregarLibro
         '
         'txtAutor
         '
-        Me.txtAutor.Location = New System.Drawing.Point(554, 28)
+        Me.txtAutor.Location = New System.Drawing.Point(81, 283)
         Me.txtAutor.Name = "txtAutor"
-        Me.txtAutor.Size = New System.Drawing.Size(141, 20)
+        Me.txtAutor.Size = New System.Drawing.Size(156, 20)
         Me.txtAutor.TabIndex = 20
         '
         'Label3
@@ -234,35 +243,106 @@ Partial Class AgregarLibro
         Me.txtCod_libro.Size = New System.Drawing.Size(156, 20)
         Me.txtCod_libro.TabIndex = 22
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.lblAutor)
+        Me.GroupBox1.Controls.Add(Me.txtAutor)
+        Me.GroupBox1.Controls.Add(Me.btnSeleccionarAutor)
+        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.btnAgregarCategoria)
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.cbxCategoria)
+        Me.GroupBox1.Controls.Add(Me.lblTitulo)
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.txtTitulo)
+        Me.GroupBox1.Controls.Add(Me.btnAgregarEditorial)
+        Me.GroupBox1.Controls.Add(Me.cbxEditorial)
+        Me.GroupBox1.Controls.Add(Me.lblUbicacion)
+        Me.GroupBox1.Controls.Add(Me.cbxUbicacion)
+        Me.GroupBox1.Controls.Add(Me.lblEditorial)
+        Me.GroupBox1.Controls.Add(Me.btnAgregarUbicacion)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(326, 348)
+        Me.GroupBox1.TabIndex = 23
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Datos de libro"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Button2)
+        Me.GroupBox2.Controls.Add(Me.listBoxCategoria)
+        Me.GroupBox2.Controls.Add(Me.btnCategoria)
+        Me.GroupBox2.Controls.Add(Me.dgvCategoria)
+        Me.GroupBox2.Location = New System.Drawing.Point(452, 12)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(327, 391)
+        Me.GroupBox2.TabIndex = 24
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Categoria/s"
+        '
+        'dgvCategoria
+        '
+        Me.dgvCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvCategoria.Location = New System.Drawing.Point(25, 25)
+        Me.dgvCategoria.Name = "dgvCategoria"
+        Me.dgvCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvCategoria.Size = New System.Drawing.Size(243, 150)
+        Me.dgvCategoria.TabIndex = 0
+        '
+        'btnCategoria
+        '
+        Me.btnCategoria.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.btnCategoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCategoria.ForeColor = System.Drawing.Color.White
+        Me.btnCategoria.Location = New System.Drawing.Point(274, 25)
+        Me.btnCategoria.Name = "btnCategoria"
+        Me.btnCategoria.Size = New System.Drawing.Size(37, 152)
+        Me.btnCategoria.TabIndex = 21
+        Me.btnCategoria.Text = "+"
+        Me.btnCategoria.UseVisualStyleBackColor = False
+        '
+        'listBoxCategoria
+        '
+        Me.listBoxCategoria.FormattingEnabled = True
+        Me.listBoxCategoria.Location = New System.Drawing.Point(25, 199)
+        Me.listBoxCategoria.Name = "listBoxCategoria"
+        Me.listBoxCategoria.Size = New System.Drawing.Size(97, 173)
+        Me.listBoxCategoria.TabIndex = 22
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.Red
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.ForeColor = System.Drawing.Color.White
+        Me.Button2.Location = New System.Drawing.Point(128, 199)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(57, 26)
+        Me.Button2.TabIndex = 23
+        Me.Button2.Text = "-"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
         'AgregarLibro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 387)
+        Me.BackColor = System.Drawing.SystemColors.ScrollBar
+        Me.ClientSize = New System.Drawing.Size(825, 456)
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.txtCod_libro)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.txtAutor)
-        Me.Controls.Add(Me.btnSeleccionarAutor)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnLimpiarCamposAutor)
         Me.Controls.Add(Me.btnGuardarAutor)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.lblAutor)
-        Me.Controls.Add(Me.btnAgregarCategoria)
-        Me.Controls.Add(Me.cbxCategoria)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.cbxEditorial)
-        Me.Controls.Add(Me.cbxUbicacion)
-        Me.Controls.Add(Me.btnAgregarEditorial)
-        Me.Controls.Add(Me.btnAgregarUbicacion)
-        Me.Controls.Add(Me.lblEditorial)
-        Me.Controls.Add(Me.lblUbicacion)
-        Me.Controls.Add(Me.txtTitulo)
-        Me.Controls.Add(Me.lblTitulo)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtIsbn)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Name = "AgregarLibro"
-        Me.Text = "CargarLibro"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Cargar Libro"
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        CType(Me.dgvCategoria, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -290,4 +370,10 @@ Partial Class AgregarLibro
     Friend WithEvents txtAutor As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txtCod_libro As TextBox
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents dgvCategoria As DataGridView
+    Friend WithEvents Button2 As Button
+    Friend WithEvents listBoxCategoria As ListBox
+    Friend WithEvents btnCategoria As Button
 End Class

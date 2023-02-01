@@ -26,16 +26,20 @@ Partial Class AgregarSocio
         Me.lblApellido = New System.Windows.Forms.Label()
         Me.lblTelefono = New System.Windows.Forms.Label()
         Me.lblDireccion = New System.Windows.Forms.Label()
-        Me.lblEstadoSocio = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.txtApellido = New System.Windows.Forms.TextBox()
         Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.txtDireccion = New System.Windows.Forms.TextBox()
-        Me.txtEstado = New System.Windows.Forms.TextBox()
         Me.btnAgregarSocio = New System.Windows.Forms.Button()
         Me.btnLimpiarCampos = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.dtpFechaNacimiento = New System.Windows.Forms.DateTimePicker()
+        Me.lblFechaNacimiento = New System.Windows.Forms.Label()
+        Me.txtDni = New System.Windows.Forms.TextBox()
+        Me.lblDni = New System.Windows.Forms.Label()
+        Me.txtEstado = New System.Windows.Forms.TextBox()
+        Me.lblEstadoSocio = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -60,7 +64,7 @@ Partial Class AgregarSocio
         'lblTelefono
         '
         Me.lblTelefono.AutoSize = True
-        Me.lblTelefono.Location = New System.Drawing.Point(45, 178)
+        Me.lblTelefono.Location = New System.Drawing.Point(13, 201)
         Me.lblTelefono.Name = "lblTelefono"
         Me.lblTelefono.Size = New System.Drawing.Size(52, 13)
         Me.lblTelefono.TabIndex = 2
@@ -74,15 +78,6 @@ Partial Class AgregarSocio
         Me.lblDireccion.Size = New System.Drawing.Size(55, 13)
         Me.lblDireccion.TabIndex = 3
         Me.lblDireccion.Text = "Dirección:"
-        '
-        'lblEstadoSocio
-        '
-        Me.lblEstadoSocio.AutoSize = True
-        Me.lblEstadoSocio.Location = New System.Drawing.Point(383, 96)
-        Me.lblEstadoSocio.Name = "lblEstadoSocio"
-        Me.lblEstadoSocio.Size = New System.Drawing.Size(43, 13)
-        Me.lblEstadoSocio.TabIndex = 4
-        Me.lblEstadoSocio.Text = "Estado:"
         '
         'txtNombre
         '
@@ -100,7 +95,7 @@ Partial Class AgregarSocio
         '
         'txtTelefono
         '
-        Me.txtTelefono.Location = New System.Drawing.Point(98, 175)
+        Me.txtTelefono.Location = New System.Drawing.Point(66, 194)
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(143, 20)
         Me.txtTelefono.TabIndex = 7
@@ -111,13 +106,6 @@ Partial Class AgregarSocio
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(143, 20)
         Me.txtDireccion.TabIndex = 8
-        '
-        'txtEstado
-        '
-        Me.txtEstado.Location = New System.Drawing.Point(444, 93)
-        Me.txtEstado.Name = "txtEstado"
-        Me.txtEstado.Size = New System.Drawing.Size(143, 20)
-        Me.txtEstado.TabIndex = 9
         '
         'btnAgregarSocio
         '
@@ -150,20 +138,74 @@ Partial Class AgregarSocio
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.dtpFechaNacimiento)
+        Me.GroupBox1.Controls.Add(Me.lblFechaNacimiento)
+        Me.GroupBox1.Controls.Add(Me.txtDni)
+        Me.GroupBox1.Controls.Add(Me.lblDni)
         Me.GroupBox1.Controls.Add(Me.txtApellido)
         Me.GroupBox1.Controls.Add(Me.lblApellido)
         Me.GroupBox1.Controls.Add(Me.lblNombre)
+        Me.GroupBox1.Controls.Add(Me.txtTelefono)
         Me.GroupBox1.Controls.Add(Me.txtEstado)
+        Me.GroupBox1.Controls.Add(Me.lblTelefono)
         Me.GroupBox1.Controls.Add(Me.txtNombre)
         Me.GroupBox1.Controls.Add(Me.txtDireccion)
         Me.GroupBox1.Controls.Add(Me.lblEstadoSocio)
         Me.GroupBox1.Controls.Add(Me.lblDireccion)
         Me.GroupBox1.Location = New System.Drawing.Point(32, 18)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(628, 208)
+        Me.GroupBox1.Size = New System.Drawing.Size(628, 237)
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos socio"
+        '
+        'dtpFechaNacimiento
+        '
+        Me.dtpFechaNacimiento.Location = New System.Drawing.Point(444, 100)
+        Me.dtpFechaNacimiento.Name = "dtpFechaNacimiento"
+        Me.dtpFechaNacimiento.Size = New System.Drawing.Size(143, 20)
+        Me.dtpFechaNacimiento.TabIndex = 13
+        '
+        'lblFechaNacimiento
+        '
+        Me.lblFechaNacimiento.AutoSize = True
+        Me.lblFechaNacimiento.Location = New System.Drawing.Point(365, 100)
+        Me.lblFechaNacimiento.Name = "lblFechaNacimiento"
+        Me.lblFechaNacimiento.Size = New System.Drawing.Size(75, 13)
+        Me.lblFechaNacimiento.TabIndex = 12
+        Me.lblFechaNacimiento.Text = "F_Nacimiento:"
+        '
+        'txtDni
+        '
+        Me.txtDni.Location = New System.Drawing.Point(66, 147)
+        Me.txtDni.Name = "txtDni"
+        Me.txtDni.Size = New System.Drawing.Size(143, 20)
+        Me.txtDni.TabIndex = 11
+        '
+        'lblDni
+        '
+        Me.lblDni.AutoSize = True
+        Me.lblDni.Location = New System.Drawing.Point(34, 150)
+        Me.lblDni.Name = "lblDni"
+        Me.lblDni.Size = New System.Drawing.Size(26, 13)
+        Me.lblDni.TabIndex = 10
+        Me.lblDni.Text = "Dni:"
+        '
+        'txtEstado
+        '
+        Me.txtEstado.Location = New System.Drawing.Point(444, 153)
+        Me.txtEstado.Name = "txtEstado"
+        Me.txtEstado.Size = New System.Drawing.Size(143, 20)
+        Me.txtEstado.TabIndex = 9
+        '
+        'lblEstadoSocio
+        '
+        Me.lblEstadoSocio.AutoSize = True
+        Me.lblEstadoSocio.Location = New System.Drawing.Point(383, 157)
+        Me.lblEstadoSocio.Name = "lblEstadoSocio"
+        Me.lblEstadoSocio.Size = New System.Drawing.Size(43, 13)
+        Me.lblEstadoSocio.TabIndex = 4
+        Me.lblEstadoSocio.Text = "Estado:"
         '
         'AgregarSocio
         '
@@ -173,8 +215,6 @@ Partial Class AgregarSocio
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnLimpiarCampos)
         Me.Controls.Add(Me.btnAgregarSocio)
-        Me.Controls.Add(Me.txtTelefono)
-        Me.Controls.Add(Me.lblTelefono)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "AgregarSocio"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -182,7 +222,6 @@ Partial Class AgregarSocio
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -190,14 +229,18 @@ Partial Class AgregarSocio
     Friend WithEvents lblApellido As Label
     Friend WithEvents lblTelefono As Label
     Friend WithEvents lblDireccion As Label
-    Friend WithEvents lblEstadoSocio As Label
     Friend WithEvents txtNombre As TextBox
     Friend WithEvents txtApellido As TextBox
     Friend WithEvents txtTelefono As TextBox
     Friend WithEvents txtDireccion As TextBox
-    Friend WithEvents txtEstado As TextBox
     Friend WithEvents btnAgregarSocio As Button
     Friend WithEvents btnLimpiarCampos As Button
     Friend WithEvents btnCancelar As Button
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents txtEstado As TextBox
+    Friend WithEvents lblEstadoSocio As Label
+    Friend WithEvents lblFechaNacimiento As Label
+    Friend WithEvents txtDni As TextBox
+    Friend WithEvents lblDni As Label
+    Friend WithEvents dtpFechaNacimiento As DateTimePicker
 End Class

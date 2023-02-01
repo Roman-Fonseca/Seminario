@@ -5,6 +5,7 @@
 
             moduloBiblioteca.ConsultarSocioModificar()
             Me.btnAgregarSocio.Text = "Guardar Cambios"
+        Else
             If Me.Text = "Agregar Socio" Then
 
             End If
@@ -43,5 +44,96 @@
 
     Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
 
+    End Sub
+
+    Private Sub txtNombre_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
+
+    End Sub
+
+    Private Sub txtDni_TextChanged(sender As Object, e As EventArgs) Handles txtDni.TextChanged
+
+    End Sub
+
+    Private Sub txtDni_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtDni.KeyPress
+        'Permito solamente números en el textbox
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtTelefono.Focus()
+        End If
+    End Sub
+
+    Private Sub txtTelefono_TextChanged(sender As Object, e As EventArgs) Handles txtTelefono.TextChanged
+
+    End Sub
+
+    Private Sub txtTelefono_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTelefono.KeyPress
+        'Permito solamente números en el cuadro de texto
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtDireccion.Focus()
+        End If
+    End Sub
+
+    Private Sub txtNombre_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNombre.KeyPress
+        'Permito solamente letras en el textbox
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = True
+            MsgBox("Solo se puede ingresar valores de tipo texto", MsgBoxStyle.Exclamation, "Ingreso de Texto")
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = False
+        End If
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtApellido.Focus()
+        End If
+
+    End Sub
+
+    Private Sub txtApellido_TextChanged(sender As Object, e As EventArgs) Handles txtApellido.TextChanged
+
+    End Sub
+
+    Private Sub txtApellido_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtApellido.KeyPress
+        'Permito solamente letras en el textbox
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = True
+            MsgBox("Solo se puede ingresar valores de tipo texto", MsgBoxStyle.Exclamation, "Ingreso de Texto")
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = False
+        End If
+
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtDni.Focus()
+        End If
+    End Sub
+
+    Private Sub txtDireccion_TextChanged(sender As Object, e As EventArgs) Handles txtDireccion.TextChanged
+
+    End Sub
+
+    Private Sub txtDireccion_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtDireccion.KeyPress
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtDireccion.Focus()
+        End If
     End Sub
 End Class

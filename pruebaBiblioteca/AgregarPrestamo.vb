@@ -1,4 +1,7 @@
-﻿Public Class AgregarPrestamo
+﻿Imports System.Data.SqlClient
+Imports MySql.Data.MySqlClient
+
+Public Class AgregarPrestamo
     Private Sub Label1_Click(sender As Object, e As EventArgs)
 
     End Sub
@@ -63,12 +66,20 @@
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles BotonAgregarPrestamo.Click
         GLO_CodSocioPrestamo = Me.dgvSocio.SelectedRows.Item(0).Cells(0).Value
-        If Me.Text = "Agregar Prestamo" Then
+        GLO_CodEjemplarPrestamo = Me.dgvEjemplar.SelectedRows.Item(0).Cells(0).Value
+        If Me.Text = "Agregar Prestamo" And tomarCantidadPrestamosEnElDia(GLO_CodSocioPrestamo) < 3 Then
             If moduloBiblioteca.verificarEstadoSocio(GLO_CodSocioPrestamo) Then
-                moduloBiblioteca.altaPrestamo()
+                If moduloBiblioteca.compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
+                    moduloBiblioteca.altaPrestamo()
+                    moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
+                Else
+                    MsgBox("El Libro ya esta Prestado")
+                End If
             Else
-                MsgBox("El socio está sancionado", vbCritical)
+                    MsgBox("El socio está sancionado", vbCritical)
             End If
+        Else
+            MsgBox("El socio ya registro 3 prestamos en el dia")
         End If
         If Me.Text = "Modificar Prestamo" Then
             moduloBiblioteca.modificarPrestamo()
@@ -96,4 +107,13 @@
     Private Sub btnFinalizarPrestamo_Click(sender As Object, e As EventArgs) Handles btnFinalizarPrestamo.Click
         moduloBiblioteca.finalizarPrestamo()
     End Sub
+
+    Public Sub comprobarCantidadPrestamosPorDia()
+
+    End Sub
+
+    Private Sub dgvSocio_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSocio.CellContentClick
+
+    End Sub
+
 End Class

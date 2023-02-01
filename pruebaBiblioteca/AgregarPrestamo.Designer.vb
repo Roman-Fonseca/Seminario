@@ -23,6 +23,7 @@ Partial Class AgregarPrestamo
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.gbxDatosPrestramos = New System.Windows.Forms.GroupBox()
+        Me.cbxTipoPrestamo = New System.Windows.Forms.ComboBox()
         Me.txtHoraDevolucion = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dtpFechaDevolucion = New System.Windows.Forms.DateTimePicker()
@@ -43,7 +44,6 @@ Partial Class AgregarPrestamo
         Me.btnCancelarPrestamo = New System.Windows.Forms.Button()
         Me.btnLimpiar = New System.Windows.Forms.Button()
         Me.btnFinalizarPrestamo = New System.Windows.Forms.Button()
-        Me.cbxTipoPrestamo = New System.Windows.Forms.ComboBox()
         Me.gbxDatosPrestramos.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvEjemplar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,6 +68,15 @@ Partial Class AgregarPrestamo
         Me.gbxDatosPrestramos.TabIndex = 29
         Me.gbxDatosPrestramos.TabStop = False
         Me.gbxDatosPrestramos.Text = "Datos Prestamo"
+        '
+        'cbxTipoPrestamo
+        '
+        Me.cbxTipoPrestamo.FormattingEnabled = True
+        Me.cbxTipoPrestamo.Items.AddRange(New Object() {"Local", "Externo"})
+        Me.cbxTipoPrestamo.Location = New System.Drawing.Point(138, 49)
+        Me.cbxTipoPrestamo.Name = "cbxTipoPrestamo"
+        Me.cbxTipoPrestamo.Size = New System.Drawing.Size(131, 21)
+        Me.cbxTipoPrestamo.TabIndex = 38
         '
         'txtHoraDevolucion
         '
@@ -251,15 +260,6 @@ Partial Class AgregarPrestamo
         Me.btnFinalizarPrestamo.TabIndex = 36
         Me.btnFinalizarPrestamo.Text = "Finalizar Prestamo"
         Me.btnFinalizarPrestamo.UseVisualStyleBackColor = False
-        '
-        'cbxTipoPrestamo
-        '
-        Me.cbxTipoPrestamo.FormattingEnabled = True
-        Me.cbxTipoPrestamo.Items.AddRange(New Object() {"Local", "Externo"})
-        Me.cbxTipoPrestamo.Location = New System.Drawing.Point(138, 49)
-        Me.cbxTipoPrestamo.Name = "cbxTipoPrestamo"
-        Me.cbxTipoPrestamo.Size = New System.Drawing.Size(131, 21)
-        Me.cbxTipoPrestamo.TabIndex = 38
         '
         'AgregarPrestamo
         '
