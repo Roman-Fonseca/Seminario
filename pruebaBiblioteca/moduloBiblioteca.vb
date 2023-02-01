@@ -38,7 +38,7 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into socio (nombre,apellido,fecha_nacimiento,dni,telefono,direccion,estado_socio,fecha_registro) values('" & AgregarSocio.txtNombre.Text & "','" & AgregarSocio.txtApellido.Text & "','" & f_nacimientoStr & "'," & AgregarSocio.txtDni.Text & ",'" & AgregarSocio.txtTelefono.Text & "','" & AgregarSocio.txtDireccion.Text & "','Habilitado','" & fechaRegistro & "')"
+                LOC_consulta = "insert into socio (nombre,apellido,fecha_nacimiento,dni,telefono,direccion,estado_socio,fecha_registro,contador_prestamos) values('" & AgregarSocio.txtNombre.Text & "','" & AgregarSocio.txtApellido.Text & "','" & f_nacimientoStr & "'," & AgregarSocio.txtDni.Text & ",'" & AgregarSocio.txtTelefono.Text & "','" & AgregarSocio.txtDireccion.Text & "','Habilitado','" & fechaRegistro & "','" & 0 & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó correctamente")
@@ -712,9 +712,9 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into prestamo_socio (tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,
-                                hora_devolucion,cod_socio,cod_ejemplar) 
+                                hora_devolucion,fecha_devolucion_real,hora_devolucion_real, cod_socio,cod_ejemplar) 
                                 values('" & AgregarPrestamo.cbxTipoPrestamo.Text & "','" & fechaPrestamoString & "','" & horaPrestamoStr & "','" & fechaDevolucionString & "'
-                                ,'" & hora_devolucionString & "','" & GLO_CodSocioPrestamo & "','" & GLO_CodEjemplarPrestamo & "')"
+                                ,'" & hora_devolucionString & "','00-00-0000',' 00:00:00 ','" & GLO_CodSocioPrestamo & "','" & GLO_CodEjemplarPrestamo & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó prestamo correctamente")
@@ -1039,30 +1039,20 @@ Module moduloBiblioteca
 
     End Function
 
-    Public Sub aplicarSancionEspera(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime,
+    Public Sub registrarPrestamoAtrasado(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime,
                                    hora_actual As DateTime)
+
         Dim LOC_consulta As String
-
-        'Convierto la fecha_actual en string
-        Dim fecha_inicio As String
-        fecha_inicio = fecha_actual.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
-
-        Dim fecha_finalizacion As Date
-        Dim dias_sancion As Integer
-        Dim hora_finalizacion As DateTime
-        hora_finalizacion = "0 : 00:00"
-        dias_sancion = calcularSancion(fecha_devolucion, fecha_actual)
         'Prueba motivo
         Dim motivo As String
         motivo = "Prestamo atrasado"
-        fecha_finalizacion = DateAdd("d", dias_sancion, Today)
-
-        'Convierto la fecha_actual en string
-        Dim fecha_finalizacion_str As String = fecha_finalizacion.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+        'Calculo los dias de sancion
+        Dim dias_sancion As Integer
+        dias_sancion = moduloBiblioteca.calcularSancion(fecha_devolucion, fecha_actual)
 
         Try
             If ConexionMySQL() Then
-                LOC_consulta = "insert into prestamo_atrasado (fecha_inicio,hora_inicio,fecha_finalizacion,hora_finalizacion,motivo,cod_prestamo_socio) values('" & fecha_inicio & "','" & hora_actual & "','" & fecha_finalizacion_str & "','" & hora_finalizacion & "','" & motivo & "','" & cod_prestamo_socio & "')"
+                LOC_consulta = "insert into prestamo_atrasado (dias_sancion,motivo,cod_prestamo_socio) values('" & dias_sancion & "','" & motivo & "','" & cod_prestamo_socio & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó sancion_espera correctamente")
@@ -1087,7 +1077,7 @@ Module moduloBiblioteca
 
         Try
             If ConexionMySQL() Then
-                LOC_consulta = "insert into sancion_paga (fecha,pago,motivo,cod_prestamo_socio) values('" & fecha & "','" & pago & "','" & motivo & "','" & cod_prestamo_socio & "')"
+                LOC_consulta = "insert into sancion_prestamo_paga (fecha,pago,motivo,cod_prestamo_socio) values('" & fecha & "','" & pago & "','" & motivo & "','" & cod_prestamo_socio & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó registro_pago correctamente")
@@ -1168,7 +1158,7 @@ Module moduloBiblioteca
         Dim bandera As Integer
         Dim maximo As Integer
         dias = diffDias(fecha_devolucion, fecha_actual)
-        Dim consulta As String = "select cod_parametro,minimo,maximo,dias_sancion from parametro_espera"
+        Dim consulta As String = "select cod_parametro_espera,minimo,maximo,dias_sancion from parametro_espera"
         If GloconexionDB.State = ConnectionState.Closed Then
             GloconexionDB.ConnectionString = cadena_conexion
             GloconexionDB.Open()
@@ -1208,7 +1198,7 @@ Module moduloBiblioteca
         Dim bandera As Integer
         Dim maximo As Integer
         dias = diffDias(fecha_devolucion, fecha_actual)
-        Dim consulta As String = "select cod_parametro,minimo,maximo,pago_correspondiente from parametro_pago"
+        Dim consulta As String = "select cod_parametro_pago,minimo,maximo,pago_correspondiente from parametro_pago"
         If GloconexionDB.State = ConnectionState.Closed Then
             GloconexionDB.ConnectionString = cadena_conexion
             GloconexionDB.Open()
@@ -1253,7 +1243,7 @@ Module moduloBiblioteca
         horaActual = TimeOfDay
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio,cod_ejemplar_libro from prestamo_socio where '" & dia_actual_string & "' >= fecha_devolucion AND fecha_devolucion_real  = '0000-00-00'"
+        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio,cod_ejemplar from prestamo_socio where '" & dia_actual_string & "' >= fecha_devolucion AND fecha_devolucion_real  = '0000-00-00'"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta

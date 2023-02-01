@@ -90,7 +90,7 @@ Public Class Prestamos
             MsgBox("El prestamo está atrasado por " & diffHoras(hora_actual, hora_devolucion) & "Horas", MsgBoxStyle.Information)
         End If
 
-        moduloBiblioteca.mostrarPrestamosVencidos()
+        moduloBiblioteca.mostrarPrestamos()
     End Sub
 
     Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
