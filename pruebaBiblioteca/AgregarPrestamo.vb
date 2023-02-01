@@ -11,9 +11,9 @@ Public Class AgregarPrestamo
     End Sub
 
     Private Sub AgregarPrestamo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        moduloBiblioteca.CargarComboPlazoPrestamo()
+        'moduloBiblioteca.CargarComboPlazoPrestamo()
         'moduloBiblioteca.CargarComboSocioPrestamo()
-        moduloBiblioteca.llenarGrillaEjemplares(dgvEjemplar)
+        moduloBiblioteca.llenarGrillaEjemplares()
         moduloBiblioteca.llenarGrillaSocios(dgvSocio)
     End Sub
 

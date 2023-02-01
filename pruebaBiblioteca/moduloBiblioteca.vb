@@ -612,14 +612,32 @@ Module moduloBiblioteca
         End Try
     End Sub
 
-    Public Sub llenarGrillaEjemplares(ByVal dgv As DataGridView)
+    Public Sub llenarGrillaEjemplares()
+        Dim Consulta As String = "select * from ejemplar"
         Try
-            adaptador = New MySqlDataAdapter("Select * from ejemplar_libro", GloconexionDB)
-            dt = New DataTable
-            adaptador.Fill(dt)
-            dgv.DataSource = dt
+            If ConexionMySQL() Then
+                Glocomando.CommandText = Consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+
+                Glodatareader = Glocomando.ExecuteReader
+
+
+                Dim dt As New DataTable
+                dt.Load(Glodatareader)
+
+
+                AgregarPrestamo.dgvEjemplar.DataSource = dt
+
+
+                Glodatareader.Close()
+                GloconexionDB.Close()
+            Else
+
+            End If
         Catch ex As Exception
-            MessageBox.Show("Error al cargar la grilla", ex.ToString)
+            MsgBox(ex.Message)
+            MsgBox("Error en la conexion")
         End Try
     End Sub
 
