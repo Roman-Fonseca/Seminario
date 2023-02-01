@@ -6,6 +6,7 @@
         AgregarSocio.txtTelefono.Clear()
         AgregarSocio.txtDireccion.Clear()
         AgregarSocio.txtEstado.Clear()
+        AgregarSocio.txtDni.Clear()
     End Sub
 
     Public Sub limpiarCamposAgregarUbicacion()

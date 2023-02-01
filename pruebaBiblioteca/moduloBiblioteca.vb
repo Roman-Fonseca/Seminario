@@ -54,7 +54,7 @@ Module moduloBiblioteca
     End Function
 
     Public Sub mostrarSocios()
-        Dim Consulta As String = "select cod_socio,nombre,apellido,dni,telefono,direccion,contador_prestamos,estado_socio from socio"
+        Dim Consulta As String = "select cod_socio,nombre,apellido,dni,fecha_nacimiento,telefono,direccion,contador_prestamos,estado_socio from socio"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -110,6 +110,7 @@ Module moduloBiblioteca
                 AgregarSocio.txtDni.Text = Trim((CStr(row("dni"))))
                 AgregarSocio.txtTelefono.Text = Trim((CStr(row("telefono"))))
                 AgregarSocio.txtDireccion.Text = Trim((CStr(row("direccion"))))
+                AgregarSocio.dtpFechaNacimiento.Value = Trim((CStr(row("fecha_nacimiento"))))
                 AgregarSocio.txtEstado.Text = Trim((CStr(row("estado_socio"))))
 
                 Glodatareader.Close()
@@ -149,16 +150,24 @@ Module moduloBiblioteca
 
     Public Function GuardarSocioModificado() As Boolean
         Dim LOC_consulta As String
+        Dim f_nacimiento As Date
+        f_nacimiento = Format(AgregarSocio.dtpFechaNacimiento.Value, "short date")
+        'Convierto fecha nacimiento en string   
+        Dim f_nacimientoStr As String
+        f_nacimientoStr = f_nacimiento.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
 
         Try
 
             If ConexionMySQL() Then
                 LOC_consulta = "update socio set  cod_socio=" & GLO_CodSocioModificar & ", 
                 nombre = '" & AgregarSocio.txtNombre.Text & "', 
-                apellido ='" & AgregarSocio.txtApellido.Text & "', 
+                apellido ='" & AgregarSocio.txtApellido.Text & "',  
+                dni ='" & AgregarSocio.txtDni.Text & "',
+                fecha_nacimiento = '" & f_nacimientoStr & "',
                 telefono='" & AgregarSocio.txtTelefono.Text & "', 
                 direccion= '" & AgregarSocio.txtDireccion.Text & "', 
-                estado_socio ='" & AgregarSocio.txtEstado.Text & "' where cod_socio= " & GLO_CodSocioModificar & ""
+                estado_socio ='" & AgregarSocio.txtEstado.Text & "'
+                where cod_socio= " & GLO_CodSocioModificar & ""
                 MsgBox(LOC_consulta)
                 Glocomando.CommandText = LOC_consulta
                 Glocomando.CommandType = CommandType.Text
