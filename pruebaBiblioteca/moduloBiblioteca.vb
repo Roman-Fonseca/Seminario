@@ -681,8 +681,12 @@ Module moduloBiblioteca
 
 
         'Capturo hora actual del sistema
-        Dim horaPrestamo As DateTime
+        Dim horaPrestamo As String
         horaPrestamo = TimeOfDay
+
+        'Convierto la hora_actual en string
+        Dim horaPrestamoStr As String
+        horaPrestamoStr = horaPrestamo
 
         Dim hora_devolucionString = AgregarPrestamo.txtHoraDevolucion.Text
         'Dim hora_devolucion As DateTime = DateTime.ParseExact(hora_devolucionString, "hh/mm/ss", CultureInfo.CurrentCulture, DateTimeStyles.None)
@@ -708,8 +712,8 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into prestamo_socio (tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,
-                                hora_devolucion,cod_socio,cod_ejemplar_libro) 
-                                values('" & AgregarPrestamo.cbxTipoPrestamo.Text & "','" & fechaPrestamoString & "','" & horaPrestamo & "','" & fechaDevolucionString & "'
+                                hora_devolucion,cod_socio,cod_ejemplar) 
+                                values('" & AgregarPrestamo.cbxTipoPrestamo.Text & "','" & fechaPrestamoString & "','" & horaPrestamoStr & "','" & fechaDevolucionString & "'
                                 ,'" & hora_devolucionString & "','" & GLO_CodSocioPrestamo & "','" & GLO_CodEjemplarPrestamo & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
@@ -792,7 +796,7 @@ Module moduloBiblioteca
     End Sub
 
     Public Sub mostrarPrestamos()
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio, cod_ejemplar_libro from prestamo_socio"
+        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio, cod_ejemplar from prestamo_socio"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
