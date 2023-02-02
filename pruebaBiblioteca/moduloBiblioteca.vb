@@ -6,6 +6,7 @@ Imports MySql.Data.MySqlClient
 Imports Mysqlx.XDevAPI.Relational
 
 Module moduloBiblioteca
+    'Varibales Globales
     Public GLO_CodSocioModificar As Integer
     Public GLO_CodSocioPrestamo As Integer
     Public GLO_CodEjemplarPrestamo As Integer 'Esta variable se utiliza a la hora de realizar un prestamo y toma el valor del cod_ejemplar prestado
@@ -17,6 +18,7 @@ Module moduloBiblioteca
     Public GLOBAL_DIA_ACTUAL As Date
     Public GLO_CodLibro As Integer
     Public GLO_TituloLibro As String
+    Public GLO_COD_SOCIO As Integer
 
     Dim dt As New DataTable
     Public adaptador As MySqlDataAdapter

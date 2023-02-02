@@ -14,7 +14,6 @@ Public Class Prestamos
     Public hora_devolucion As DateTime
     Public fecha_actual As Date
     Public hora_actual As DateTime
-    Public cod_socio As Integer
     Public cod_prestamo_socio As Integer
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
@@ -71,7 +70,7 @@ Public Class Prestamos
         'Capturo hora_actual
         hora_actual = TimeOfDay
         'Capturo  cod_socio
-        cod_socio = Me.dgvPrestamos.SelectedRows.Item(0).Cells(8).Value
+        GLO_COD_SOCIO = Me.dgvPrestamos.SelectedRows.Item(0).Cells(8).Value
         'Capturo  cod_prestamo_socio
         cod_prestamo_socio = Me.dgvPrestamos.SelectedRows.Item(0).Cells(0).Value
         'Capturo GLO_CodEjemplarPrestamos
