@@ -9,7 +9,7 @@ Public Class informeSocios
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Dim cadenaConexion As String = "Database=pruebabiblioteca; server=localhost; user id=root; convert zero datetime=True"
-        Dim consulta As String = "Select cod_socio,nombre,apellido,telefono,direccion,contador_prestamos,estado_socio from socio"
+        Dim consulta As String = "Select cod_socio,nombre,apellido,telefono,direccion,contador_prestamos,estado_socio from socio "
         Dim conexion As New MySqlConnection()
         conexion.ConnectionString = cadenaConexion
 

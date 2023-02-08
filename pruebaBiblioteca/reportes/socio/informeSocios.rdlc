@@ -482,7 +482,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetSocios</DataSetName>
-        <Top>0.55245cm</Top>
+        <Top>1.71662cm</Top>
         <Left>0.42016cm</Left>
         <Height>1.2cm</Height>
         <Width>16.33771cm</Width>
@@ -492,11 +492,64 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox15">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Reporte Socio</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox15</rd:DefaultName>
+        <Top>0.36724cm</Top>
+        <Left>0.42016cm</Left>
+        <Height>0.82903cm</Height>
+        <Width>3.83771cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Line Name="Line2">
+        <Top>0.17639cm</Top>
+        <Height>0cm</Height>
+        <Width>16.82843cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
     </ReportItems>
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>7.05518in</Width>
+  <Width>6.6281in</Width>
   <Page>
     <PageHeader>
       <Height>2.54cm</Height>
@@ -513,45 +566,6 @@
             </Border>
           </Style>
         </Line>
-        <Textbox Name="Textbox15">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Reporte Socio</Value>
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value />
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox15</rd:DefaultName>
-          <Top>1.3462cm</Top>
-          <Left>7.40516cm</Left>
-          <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
         <Textbox Name="Textbox16">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -560,18 +574,21 @@
               <TextRuns>
                 <TextRun>
                   <Value>Biblioteca</Value>
-                  <Style />
+                  <Style>
+                    <FontFamily>Segoe Script</FontFamily>
+                    <FontSize>12pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
-          <Top>0.21703cm</Top>
+          <Top>0.18175cm</Top>
           <Left>0.42016cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
-          <ZIndex>2</ZIndex>
+          <Width>2.97625cm</Width>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -591,6 +608,7 @@
                 <TextRun>
                   <Value>LA</Value>
                   <Style>
+                    <FontFamily>Segoe Script</FontFamily>
                     <FontSize>26pt</FontSize>
                   </Style>
                 </TextRun>
@@ -600,9 +618,38 @@
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
           <Top>0.81703cm</Top>
-          <Left>0.42016cm</Left>
+          <Left>0.73766cm</Left>
+          <Height>1.54658cm</Height>
+          <Width>1.67979cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="txtFecha2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!ExecutionTime</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.21703cm</Top>
+          <Left>13.69343cm</Left>
           <Height>1.12917cm</Height>
-          <Width>2.5cm</Width>
+          <Width>3.135cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -621,8 +668,21 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Fecha:</Value>
-                  <Style />
+                  <Value>Fecha  :</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>hora:</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -630,39 +690,10 @@
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
           <Top>0.21703cm</Top>
-          <Left>12.248cm</Left>
-          <Height>0.6cm</Height>
-          <Width>1.38875cm</Width>
+          <Left>11.85488cm</Left>
+          <Height>1.12917cm</Height>
+          <Width>1.73271cm</Width>
           <ZIndex>4</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="txtFecha2">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Fecha2</Value>
-                  <Style />
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <Top>0.21703cm</Top>
-          <Left>13.74258cm</Left>
-          <Height>0.6cm</Height>
-          <Width>1.38875cm</Width>
-          <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -680,6 +711,78 @@
         </Border>
       </Style>
     </PageHeader>
+    <PageFooter>
+      <Height>2.54cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox19">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Pagina:</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox15</rd:DefaultName>
+          <Top>1.41979cm</Top>
+          <Left>12.52516cm</Left>
+          <Height>0.78521cm</Height>
+          <Width>1.73271cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="txtFecha3">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!PageNumber</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>1.41083cm</Top>
+          <Left>14.43426cm</Left>
+          <Height>0.79417cm</Height>
+          <Width>2.32361cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>
