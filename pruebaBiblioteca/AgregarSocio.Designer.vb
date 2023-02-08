@@ -22,6 +22,7 @@ Partial Class AgregarSocio
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AgregarSocio))
         Me.lblNombre = New System.Windows.Forms.Label()
         Me.lblApellido = New System.Windows.Forms.Label()
         Me.lblTelefono = New System.Windows.Forms.Label()
@@ -40,77 +41,87 @@ Partial Class AgregarSocio
         Me.lblDni = New System.Windows.Forms.Label()
         Me.txtEstado = New System.Windows.Forms.TextBox()
         Me.lblEstadoSocio = New System.Windows.Forms.Label()
+        Me.imgSocio = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.imgSocio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblNombre
         '
         Me.lblNombre.AutoSize = True
-        Me.lblNombre.Location = New System.Drawing.Point(13, 40)
+        Me.lblNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNombre.Location = New System.Drawing.Point(25, 40)
         Me.lblNombre.Name = "lblNombre"
-        Me.lblNombre.Size = New System.Drawing.Size(47, 13)
+        Me.lblNombre.Size = New System.Drawing.Size(62, 15)
         Me.lblNombre.TabIndex = 0
         Me.lblNombre.Text = "Nombre:"
         '
         'lblApellido
         '
         Me.lblApellido.AutoSize = True
-        Me.lblApellido.Location = New System.Drawing.Point(13, 93)
+        Me.lblApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblApellido.Location = New System.Drawing.Point(18, 93)
         Me.lblApellido.Name = "lblApellido"
-        Me.lblApellido.Size = New System.Drawing.Size(47, 13)
+        Me.lblApellido.Size = New System.Drawing.Size(63, 15)
         Me.lblApellido.TabIndex = 1
         Me.lblApellido.Text = "Apellido:"
         '
         'lblTelefono
         '
         Me.lblTelefono.AutoSize = True
-        Me.lblTelefono.Location = New System.Drawing.Point(13, 201)
+        Me.lblTelefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTelefono.Location = New System.Drawing.Point(12, 201)
         Me.lblTelefono.Name = "lblTelefono"
-        Me.lblTelefono.Size = New System.Drawing.Size(52, 13)
+        Me.lblTelefono.Size = New System.Drawing.Size(67, 15)
         Me.lblTelefono.TabIndex = 2
         Me.lblTelefono.Text = "Telefono:"
         '
         'lblDireccion
         '
         Me.lblDireccion.AutoSize = True
+        Me.lblDireccion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDireccion.Location = New System.Drawing.Point(383, 40)
         Me.lblDireccion.Name = "lblDireccion"
-        Me.lblDireccion.Size = New System.Drawing.Size(55, 13)
+        Me.lblDireccion.Size = New System.Drawing.Size(72, 15)
         Me.lblDireccion.TabIndex = 3
         Me.lblDireccion.Text = "Dirección:"
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(66, 40)
+        Me.txtNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNombre.Location = New System.Drawing.Point(93, 39)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(143, 20)
+        Me.txtNombre.Size = New System.Drawing.Size(143, 26)
         Me.txtNombre.TabIndex = 5
         '
         'txtApellido
         '
-        Me.txtApellido.Location = New System.Drawing.Point(66, 93)
+        Me.txtApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtApellido.Location = New System.Drawing.Point(93, 92)
         Me.txtApellido.Name = "txtApellido"
-        Me.txtApellido.Size = New System.Drawing.Size(143, 20)
+        Me.txtApellido.Size = New System.Drawing.Size(143, 26)
         Me.txtApellido.TabIndex = 6
         '
         'txtTelefono
         '
-        Me.txtTelefono.Location = New System.Drawing.Point(66, 194)
+        Me.txtTelefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTelefono.Location = New System.Drawing.Point(93, 196)
         Me.txtTelefono.Name = "txtTelefono"
-        Me.txtTelefono.Size = New System.Drawing.Size(143, 20)
+        Me.txtTelefono.Size = New System.Drawing.Size(143, 26)
         Me.txtTelefono.TabIndex = 7
         '
         'txtDireccion
         '
-        Me.txtDireccion.Location = New System.Drawing.Point(444, 40)
+        Me.txtDireccion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDireccion.Location = New System.Drawing.Point(461, 39)
         Me.txtDireccion.Name = "txtDireccion"
-        Me.txtDireccion.Size = New System.Drawing.Size(143, 20)
+        Me.txtDireccion.Size = New System.Drawing.Size(143, 26)
         Me.txtDireccion.TabIndex = 8
         '
         'btnAgregarSocio
         '
         Me.btnAgregarSocio.BackColor = System.Drawing.Color.YellowGreen
-        Me.btnAgregarSocio.Location = New System.Drawing.Point(487, 261)
+        Me.btnAgregarSocio.Location = New System.Drawing.Point(601, 272)
         Me.btnAgregarSocio.Name = "btnAgregarSocio"
         Me.btnAgregarSocio.Size = New System.Drawing.Size(81, 46)
         Me.btnAgregarSocio.TabIndex = 10
@@ -120,7 +131,7 @@ Partial Class AgregarSocio
         'btnLimpiarCampos
         '
         Me.btnLimpiarCampos.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnLimpiarCampos.Location = New System.Drawing.Point(391, 261)
+        Me.btnLimpiarCampos.Location = New System.Drawing.Point(505, 272)
         Me.btnLimpiarCampos.Name = "btnLimpiarCampos"
         Me.btnLimpiarCampos.Size = New System.Drawing.Size(81, 46)
         Me.btnLimpiarCampos.TabIndex = 11
@@ -129,7 +140,7 @@ Partial Class AgregarSocio
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(581, 261)
+        Me.btnCancelar.Location = New System.Drawing.Point(695, 272)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(81, 46)
         Me.btnCancelar.TabIndex = 12
@@ -152,7 +163,8 @@ Partial Class AgregarSocio
         Me.GroupBox1.Controls.Add(Me.txtDireccion)
         Me.GroupBox1.Controls.Add(Me.lblEstadoSocio)
         Me.GroupBox1.Controls.Add(Me.lblDireccion)
-        Me.GroupBox1.Location = New System.Drawing.Point(32, 18)
+        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.Location = New System.Drawing.Point(146, 29)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(628, 237)
         Me.GroupBox1.TabIndex = 13
@@ -161,66 +173,84 @@ Partial Class AgregarSocio
         '
         'dtpFechaNacimiento
         '
-        Me.dtpFechaNacimiento.Location = New System.Drawing.Point(444, 100)
+        Me.dtpFechaNacimiento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpFechaNacimiento.Location = New System.Drawing.Point(461, 100)
         Me.dtpFechaNacimiento.Name = "dtpFechaNacimiento"
-        Me.dtpFechaNacimiento.Size = New System.Drawing.Size(143, 20)
+        Me.dtpFechaNacimiento.Size = New System.Drawing.Size(143, 21)
         Me.dtpFechaNacimiento.TabIndex = 13
         '
         'lblFechaNacimiento
         '
         Me.lblFechaNacimiento.AutoSize = True
-        Me.lblFechaNacimiento.Location = New System.Drawing.Point(365, 100)
+        Me.lblFechaNacimiento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFechaNacimiento.Location = New System.Drawing.Point(356, 100)
         Me.lblFechaNacimiento.Name = "lblFechaNacimiento"
-        Me.lblFechaNacimiento.Size = New System.Drawing.Size(75, 13)
+        Me.lblFechaNacimiento.Size = New System.Drawing.Size(100, 15)
         Me.lblFechaNacimiento.TabIndex = 12
         Me.lblFechaNacimiento.Text = "F_Nacimiento:"
         '
         'txtDni
         '
-        Me.txtDni.Location = New System.Drawing.Point(66, 147)
+        Me.txtDni.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtDni.Location = New System.Drawing.Point(93, 145)
         Me.txtDni.Name = "txtDni"
-        Me.txtDni.Size = New System.Drawing.Size(143, 20)
+        Me.txtDni.Size = New System.Drawing.Size(143, 26)
         Me.txtDni.TabIndex = 11
         '
         'lblDni
         '
         Me.lblDni.AutoSize = True
-        Me.lblDni.Location = New System.Drawing.Point(34, 150)
+        Me.lblDni.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDni.Location = New System.Drawing.Point(46, 150)
         Me.lblDni.Name = "lblDni"
-        Me.lblDni.Size = New System.Drawing.Size(26, 13)
+        Me.lblDni.Size = New System.Drawing.Size(33, 15)
         Me.lblDni.TabIndex = 10
         Me.lblDni.Text = "Dni:"
         '
         'txtEstado
         '
-        Me.txtEstado.Location = New System.Drawing.Point(444, 153)
+        Me.txtEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEstado.Location = New System.Drawing.Point(461, 152)
         Me.txtEstado.Name = "txtEstado"
-        Me.txtEstado.Size = New System.Drawing.Size(143, 20)
+        Me.txtEstado.Size = New System.Drawing.Size(143, 26)
         Me.txtEstado.TabIndex = 9
         '
         'lblEstadoSocio
         '
         Me.lblEstadoSocio.AutoSize = True
-        Me.lblEstadoSocio.Location = New System.Drawing.Point(383, 157)
+        Me.lblEstadoSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEstadoSocio.Location = New System.Drawing.Point(401, 153)
         Me.lblEstadoSocio.Name = "lblEstadoSocio"
-        Me.lblEstadoSocio.Size = New System.Drawing.Size(43, 13)
+        Me.lblEstadoSocio.Size = New System.Drawing.Size(55, 15)
         Me.lblEstadoSocio.TabIndex = 4
         Me.lblEstadoSocio.Text = "Estado:"
+        '
+        'imgSocio
+        '
+        Me.imgSocio.Image = CType(resources.GetObject("imgSocio.Image"), System.Drawing.Image)
+        Me.imgSocio.Location = New System.Drawing.Point(12, 39)
+        Me.imgSocio.Name = "imgSocio"
+        Me.imgSocio.Size = New System.Drawing.Size(128, 227)
+        Me.imgSocio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.imgSocio.TabIndex = 14
+        Me.imgSocio.TabStop = False
         '
         'AgregarSocio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(702, 323)
+        Me.ClientSize = New System.Drawing.Size(809, 336)
+        Me.Controls.Add(Me.imgSocio)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnLimpiarCampos)
         Me.Controls.Add(Me.btnAgregarSocio)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "AgregarSocio"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "AgregarSocio"
+        Me.Text = "Agregar Socio"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.imgSocio, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -243,4 +273,5 @@ Partial Class AgregarSocio
     Friend WithEvents txtDni As TextBox
     Friend WithEvents lblDni As Label
     Friend WithEvents dtpFechaNacimiento As DateTimePicker
+    Friend WithEvents imgSocio As PictureBox
 End Class

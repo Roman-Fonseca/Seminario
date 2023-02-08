@@ -58,7 +58,7 @@ Partial Class AgregarParametroEspera
         Me.lblMaximo.Name = "lblMaximo"
         Me.lblMaximo.Size = New System.Drawing.Size(46, 13)
         Me.lblMaximo.TabIndex = 2
-        Me.lblMaximo.Text = "Maximo:"
+        Me.lblMaximo.Text = "Máximo:"
         '
         'lblDiasSancion
         '

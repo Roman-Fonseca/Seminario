@@ -22,6 +22,7 @@ Partial Class AgregarPrestamo
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AgregarPrestamo))
         Me.gbxDatosPrestramos = New System.Windows.Forms.GroupBox()
         Me.cbxTipoPrestamo = New System.Windows.Forms.ComboBox()
         Me.txtHoraDevolucion = New System.Windows.Forms.TextBox()
@@ -44,11 +45,13 @@ Partial Class AgregarPrestamo
         Me.btnCancelarPrestamo = New System.Windows.Forms.Button()
         Me.btnLimpiar = New System.Windows.Forms.Button()
         Me.btnFinalizarPrestamo = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.gbxDatosPrestramos.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvEjemplar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gpbAgregarSocio.SuspendLayout()
         CType(Me.dgvSocio, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'gbxDatosPrestramos
@@ -61,10 +64,11 @@ Partial Class AgregarPrestamo
         Me.gbxDatosPrestramos.Controls.Add(Me.lblHoraDevolucion)
         Me.gbxDatosPrestramos.Controls.Add(Me.lblFechaDevolucion)
         Me.gbxDatosPrestramos.Controls.Add(Me.Label1)
+        Me.gbxDatosPrestramos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gbxDatosPrestramos.ForeColor = System.Drawing.Color.Black
-        Me.gbxDatosPrestramos.Location = New System.Drawing.Point(34, 29)
+        Me.gbxDatosPrestramos.Location = New System.Drawing.Point(292, 29)
         Me.gbxDatosPrestramos.Name = "gbxDatosPrestramos"
-        Me.gbxDatosPrestramos.Size = New System.Drawing.Size(306, 301)
+        Me.gbxDatosPrestramos.Size = New System.Drawing.Size(306, 211)
         Me.gbxDatosPrestramos.TabIndex = 29
         Me.gbxDatosPrestramos.TabStop = False
         Me.gbxDatosPrestramos.Text = "Datos Prestamo"
@@ -73,16 +77,16 @@ Partial Class AgregarPrestamo
         '
         Me.cbxTipoPrestamo.FormattingEnabled = True
         Me.cbxTipoPrestamo.Items.AddRange(New Object() {"Local", "Externo"})
-        Me.cbxTipoPrestamo.Location = New System.Drawing.Point(138, 49)
+        Me.cbxTipoPrestamo.Location = New System.Drawing.Point(135, 52)
         Me.cbxTipoPrestamo.Name = "cbxTipoPrestamo"
-        Me.cbxTipoPrestamo.Size = New System.Drawing.Size(131, 21)
+        Me.cbxTipoPrestamo.Size = New System.Drawing.Size(131, 24)
         Me.cbxTipoPrestamo.TabIndex = 38
         '
         'txtHoraDevolucion
         '
-        Me.txtHoraDevolucion.Location = New System.Drawing.Point(138, 169)
+        Me.txtHoraDevolucion.Location = New System.Drawing.Point(135, 169)
         Me.txtHoraDevolucion.Name = "txtHoraDevolucion"
-        Me.txtHoraDevolucion.Size = New System.Drawing.Size(131, 20)
+        Me.txtHoraDevolucion.Size = New System.Drawing.Size(131, 22)
         Me.txtHoraDevolucion.TabIndex = 37
         '
         'Label4
@@ -90,41 +94,44 @@ Partial Class AgregarPrestamo
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(37, 233)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(0, 13)
+        Me.Label4.Size = New System.Drawing.Size(0, 16)
         Me.Label4.TabIndex = 36
         '
         'dtpFechaDevolucion
         '
         Me.dtpFechaDevolucion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFechaDevolucion.Location = New System.Drawing.Point(138, 124)
+        Me.dtpFechaDevolucion.Location = New System.Drawing.Point(135, 111)
         Me.dtpFechaDevolucion.Name = "dtpFechaDevolucion"
-        Me.dtpFechaDevolucion.Size = New System.Drawing.Size(131, 20)
+        Me.dtpFechaDevolucion.Size = New System.Drawing.Size(131, 22)
         Me.dtpFechaDevolucion.TabIndex = 35
         '
         'lblHoraDevolucion
         '
         Me.lblHoraDevolucion.AutoSize = True
+        Me.lblHoraDevolucion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHoraDevolucion.Location = New System.Drawing.Point(13, 169)
         Me.lblHoraDevolucion.Name = "lblHoraDevolucion"
-        Me.lblHoraDevolucion.Size = New System.Drawing.Size(88, 13)
+        Me.lblHoraDevolucion.Size = New System.Drawing.Size(104, 13)
         Me.lblHoraDevolucion.TabIndex = 34
         Me.lblHoraDevolucion.Text = "Hora devolución:"
         '
         'lblFechaDevolucion
         '
         Me.lblFechaDevolucion.AutoSize = True
-        Me.lblFechaDevolucion.Location = New System.Drawing.Point(6, 124)
+        Me.lblFechaDevolucion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFechaDevolucion.Location = New System.Drawing.Point(6, 111)
         Me.lblFechaDevolucion.Name = "lblFechaDevolucion"
-        Me.lblFechaDevolucion.Size = New System.Drawing.Size(95, 13)
+        Me.lblFechaDevolucion.Size = New System.Drawing.Size(112, 13)
         Me.lblFechaDevolucion.TabIndex = 33
         Me.lblFechaDevolucion.Text = "Fecha devolución:"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(23, 52)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(78, 13)
+        Me.Label1.Size = New System.Drawing.Size(92, 13)
         Me.Label1.TabIndex = 29
         Me.Label1.Text = "Tipo Prestamo:"
         '
@@ -135,26 +142,28 @@ Partial Class AgregarPrestamo
         Me.GroupBox1.Controls.Add(Me.lblBuscarEjemplar)
         Me.GroupBox1.Controls.Add(Me.dgvEjemplar)
         Me.GroupBox1.Controls.Add(Me.lblLibro)
-        Me.GroupBox1.Location = New System.Drawing.Point(393, 29)
+        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.Location = New System.Drawing.Point(623, 29)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(586, 211)
+        Me.GroupBox1.Size = New System.Drawing.Size(413, 211)
         Me.GroupBox1.TabIndex = 30
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Seleccionar ejemplar/res"
+        Me.GroupBox1.Text = "Seleccionar ejemplar"
         '
         'txtBuscarEjemplar
         '
-        Me.txtBuscarEjemplar.Location = New System.Drawing.Point(115, 31)
+        Me.txtBuscarEjemplar.Location = New System.Drawing.Point(130, 32)
         Me.txtBuscarEjemplar.Name = "txtBuscarEjemplar"
-        Me.txtBuscarEjemplar.Size = New System.Drawing.Size(131, 20)
+        Me.txtBuscarEjemplar.Size = New System.Drawing.Size(131, 22)
         Me.txtBuscarEjemplar.TabIndex = 21
         '
         'lblBuscarEjemplar
         '
         Me.lblBuscarEjemplar.AutoSize = True
+        Me.lblBuscarEjemplar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBuscarEjemplar.Location = New System.Drawing.Point(23, 34)
         Me.lblBuscarEjemplar.Name = "lblBuscarEjemplar"
-        Me.lblBuscarEjemplar.Size = New System.Drawing.Size(85, 13)
+        Me.lblBuscarEjemplar.Size = New System.Drawing.Size(101, 13)
         Me.lblBuscarEjemplar.TabIndex = 20
         Me.lblBuscarEjemplar.Text = "Buscar ejemplar:"
         '
@@ -165,7 +174,7 @@ Partial Class AgregarPrestamo
         Me.dgvEjemplar.Name = "dgvEjemplar"
         Me.dgvEjemplar.ReadOnly = True
         Me.dgvEjemplar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvEjemplar.Size = New System.Drawing.Size(544, 119)
+        Me.dgvEjemplar.Size = New System.Drawing.Size(372, 119)
         Me.dgvEjemplar.TabIndex = 19
         '
         'lblLibro
@@ -173,7 +182,7 @@ Partial Class AgregarPrestamo
         Me.lblLibro.AutoSize = True
         Me.lblLibro.Location = New System.Drawing.Point(79, 44)
         Me.lblLibro.Name = "lblLibro"
-        Me.lblLibro.Size = New System.Drawing.Size(0, 13)
+        Me.lblLibro.Size = New System.Drawing.Size(0, 16)
         Me.lblLibro.TabIndex = 18
         '
         'gpbAgregarSocio
@@ -182,9 +191,10 @@ Partial Class AgregarPrestamo
         Me.gpbAgregarSocio.Controls.Add(Me.txtBuscarSocio)
         Me.gpbAgregarSocio.Controls.Add(Me.Label3)
         Me.gpbAgregarSocio.Controls.Add(Me.dgvSocio)
-        Me.gpbAgregarSocio.Location = New System.Drawing.Point(393, 246)
+        Me.gpbAgregarSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gpbAgregarSocio.Location = New System.Drawing.Point(292, 246)
         Me.gpbAgregarSocio.Name = "gpbAgregarSocio"
-        Me.gpbAgregarSocio.Size = New System.Drawing.Size(586, 188)
+        Me.gpbAgregarSocio.Size = New System.Drawing.Size(744, 188)
         Me.gpbAgregarSocio.TabIndex = 31
         Me.gpbAgregarSocio.TabStop = False
         Me.gpbAgregarSocio.Text = "Seleccionar Socio"
@@ -200,17 +210,18 @@ Partial Class AgregarPrestamo
         '
         'txtBuscarSocio
         '
-        Me.txtBuscarSocio.Location = New System.Drawing.Point(115, 21)
+        Me.txtBuscarSocio.Location = New System.Drawing.Point(135, 21)
         Me.txtBuscarSocio.Name = "txtBuscarSocio"
-        Me.txtBuscarSocio.Size = New System.Drawing.Size(131, 20)
+        Me.txtBuscarSocio.Size = New System.Drawing.Size(131, 22)
         Me.txtBuscarSocio.TabIndex = 25
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(37, 24)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(31, 26)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(71, 13)
+        Me.Label3.Size = New System.Drawing.Size(84, 13)
         Me.Label3.TabIndex = 24
         Me.Label3.Text = "Buscar socio:"
         '
@@ -220,13 +231,13 @@ Partial Class AgregarPrestamo
         Me.dgvSocio.Location = New System.Drawing.Point(26, 47)
         Me.dgvSocio.Name = "dgvSocio"
         Me.dgvSocio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSocio.Size = New System.Drawing.Size(544, 123)
+        Me.dgvSocio.Size = New System.Drawing.Size(703, 123)
         Me.dgvSocio.TabIndex = 23
         '
         'BotonAgregarPrestamo
         '
         Me.BotonAgregarPrestamo.BackColor = System.Drawing.Color.LawnGreen
-        Me.BotonAgregarPrestamo.Location = New System.Drawing.Point(906, 450)
+        Me.BotonAgregarPrestamo.Location = New System.Drawing.Point(961, 440)
         Me.BotonAgregarPrestamo.Name = "BotonAgregarPrestamo"
         Me.BotonAgregarPrestamo.Size = New System.Drawing.Size(75, 40)
         Me.BotonAgregarPrestamo.TabIndex = 33
@@ -235,7 +246,7 @@ Partial Class AgregarPrestamo
         '
         'btnCancelarPrestamo
         '
-        Me.btnCancelarPrestamo.Location = New System.Drawing.Point(716, 450)
+        Me.btnCancelarPrestamo.Location = New System.Drawing.Point(787, 440)
         Me.btnCancelarPrestamo.Name = "btnCancelarPrestamo"
         Me.btnCancelarPrestamo.Size = New System.Drawing.Size(75, 40)
         Me.btnCancelarPrestamo.TabIndex = 35
@@ -244,7 +255,7 @@ Partial Class AgregarPrestamo
         '
         'btnLimpiar
         '
-        Me.btnLimpiar.Location = New System.Drawing.Point(813, 450)
+        Me.btnLimpiar.Location = New System.Drawing.Point(877, 440)
         Me.btnLimpiar.Name = "btnLimpiar"
         Me.btnLimpiar.Size = New System.Drawing.Size(75, 40)
         Me.btnLimpiar.TabIndex = 34
@@ -253,19 +264,30 @@ Partial Class AgregarPrestamo
         '
         'btnFinalizarPrestamo
         '
-        Me.btnFinalizarPrestamo.BackColor = System.Drawing.Color.LawnGreen
-        Me.btnFinalizarPrestamo.Location = New System.Drawing.Point(34, 357)
+        Me.btnFinalizarPrestamo.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnFinalizarPrestamo.Location = New System.Drawing.Point(623, 440)
         Me.btnFinalizarPrestamo.Name = "btnFinalizarPrestamo"
-        Me.btnFinalizarPrestamo.Size = New System.Drawing.Size(147, 120)
-        Me.btnFinalizarPrestamo.TabIndex = 36
+        Me.btnFinalizarPrestamo.Size = New System.Drawing.Size(147, 40)
+        Me.btnFinalizarPrestamo.TabIndex = 37
         Me.btnFinalizarPrestamo.Text = "Finalizar Prestamo"
         Me.btnFinalizarPrestamo.UseVisualStyleBackColor = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(12, 29)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(254, 405)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 27
+        Me.PictureBox1.TabStop = False
         '
         'AgregarPrestamo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1009, 502)
+        Me.ClientSize = New System.Drawing.Size(1048, 488)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.btnFinalizarPrestamo)
         Me.Controls.Add(Me.btnCancelarPrestamo)
         Me.Controls.Add(Me.btnLimpiar)
@@ -283,6 +305,7 @@ Partial Class AgregarPrestamo
         Me.gpbAgregarSocio.ResumeLayout(False)
         Me.gpbAgregarSocio.PerformLayout()
         CType(Me.dgvSocio, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -306,6 +329,7 @@ Partial Class AgregarPrestamo
     Friend WithEvents btnCancelarPrestamo As Button
     Friend WithEvents txtHoraDevolucion As TextBox
     Friend WithEvents btnLimpiar As Button
-    Friend WithEvents btnFinalizarPrestamo As Button
     Friend WithEvents cbxTipoPrestamo As ComboBox
+    Friend WithEvents btnFinalizarPrestamo As Button
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

@@ -42,7 +42,7 @@ Partial Class AgregarPlazoPrestamo
         'lblDias
         '
         Me.lblDias.AutoSize = True
-        Me.lblDias.Location = New System.Drawing.Point(45, 75)
+        Me.lblDias.Location = New System.Drawing.Point(210, 31)
         Me.lblDias.Name = "lblDias"
         Me.lblDias.Size = New System.Drawing.Size(33, 13)
         Me.lblDias.TabIndex = 1
@@ -57,14 +57,14 @@ Partial Class AgregarPlazoPrestamo
         '
         'txtDias
         '
-        Me.txtDias.Location = New System.Drawing.Point(84, 75)
+        Me.txtDias.Location = New System.Drawing.Point(249, 28)
         Me.txtDias.Name = "txtDias"
         Me.txtDias.Size = New System.Drawing.Size(100, 20)
         Me.txtDias.TabIndex = 3
         '
         'btnAgregar
         '
-        Me.btnAgregar.Location = New System.Drawing.Point(167, 201)
+        Me.btnAgregar.Location = New System.Drawing.Point(180, 96)
         Me.btnAgregar.Name = "btnAgregar"
         Me.btnAgregar.Size = New System.Drawing.Size(75, 23)
         Me.btnAgregar.TabIndex = 4
@@ -73,7 +73,7 @@ Partial Class AgregarPlazoPrestamo
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(261, 201)
+        Me.btnCancelar.Location = New System.Drawing.Point(274, 96)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelar.TabIndex = 5
@@ -84,7 +84,7 @@ Partial Class AgregarPlazoPrestamo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(348, 236)
+        Me.ClientSize = New System.Drawing.Size(375, 156)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnAgregar)
         Me.Controls.Add(Me.txtDias)
@@ -93,7 +93,7 @@ Partial Class AgregarPlazoPrestamo
         Me.Controls.Add(Me.lblDescripcion)
         Me.Name = "AgregarPlazoPrestamo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "AgregarPlazoPrestamo"
+        Me.Text = "Agregar Plazo Prestamo"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

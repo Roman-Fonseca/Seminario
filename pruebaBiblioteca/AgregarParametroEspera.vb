@@ -18,4 +18,8 @@
         Me.txtMinimo.Clear()
         Me.txtSancion.Clear()
     End Sub
+
+    Private Sub lblMaximo_Click(sender As Object, e As EventArgs) Handles lblMaximo.Click
+
+    End Sub
 End Class

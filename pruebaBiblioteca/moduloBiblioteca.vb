@@ -19,6 +19,7 @@ Module moduloBiblioteca
     Public GLO_CodLibro As Integer
     Public GLO_TituloLibro As String
     Public GLO_COD_SOCIO As Integer
+    Public GLO_ULTIMO_PRESTAMO_SOCIO As Integer
 
     Dim dt As New DataTable
     Public adaptador As MySqlDataAdapter
@@ -766,36 +767,36 @@ Module moduloBiblioteca
         Return True
     End Function
 
-    Public Sub prueba()
+    'Public Sub prueba()
 
-        Dim fechaPrestamoString As String
-        fechaPrestamoString = Today.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+    '    Dim fechaPrestamoString As String
+    '    fechaPrestamoString = Today.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
 
-        Dim fechaPrestamoDate As Date
-        fechaPrestamoDate = Convert.ToDateTime(fechaPrestamoString)
-
-
-
-
-        'Capturo hora actual del sistema
-        Dim horaPrestamo As DateTime
-        horaPrestamo = TimeOfDay
-
-        'Capturo dia selecionado para devolucion Prestamo
-        Dim fechaDevolucionDate As Date
-        fechaDevolucionDate = Format(Form1.dtpFechaDevolucion.Value, "short date")
-
-        'Convierto la fechaDevolucionDate en string
-        Dim fechaDevolucionString As String
-        fechaDevolucionString = fechaDevolucionDate.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+    '    Dim fechaPrestamoDate As Date
+    '    fechaPrestamoDate = Convert.ToDateTime(fechaPrestamoString)
 
 
 
 
-        MsgBox("La fecha es " & fechaPrestamoDate & "")
-        MsgBox("La hora es " & horaPrestamo & "")
-        MsgBox("La fecha de devolucion es " & fechaDevolucionString & "")
-    End Sub
+    '    'Capturo hora actual del sistema
+    '    Dim horaPrestamo As DateTime
+    '    horaPrestamo = TimeOfDay
+
+    '    'Capturo dia selecionado para devolucion Prestamo
+    '    Dim fechaDevolucionDate As Date
+    '    fechaDevolucionDate = Format(Form1.dtpFechaDevolucion.Value, "short date")
+
+    '    'Convierto la fechaDevolucionDate en string
+    '    Dim fechaDevolucionString As String
+    '    fechaDevolucionString = fechaDevolucionDate.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+
+
+
+
+    '    MsgBox("La fecha es " & fechaPrestamoDate & "")
+    '    MsgBox("La hora es " & horaPrestamo & "")
+    '    MsgBox("La fecha de devolucion es " & fechaDevolucionString & "")
+    'End Sub
 
     Public Sub mostrarPrestamos()
         Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio, cod_ejemplar from prestamo_socio"
@@ -852,10 +853,6 @@ Module moduloBiblioteca
                 AgregarPrestamo.dtpFechaDevolucion.Value = CStr(row("fecha_devolucion"))
                 AgregarPrestamo.txtHoraDevolucion.Text = row("hora_devolucion").ToString
                 AgregarPrestamo.txtBuscarSocio.Text = CStr(row("cod_socio"))
-
-
-
-
                 Glodatareader.Close()
                 GloconexionDB.Close()
             Catch ex As Exception
@@ -1041,8 +1038,7 @@ Module moduloBiblioteca
 
     End Function
 
-    Public Sub registrarPrestamoAtrasado(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime,
-                                   hora_actual As DateTime)
+    Public Sub registrarPrestamoAtrasado(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, cod_sancion_espera As Integer)
 
         Dim LOC_consulta As String
         'Prueba motivo
@@ -1054,10 +1050,10 @@ Module moduloBiblioteca
 
         Try
             If ConexionMySQL() Then
-                LOC_consulta = "insert into prestamo_atrasado (dias_sancion,motivo,cod_prestamo_socio) values('" & dias_sancion & "','" & motivo & "','" & cod_prestamo_socio & "')"
+                LOC_consulta = "insert into prestamo_atrasado (dias_sancion,motivo,cod_prestamo_socio,cod_sancion_espera) values('" & dias_sancion & "','" & motivo & "','" & cod_prestamo_socio & "', '" & cod_sancion_espera & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
-                MsgBox("Se agregó sancion_espera correctamente")
+                MsgBox("Se agregó prestamo_atrasado correctamente")
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -1077,9 +1073,12 @@ Module moduloBiblioteca
         Dim fecha As String
         fecha = fecha_actual.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
 
+        Dim hora_actual As String
+        hora_actual = TimeOfDay.ToString
+
         Try
             If ConexionMySQL() Then
-                LOC_consulta = "insert into sancion_prestamo_paga (fecha,pago,motivo,cod_prestamo_socio) values('" & fecha & "','" & pago & "','" & motivo & "','" & cod_prestamo_socio & "')"
+                LOC_consulta = "insert into sancion_prestamo_paga (fecha,hora,pago,motivo,cod_prestamo_socio) values('" & fecha & "','" & hora_actual & "','" & pago & "','" & motivo & "','" & cod_prestamo_socio & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó registro_pago correctamente")
@@ -1092,7 +1091,7 @@ Module moduloBiblioteca
     End Sub
 
     Public Function CalcularSancionEsperaDias(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime,
-                                   hora_actual As DateTime)
+                                   hora_actual As DateTime) As Integer
         Dim LOC_consulta As String
 
         'Convierto la fecha_actual en string
@@ -1521,7 +1520,7 @@ Module moduloBiblioteca
     End Function
 
     Public Function compararEstadoEjemplar(cod_ejemplar)
-        If moduloBiblioteca.tomar_estado_ejemplar(cod_ejemplar).Equals("Sin Prestar") Then
+        If moduloBiblioteca.tomar_estado_ejemplar(cod_ejemplar).Equals("Disponible") Then
             Return True
         Else
             Return False

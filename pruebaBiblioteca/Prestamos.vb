@@ -76,6 +76,7 @@ Public Class Prestamos
         'Capturo GLO_CodEjemplarPrestamos
         GLO_CodEjemplarPrestamo = Me.dgvPrestamos.SelectedRows.Item(0).Cells(9).Value
 
+
         If NoEstaDevuelto(fecha_devolucion_real) Then
             moduloBiblioteca.finalizarPrestamoAtajo()
         End If
@@ -92,36 +93,6 @@ Public Class Prestamos
         moduloBiblioteca.mostrarPrestamos()
     End Sub
 
-    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.Close()
-    End Sub
-
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
-
-        'Capturo fecha_devolucion
-        Dim fecha_devolucion As Date
-        fecha_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(4).Value
-        'Capturo fecha_actual
-        Dim fecha_actual As DateTime
-        fecha_actual = Today
-
-        moduloBiblioteca.diffDias(fecha_devolucion, fecha_actual)
-
-        'Capturo hora_devolucion
-        Dim hora_devolucion As DateTime
-        hora_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(5).Value.ToString
-
-        'Capturo hora_actual
-        Dim hora_actual As DateTime
-        hora_actual = TimeOfDay.ToString
-
-        moduloBiblioteca.diffHoras(hora_devolucion, hora_actual)
-
-
-
-
-    End Sub
-
     Private Sub Button3_Click(sender As Object, e As EventArgs)
 
     End Sub
@@ -136,34 +107,8 @@ Public Class Prestamos
         MsgBox(calcularSancion(fecha_devolucion, fecha_actual))
     End Sub
 
-    Private Sub Button3_Click_2(sender As Object, e As EventArgs) Handles Button3.Click
-        GLO_CodSocioModificar = Me.dgvPrestamos.SelectedRows.Item(0).Cells(8).Value
-        moduloBiblioteca.tomar_contador_prestamos(GLO_CodSocioModificar)
-
-
-    End Sub
-
     Private Sub gpbPrestamo_Enter(sender As Object, e As EventArgs) Handles gpbPrestamo.Enter
 
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim cod_socio As Integer
-        cod_socio = Me.dgvPrestamos.CurrentRow.Cells(8).Value
-        MsgBox(moduloBiblioteca.verificarEstadoSocio(cod_socio))
-    End Sub
-
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        hora_actual = TimeOfDay
-        hora_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(5).Value.ToString
-        MsgBox(hora_actual)
-        MsgBox(moduloBiblioteca.diffHoras(hora_actual, hora_devolucion))
-    End Sub
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        'Capturo cod_socio
-        cod_prestamo_socio = Me.dgvPrestamos.CurrentRow.Cells(8).Value
-        tomarCantidadPrestamosEnElDia(cod_prestamo_socio)
     End Sub
 
     Private Sub dgvPrestamos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPrestamos.CellContentClick

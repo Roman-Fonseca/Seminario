@@ -65,10 +65,25 @@ Public Class AgregarPrestamo
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles BotonAgregarPrestamo.Click
+
         GLO_CodSocioPrestamo = Me.dgvSocio.SelectedRows.Item(0).Cells(0).Value
         GLO_CodEjemplarPrestamo = Me.dgvEjemplar.SelectedRows.Item(0).Cells(0).Value
+        If Decision.primerPrestamoSocio(GLO_CodSocioPrestamo) = True Then
+            MsgBox("Primer prestamo del socio")
+        Else
+            GLO_ULTIMO_PRESTAMO_SOCIO = Decision.tomarUltimoPrestamoSocio(GLO_CodSocioPrestamo)
+            MsgBox(GLO_ULTIMO_PRESTAMO_SOCIO)
+        End If
+
+        If Me.noDebeLibro(GLO_CodSocioPrestamo) < 0 Then
+            MsgBox("El socio no debe libros")
+        Else
+            MsgBox("El socio debe " & Me.noDebeLibro(GLO_CodSocioPrestamo) & " libros")
+        End If
+
+
         If Me.Text = "Agregar Prestamo" And tomarCantidadPrestamosEnElDia(GLO_CodSocioPrestamo) < 3 Then
-            If moduloBiblioteca.verificarEstadoSocio(GLO_CodSocioPrestamo) Then
+            If moduloBiblioteca.verificarEstadoSocio(GLO_CodSocioPrestamo) And estaEnCondicion(GLO_CodSocioPrestamo) Then
                 If moduloBiblioteca.compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
                     moduloBiblioteca.altaPrestamo()
                     moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
@@ -76,7 +91,7 @@ Public Class AgregarPrestamo
                     MsgBox("El Libro ya esta Prestado")
                 End If
             Else
-                    MsgBox("El socio está sancionado", vbCritical)
+                MsgBox("El socio está sancionado", vbCritical)
             End If
         Else
             MsgBox("El socio ya registro 3 prestamos en el dia")
@@ -104,9 +119,9 @@ Public Class AgregarPrestamo
 
     End Sub
 
-    Private Sub btnFinalizarPrestamo_Click(sender As Object, e As EventArgs) Handles btnFinalizarPrestamo.Click
-        moduloBiblioteca.finalizarPrestamo()
-    End Sub
+    'Private Sub btnFinalizarPrestamo_Click(sender As Object, e As EventArgs) Handles btnFinalizarPrestamo.Click
+    'moduloBiblioteca.finalizarPrestamo()
+    'End Sub
 
     Public Sub comprobarCantidadPrestamosPorDia()
 
@@ -115,5 +130,70 @@ Public Class AgregarPrestamo
     Private Sub dgvSocio_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSocio.CellContentClick
 
     End Sub
+
+    Public Function estaEnCondicion(cod_socio As Integer) As Boolean
+        Dim fecha_finalizacion As Date = Decision.tomarFechaFinalizacion(cod_socio)
+        MsgBox("la fecha finalizacion del ultimo sancion_espera del socio es: " & fecha_finalizacion)
+        If fecha_finalizacion < Today Then
+            MsgBox("El socio esta en condición")
+            Return True
+        Else
+            MsgBox("El socio tiene una sancion en curso hasta el dia: " & fecha_finalizacion)
+            Return False
+        End If
+    End Function
+
+    Public Function noDebeLibro(cod_socio) As Integer
+        'Capturo fecha actual para la consulta
+        Dim fecha_actual As Date
+        fecha_actual = Today
+        'Covierto fecha_actual en string
+        Dim fecha_actual_STR As String
+        fecha_actual_STR = fecha_actual.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+        Dim Sql As String = "SELECT COUNT(cod_prestamo_socio) FROM prestamo_socio where cod_socio = " & cod_socio & " and fecha_devolucion_real = 0000-00-00 AND fecha_devolucion < " & fecha_actual_STR & ""
+        Dim libros_sin_devolver As Integer
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("COUNT(cod_prestamo_socio)"))
+
+                    'Vemos que contiene la variable asignada para la direccion URL extraida
+                    'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
+
+                    'Imprimimos en el cuadro de texto la direccion URL
+                    libros_sin_devolver = VARIABLE_QUE_CONTENDRA_EL_VALOR
+
+
+                    Return libros_sin_devolver
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
+
+    Private Sub GroupBox1_Enter_1(sender As Object, e As EventArgs) Handles GroupBox1.Enter
+
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
+    End Sub
+
+    'Private Sub btnFinalizarPrestamo_Click(sender As Object, e As EventArgs) Handles btnFinalizarPrestamo.Click
+    '
+    'End Sub
 
 End Class

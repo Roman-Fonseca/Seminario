@@ -98,7 +98,7 @@ Partial Class AgregarEjemplar
         'cbxEstado
         '
         Me.cbxEstado.FormattingEnabled = True
-        Me.cbxEstado.Items.AddRange(New Object() {"Sin Prestar", "Prestado"})
+        Me.cbxEstado.Items.AddRange(New Object() {"Disponible", "Prestado"})
         Me.cbxEstado.Location = New System.Drawing.Point(138, 194)
         Me.cbxEstado.Name = "cbxEstado"
         Me.cbxEstado.Size = New System.Drawing.Size(137, 21)
