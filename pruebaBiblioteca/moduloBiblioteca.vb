@@ -1757,11 +1757,11 @@ Module moduloBiblioteca
     Public Function debeEjemplarAReponer(cod_socio) As Boolean
         Dim Sql As String = "SELECT cod_ejemplar_a_reponer from 
         (ejemplar_a_reponer INNER JOIN prestamo_finalizado ON ejemplar_a_reponer.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado) 
-        INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio WHERE prestamo_socio.cod_socio = '" & cod_socio & "'AND repuesto = 'No';"
+        INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio WHERE prestamo_socio.cod_socio = '" & cod_socio & "'AND repuesto = 'NO';"
         Dim Conexion As New MySqlConnection(cadena_conexion)
 
         Dim consulta As New MySqlCommand(Sql, Conexion)
-
+        MsgBox(Sql)
         Try
             If Conexion.State = ConnectionState.Closed Then
                 Conexion.Open()
@@ -1769,7 +1769,7 @@ Module moduloBiblioteca
                 If Datos.Read Then
                     'Declaramos y llenamos
                     Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Boolean = Not IsDBNull(Datos("cod_ejemplar_a_reponer"))
-
+                    MsgBox("jjjjj: " & VARIABLE_QUE_CONTENDRA_EL_VALOR)
                     If VARIABLE_QUE_CONTENDRA_EL_VALOR = True Then
                         Return True
                     Else
