@@ -55,6 +55,7 @@ Partial Class AgregarEjemplar
         '
         'txtNumeroEjemplar
         '
+        Me.txtNumeroEjemplar.Enabled = False
         Me.txtNumeroEjemplar.Location = New System.Drawing.Point(138, 41)
         Me.txtNumeroEjemplar.Name = "txtNumeroEjemplar"
         Me.txtNumeroEjemplar.Size = New System.Drawing.Size(137, 20)

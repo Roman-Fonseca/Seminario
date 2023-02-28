@@ -121,7 +121,7 @@ Partial Class AgregarSocio
         'btnAgregarSocio
         '
         Me.btnAgregarSocio.BackColor = System.Drawing.Color.YellowGreen
-        Me.btnAgregarSocio.Location = New System.Drawing.Point(601, 272)
+        Me.btnAgregarSocio.Location = New System.Drawing.Point(693, 272)
         Me.btnAgregarSocio.Name = "btnAgregarSocio"
         Me.btnAgregarSocio.Size = New System.Drawing.Size(81, 46)
         Me.btnAgregarSocio.TabIndex = 10
@@ -131,7 +131,7 @@ Partial Class AgregarSocio
         'btnLimpiarCampos
         '
         Me.btnLimpiarCampos.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnLimpiarCampos.Location = New System.Drawing.Point(505, 272)
+        Me.btnLimpiarCampos.Location = New System.Drawing.Point(591, 272)
         Me.btnLimpiarCampos.Name = "btnLimpiarCampos"
         Me.btnLimpiarCampos.Size = New System.Drawing.Size(81, 46)
         Me.btnLimpiarCampos.TabIndex = 11
@@ -140,7 +140,7 @@ Partial Class AgregarSocio
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(695, 272)
+        Me.btnCancelar.Location = New System.Drawing.Point(494, 272)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(81, 46)
         Me.btnCancelar.TabIndex = 12

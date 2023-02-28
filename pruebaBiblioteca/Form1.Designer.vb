@@ -80,213 +80,213 @@ Partial Class Form1
         'SociosToolStripMenuItem
         '
         Me.SociosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgregarSocioToolStripMenuItem, Me.VerSociosToolStripMenuItem})
-        Me.SociosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SociosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SociosToolStripMenuItem.Name = "SociosToolStripMenuItem"
-        Me.SociosToolStripMenuItem.Size = New System.Drawing.Size(84, 67)
+        Me.SociosToolStripMenuItem.Size = New System.Drawing.Size(76, 67)
         Me.SociosToolStripMenuItem.Text = "Socios"
         '
         'AgregarSocioToolStripMenuItem
         '
         Me.AgregarSocioToolStripMenuItem.Name = "AgregarSocioToolStripMenuItem"
-        Me.AgregarSocioToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgregarSocioToolStripMenuItem.Size = New System.Drawing.Size(197, 30)
         Me.AgregarSocioToolStripMenuItem.Text = "Agregar Socio"
         '
         'VerSociosToolStripMenuItem
         '
         Me.VerSociosToolStripMenuItem.Name = "VerSociosToolStripMenuItem"
-        Me.VerSociosToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VerSociosToolStripMenuItem.Size = New System.Drawing.Size(197, 30)
         Me.VerSociosToolStripMenuItem.Text = "Ver Socios"
         '
         'PrestamosToolStripMenuItem
         '
         Me.PrestamosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgregarPrestamoToolStripMenuItem, Me.VerPrestamosToolStripMenuItem})
-        Me.PrestamosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PrestamosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PrestamosToolStripMenuItem.Name = "PrestamosToolStripMenuItem"
-        Me.PrestamosToolStripMenuItem.Size = New System.Drawing.Size(121, 67)
+        Me.PrestamosToolStripMenuItem.Size = New System.Drawing.Size(107, 67)
         Me.PrestamosToolStripMenuItem.Text = "Prestamos"
         '
         'AgregarPrestamoToolStripMenuItem
         '
         Me.AgregarPrestamoToolStripMenuItem.Name = "AgregarPrestamoToolStripMenuItem"
-        Me.AgregarPrestamoToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.AgregarPrestamoToolStripMenuItem.Size = New System.Drawing.Size(229, 30)
         Me.AgregarPrestamoToolStripMenuItem.Text = "Agregar prestamo"
         '
         'VerPrestamosToolStripMenuItem
         '
         Me.VerPrestamosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TodosToolStripMenuItem1, Me.EnProcesoToolStripMenuItem, Me.AtrasadosToolStripMenuItem})
         Me.VerPrestamosToolStripMenuItem.Name = "VerPrestamosToolStripMenuItem"
-        Me.VerPrestamosToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.VerPrestamosToolStripMenuItem.Size = New System.Drawing.Size(229, 30)
         Me.VerPrestamosToolStripMenuItem.Text = "Ver prestamos"
         '
         'TodosToolStripMenuItem1
         '
         Me.TodosToolStripMenuItem1.Name = "TodosToolStripMenuItem1"
-        Me.TodosToolStripMenuItem1.Size = New System.Drawing.Size(132, 22)
+        Me.TodosToolStripMenuItem1.Size = New System.Drawing.Size(172, 30)
         Me.TodosToolStripMenuItem1.Text = "Todos"
         '
         'EnProcesoToolStripMenuItem
         '
         Me.EnProcesoToolStripMenuItem.Name = "EnProcesoToolStripMenuItem"
-        Me.EnProcesoToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.EnProcesoToolStripMenuItem.Size = New System.Drawing.Size(172, 30)
         Me.EnProcesoToolStripMenuItem.Text = "En proceso"
         '
         'AtrasadosToolStripMenuItem
         '
         Me.AtrasadosToolStripMenuItem.Name = "AtrasadosToolStripMenuItem"
-        Me.AtrasadosToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.AtrasadosToolStripMenuItem.Size = New System.Drawing.Size(172, 30)
         Me.AtrasadosToolStripMenuItem.Text = "Atrasados"
         '
         'EjemplaresToolStripMenuItem
         '
         Me.EjemplaresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgregarEjemplarToolStripMenuItem, Me.VerEjemplaresToolStripMenuItem})
-        Me.EjemplaresToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.EjemplaresToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EjemplaresToolStripMenuItem.Name = "EjemplaresToolStripMenuItem"
-        Me.EjemplaresToolStripMenuItem.Size = New System.Drawing.Size(125, 67)
+        Me.EjemplaresToolStripMenuItem.Size = New System.Drawing.Size(109, 67)
         Me.EjemplaresToolStripMenuItem.Text = "Ejemplares"
         '
         'AgregarEjemplarToolStripMenuItem
         '
         Me.AgregarEjemplarToolStripMenuItem.Name = "AgregarEjemplarToolStripMenuItem"
-        Me.AgregarEjemplarToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.AgregarEjemplarToolStripMenuItem.Size = New System.Drawing.Size(221, 30)
         Me.AgregarEjemplarToolStripMenuItem.Text = "Agregar ejemplar"
         '
         'VerEjemplaresToolStripMenuItem
         '
         Me.VerEjemplaresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TodosToolStripMenuItem, Me.EliminadosToolStripMenuItem, Me.PrestadosToolStripMenuItem})
         Me.VerEjemplaresToolStripMenuItem.Name = "VerEjemplaresToolStripMenuItem"
-        Me.VerEjemplaresToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.VerEjemplaresToolStripMenuItem.Size = New System.Drawing.Size(221, 30)
         Me.VerEjemplaresToolStripMenuItem.Text = "Ver Ejemplares"
         '
         'TodosToolStripMenuItem
         '
         Me.TodosToolStripMenuItem.Name = "TodosToolStripMenuItem"
-        Me.TodosToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.TodosToolStripMenuItem.Size = New System.Drawing.Size(170, 30)
         Me.TodosToolStripMenuItem.Text = "Todos"
         '
         'EliminadosToolStripMenuItem
         '
         Me.EliminadosToolStripMenuItem.Name = "EliminadosToolStripMenuItem"
-        Me.EliminadosToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.EliminadosToolStripMenuItem.Size = New System.Drawing.Size(170, 30)
         Me.EliminadosToolStripMenuItem.Text = "Eliminados"
         '
         'PrestadosToolStripMenuItem
         '
         Me.PrestadosToolStripMenuItem.Name = "PrestadosToolStripMenuItem"
-        Me.PrestadosToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.PrestadosToolStripMenuItem.Size = New System.Drawing.Size(170, 30)
         Me.PrestadosToolStripMenuItem.Text = "Prestados"
         '
         'SancionesToolStripMenuItem
         '
         Me.SancionesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EsperaToolStripMenuItem, Me.PagoToolStripMenuItem})
-        Me.SancionesToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SancionesToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SancionesToolStripMenuItem.Name = "SancionesToolStripMenuItem"
-        Me.SancionesToolStripMenuItem.Size = New System.Drawing.Size(118, 67)
+        Me.SancionesToolStripMenuItem.Size = New System.Drawing.Size(103, 67)
         Me.SancionesToolStripMenuItem.Text = "Sanciones"
         '
         'EsperaToolStripMenuItem
         '
         Me.EsperaToolStripMenuItem.Name = "EsperaToolStripMenuItem"
-        Me.EsperaToolStripMenuItem.Size = New System.Drawing.Size(108, 22)
+        Me.EsperaToolStripMenuItem.Size = New System.Drawing.Size(136, 30)
         Me.EsperaToolStripMenuItem.Text = "Espera"
         '
         'PagoToolStripMenuItem
         '
         Me.PagoToolStripMenuItem.Name = "PagoToolStripMenuItem"
-        Me.PagoToolStripMenuItem.Size = New System.Drawing.Size(108, 22)
+        Me.PagoToolStripMenuItem.Size = New System.Drawing.Size(136, 30)
         Me.PagoToolStripMenuItem.Text = "Pago"
         '
         'ParametrosToolStripMenuItem
         '
         Me.ParametrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgregarParametroToolStripMenuItem, Me.VerParametrosToolStripMenuItem})
-        Me.ParametrosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ParametrosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ParametrosToolStripMenuItem.Name = "ParametrosToolStripMenuItem"
-        Me.ParametrosToolStripMenuItem.Size = New System.Drawing.Size(129, 67)
+        Me.ParametrosToolStripMenuItem.Size = New System.Drawing.Size(113, 67)
         Me.ParametrosToolStripMenuItem.Text = "Parametros"
         '
         'AgregarParametroToolStripMenuItem
         '
         Me.AgregarParametroToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SanciónEsperaToolStripMenuItem, Me.SanciónDineroToolStripMenuItem})
         Me.AgregarParametroToolStripMenuItem.Name = "AgregarParametroToolStripMenuItem"
-        Me.AgregarParametroToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
+        Me.AgregarParametroToolStripMenuItem.Size = New System.Drawing.Size(236, 30)
         Me.AgregarParametroToolStripMenuItem.Text = "Agregar parametro"
         '
         'SanciónEsperaToolStripMenuItem
         '
         Me.SanciónEsperaToolStripMenuItem.Name = "SanciónEsperaToolStripMenuItem"
-        Me.SanciónEsperaToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.SanciónEsperaToolStripMenuItem.Size = New System.Drawing.Size(222, 30)
         Me.SanciónEsperaToolStripMenuItem.Text = "Parametro espera"
         '
         'SanciónDineroToolStripMenuItem
         '
         Me.SanciónDineroToolStripMenuItem.Name = "SanciónDineroToolStripMenuItem"
-        Me.SanciónDineroToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
-        Me.SanciónDineroToolStripMenuItem.Text = "Parametro dinero "
+        Me.SanciónDineroToolStripMenuItem.Size = New System.Drawing.Size(222, 30)
+        Me.SanciónDineroToolStripMenuItem.Text = "Parametro pago"
         '
         'VerParametrosToolStripMenuItem
         '
         Me.VerParametrosToolStripMenuItem.Name = "VerParametrosToolStripMenuItem"
-        Me.VerParametrosToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
+        Me.VerParametrosToolStripMenuItem.Size = New System.Drawing.Size(236, 30)
         Me.VerParametrosToolStripMenuItem.Text = "Ver parametros"
         '
         'PlazosToolStripMenuItem
         '
         Me.PlazosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgregarPlazoToolStripMenuItem, Me.VerPlazosToolStripMenuItem})
-        Me.PlazosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PlazosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PlazosToolStripMenuItem.Name = "PlazosToolStripMenuItem"
-        Me.PlazosToolStripMenuItem.Size = New System.Drawing.Size(84, 67)
+        Me.PlazosToolStripMenuItem.Size = New System.Drawing.Size(74, 67)
         Me.PlazosToolStripMenuItem.Text = "Plazos"
         '
         'AgregarPlazoToolStripMenuItem
         '
         Me.AgregarPlazoToolStripMenuItem.Name = "AgregarPlazoToolStripMenuItem"
-        Me.AgregarPlazoToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.AgregarPlazoToolStripMenuItem.Size = New System.Drawing.Size(195, 30)
         Me.AgregarPlazoToolStripMenuItem.Text = "Agregar Plazo"
         '
         'VerPlazosToolStripMenuItem
         '
         Me.VerPlazosToolStripMenuItem.Name = "VerPlazosToolStripMenuItem"
-        Me.VerPlazosToolStripMenuItem.Size = New System.Drawing.Size(147, 22)
+        Me.VerPlazosToolStripMenuItem.Size = New System.Drawing.Size(195, 30)
         Me.VerPlazosToolStripMenuItem.Text = "Ver Plazos"
         '
         'LibrosToolStripMenuItem
         '
         Me.LibrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerLibrosToolStripMenuItem, Me.VerLibrosToolStripMenuItem1})
-        Me.LibrosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LibrosToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LibrosToolStripMenuItem.Name = "LibrosToolStripMenuItem"
-        Me.LibrosToolStripMenuItem.Size = New System.Drawing.Size(80, 67)
+        Me.LibrosToolStripMenuItem.Size = New System.Drawing.Size(72, 67)
         Me.LibrosToolStripMenuItem.Text = "Libros"
         '
         'VerLibrosToolStripMenuItem
         '
         Me.VerLibrosToolStripMenuItem.Name = "VerLibrosToolStripMenuItem"
-        Me.VerLibrosToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
+        Me.VerLibrosToolStripMenuItem.Size = New System.Drawing.Size(189, 30)
         Me.VerLibrosToolStripMenuItem.Text = "Agregar libro"
         '
         'VerLibrosToolStripMenuItem1
         '
         Me.VerLibrosToolStripMenuItem1.Name = "VerLibrosToolStripMenuItem1"
-        Me.VerLibrosToolStripMenuItem1.Size = New System.Drawing.Size(143, 22)
+        Me.VerLibrosToolStripMenuItem1.Size = New System.Drawing.Size(189, 30)
         Me.VerLibrosToolStripMenuItem1.Text = "Ver libros"
         '
         'GenerarToolStripMenuItem
         '
         Me.GenerarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InformeToolStripMenuItem})
-        Me.GenerarToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GenerarToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GenerarToolStripMenuItem.Name = "GenerarToolStripMenuItem"
-        Me.GenerarToolStripMenuItem.Size = New System.Drawing.Size(98, 67)
+        Me.GenerarToolStripMenuItem.Size = New System.Drawing.Size(85, 67)
         Me.GenerarToolStripMenuItem.Text = "Generar"
         '
         'InformeToolStripMenuItem
         '
         Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SociosToolStripMenuItem1})
         Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
-        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
+        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(147, 30)
         Me.InformeToolStripMenuItem.Text = "Informe"
         '
         'SociosToolStripMenuItem1
         '
         Me.SociosToolStripMenuItem1.Name = "SociosToolStripMenuItem1"
-        Me.SociosToolStripMenuItem1.Size = New System.Drawing.Size(108, 22)
+        Me.SociosToolStripMenuItem1.Size = New System.Drawing.Size(136, 30)
         Me.SociosToolStripMenuItem1.Text = "Socios"
         '
         'Label1
@@ -294,11 +294,11 @@ Partial Class Form1
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Bisque
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(1258, 24)
+        Me.Label1.Location = New System.Drawing.Point(1221, 20)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(120, 39)
+        Me.Label1.Size = New System.Drawing.Size(193, 39)
         Me.Label1.TabIndex = 16
-        Me.Label1.Text = "Label1"
+        Me.Label1.Text = "01-01-2023"
         '
         'Form1
         '

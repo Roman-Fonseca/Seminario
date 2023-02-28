@@ -27,6 +27,7 @@
         ElseIf Me.Text = "Agregar Socio" Then
 
             moduloBiblioteca.cargarSocio()
+            moduloBiblioteca.cargarMembrecia()
             Me.Close()
             moduloBiblioteca.mostrarSocios()
 

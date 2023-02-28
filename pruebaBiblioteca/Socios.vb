@@ -2,6 +2,7 @@
     Private Sub btnAgregarSocio_Click(sender As Object, e As EventArgs) Handles btnAgregarSocio.Click
         AgregarSocio.Text = "Agregar Socio"
         AgregarSocio.txtEstado.Hide()
+        AgregarSocio.btnLimpiarCampos.Show()
         AgregarSocio.lblEstadoSocio.Hide()
         AgregarSocio.ShowDialog()
     End Sub
@@ -9,6 +10,7 @@
     Private Sub btnModificarSocio_Click(sender As Object, e As EventArgs) Handles btnModificarSocio.Click
         GLO_CodSocioModificar = Me.listaSocios.SelectedRows.Item(0).Cells(0).Value
         AgregarSocio.Text = "Modificar Socio"
+        AgregarSocio.btnLimpiarCampos.Hide()
         AgregarSocio.txtEstado.Show()
         AgregarSocio.lblEstadoSocio.Show()
         AgregarSocio.ShowDialog()

@@ -2,9 +2,9 @@
 Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim fecha As Date
-        fecha = Today
-        Label1.Text = fecha
+        'Dim fecha As Date
+        'fecha = Today
+        'Label1.Text = fecha
     End Sub
 
     Private Sub AgregarPrestamoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPrestamoToolStripMenuItem.Click
@@ -25,6 +25,7 @@ Public Class Form1
     Private Sub AgregarSocioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarSocioToolStripMenuItem.Click
         AgregarSocio.Text = "Agregar Socio"
         AgregarSocio.txtEstado.Hide()
+        AgregarSocio.btnLimpiarCampos.Show()
         AgregarSocio.lblEstadoSocio.Hide()
         AgregarSocio.ShowDialog()
     End Sub
@@ -70,6 +71,10 @@ Public Class Form1
     End Sub
 
     Private Sub SociosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SociosToolStripMenuItem1.Click
-        informeSocios.ShowDialog()
+        reporteSocios.ShowDialog()
+    End Sub
+
+    Private Sub InformeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InformeToolStripMenuItem.Click
+
     End Sub
 End Class

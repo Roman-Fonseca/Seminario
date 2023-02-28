@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class informeSocios
+Partial Class reporteSocios
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -26,24 +26,26 @@ Partial Class informeSocios
         Me.btnBuscar = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.dtpFechaInicio = New System.Windows.Forms.DateTimePicker()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpFechaFinal = New System.Windows.Forms.DateTimePicker()
+        Me.dtpFechaInicio = New System.Windows.Forms.DateTimePicker()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ReportViewer1
         '
         Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "pruebaBiblioteca.informeSocios.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(18, 98)
+        Me.ReportViewer1.Location = New System.Drawing.Point(18, 107)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(782, 311)
+        Me.ReportViewer1.Size = New System.Drawing.Size(647, 414)
         Me.ReportViewer1.TabIndex = 0
         '
         'btnBuscar
         '
-        Me.btnBuscar.Location = New System.Drawing.Point(633, 34)
+        Me.btnBuscar.Location = New System.Drawing.Point(774, 38)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(75, 23)
         Me.btnBuscar.TabIndex = 2
@@ -62,48 +64,73 @@ Partial Class informeSocios
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Label4)
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.btnBuscar)
         Me.Panel1.Controls.Add(Me.dtpFechaFinal)
         Me.Panel1.Controls.Add(Me.dtpFechaInicio)
-        Me.Panel1.Controls.Add(Me.TextBox1)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Location = New System.Drawing.Point(18, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(782, 80)
+        Me.Panel1.Size = New System.Drawing.Size(883, 101)
         Me.Panel1.TabIndex = 4
         '
-        'TextBox1
+        'Label4
         '
-        Me.TextBox1.Location = New System.Drawing.Point(265, 33)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 4
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(659, 19)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(67, 15)
+        Me.Label4.TabIndex = 9
+        Me.Label4.Text = "Fecha final"
         '
-        'dtpFechaInicio
+        'Label3
         '
-        Me.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFechaInicio.Location = New System.Drawing.Point(395, 33)
-        Me.dtpFechaInicio.Name = "dtpFechaInicio"
-        Me.dtpFechaInicio.Size = New System.Drawing.Size(93, 20)
-        Me.dtpFechaInicio.TabIndex = 5
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(543, 19)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(73, 15)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "Fecha inicio"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(387, 38)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(127, 16)
+        Me.Label2.TabIndex = 7
+        Me.Label2.Text = "Socios Cargados"
         '
         'dtpFechaFinal
         '
-        Me.dtpFechaFinal.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpFechaFinal.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpFechaFinal.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.dtpFechaFinal.Location = New System.Drawing.Point(510, 33)
+        Me.dtpFechaFinal.Location = New System.Drawing.Point(651, 37)
         Me.dtpFechaFinal.Name = "dtpFechaFinal"
         Me.dtpFechaFinal.Size = New System.Drawing.Size(93, 20)
         Me.dtpFechaFinal.TabIndex = 6
         '
-        'informeSocios
+        'dtpFechaInicio
+        '
+        Me.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFechaInicio.Location = New System.Drawing.Point(536, 37)
+        Me.dtpFechaInicio.Name = "dtpFechaInicio"
+        Me.dtpFechaInicio.Size = New System.Drawing.Size(93, 20)
+        Me.dtpFechaInicio.TabIndex = 5
+        '
+        'reporteSocios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(808, 426)
+        Me.ClientSize = New System.Drawing.Size(932, 536)
         Me.Controls.Add(Me.ReportViewer1)
         Me.Controls.Add(Me.Panel1)
-        Me.Name = "informeSocios"
+        Me.Name = "reporteSocios"
         Me.Text = "informeSocios"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
@@ -117,5 +144,7 @@ Partial Class informeSocios
     Friend WithEvents Panel1 As Panel
     Friend WithEvents dtpFechaFinal As DateTimePicker
     Friend WithEvents dtpFechaInicio As DateTimePicker
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label2 As Label
 End Class

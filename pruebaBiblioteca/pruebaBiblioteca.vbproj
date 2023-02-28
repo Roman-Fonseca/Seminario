@@ -234,10 +234,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetSocios.xsd</DependentUpon>
     </Compile>
-    <Compile Include="reportes\socio\informeSocios.Designer.vb">
-      <DependentUpon>informeSocios.vb</DependentUpon>
+    <Compile Include="reportes\socio\reporteSocios.Designer.vb">
+      <DependentUpon>reporteSocios.vb</DependentUpon>
     </Compile>
-    <Compile Include="reportes\socio\informeSocios.vb">
+    <Compile Include="reportes\socio\reporteSocios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SancionesPago.Designer.vb">
@@ -322,8 +322,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reportes\reporteSocio.rdlc" />
     <EmbeddedResource Include="reportes\socio\informeSocios.rdlc" />
-    <EmbeddedResource Include="reportes\socio\informeSocios.resx">
-      <DependentUpon>informeSocios.vb</DependentUpon>
+    <EmbeddedResource Include="reportes\socio\reporteSocios.resx">
+      <DependentUpon>reporteSocios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SancionesPago.resx">
       <DependentUpon>SancionesPago.vb</DependentUpon>

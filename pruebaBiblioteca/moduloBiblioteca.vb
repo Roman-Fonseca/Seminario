@@ -24,6 +24,7 @@ Module moduloBiblioteca
     Dim dt As New DataTable
     Public adaptador As MySqlDataAdapter
 
+    'A continuacion se encuentran los metodos y funciones realacionadas a socios
     Public Function cargarSocio() As Boolean
         Dim LOC_consulta As String
         'Convierto la fecha actual en string
@@ -37,11 +38,10 @@ Module moduloBiblioteca
         Dim f_nacimientoStr As String
         f_nacimientoStr = f_nacimiento.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
 
-
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into socio (nombre,apellido,fecha_nacimiento,dni,telefono,direccion,estado_socio,fecha_registro,contador_prestamos) values('" & AgregarSocio.txtNombre.Text & "','" & AgregarSocio.txtApellido.Text & "','" & f_nacimientoStr & "'," & AgregarSocio.txtDni.Text & ",'" & AgregarSocio.txtTelefono.Text & "','" & AgregarSocio.txtDireccion.Text & "','Habilitado','" & fechaRegistro & "','" & 0 & "')"
+                LOC_consulta = "insert into socio (nombre,apellido,fecha_nacimiento,dni,telefono,direccion,contador_prestamo) values('" & AgregarSocio.txtNombre.Text & "','" & AgregarSocio.txtApellido.Text & "','" & f_nacimientoStr & "'," & AgregarSocio.txtDni.Text & ",'" & AgregarSocio.txtTelefono.Text & "','" & AgregarSocio.txtDireccion.Text & "','" & 0 & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó correctamente")
@@ -57,7 +57,7 @@ Module moduloBiblioteca
     End Function
 
     Public Sub mostrarSocios()
-        Dim Consulta As String = "select cod_socio,nombre,apellido,dni,fecha_nacimiento,telefono,direccion,contador_prestamos,estado_socio from socio"
+        Dim Consulta As String = "select cod_socio,nombre,apellido,dni,fecha_nacimiento,telefono,direccion,contador_prestamo from socio"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -134,7 +134,7 @@ Module moduloBiblioteca
             LOC_socio = (Socios.listaSocios.SelectedRows.Item(0).Cells(1).Value)
             LOC_cod_socio = (Socios.listaSocios.SelectedRows.Item(0).Cells(0).Value)
 
-            a = MsgBox("Está seguro de eliminar este socio " & LOC_socio, MsgBoxStyle.YesNo, "ITEC 3")
+            a = MsgBox("¿ Está seguro de eliminar a socio " & LOC_socio & " ?", MsgBoxStyle.YesNo, "Biblioteca LA")
             If a = MsgBoxResult.Yes Then
                 loc_consulta = "delete from socio where cod_socio= " & LOC_cod_socio
                 If ConexionMySQL() Then
@@ -193,6 +193,32 @@ Module moduloBiblioteca
         Return False
     End Function
 
+    Public Sub cargarMembrecia()
+        Dim LOC_consulta As String
+        'Tomo el ultimo socio creado
+        Dim cod_socio As Integer = tomar_ultimo_socio_creado()
+        'Tomo la fecha actual del sistema
+        Dim fecha_actual As String = Today.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+        'Tomo la hora actual del sistema
+        Dim hora_actual As String = TimeOfDay
+        Dim fecha_vencimiento As Date = DateAdd("d", 30, Today)
+        Dim fecha_vencimiento_STR As String = fecha_vencimiento.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+        MsgBox("Fecha vencimiento de tipo date: " & fecha_vencimiento)
+        MsgBox("Fecha vencimiento de tipo string: " & fecha_vencimiento_STR)
+
+        Try
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into membresia (fecha_registro,hora_registro,ultimo_pago_membresia,fecha_vencimiento,cod_socio) values('" & fecha_actual & "',
+                '" & hora_actual & "','" & fecha_actual & "','" & fecha_vencimiento_STR & "','" & cod_socio & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se agregó membrecia correctamente")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
 
 
     Public Function altaUbicacion() As Boolean
@@ -799,7 +825,7 @@ Module moduloBiblioteca
     'End Sub
 
     Public Sub mostrarPrestamos()
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio, cod_ejemplar from prestamo_socio"
+        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,cod_socio, cod_ejemplar from prestamo_socio"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1136,20 +1162,20 @@ Module moduloBiblioteca
         MsgBox(resultado)
         Return resultado
     End Function
-    Public Function NoEstaDevuelto(fecha_devolucion_real As Date) As Boolean
-        Dim fecha_vacia As Date
 
-        Try
-            If fecha_devolucion_real = fecha_vacia Then
-                Return True
-            Else
-                MsgBox("El prestamo ya está finalizado")
-                Return False
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Function
+    'Public Function NoEstaDevuelto(fecha_devolucion_real As Date) As Boolean
+    'Dim fecha_vacia As Date
+    'Try
+    'If fecha_devolucion_real = fecha_vacia Then
+    'Return True
+    'Else
+    'MsgBox("El prestamo ya está finalizado")
+    'Return False
+    'End If
+    'Catch ex As Exception
+    'MsgBox(ex.Message)
+    'End Try
+    'End Function
 
 
     Public Function calcularSancion(fecha_devolucion As Date, fecha_actual As Date) As Integer
@@ -1244,7 +1270,56 @@ Module moduloBiblioteca
         horaActual = TimeOfDay
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio,cod_ejemplar from prestamo_socio where '" & dia_actual_string & "' >= fecha_devolucion AND fecha_devolucion_real  = '0000-00-00'"
+        Dim Consulta As String = "select prestamo_socio.cod_prestamo_socio, prestamo_socio.tipo_prestamo,prestamo_socio.fecha_prestamo,prestamo_socio.hora_prestamo,
+        prestamo_socio.fecha_devolucion, prestamo_socio.hora_devolucion, prestamo_socio.cod_socio, prestamo_socio.cod_ejemplar,
+        socio.nombre,socio.apellido from prestamo_socio INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio where ('" & dia_actual_string & "' >= fecha_devolucion AND hora_devolucion > '" & horaActual & "') 
+            OR ('" & dia_actual_string & "' >= fecha_devolucion AND hora_devolucion < '" & horaActual & "')"
+        Try
+            If ConexionMySQL() Then
+                Glocomando.CommandText = Consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+
+                Glodatareader = Glocomando.ExecuteReader
+
+
+                Dim dt As New DataTable
+                dt.Load(Glodatareader)
+
+
+
+                Prestamos.dgvPrestamos.DataSource = dt
+
+
+                Glodatareader.Close()
+                GloconexionDB.Close()
+            Else
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            MsgBox("Error en la conexion")
+        End Try
+    End Sub
+
+    Public Sub mostrarPrestamosEnCurso()
+        'Capturo la fecha Actual
+        GLOBAL_DIA_ACTUAL = Today
+        Dim dia_actual_string As String
+        dia_actual_string = GLOBAL_DIA_ACTUAL.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+
+        'Capturo la hora actual
+        'Capturo la hora actual del sistema
+        Dim horaActual As DateTime
+        horaActual = TimeOfDay
+
+        'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
+        Dim Consulta As String = "select prestamo_socio.cod_prestamo_socio, prestamo_socio.tipo_prestamo,prestamo_socio.fecha_prestamo,prestamo_socio.hora_prestamo,
+        prestamo_socio.fecha_devolucion, prestamo_socio.hora_devolucion, prestamo_socio.cod_socio, prestamo_socio.cod_ejemplar,
+        socio.nombre,socio.apellido from prestamo_socio INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio 
+        where ('" & dia_actual_string & "' <= fecha_devolucion AND hora_devolucion < '" & horaActual & "')
+        OR ('" & dia_actual_string & "' <= fecha_devolucion AND hora_devolucion >= '" & horaActual & "')"
+
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1611,6 +1686,40 @@ Module moduloBiblioteca
             MsgBox("Error en la conexion")
         End Try
     End Sub
+
+    Public Function tomar_ultimo_socio_creado() As Integer
+        Dim Sql As String = "SELECT cod_socio FROM socio ORDER BY cod_socio DESC LIMIT 1;"
+        Dim cod_socio As String
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("cod_socio"))
+
+                    'Vemos que contiene la variable asignada para la direccion URL extraida
+                    'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
+
+                    'Imprimimos en el cuadro de texto la direccion URL
+                    cod_socio = VARIABLE_QUE_CONTENDRA_EL_VALOR
+
+                    Return cod_socio
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
 
 
 
