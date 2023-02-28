@@ -1754,5 +1754,37 @@ Module moduloBiblioteca
         End Try
     End Function
 
+    Public Function debeEjemplarAReponer(cod_socio) As Boolean
+        Dim Sql As String = "SELECT cod_ejemplar_a_reponer from 
+        (ejemplar_a_reponer INNER JOIN prestamo_finalizado ON ejemplar_a_reponer.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado) 
+        INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio WHERE prestamo_socio.cod_socio = '" & cod_socio & "'AND repuesto = 'No';"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Boolean = Not IsDBNull(Datos("cod_ejemplar_a_reponer"))
+
+                    If VARIABLE_QUE_CONTENDRA_EL_VALOR = True Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
 
 End Module

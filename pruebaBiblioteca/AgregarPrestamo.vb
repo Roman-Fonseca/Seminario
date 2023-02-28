@@ -79,7 +79,7 @@ Public Class AgregarPrestamo
                 End If
             Else
                 If Not moduloBiblioteca.primerPrestamoSocio(GLO_CodSocioPrestamo) Then
-                    If debeEjemplarAReponer(GLO_CodSocioPrestamo) Then
+                    If moduloBiblioteca.debeEjemplarAReponer(GLO_CodSocioPrestamo) Then
                         MsgBox("El socio tiene ejemplares por reponer")
                     Else
                         If tienePrestamosVencidosSinDevolver(GLO_CodSocioPrestamo) Then
@@ -270,36 +270,7 @@ Public Class AgregarPrestamo
     End Function
 
     Public Function debeEjemplarAReponer(cod_socio) As Boolean
-        Dim Sql As String = "SELECT COUNT(cod_ejemplar_a_reponer) FROM ejemplar_a_reponer where 
-        cod_prestamo_finalizado = (SELECT cod_prestamo_finalizado from prestamo_finalizado 
-        WHERE cod_prestamo_socio = (SELECT cod_prestamo_socio from prestamo_socio where cod_socio = '" & cod_socio & "') ORDER BY cod_prestamo_socio ASC LIMIT 1) AND repuesto = 'No' LIMIT 1"
-        Dim cantidad
-        Dim Conexion As New MySqlConnection(cadena_conexion)
-        Dim consulta As New MySqlCommand(Sql, Conexion)
 
-        Try
-            If Conexion.State = ConnectionState.Closed Then
-                Conexion.Open()
-                Dim Datos As MySqlDataReader = consulta.ExecuteReader
-                If Datos.Read Then
-                    'Declaramos y llenamos
-                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("COUNT(cod_ejemplar_a_reponer)"))
-                    cantidad = VARIABLE_QUE_CONTENDRA_EL_VALOR
-                    If cantidad > 0 Then
-                        Return True
-                    Else
-                        Return False
-                    End If
-                End If
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical)
-            'Cerramos la conexion a la BBDD MySQL
-            Conexion.Close()
-
-            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
-            consulta = Nothing
-        End Try
     End Function
 
     Public Function tienePrestamosVencidosSinDevolver(cod_socio) As Boolean
