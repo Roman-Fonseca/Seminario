@@ -68,37 +68,71 @@ Public Class AgregarPrestamo
 
         GLO_CodSocioPrestamo = Me.dgvSocio.SelectedRows.Item(0).Cells(0).Value
         GLO_CodEjemplarPrestamo = Me.dgvEjemplar.SelectedRows.Item(0).Cells(0).Value
-        If Decision.primerPrestamoSocio(GLO_CodSocioPrestamo) = True Then
-            MsgBox("Primer prestamo del socio")
-        Else
-            GLO_ULTIMO_PRESTAMO_SOCIO = Decision.tomarUltimoPrestamoSocio(GLO_CodSocioPrestamo)
-            MsgBox(GLO_ULTIMO_PRESTAMO_SOCIO)
-        End If
 
-        If Me.noDebeLibro(GLO_CodSocioPrestamo) < 0 Then
-            MsgBox("El socio no debe libros")
-        Else
-            MsgBox("El socio debe " & Me.noDebeLibro(GLO_CodSocioPrestamo) & " libros")
-        End If
-
-
-        If Me.Text = "Agregar Prestamo" And tomarCantidadPrestamosEnElDia(GLO_CodSocioPrestamo) < 3 Then
-            If moduloBiblioteca.verificarEstadoSocio(GLO_CodSocioPrestamo) And estaEnCondicion(GLO_CodSocioPrestamo) Then
-                If moduloBiblioteca.compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
+        If membresiaEnRegla(GLO_CodSocioPrestamo) Then
+            If Me.cbxTipoPrestamo.Text.Equals("Local") Then
+                If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
                     moduloBiblioteca.altaPrestamo()
                     moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
                 Else
-                    MsgBox("El Libro ya esta Prestado")
+                    MsgBox("El ejemplar seleccionado no se encuentra disponible")
                 End If
             Else
-                MsgBox("El socio está sancionado", vbCritical)
+                If Not moduloBiblioteca.primerPrestamoSocio(GLO_CodSocioPrestamo) Then
+                    If debeEjemplarAReponer(GLO_CodSocioPrestamo) Then
+                        MsgBox("El socio tiene ejemplares por reponer")
+                    Else
+                        If tienePrestamosVencidosSinDevolver(GLO_CodSocioPrestamo) Then
+                            MsgBox("El socio tiene prestamos vencidos sin devolver")
+                        Else
+                            If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
+                                altaPrestamo()
+                            Else
+                                MsgBox("El ejemplar no se encuentra disponible")
+                            End If
+                        End If
+                    End If
+                Else
+                    If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
+                        altaPrestamo()
+                    Else
+                        MsgBox("El ejemplar no se encuentra disponible")
+                    End If
+                End If
+
             End If
-        Else
-            MsgBox("El socio ya registro 3 prestamos en el dia")
         End If
-        If Me.Text = "Modificar Prestamo" Then
-            moduloBiblioteca.modificarPrestamo()
-        End If
+        'If Decision.primerPrestamoSocio(GLO_CodSocioPrestamo) = True Then
+        'MsgBox("Primer prestamo del socio")
+        'Else
+        'GLO_ULTIMO_PRESTAMO_SOCIO = Decision.tomarUltimoPrestamoSocio(GLO_CodSocioPrestamo)
+        'MsgBox(GLO_ULTIMO_PRESTAMO_SOCIO)
+        'End If
+
+        'If Me.noDebeLibro(GLO_CodSocioPrestamo) < 0 Then
+        'MsgBox("El socio no debe libros")
+        'Else
+        'MsgBox("El socio debe " & Me.noDebeLibro(GLO_CodSocioPrestamo) & " libros")
+        'End If
+
+
+        'If Me.Text = "Agregar Prestamo" And tomarCantidadPrestamosEnElDia(GLO_CodSocioPrestamo) < 3 Then
+        'If moduloBiblioteca.verificarEstadoSocio(GLO_CodSocioPrestamo) And estaEnCondicion(GLO_CodSocioPrestamo) Then
+        'If moduloBiblioteca.compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
+        'moduloBiblioteca.altaPrestamo()
+        'moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
+        'Else
+        'MsgBox("El Libro ya esta Prestado")
+        'End If
+        'Else
+        'MsgBox("El socio está sancionado", vbCritical)
+        'End If
+        'Else
+        'MsgBox("El socio ya registro 3 prestamos en el dia")
+        'End If
+        'If Me.Text = "Modificar Prestamo" Then
+        'moduloBiblioteca.modificarPrestamo()
+        'End If
 
     End Sub
 
@@ -195,5 +229,110 @@ Public Class AgregarPrestamo
     'Private Sub btnFinalizarPrestamo_Click(sender As Object, e As EventArgs) Handles btnFinalizarPrestamo.Click
     '
     'End Sub
+
+    Public Function membresiaEnRegla(cod_socio) As Boolean
+        If tomarFechaVencimientoMembresia(cod_socio) >= Today Then
+            MsgBox("Membresia en curso")
+            MsgBox("La membresia vence el: " & tomarFechaVencimientoMembresia(cod_socio))
+            Return True
+        Else
+            MsgBox("Membrecia vencida")
+            MsgBox("La membresia venció el: " & tomarFechaVencimientoMembresia(cod_socio))
+            Return False
+        End If
+    End Function
+
+    Public Function tomarFechaVencimientoMembresia(cod_socio) As Date
+        Dim Sql As String = "SELECT fecha_vencimiento FROM membresia WHERE cod_socio = '" & cod_socio & "'"
+        Dim fecha_vencimiento As Date
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Date = Trim(Datos("fecha_vencimiento"))
+                    fecha_vencimiento = VARIABLE_QUE_CONTENDRA_EL_VALOR
+                    Return fecha_vencimiento
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Function debeEjemplarAReponer(cod_socio) As Boolean
+        Dim Sql As String = "SELECT COUNT(cod_ejemplar_a_reponer) FROM ejemplar_a_reponer where 
+        cod_prestamo_finalizado = (SELECT cod_prestamo_finalizado from prestamo_finalizado 
+        WHERE cod_prestamo_socio = (SELECT cod_prestamo_socio from prestamo_socio where cod_socio = '" & cod_socio & "') ORDER BY cod_prestamo_socio ASC LIMIT 1) AND repuesto = 'No' LIMIT 1"
+        Dim cantidad
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("COUNT(cod_ejemplar_a_reponer)"))
+                    cantidad = VARIABLE_QUE_CONTENDRA_EL_VALOR
+                    If cantidad > 0 Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Function tienePrestamosVencidosSinDevolver(cod_socio) As Boolean
+        Dim Sql As String = "SELECT COUNT(cod_prestamo_socio) from prestamo_socio 
+        where fecha_devolucion >= CURRENT_DATE & (hora_devolucion > CURRENT_TIME || hora_devolucion < CURRENT_TIME) 
+        AND cod_socio = '" & cod_socio & "'"
+        Dim cantidad As Integer
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("COUNT(cod_prestamo_socio)"))
+                    cantidad = VARIABLE_QUE_CONTENDRA_EL_VALOR
+                    If cantidad > 0 Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
 
 End Class

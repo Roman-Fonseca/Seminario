@@ -741,9 +741,9 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into prestamo_socio (tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,
-                                hora_devolucion,fecha_devolucion_real,hora_devolucion_real, cod_socio,cod_ejemplar) 
+                                hora_devolucion,cod_ejemplar,cod_socio) 
                                 values('" & AgregarPrestamo.cbxTipoPrestamo.Text & "','" & fechaPrestamoString & "','" & horaPrestamoStr & "','" & fechaDevolucionString & "'
-                                ,'" & hora_devolucionString & "','00-00-0000',' 00:00:00 ','" & GLO_CodSocioPrestamo & "','" & GLO_CodEjemplarPrestamo & "')"
+                                ,'" & hora_devolucionString & "','" & GLO_CodEjemplarPrestamo & "','" & GLO_CodSocioPrestamo & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó prestamo correctamente")
@@ -1409,9 +1409,9 @@ Module moduloBiblioteca
 
         Return False
     End Function
-    Public Function tomar_contador_prestamos(GloCodSocioModificar As Integer) As Integer
-        Dim Sql As String = "Select contador_prestamos From socio where cod_socio=" & GloCodSocioModificar
-        Dim contador_prestamos As Integer
+    Public Function tomar_contador_prestamos(cod_socio As Integer) As Integer
+        Dim Sql As String = "Select contador_prestamo FROM socio WHERE cod_socio=" & cod_socio
+        Dim contador_prestamo As Integer
         Dim Conexion As New MySqlConnection(cadena_conexion)
 
         Dim consulta As New MySqlCommand(Sql, Conexion)
@@ -1422,15 +1422,15 @@ Module moduloBiblioteca
                 Dim Datos As MySqlDataReader = consulta.ExecuteReader
                 If Datos.Read Then
                     'Declaramos y llenamos
-                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("contador_prestamos"))
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("contador_prestamo"))
 
                     'Vemos que contiene la variable asignada para la direccion URL extraida
                     'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
 
                     'Imprimimos en el cuadro de texto la direccion URL
-                    contador_prestamos = VARIABLE_QUE_CONTENDRA_EL_VALOR
+                    contador_prestamo = VARIABLE_QUE_CONTENDRA_EL_VALOR
 
-                    Return contador_prestamos
+                    Return contador_prestamo
                 End If
             End If
         Catch ex As Exception
@@ -1449,7 +1449,7 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "update socio set contador_prestamos ='" & suma & "' where cod_socio= " & cod_socio & ""
+                LOC_consulta = "update socio set contador_prestamo ='" & suma & "' where cod_socio= " & cod_socio & ""
                 MsgBox(LOC_consulta)
                 Glocomando.CommandText = LOC_consulta
                 Glocomando.CommandType = CommandType.Text
@@ -1721,6 +1721,38 @@ Module moduloBiblioteca
         End Try
     End Function
 
+    Public Function primerPrestamoSocio(cod_socio As Integer) As Boolean
+        Dim Sql As String = "SELECT MAX(cod_prestamo_socio) from prestamo_socio WHERE cod_socio='" & cod_socio & "' limit 1"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Boolean = IsDBNull(Datos("MAX(cod_prestamo_socio)"))
+
+                    'Vemos que contiene la variable asignada para la direccion URL extraida
+                    MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
+
+                    'Imprimimos en el cuadro de texto la direccion URL
+
+
+                    Return VARIABLE_QUE_CONTENDRA_EL_VALOR
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
 
 
 End Module
