@@ -1116,18 +1116,12 @@ Module moduloBiblioteca
         'moduloBiblioteca.calcularSancion(fecha_devolucion, fecha_actual)
     End Sub
 
-    Public Function CalcularSancionEsperaDias(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime,
-                                   hora_actual As DateTime) As Integer
-        Dim LOC_consulta As String
+    Public Function CalcularSancionEsperaDias(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, hora_devolucion As DateTime, hora_actual As DateTime) As Integer
 
         'Convierto la fecha_actual en string
         Dim fecha_inicio As String
         fecha_inicio = fecha_actual.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
-
-        Dim fecha_finalizacion As Date
         Dim dias_sancion As Integer
-        Dim hora_finalizacion As DateTime
-        hora_finalizacion = "0 : 00:00"
         dias_sancion = calcularSancion(fecha_devolucion, fecha_actual)
         Return dias_sancion
 

@@ -81,21 +81,43 @@ Public Class Prestamos
         'Capturo GLO_CodEjemplarPrestamos
         GLO_CodEjemplarPrestamo = Me.dgvPrestamos.SelectedRows.Item(0).Cells(6).Value
 
-
+        altaPrestamoFinalizado(cod_prestamo_socio, fecha_actual, hora_actual)
         If MsgBox("¿El libro fue devuelto?", MsgBoxStyle.Information + vbYesNo) = vbYes Then
-
-            If fecha_devolucion < fecha_actual Then
-                MsgBox("El prestamo esta atrasado por " & diffDias(fecha_devolucion, fecha_actual) & " dia/s y " & diffHoras(hora_actual, hora_devolucion) & " horas", MsgBoxStyle.Information)
-                Decision.btnEspera.Text = moduloBiblioteca.CalcularSancionEsperaDias(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " dia/s"
-                Decision.btnSancionPago.Text = "$" & moduloBiblioteca.CalcularSancionPago(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " pesos"
-                Decision.ShowDialog()
-            ElseIf fecha_devolucion = fecha_actual Then
-                MsgBox("El prestamo está atrasado por " & diffHoras(hora_actual, hora_devolucion) & "Horas", MsgBoxStyle.Information)
+            If MsgBox("¿En buen estado?", MsgBoxStyle.Information + vbYesNo) = vbYes Then
+                MsgBox("El prestamo fue devuelto en buen estado")
+            Else
+                If MsgBox("¿Desea registrar ejemplar a reponer?", MsgBoxStyle.Information + vbYesNo) = vbYes Then
+                    registrarEjemplarAReponer()
+                End If
             End If
         Else
-
+            registrarEjemplarAReponer()
         End If
 
+        If Today > fecha_devolucion Then
+            'Aplicar Sancion
+            MsgBox("El prestamo se devolvió " & diffDias(Today, fecha_devolucion) & " dia/s y " & diffHoras(hora_actual, hora_devolucion) & " tarde")
+            Decision.btnEspera.Text = moduloBiblioteca.CalcularSancionEsperaDias(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " dia/s"
+            Decision.btnSancionPago.Text = "$" & moduloBiblioteca.CalcularSancionPago(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " pesos"
+            Decision.ShowDialog()
+        ElseIf Today = fecha_devolucion And hora_actual > hora_devolucion Then
+            'Mostrar un mensaje con las diferencias de horas
+            MsgBox("Prestamo atrasado por: " & diffHoras(hora_actual, hora_devolucion))
+            MsgBox("No corresponde ningun tipo de sanción")
+        Else
+            'Mostrar mensaje "Fue entregado a tiempo"
+            MsgBox("El prestamo fue entregado a tiempo")
+        End If
+
+
+        'If fecha_devolucion <= fecha_actual And hora_devolucion > hora_actual Then
+        'MsgBox("El prestamo esta atrasado por " & diffDias(fecha_devolucion, fecha_actual) & " dia/s y " & diffHoras(hora_actual, hora_devolucion) & " horas", MsgBoxStyle.Information)
+        'Decision.btnEspera.Text = moduloBiblioteca.CalcularSancionEsperaDias(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " dia/s"
+        'Decision.btnSancionPago.Text = "$" & moduloBiblioteca.CalcularSancionPago(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " pesos"
+        'Decision.ShowDialog()
+        'ElseIf fecha_devolucion = fecha_actual Then
+        'MsgBox("El prestamo está atrasado por " & diffHoras(hora_actual, hora_devolucion) & "Horas", MsgBoxStyle.Information)
+        'End If
 
         moduloBiblioteca.mostrarPrestamos()
     End Sub
@@ -176,6 +198,64 @@ Public Class Prestamos
 
     End Sub
 
+    Public Sub altaPrestamoFinalizado(cod_prestamo_socio As Integer, fecha_devolucion_real As Date, hora_devolucion_real As DateTime)
+        Dim LOC_consulta As String
+        Dim fecha_finalizacion_real As String = fecha_devolucion_real.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+        Try
 
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into prestamo_finalizado (fecha_finalizacion_real,hora_finalizacion_real,cod_prestamo_socio) 
+                values('" & fecha_finalizacion_real & "','" & hora_devolucion_real & "','" & cod_prestamo_socio & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se finalizó prestamo correctamente")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Public Sub registrarEjemplarAReponer()
+        Dim LOC_consulta As String
+        Dim cod_prestamo_finalizado As Integer = tomarUltimoPrestamoFinalizado()
+        Try
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into ejemplar_a_reponer (cod_prestamo_finalizado,repuesto) 
+                values('" & cod_prestamo_finalizado & "','No')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se registro ejemplar a reponer correctamente")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Public Function tomarUltimoPrestamoFinalizado() As Integer
+        Dim Sql As String = "SELECT MAX(cod_prestamo_finalizado) FROM prestamo_finalizado"
+        Dim cod_prestamo_finalizado As Integer
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("MAX(cod_prestamo_finalizado)"))
+                    cod_prestamo_finalizado = VARIABLE_QUE_CONTENDRA_EL_VALOR
+                    Return cod_prestamo_finalizado
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
 
 End Class
