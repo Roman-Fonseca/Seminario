@@ -3,54 +3,69 @@ Imports MySql.Data.MySqlClient
 
 Public Class Decision
     Private Sub btnEspera_Click(sender As Object, e As EventArgs) Handles btnEspera.Click
-        Dim resultado As Boolean = NOexistePrestamoAtrasado(GLO_COD_SOCIO)
-        Dim local_fecha_finalizacion As Date
-        MsgBox(resultado)
-        If resultado.Equals(True) Then
-            cargarSancionEspera(Prestamos.fecha_actual) 'Carga un nuevo sancion_espera para ser asignado a el nuevo registro prestamo_atrasado
-            registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, Prestamos.cod_prestamo_socio, tomarUltimoCodSancionEspera)
-        Else
-            MsgBox("Hola")
-            MsgBox("Penultimo prestamo: " & penultimoPrestamoSocio(GLO_COD_SOCIO))
-            local_fecha_finalizacion = tomarFechaFinalizacion(GLO_COD_SOCIO)
-            MsgBox(local_fecha_finalizacion)
-            If local_fecha_finalizacion > Today Then
-                MsgBox("Fecha finalizacion es mayor por ende se expande sancion")
-                modificarSancionEspera(tomarCodSancionEspera(GLO_COD_SOCIO), GLO_COD_SOCIO)
-                registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoSocio(GLO_COD_SOCIO), tomarCodSancionEspera(GLO_COD_SOCIO))
-            End If
 
+
+        If tienePrestamoAnterior(GLO_COD_SOCIO) Then
+            MsgBox("El socio no tiene prestamo anterior")
+        Else
+            'Cargar sanción espera y prestamo atrasado
+            cargarSancionEspera(Prestamos.fecha_actual) 'Carga un nuevo sancion_espera para ser asignado a el nuevo registro prestamo_atrasado
+            registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
         End If
 
 
-            'MsgBox("Ultimo Prestamo atrasado socio: " & tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO)) 'Devuelve el
-            ''ultimo prestamo atrasado de un socio, el proble es si el prestamo atrasado a registrar es el primero de un socio ya que seria null
-            'MsgBox("Cod sancion espera: " & tomarCodSancionEspera(tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO)))
-            'MsgBox("Fecha_finalizacion : " & tomarFechaFinalizacion(GLO_COD_SOCIO))
 
 
 
-            'Este fragmento de codigo da de alta un prestamo atrasado y modifica una sancion espera
-            'El problema es que debe encontrar si o si un prestamo atrasado de un socio
 
-            'If tomarFechaFinalizacion(GLO_COD_SOCIO) > Today Then
-            '    MsgBox("Fecha actual es menor")
-            '    modificarSancionEspera(tomarCodSancionEspera(GLO_COD_SOCIO), GLO_COD_SOCIO)
-            '    moduloBiblioteca.registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoSocio(GLO_COD_SOCIO), tomarCodSancionEspera(GLO_COD_SOCIO))
-            'Else
-            '    MsgBox("Fecha Actual es mayor")
-            'End If
+        'Dim resultado As Boolean = NOexistePrestamoAtrasado(GLO_COD_SOCIO)
+        'Dim local_fecha_finalizacion As Date
+        'MsgBox(resultado)
+        'If resultado.Equals(True) Then
+        'cargarSancionEspera(Prestamos.fecha_actual) 'Carga un nuevo sancion_espera para ser asignado a el nuevo registro prestamo_atrasado
+        'registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, Prestamos.cod_prestamo_socio, tomarUltimoCodSancionEspera)
+        'Else
+        'MsgBox("Hola")
+        'MsgBox("Penultimo prestamo: " & penultimoPrestamoSocio(GLO_COD_SOCIO))
+        'local_fecha_finalizacion = tomarFechaFinalizacion(GLO_COD_SOCIO)
+        'MsgBox(local_fecha_finalizacion)
+        'If local_fecha_finalizacion > Today Then
+        'MsgBox("Fecha finalizacion es mayor por ende se expande sancion")
+        'modificarSancionEspera(tomarCodSancionEspera(GLO_COD_SOCIO), GLO_COD_SOCIO)
+        'registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoSocio(GLO_COD_SOCIO), tomarCodSancionEspera(GLO_COD_SOCIO))
+        'End If
+        '
+        'End If
 
 
-            'moduloBiblioteca.registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, Prestamos.cod_prestamo_socio)
-            'MsgBox("Ultimo prestamo socio: " & tomarUltimoPrestamoSocio(GLO_COD_SOCIO)) 'Funciona
-            'MsgBox("Ultimo prestamo atrasado: " & tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO))
-            'tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO)
-            'moduloBiblioteca.registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, Prestamos.cod_prestamo_socio, Prestamos.hora_devolucion, Prestamos.hora_actual)
-            'moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Sin Prestar")
-            'verificarExistenciaPrestamoAtrasado(GLO_COD_SOCIO)
-            'verificarSancionActiva(GLO_COD_SOCIO)
-            Me.Close()
+        'MsgBox("Ultimo Prestamo atrasado socio: " & tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO)) 'Devuelve el
+        ''ultimo prestamo atrasado de un socio, el proble es si el prestamo atrasado a registrar es el primero de un socio ya que seria null
+        'MsgBox("Cod sancion espera: " & tomarCodSancionEspera(tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO)))
+        'MsgBox("Fecha_finalizacion : " & tomarFechaFinalizacion(GLO_COD_SOCIO))
+
+
+
+        'Este fragmento de codigo da de alta un prestamo atrasado y modifica una sancion espera
+        'El problema es que debe encontrar si o si un prestamo atrasado de un socio
+
+        'If tomarFechaFinalizacion(GLO_COD_SOCIO) > Today Then
+        '    MsgBox("Fecha actual es menor")
+        '    modificarSancionEspera(tomarCodSancionEspera(GLO_COD_SOCIO), GLO_COD_SOCIO)
+        '    moduloBiblioteca.registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoSocio(GLO_COD_SOCIO), tomarCodSancionEspera(GLO_COD_SOCIO))
+        'Else
+        '    MsgBox("Fecha Actual es mayor")
+        'End If
+
+
+        'moduloBiblioteca.registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, Prestamos.cod_prestamo_socio)
+        'MsgBox("Ultimo prestamo socio: " & tomarUltimoPrestamoSocio(GLO_COD_SOCIO)) 'Funciona
+        'MsgBox("Ultimo prestamo atrasado: " & tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO))
+        'tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO)
+        'moduloBiblioteca.registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, Prestamos.cod_prestamo_socio, Prestamos.hora_devolucion, Prestamos.hora_actual)
+        'moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Sin Prestar")
+        'verificarExistenciaPrestamoAtrasado(GLO_COD_SOCIO)
+        'verificarSancionActiva(GLO_COD_SOCIO)
+        Me.Close()
     End Sub
 
     Private Sub btnSancionPago_Click(sender As Object, e As EventArgs) Handles btnSancionPago.Click
@@ -456,7 +471,7 @@ Public Class Decision
     End Sub
 
     Public Function NOexistePrestamoAtrasado(cod_socio) As Boolean
-        Dim cod_prestamo_socio As Integer = GLO_ULTIMO_PRESTAMO_SOCIO
+        Dim cod_prestamo_socio As Integer = cod_socio
         MsgBox("Ultimo prestamo_socio: " & cod_prestamo_socio)
         Dim Sql As String = "SELECT MAX(cod_prestamo_atrasado) from prestamo_atrasado WHERE cod_prestamo_socio= " & cod_prestamo_socio & ""
         Dim Conexion As New MySqlConnection(cadena_conexion)
@@ -620,4 +635,31 @@ Public Class Decision
     Private Sub Decision_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+    Public Function tienePrestamoAnterior(cod_socio) As Boolean
+        Dim Sql As String = "Select MAX(cod_prestamo_socio) FROM prestamo_socio where cod_socio = " & cod_socio & ""
+        Dim cod_prestamo_socio As Integer
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    Dim vacio As Boolean = Not IsDBNull(Datos("MAX(cod_prestamo_socio)"))
+                    If vacio = True Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                    Return cod_prestamo_socio
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            Conexion.Close()
+            consulta = Nothing
+        End Try
+    End Function
 End Class

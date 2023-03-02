@@ -1064,7 +1064,7 @@ Module moduloBiblioteca
 
     End Function
 
-    Public Sub registrarPrestamoAtrasado(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer, cod_sancion_espera As Integer)
+    Public Sub registrarPrestamoAtrasado(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_finalizado As Integer, cod_sancion_espera As Integer)
 
         Dim LOC_consulta As String
         'Prueba motivo
@@ -1076,7 +1076,7 @@ Module moduloBiblioteca
 
         Try
             If ConexionMySQL() Then
-                LOC_consulta = "insert into prestamo_atrasado (dias_sancion,motivo,cod_prestamo_socio,cod_sancion_espera) values('" & dias_sancion & "','" & motivo & "','" & cod_prestamo_socio & "', '" & cod_sancion_espera & "')"
+                LOC_consulta = "insert into prestamo_atrasado (dias_sancion,motivo,cod_prestamo_finalizado,cod_sancion_espera) values('" & dias_sancion & "','" & motivo & "','" & cod_prestamo_finalizado & "', '" & cod_sancion_espera & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó prestamo_atrasado correctamente")
@@ -1087,6 +1087,30 @@ Module moduloBiblioteca
 
         'moduloBiblioteca.calcularSancion(fecha_devolucion, fecha_actual)
     End Sub
+
+    Public Function tomarUltimoPrestamoFinalizado() As Integer
+        Dim Sql As String = "SELECT MAX(cod_prestamo_finalizado) from prestamo_finalizado"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim cod_prestamo_finalizado As Integer
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("MAX(cod_prestamo_finalizado)"))
+                    cod_prestamo_finalizado = VARIABLE_QUE_CONTENDRA_EL_VALOR
+                    Return cod_prestamo_finalizado
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            Conexion.Close()
+            consulta = Nothing
+        End Try
+    End Function
 
     Public Sub registrarPagoSancion(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer)
         Dim LOC_consulta As String
