@@ -4,9 +4,26 @@ Imports MySql.Data.MySqlClient
 Public Class Decision
     Private Sub btnEspera_Click(sender As Object, e As EventArgs) Handles btnEspera.Click
 
+        Dim fecha_inicio As String = Today.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
 
         If tienePrestamoAnterior(GLO_COD_SOCIO) Then
-            MsgBox("El socio no tiene prestamo anterior")
+            If tienePrestamoAtrasadoRegistrado(GLO_COD_SOCIO) Then
+                Dim cod_prestamo_atrasado As Integer = ultimoPrestamoAtrasado(GLO_COD_SOCIO)
+                Dim cod_sancion_espera As Integer = tomarCodSancionEspera(cod_prestamo_atrasado)
+                Dim fecha_finalizacion As Date = tomarFechaFinalizacion(cod_sancion_espera)
+
+                MsgBox("KKKKK" & fecha_finalizacion)
+                MsgBox("KKKKK" & Today)
+
+                If fecha_finalizacion > Today Then
+                    'Agregar dias a sancion_espera
+                Else
+                    'Registrar nueva sancion_espera
+                    cargarSancionEspera(fecha_inicio)
+                    'Registrar nuevo prestamo atrasado con ultimo con_sancion_espera
+                    registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
+                End If
+            End If
         Else
             'Cargar sanción espera y prestamo atrasado
             cargarSancionEspera(Prestamos.fecha_actual) 'Carga un nuevo sancion_espera para ser asignado a el nuevo registro prestamo_atrasado
@@ -360,81 +377,81 @@ Public Class Decision
 
     'Esta funcion retorna cod_sancion_espera del ultimo prestamo atrasado en la tabla prestamo_atrasado sancion_espera 
 
-    Public Function tomarCodSancionEspera(cod_socio As Integer) As Integer
-        Dim ultimo_prestamo_atrasado As Integer = tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO)
-        Dim Sql As String = "SELECT cod_sancion_espera from prestamo_atrasado WHERE cod_prestamo_atrasado = " & ultimo_prestamo_atrasado & ""
-        Dim cod_sancion_espera As Integer
-        Dim Conexion As New MySqlConnection(cadena_conexion)
+    'Public Function tomarCodSancionEspera(cod_socio As Integer) As Integer
+    'Dim ultimo_prestamo_atrasado As Integer = tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO)
+    'Dim Sql As String = "SELECT cod_sancion_espera from prestamo_atrasado WHERE cod_prestamo_atrasado = " & ultimo_prestamo_atrasado & ""
+    'Dim cod_sancion_espera As Integer
+    'Dim Conexion As New MySqlConnection(cadena_conexion)
 
-        Dim consulta As New MySqlCommand(Sql, Conexion)
+    'Dim consulta As New MySqlCommand(Sql, Conexion)
 
-        Try
-            If Conexion.State = ConnectionState.Closed Then
-                Conexion.Open()
-                Dim Datos As MySqlDataReader = consulta.ExecuteReader
-                If Datos.Read Then
-                    'Declaramos y llenamos
-                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("cod_sancion_espera"))
+    'Try
+    '  If Conexion.State = ConnectionState.Closed Then
+    '     Conexion.Open()
+    '    Dim Datos As MySqlDataReader = consulta.ExecuteReader
+    '   If Datos.Read Then
+    '      'Declaramos y llenamos
+    '     Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("cod_sancion_espera"))
+    '
+    'Vemos que contiene la variable asignada para la direccion URL extraida
+    'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
 
-                    'Vemos que contiene la variable asignada para la direccion URL extraida
-                    'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
+    'Imprimimos en el cuadro de texto la direccion URL
+    '           cod_sancion_espera = VARIABLE_QUE_CONTENDRA_EL_VALOR
+    '
+    '
+    '          MsgBox("Cod_sancion_espera:" & cod_sancion_espera)
+    '
 
-                    'Imprimimos en el cuadro de texto la direccion URL
-                    cod_sancion_espera = VARIABLE_QUE_CONTENDRA_EL_VALOR
+    '         Return cod_sancion_espera
+    '    End If
+    'End If
+    'Catch ex As Exception
+    '   MsgBox(ex.Message, MsgBoxStyle.Critical)
+    'Cerramos la conexion a la BBDD MySQL
+    '  Conexion.Close()
 
-                    '
-                    MsgBox("Cod_sancion_espera:" & cod_sancion_espera)
-                    '
+    'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+    ' consulta = Nothing
+    'End Try
+    'End Function
 
-                    Return cod_sancion_espera
-                End If
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical)
-            'Cerramos la conexion a la BBDD MySQL
-            Conexion.Close()
+    'Public Function tomarFechaFinalizacion(cod_socio As Integer) As Date
+    'Dim cod_sancion_espera As Integer = tomarCodSancionEspera(GLO_COD_SOCIO)
+    'Dim Sql As String = "SELECT fecha_finalizacion from sancion_espera WHERE cod_sancion_espera = " & cod_sancion_espera & ""
+    'Dim fecha_finalizacion As Date
+    'Dim Conexion As New MySqlConnection(cadena_conexion)
 
-            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
-            consulta = Nothing
-        End Try
-    End Function
+    '    Dim consulta As New MySqlCommand(Sql, Conexion)
 
-    Public Function tomarFechaFinalizacion(cod_socio As Integer) As Date
-        Dim cod_sancion_espera As Integer = tomarCodSancionEspera(GLO_COD_SOCIO)
-        Dim Sql As String = "SELECT fecha_finalizacion from sancion_espera WHERE cod_sancion_espera = " & cod_sancion_espera & ""
-        Dim fecha_finalizacion As Date
-        Dim Conexion As New MySqlConnection(cadena_conexion)
+    '    Try
+    '        If Conexion.State = ConnectionState.Closed Then
+    '            Conexion.Open()
+    '            Dim Datos As MySqlDataReader = consulta.ExecuteReader
+    '            If Datos.Read Then
+    '                'Declaramos y llenamos
+    '                Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Date = Trim(Datos("fecha_finalizacion"))
 
-        Dim consulta As New MySqlCommand(Sql, Conexion)
+    '                'Vemos que contiene la variable asignada para la direccion URL extraida
+    '                'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
 
-        Try
-            If Conexion.State = ConnectionState.Closed Then
-                Conexion.Open()
-                Dim Datos As MySqlDataReader = consulta.ExecuteReader
-                If Datos.Read Then
-                    'Declaramos y llenamos
-                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Date = Trim(Datos("fecha_finalizacion"))
+    '                'Imprimimos en el cuadro de texto la direccion URL
+    '                fecha_finalizacion = VARIABLE_QUE_CONTENDRA_EL_VALOR
+    '                '
+    '                MsgBox("Fecha finalizacion:" & fecha_finalizacion)
+    '                '
+    '                Return fecha_finalizacion
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical)
+    '        'Cerramos la conexion a la BBDD MySQL
+    '        Conexion.Close()
 
-                    'Vemos que contiene la variable asignada para la direccion URL extraida
-                    'MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
-
-                    'Imprimimos en el cuadro de texto la direccion URL
-                    fecha_finalizacion = VARIABLE_QUE_CONTENDRA_EL_VALOR
-                    '
-                    MsgBox("Fecha finalizacion:" & fecha_finalizacion)
-                    '
-                    Return fecha_finalizacion
-                End If
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical)
-            'Cerramos la conexion a la BBDD MySQL
-            Conexion.Close()
-
-            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
-            consulta = Nothing
-        End Try
-    End Function
+    '        'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+    '        consulta = Nothing
+    '    End Try
+    'End Function
     Public Sub modificarSancionEspera(cod_sancion_espera As Integer, cod_socio As Integer)
         Dim consulta_local As String
 
@@ -662,4 +679,101 @@ Public Class Decision
             consulta = Nothing
         End Try
     End Function
+
+    Public Function tienePrestamoAtrasadoRegistrado(cod_socio As Integer) As Integer
+        Dim Sql As String = "SELECT MAX(prestamo_atrasado.cod_prestamo_atrasado)
+        from prestamo_atrasado INNER JOIN(SELECT prestamo_finalizado.cod_prestamo_finalizado 
+        from prestamo_finalizado INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio where prestamo_socio.cod_socio = 19)
+        AS AX ON prestamo_atrasado.cod_prestamo_finalizado = AX.cod_prestamo_finalizado;"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    Dim cod As Boolean = Not IsDBNull(Datos("MAX(prestamo_atrasado.cod_prestamo_atrasado)"))
+                    If cod = True Then
+                        MsgBox("El socio tiene un prestamo atrasado registrado")
+                        Return True
+                    Else
+                        MsgBox("El socio NOOOO tiene un prestamo atrasado registrado")
+                        Return False
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            Conexion.Close()
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Function ultimoPrestamoAtrasado(cod_socio As Integer) As Integer
+        Dim Sql As String = "SELECT prestamo_atrasado.cod_prestamo_atrasado from prestamo_atrasado 
+                            INNER JOIN (SELECT prestamo_finalizado.cod_prestamo_finalizado from prestamo_finalizado 
+                            INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio where prestamo_socio.cod_socio = 19) 
+                            AS AX ON prestamo_atrasado.cod_prestamo_finalizado = AX.cod_prestamo_finalizado ORDER BY prestamo_atrasado.cod_prestamo_atrasado DESC LIMIT 1;"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    Dim cod_prestamo_atrasado As Integer = Trim(Datos("cod_prestamo_atrasado"))
+                    Return cod_prestamo_atrasado
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            Conexion.Close()
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Function tomarCodSancionEspera(cod_prestamo_atrasado As Integer) As Integer
+        Dim Sql As String = "SELECT cod_sancion_espera from sancion_espera WHERE cod_sancion_espera = '" & cod_prestamo_atrasado & "'"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    Dim cod_sancion_espera As Integer = Trim(Datos("cod_sancion_espera"))
+                    Return cod_sancion_espera
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            Conexion.Close()
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Function tomarFechaFinalizacion(cod_sancion_espera As Integer) As Date
+        Dim Sql As String = "SELECT fecha_finalizacion from sancion_espera WHERE cod_sancion_espera = '" & cod_sancion_espera & "'"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    Dim fecha_finalizacion As Date = Trim(Datos("fecha_finalizacion"))
+                    Return fecha_finalizacion
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            Conexion.Close()
+            consulta = Nothing
+        End Try
+    End Function
+
 End Class

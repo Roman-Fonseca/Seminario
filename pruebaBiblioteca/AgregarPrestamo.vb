@@ -240,6 +240,7 @@ Public Class AgregarPrestamo
             MsgBox("La membresia venció el: " & tomarFechaVencimientoMembresia(cod_socio))
             Return False
         End If
+
     End Function
 
     Public Function tomarFechaVencimientoMembresia(cod_socio) As Date
@@ -274,9 +275,9 @@ Public Class AgregarPrestamo
     End Function
 
     Public Function tienePrestamosVencidosSinDevolver(cod_socio) As Boolean
-        Dim Sql As String = "SELECT COUNT(cod_prestamo_socio) from prestamo_socio 
-        where fecha_devolucion >= CURRENT_DATE & (hora_devolucion > CURRENT_TIME || hora_devolucion < CURRENT_TIME) 
-        AND cod_socio = '" & cod_socio & "'"
+        Dim Sql As String = "SELECT COUNT(cod_prestamo_socio) FROM prestamo_socio WHERE cod_prestamo_socio 
+        NOT IN (SELECT prestamo_finalizado.cod_prestamo_socio FROM prestamo_finalizado) AND prestamo_socio.fecha_devolucion < CURRENT_DATE 
+        AND prestamo_socio.cod_socio = '" & cod_socio & "'"
         Dim cantidad As Integer
         Dim Conexion As New MySqlConnection(cadena_conexion)
         Dim consulta As New MySqlCommand(Sql, Conexion)
