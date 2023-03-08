@@ -11,8 +11,8 @@
         GLO_CodSocioModificar = Me.listaSocios.SelectedRows.Item(0).Cells(0).Value
         AgregarSocio.Text = "Modificar Socio"
         AgregarSocio.btnLimpiarCampos.Hide()
-        AgregarSocio.txtEstado.Show()
-        AgregarSocio.lblEstadoSocio.Show()
+        AgregarSocio.txtEstado.Hide()
+        AgregarSocio.lblEstadoSocio.Hide()
         AgregarSocio.ShowDialog()
     End Sub
 

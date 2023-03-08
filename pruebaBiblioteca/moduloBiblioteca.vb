@@ -89,7 +89,7 @@ Module moduloBiblioteca
 
         GLO_CodSocioModificar = Socios.listaSocios.SelectedRows.Item(0).Cells(0).Value
         'Dim Consulta As String = "Select nombre,apellido,telefono,direccion,estado_socio from socio where cod_socio= " & GLO_CodSocioModificar
-        Dim Consulta As String = "Select nombre,apellido,dni,fecha_nacimiento,direccion,telefono,estado_socio from socio where cod_socio= " & GLO_CodSocioModificar
+        Dim Consulta As String = "Select nombre,apellido,dni,fecha_nacimiento,direccion,telefono from socio where cod_socio= " & GLO_CodSocioModificar
 
 
         If conexion.ConexionMySQL() Then
@@ -114,7 +114,6 @@ Module moduloBiblioteca
                 AgregarSocio.txtTelefono.Text = Trim((CStr(row("telefono"))))
                 AgregarSocio.txtDireccion.Text = Trim((CStr(row("direccion"))))
                 AgregarSocio.dtpFechaNacimiento.Value = Trim((CStr(row("fecha_nacimiento"))))
-                AgregarSocio.txtEstado.Text = Trim((CStr(row("estado_socio"))))
 
                 Glodatareader.Close()
                 GloconexionDB.Close()
@@ -162,15 +161,9 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "update socio set  cod_socio=" & GLO_CodSocioModificar & ", 
-                nombre = '" & AgregarSocio.txtNombre.Text & "', 
-                apellido ='" & AgregarSocio.txtApellido.Text & "',  
-                dni ='" & AgregarSocio.txtDni.Text & "',
-                fecha_nacimiento = '" & f_nacimientoStr & "',
-                telefono='" & AgregarSocio.txtTelefono.Text & "', 
-                direccion= '" & AgregarSocio.txtDireccion.Text & "', 
-                estado_socio ='" & AgregarSocio.txtEstado.Text & "'
-                where cod_socio= " & GLO_CodSocioModificar & ""
+                LOC_consulta = "UPDATE socio SET `nombre`='" & AgregarSocio.txtNombre.Text & "',`apellido`='" & AgregarSocio.txtApellido.Text & "',
+                `dni`='" & AgregarSocio.txtDni.Text & "',`fecha_nacimiento`='" & f_nacimientoStr & "',
+                `direccion`='" & AgregarSocio.txtDireccion.Text & "',`telefono`='" & AgregarSocio.txtTelefono.Text & "' WHERE cod_socio = " & GLO_CodSocioModificar & ""
                 MsgBox(LOC_consulta)
                 Glocomando.CommandText = LOC_consulta
                 Glocomando.CommandType = CommandType.Text
@@ -189,6 +182,36 @@ Module moduloBiblioteca
             GloconexionDB.Close()
             Return False
         End Try
+
+        'Try
+
+        '    If ConexionMySQL() Then
+        '        LOC_consulta = "update socio
+        '        nombre = '" & AgregarSocio.txtNombre.Text & "', 
+        '        apellido ='" & AgregarSocio.txtApellido.Text & "',  
+        '        dni ='" & AgregarSocio.txtDni.Text & "',
+        '        fecha_nacimiento = '" & f_nacimientoStr & "',
+        '        telefono='" & AgregarSocio.txtTelefono.Text & "', 
+        '        direccion= '" & AgregarSocio.txtDireccion.Text & "', 
+        '        where cod_socio= " & GLO_CodSocioModificar & ""
+        '        MsgBox(LOC_consulta)
+        '        Glocomando.CommandText = LOC_consulta
+        '        Glocomando.CommandType = CommandType.Text
+        '        Glocomando.Connection = GloconexionDB
+        '        Glodatareader = Glocomando.ExecuteReader
+        '        Glodatareader.Close()
+        '        MsgBox("Se Modificó Correctamente")
+        '        GloconexionDB.Close()
+        '        Return True
+
+
+        '    End If
+
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        '    GloconexionDB.Close()
+        '    Return False
+        'End Try
 
         Return False
     End Function
