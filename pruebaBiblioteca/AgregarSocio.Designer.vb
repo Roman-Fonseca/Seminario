@@ -90,6 +90,7 @@ Partial Class AgregarSocio
         '
         Me.txtNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombre.Location = New System.Drawing.Point(93, 39)
+        Me.txtNombre.MaxLength = 30
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(143, 26)
         Me.txtNombre.TabIndex = 5
@@ -98,6 +99,7 @@ Partial Class AgregarSocio
         '
         Me.txtApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtApellido.Location = New System.Drawing.Point(93, 92)
+        Me.txtApellido.MaxLength = 30
         Me.txtApellido.Name = "txtApellido"
         Me.txtApellido.Size = New System.Drawing.Size(143, 26)
         Me.txtApellido.TabIndex = 6
@@ -106,6 +108,7 @@ Partial Class AgregarSocio
         '
         Me.txtTelefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTelefono.Location = New System.Drawing.Point(93, 196)
+        Me.txtTelefono.MaxLength = 11
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(143, 26)
         Me.txtTelefono.TabIndex = 7
@@ -114,6 +117,7 @@ Partial Class AgregarSocio
         '
         Me.txtDireccion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDireccion.Location = New System.Drawing.Point(461, 39)
+        Me.txtDireccion.MaxLength = 35
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(143, 26)
         Me.txtDireccion.TabIndex = 8
@@ -193,6 +197,7 @@ Partial Class AgregarSocio
         '
         Me.txtDni.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDni.Location = New System.Drawing.Point(93, 145)
+        Me.txtDni.MaxLength = 8
         Me.txtDni.Name = "txtDni"
         Me.txtDni.Size = New System.Drawing.Size(143, 26)
         Me.txtDni.TabIndex = 11
