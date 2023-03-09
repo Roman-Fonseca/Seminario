@@ -33,15 +33,15 @@ Partial Class Ejemplares
         'listaEjemplares
         '
         Me.listaEjemplares.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.listaEjemplares.Location = New System.Drawing.Point(40, 12)
+        Me.listaEjemplares.Location = New System.Drawing.Point(12, 12)
         Me.listaEjemplares.Name = "listaEjemplares"
         Me.listaEjemplares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.listaEjemplares.Size = New System.Drawing.Size(538, 297)
+        Me.listaEjemplares.Size = New System.Drawing.Size(607, 301)
         Me.listaEjemplares.TabIndex = 1
         '
         'btnEliminarEjemplar
         '
-        Me.btnEliminarEjemplar.Location = New System.Drawing.Point(506, 358)
+        Me.btnEliminarEjemplar.Location = New System.Drawing.Point(549, 358)
         Me.btnEliminarEjemplar.Name = "btnEliminarEjemplar"
         Me.btnEliminarEjemplar.Size = New System.Drawing.Size(72, 45)
         Me.btnEliminarEjemplar.TabIndex = 6
@@ -50,7 +50,7 @@ Partial Class Ejemplares
         '
         'btnModificarEjemplar
         '
-        Me.btnModificarEjemplar.Location = New System.Drawing.Point(411, 358)
+        Me.btnModificarEjemplar.Location = New System.Drawing.Point(454, 358)
         Me.btnModificarEjemplar.Name = "btnModificarEjemplar"
         Me.btnModificarEjemplar.Size = New System.Drawing.Size(72, 45)
         Me.btnModificarEjemplar.TabIndex = 5
@@ -59,7 +59,7 @@ Partial Class Ejemplares
         '
         'btnAgregarEjemplar
         '
-        Me.btnAgregarEjemplar.Location = New System.Drawing.Point(312, 358)
+        Me.btnAgregarEjemplar.Location = New System.Drawing.Point(355, 358)
         Me.btnAgregarEjemplar.Name = "btnAgregarEjemplar"
         Me.btnAgregarEjemplar.Size = New System.Drawing.Size(72, 45)
         Me.btnAgregarEjemplar.TabIndex = 4
@@ -68,7 +68,7 @@ Partial Class Ejemplares
         '
         'btnVolver
         '
-        Me.btnVolver.Location = New System.Drawing.Point(43, 358)
+        Me.btnVolver.Location = New System.Drawing.Point(12, 358)
         Me.btnVolver.Name = "btnVolver"
         Me.btnVolver.Size = New System.Drawing.Size(72, 45)
         Me.btnVolver.TabIndex = 7
@@ -79,7 +79,7 @@ Partial Class Ejemplares
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(609, 415)
+        Me.ClientSize = New System.Drawing.Size(626, 405)
         Me.Controls.Add(Me.btnVolver)
         Me.Controls.Add(Me.btnEliminarEjemplar)
         Me.Controls.Add(Me.btnModificarEjemplar)

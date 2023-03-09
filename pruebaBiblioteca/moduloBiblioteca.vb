@@ -512,7 +512,11 @@ Module moduloBiblioteca
     End Function
 
     Public Sub mostrarEjemplares()
-        Dim Consulta As String = "select cod_ejemplar_libro,num_ejemplar,cod_libro,cod_tipo_ejemplar,estado from ejemplar_libro"
+        Dim Consulta As String = "SELECT ejemplar.cod_ejemplar, ejemplar.numero_ejemplar, ejemplar.estado, libro.titulo, 
+                                    plazo_prestamo.descripcion AS plazo, tipo_ejemplar.descripcion as tipo_ejemplar 
+                                    FROM ejemplar INNER JOIN libro ON ejemplar.cod_libro = libro.cod_libro INNER JOIN plazo_prestamo 
+                                    ON ejemplar.cod_plazo_prestamo = plazo_prestamo.cod_plazo_prestamo INNER JOIN tipo_ejemplar 
+                                    ON ejemplar.cod_tipo_ejemplar = tipo_ejemplar.cod_tipo_ejemplar;"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta

@@ -78,4 +78,42 @@ Public Class Form1
     Private Sub InformeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InformeToolStripMenuItem.Click
 
     End Sub
+
+    Private Sub PrestadosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrestadosToolStripMenuItem.Click
+        mostrarEjemplaresPrestados()
+        Ejemplares.ShowDialog()
+    End Sub
+
+    Public Sub mostrarEjemplaresPrestados()
+        Dim Consulta As String = "SELECT ejemplar.cod_ejemplar, ejemplar.numero_ejemplar, ejemplar.estado, libro.titulo, 
+                                    plazo_prestamo.descripcion AS plazo, tipo_ejemplar.descripcion as tipo_ejemplar 
+                                    FROM ejemplar INNER JOIN libro ON ejemplar.cod_libro = libro.cod_libro INNER JOIN plazo_prestamo 
+                                    ON ejemplar.cod_plazo_prestamo = plazo_prestamo.cod_plazo_prestamo INNER JOIN tipo_ejemplar 
+                                    ON ejemplar.cod_tipo_ejemplar = tipo_ejemplar.cod_tipo_ejemplar WHERE estado = 'Prestado'"
+        Try
+            If ConexionMySQL() Then
+                Glocomando.CommandText = Consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+
+                Glodatareader = Glocomando.ExecuteReader
+
+
+                Dim dt As New DataTable
+                dt.Load(Glodatareader)
+
+
+                Ejemplares.listaEjemplares.DataSource = dt
+
+
+                Glodatareader.Close()
+                GloconexionDB.Close()
+            Else
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            MsgBox("Error en la conexion")
+        End Try
+    End Sub
 End Class
