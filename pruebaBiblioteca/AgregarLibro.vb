@@ -137,4 +137,30 @@ Public Class AgregarLibro
 
         End If
     End Sub
+
+    Private Sub txtIsbn_TextChanged(sender As Object, e As EventArgs) Handles txtIsbn.TextChanged
+
+    End Sub
+
+    Private Sub txtIsbn_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtIsbn.KeyPress
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtTitulo.Focus()
+        End If
+    End Sub
+
+    Private Sub txtTitulo_TextChanged(sender As Object, e As EventArgs) Handles txtTitulo.TextChanged
+
+    End Sub
+
+    Private Sub txtTitulo_Leave(sender As Object, e As EventArgs) Handles txtTitulo.Leave
+
+    End Sub
+
+    Private Sub txtTitulo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtTitulo.KeyPress
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            cbxUbicacion.Focus()
+        End If
+    End Sub
 End Class
