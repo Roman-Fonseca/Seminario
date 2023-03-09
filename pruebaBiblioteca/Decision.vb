@@ -86,7 +86,8 @@ Public Class Decision
     End Sub
 
     Private Sub btnSancionPago_Click(sender As Object, e As EventArgs) Handles btnSancionPago.Click
-        moduloBiblioteca.registrarPagoSancion(Prestamos.fecha_devolucion, Prestamos.fecha_actual, Prestamos.cod_prestamo_socio)
+        Dim ultimo_prestamo_finalizado As Integer = tomarUltimoPrestamoFinalizado()
+        moduloBiblioteca.registrarPagoSancion(Prestamos.fecha_devolucion, Prestamos.fecha_actual, ultimo_prestamo_finalizado)
         moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Disponible")
         Me.Close()
     End Sub
@@ -767,6 +768,27 @@ Public Class Decision
                 If Datos.Read Then
                     Dim fecha_finalizacion As Date = Trim(Datos("fecha_finalizacion"))
                     Return fecha_finalizacion
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            Conexion.Close()
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Function tomarUltimoPrestamoFinalizado() As Integer
+        Dim Sql As String = "SELECT MAX(cod_prestamo_finalizado) from prestamo_finalizado limit 1"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    Dim cod_prestamo_finalizado As Integer = Trim(Datos("MAX(cod_prestamo_finalizado)"))
+                    Return cod_prestamo_finalizado
                 End If
             End If
         Catch ex As Exception

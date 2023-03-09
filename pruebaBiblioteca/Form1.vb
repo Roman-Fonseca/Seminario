@@ -58,8 +58,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub PagoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PagoToolStripMenuItem.Click
-        SancionesPago.ShowDialog()
+    Private Sub PagoToolStripMenuItem_Click(sender As Object, e As EventArgs)
     End Sub
 
     Private Sub VerLibrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerLibrosToolStripMenuItem.Click
@@ -115,5 +114,13 @@ Public Class Form1
             MsgBox(ex.Message)
             MsgBox("Error en la conexion")
         End Try
+    End Sub
+
+    Private Sub EsperaToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub SancionesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SancionesToolStripMenuItem.Click
+        Sanciones.ShowDialog()
     End Sub
 End Class

@@ -512,11 +512,12 @@ Module moduloBiblioteca
     End Function
 
     Public Sub mostrarEjemplares()
-        Dim Consulta As String = "SELECT ejemplar.cod_ejemplar, ejemplar.numero_ejemplar, ejemplar.estado, libro.titulo, 
-                                    plazo_prestamo.descripcion AS plazo, tipo_ejemplar.descripcion as tipo_ejemplar 
-                                    FROM ejemplar INNER JOIN libro ON ejemplar.cod_libro = libro.cod_libro INNER JOIN plazo_prestamo 
-                                    ON ejemplar.cod_plazo_prestamo = plazo_prestamo.cod_plazo_prestamo INNER JOIN tipo_ejemplar 
-                                    ON ejemplar.cod_tipo_ejemplar = tipo_ejemplar.cod_tipo_ejemplar;"
+        Dim Consulta As String = "SELECT sancion_prestamo_paga.cod_sancion_prestamo_paga, sancion_prestamo_paga.fecha, 
+                                    sancion_prestamo_paga.hora, sancion_prestamo_paga.pago, sancion_prestamo_paga.motivo, sancion_prestamo_paga.cod_prestamo_finalizado, 
+                                    prestamo_socio.cod_ejemplar, prestamo_socio.cod_socio,socio.nombre, socio.apellido FROM sancion_prestamo_paga 
+                                    INNER JOIN prestamo_finalizado ON sancion_prestamo_paga.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado 
+                                    INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio 
+                                    INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio;"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1139,7 +1140,7 @@ Module moduloBiblioteca
         End Try
     End Function
 
-    Public Sub registrarPagoSancion(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_socio As Integer)
+    Public Sub registrarPagoSancion(fecha_devolucion As Date, fecha_actual As Date, cod_prestamo_finalizado As Integer)
         Dim LOC_consulta As String
         Dim pago As Double
         pago = calcularSancionPago(fecha_devolucion, fecha_actual)
@@ -1155,7 +1156,7 @@ Module moduloBiblioteca
 
         Try
             If ConexionMySQL() Then
-                LOC_consulta = "insert into sancion_prestamo_paga (fecha,hora,pago,motivo,cod_prestamo_socio) values('" & fecha & "','" & hora_actual & "','" & pago & "','" & motivo & "','" & cod_prestamo_socio & "')"
+                LOC_consulta = "insert into sancion_prestamo_paga (fecha,hora,pago,motivo,cod_prestamo_finalizado) values('" & fecha & "','" & hora_actual & "','" & pago & "','" & motivo & "','" & cod_prestamo_finalizado & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó registro_pago correctamente")
@@ -1553,7 +1554,13 @@ Module moduloBiblioteca
     End Function
 
     Public Sub mostrarSancionesPago()
-        Dim Consulta As String = "SELECT cod_sancion_paga, fecha, pago, motivo, cod_prestamo_socio FROM sancion_paga"
+        Dim Consulta As String = "SELECT sancion_prestamo_paga.cod_sancion_prestamo_paga, 
+                                    sancion_prestamo_paga.fecha, sancion_prestamo_paga.hora, sancion_prestamo_paga.pago AS pesos, sancion_prestamo_paga.motivo, 
+                                    sancion_prestamo_paga.cod_prestamo_finalizado, prestamo_socio.cod_ejemplar, prestamo_socio.cod_socio,socio.nombre, 
+                                    socio.apellido FROM sancion_prestamo_paga INNER JOIN prestamo_finalizado 
+                                    ON sancion_prestamo_paga.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado 
+                                    INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio 
+                                    INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio;"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1567,7 +1574,7 @@ Module moduloBiblioteca
                 dt.Load(Glodatareader)
 
 
-                SancionesPago.dgvSancionesPago.DataSource = dt
+                Sanciones.dgvSanciones.DataSource = dt
 
 
                 Glodatareader.Close()

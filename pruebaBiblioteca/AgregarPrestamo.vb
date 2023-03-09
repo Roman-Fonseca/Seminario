@@ -95,6 +95,7 @@ Public Class AgregarPrestamo
                 Else
                     If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
                         altaPrestamo()
+                        moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
                     Else
                         MsgBox("El ejemplar no se encuentra disponible")
                     End If

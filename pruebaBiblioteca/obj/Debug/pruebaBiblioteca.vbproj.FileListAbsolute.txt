@@ -589,7 +589,6 @@ C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.Prestamos.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.informeSocio.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.reporteSocios.resources
-C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.SancionesPago.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.SeleccionAutor.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.Socios.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.vbproj.GenerateResource.cache
@@ -598,3 +597,4 @@ C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.exe
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.xml
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.pdb
+C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.Sanciones.resources

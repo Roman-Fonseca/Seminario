@@ -240,10 +240,10 @@
     <Compile Include="reportes\socio\reporteSocios.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SancionesPago.Designer.vb">
-      <DependentUpon>SancionesPago.vb</DependentUpon>
+    <Compile Include="Sanciones.Designer.vb">
+      <DependentUpon>Sanciones.vb</DependentUpon>
     </Compile>
-    <Compile Include="SancionesPago.vb">
+    <Compile Include="Sanciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SeleccionAutor.Designer.vb">
@@ -325,8 +325,8 @@
     <EmbeddedResource Include="reportes\socio\reporteSocios.resx">
       <DependentUpon>reporteSocios.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SancionesPago.resx">
-      <DependentUpon>SancionesPago.vb</DependentUpon>
+    <EmbeddedResource Include="Sanciones.resx">
+      <DependentUpon>Sanciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SeleccionAutor.resx">
       <DependentUpon>SeleccionAutor.vb</DependentUpon>

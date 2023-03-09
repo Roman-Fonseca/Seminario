@@ -41,8 +41,6 @@ Partial Class Form1
         Me.EliminadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrestadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SancionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EsperaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PagoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ParametrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgregarParametroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SanciónEsperaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -177,23 +175,10 @@ Partial Class Form1
         '
         'SancionesToolStripMenuItem
         '
-        Me.SancionesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EsperaToolStripMenuItem, Me.PagoToolStripMenuItem})
         Me.SancionesToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SancionesToolStripMenuItem.Name = "SancionesToolStripMenuItem"
         Me.SancionesToolStripMenuItem.Size = New System.Drawing.Size(103, 67)
         Me.SancionesToolStripMenuItem.Text = "Sanciones"
-        '
-        'EsperaToolStripMenuItem
-        '
-        Me.EsperaToolStripMenuItem.Name = "EsperaToolStripMenuItem"
-        Me.EsperaToolStripMenuItem.Size = New System.Drawing.Size(136, 30)
-        Me.EsperaToolStripMenuItem.Text = "Espera"
-        '
-        'PagoToolStripMenuItem
-        '
-        Me.PagoToolStripMenuItem.Name = "PagoToolStripMenuItem"
-        Me.PagoToolStripMenuItem.Size = New System.Drawing.Size(136, 30)
-        Me.PagoToolStripMenuItem.Text = "Pago"
         '
         'ParametrosToolStripMenuItem
         '
@@ -344,8 +329,6 @@ Partial Class Form1
     Friend WithEvents PlazosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AgregarPlazoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerPlazosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EsperaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PagoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LibrosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerLibrosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerLibrosToolStripMenuItem1 As ToolStripMenuItem
