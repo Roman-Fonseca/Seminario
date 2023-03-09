@@ -68,7 +68,7 @@ Public Class Form1
 
     Private Sub VerLibrosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles VerLibrosToolStripMenuItem1.Click
         Libros.ShowDialog()
-        MsgBox(tomarUltimoPrestamoFinalizado)
+        'MsgBox(tomarUltimoPrestamoFinalizado)
     End Sub
 
     Private Sub SociosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SociosToolStripMenuItem1.Click

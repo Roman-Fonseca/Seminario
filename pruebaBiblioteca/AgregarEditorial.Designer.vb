@@ -36,7 +36,7 @@ Partial Class AgregarEditorial
         'lblNombreEditorial
         '
         Me.lblNombreEditorial.AutoSize = True
-        Me.lblNombreEditorial.Location = New System.Drawing.Point(52, 40)
+        Me.lblNombreEditorial.Location = New System.Drawing.Point(28, 40)
         Me.lblNombreEditorial.Name = "lblNombreEditorial"
         Me.lblNombreEditorial.Size = New System.Drawing.Size(47, 13)
         Me.lblNombreEditorial.TabIndex = 0
@@ -45,7 +45,7 @@ Partial Class AgregarEditorial
         'lblContactoEditorial
         '
         Me.lblContactoEditorial.AutoSize = True
-        Me.lblContactoEditorial.Location = New System.Drawing.Point(46, 88)
+        Me.lblContactoEditorial.Location = New System.Drawing.Point(22, 88)
         Me.lblContactoEditorial.Name = "lblContactoEditorial"
         Me.lblContactoEditorial.Size = New System.Drawing.Size(53, 13)
         Me.lblContactoEditorial.TabIndex = 1
@@ -54,7 +54,7 @@ Partial Class AgregarEditorial
         'lblLocalizacionEditorial
         '
         Me.lblLocalizacionEditorial.AutoSize = True
-        Me.lblLocalizacionEditorial.Location = New System.Drawing.Point(30, 138)
+        Me.lblLocalizacionEditorial.Location = New System.Drawing.Point(6, 135)
         Me.lblLocalizacionEditorial.Name = "lblLocalizacionEditorial"
         Me.lblLocalizacionEditorial.Size = New System.Drawing.Size(69, 13)
         Me.lblLocalizacionEditorial.TabIndex = 2
@@ -62,28 +62,31 @@ Partial Class AgregarEditorial
         '
         'txtNombreEditorial
         '
-        Me.txtNombreEditorial.Location = New System.Drawing.Point(105, 37)
+        Me.txtNombreEditorial.Location = New System.Drawing.Point(80, 37)
+        Me.txtNombreEditorial.MaxLength = 25
         Me.txtNombreEditorial.Name = "txtNombreEditorial"
-        Me.txtNombreEditorial.Size = New System.Drawing.Size(100, 20)
+        Me.txtNombreEditorial.Size = New System.Drawing.Size(179, 20)
         Me.txtNombreEditorial.TabIndex = 3
         '
         'txtContactoEditorial
         '
-        Me.txtContactoEditorial.Location = New System.Drawing.Point(105, 85)
+        Me.txtContactoEditorial.Location = New System.Drawing.Point(81, 85)
+        Me.txtContactoEditorial.MaxLength = 10
         Me.txtContactoEditorial.Name = "txtContactoEditorial"
-        Me.txtContactoEditorial.Size = New System.Drawing.Size(100, 20)
+        Me.txtContactoEditorial.Size = New System.Drawing.Size(178, 20)
         Me.txtContactoEditorial.TabIndex = 4
         '
         'txtLocalizacionEditorial
         '
-        Me.txtLocalizacionEditorial.Location = New System.Drawing.Point(105, 135)
+        Me.txtLocalizacionEditorial.Location = New System.Drawing.Point(80, 135)
+        Me.txtLocalizacionEditorial.MaxLength = 30
         Me.txtLocalizacionEditorial.Name = "txtLocalizacionEditorial"
-        Me.txtLocalizacionEditorial.Size = New System.Drawing.Size(100, 20)
+        Me.txtLocalizacionEditorial.Size = New System.Drawing.Size(179, 20)
         Me.txtLocalizacionEditorial.TabIndex = 5
         '
         'btnGuardarEditorial
         '
-        Me.btnGuardarEditorial.Location = New System.Drawing.Point(195, 319)
+        Me.btnGuardarEditorial.Location = New System.Drawing.Point(13, 216)
         Me.btnGuardarEditorial.Name = "btnGuardarEditorial"
         Me.btnGuardarEditorial.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardarEditorial.TabIndex = 6
@@ -92,7 +95,7 @@ Partial Class AgregarEditorial
         '
         'btnLimpiarCamposEditorial
         '
-        Me.btnLimpiarCamposEditorial.Location = New System.Drawing.Point(287, 319)
+        Me.btnLimpiarCamposEditorial.Location = New System.Drawing.Point(105, 216)
         Me.btnLimpiarCamposEditorial.Name = "btnLimpiarCamposEditorial"
         Me.btnLimpiarCamposEditorial.Size = New System.Drawing.Size(75, 23)
         Me.btnLimpiarCamposEditorial.TabIndex = 7
@@ -101,7 +104,7 @@ Partial Class AgregarEditorial
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(378, 319)
+        Me.btnCancelar.Location = New System.Drawing.Point(196, 216)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelar.TabIndex = 8
@@ -112,7 +115,7 @@ Partial Class AgregarEditorial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(457, 354)
+        Me.ClientSize = New System.Drawing.Size(282, 255)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnLimpiarCamposEditorial)
         Me.Controls.Add(Me.btnGuardarEditorial)
@@ -123,6 +126,7 @@ Partial Class AgregarEditorial
         Me.Controls.Add(Me.lblContactoEditorial)
         Me.Controls.Add(Me.lblNombreEditorial)
         Me.Name = "AgregarEditorial"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AgregarEditorial"
         Me.ResumeLayout(False)
         Me.PerformLayout()

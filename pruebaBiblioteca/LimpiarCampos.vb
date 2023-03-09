@@ -25,7 +25,6 @@
     Public Sub limpiarCamposAgregarAutor()
         AgregarAutor.txtNombre.Clear()
         AgregarAutor.txtApellido.Clear()
-        AgregarAutor.txtNacionalidad.Clear()
     End Sub
     Public Sub limpiarCamposCargarLibro()
         AgregarLibro.txtIsbn.Clear()

@@ -271,7 +271,7 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into editorial (nombre_editorial,contacto,localizacion) values('" & AgregarEditorial.txtNombreEditorial.Text & "','" & AgregarEditorial.txtContactoEditorial.Text & "','" & AgregarEditorial.txtLocalizacionEditorial.Text & "')"
+                LOC_consulta = "insert into editorial (nombre,contacto,ubicacion) values('" & AgregarEditorial.txtNombreEditorial.Text & "','" & AgregarEditorial.txtContactoEditorial.Text & "','" & AgregarEditorial.txtLocalizacionEditorial.Text & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó editorial correctamente")
@@ -300,7 +300,7 @@ Module moduloBiblioteca
             dt.Load(Glodatareader)
 
             AgregarLibro.cbxUbicacion.DataSource = dt
-            AgregarLibro.cbxUbicacion.DisplayMember = "cod_ubicacion"
+            AgregarLibro.cbxUbicacion.DisplayMember = "estante"
             AgregarLibro.cbxUbicacion.ValueMember = "cod_ubicacion"
             AgregarLibro.cbxUbicacion.SelectedIndex = -1
             AgregarLibro.cbxUbicacion.Text = "Selecione un codigo de ubicacion"
@@ -338,7 +338,7 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into categoria (nombre_categoria) values('" & AgregarCategoria.txtNombreCategoria.Text & "')"
+                LOC_consulta = "insert into categoria (nombre) values('" & AgregarCategoria.txtNombreCategoria.Text & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó categoria correctamente")
@@ -381,7 +381,7 @@ Module moduloBiblioteca
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "insert into autor (apellido,nacionalidad,nombre) values('" & AgregarAutor.txtApellido.Text & "','" & AgregarAutor.txtNacionalidad.Text & "','" & AgregarAutor.txtNombre.Text & "')"
+                LOC_consulta = "insert into autor (nombre,apellido) values('" & AgregarAutor.txtNombre.Text & "','" & AgregarAutor.txtApellido.Text & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó autor correctamente")
@@ -552,7 +552,7 @@ Module moduloBiblioteca
             dt.Load(Glodatareader)
 
             AgregarEjemplar.cbxPlazoPrestamo.DataSource = dt
-            AgregarEjemplar.cbxPlazoPrestamo.DisplayMember = "descripcion_plazo"
+            AgregarEjemplar.cbxPlazoPrestamo.DisplayMember = "descripcion"
             AgregarEjemplar.cbxPlazoPrestamo.ValueMember = "cod_plazo_prestamo"
             AgregarEjemplar.cbxPlazoPrestamo.SelectedIndex = -1
             AgregarEjemplar.cbxPlazoPrestamo.Text = "Selecione una Plazo"
@@ -1700,7 +1700,7 @@ Module moduloBiblioteca
     End Function
 
     Public Sub cargarTablaCategoria()
-        Dim Consulta As String = "SELECT cod_categoria, nombre_categoria FROM categoria"
+        Dim Consulta As String = "SELECT cod_categoria, nombre FROM categoria"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta

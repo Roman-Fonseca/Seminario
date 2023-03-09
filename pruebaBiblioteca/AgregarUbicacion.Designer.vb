@@ -63,27 +63,30 @@ Partial Class AgregarUbicacion
         'txtPiso
         '
         Me.txtPiso.Location = New System.Drawing.Point(68, 32)
+        Me.txtPiso.MaxLength = 2
         Me.txtPiso.Name = "txtPiso"
-        Me.txtPiso.Size = New System.Drawing.Size(115, 20)
+        Me.txtPiso.Size = New System.Drawing.Size(160, 20)
         Me.txtPiso.TabIndex = 3
         '
         'txtSector
         '
         Me.txtSector.Location = New System.Drawing.Point(68, 82)
+        Me.txtSector.MaxLength = 5
         Me.txtSector.Name = "txtSector"
-        Me.txtSector.Size = New System.Drawing.Size(115, 20)
+        Me.txtSector.Size = New System.Drawing.Size(160, 20)
         Me.txtSector.TabIndex = 4
         '
         'txtEstante
         '
         Me.txtEstante.Location = New System.Drawing.Point(68, 136)
+        Me.txtEstante.MaxLength = 5
         Me.txtEstante.Name = "txtEstante"
-        Me.txtEstante.Size = New System.Drawing.Size(115, 20)
+        Me.txtEstante.Size = New System.Drawing.Size(160, 20)
         Me.txtEstante.TabIndex = 5
         '
         'btnCargarUbicacion
         '
-        Me.btnCargarUbicacion.Location = New System.Drawing.Point(145, 196)
+        Me.btnCargarUbicacion.Location = New System.Drawing.Point(12, 196)
         Me.btnCargarUbicacion.Name = "btnCargarUbicacion"
         Me.btnCargarUbicacion.Size = New System.Drawing.Size(60, 32)
         Me.btnCargarUbicacion.TabIndex = 6
@@ -92,7 +95,7 @@ Partial Class AgregarUbicacion
         '
         'btnLimpiar
         '
-        Me.btnLimpiar.Location = New System.Drawing.Point(225, 196)
+        Me.btnLimpiar.Location = New System.Drawing.Point(92, 196)
         Me.btnLimpiar.Name = "btnLimpiar"
         Me.btnLimpiar.Size = New System.Drawing.Size(60, 32)
         Me.btnLimpiar.TabIndex = 7
@@ -101,7 +104,7 @@ Partial Class AgregarUbicacion
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(301, 196)
+        Me.btnCancelar.Location = New System.Drawing.Point(168, 196)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(60, 32)
         Me.btnCancelar.TabIndex = 8
@@ -112,7 +115,7 @@ Partial Class AgregarUbicacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(373, 240)
+        Me.ClientSize = New System.Drawing.Size(251, 235)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnLimpiar)
         Me.Controls.Add(Me.btnCargarUbicacion)
@@ -123,6 +126,7 @@ Partial Class AgregarUbicacion
         Me.Controls.Add(Me.lblSector)
         Me.Controls.Add(Me.lblPiso)
         Me.Name = "AgregarUbicacion"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AgregarUbicacion"
         Me.ResumeLayout(False)
         Me.PerformLayout()

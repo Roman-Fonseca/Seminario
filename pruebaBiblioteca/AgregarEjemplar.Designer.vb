@@ -41,6 +41,7 @@ Partial Class AgregarEjemplar
         Me.btnSeleccionarLibro = New System.Windows.Forms.Button()
         Me.lblPlazoPrestamo = New System.Windows.Forms.Label()
         Me.cbxPlazoPrestamo = New System.Windows.Forms.ComboBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         CType(Me.dgvLibros, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -209,11 +210,21 @@ Partial Class AgregarEjemplar
         Me.cbxPlazoPrestamo.Size = New System.Drawing.Size(137, 21)
         Me.cbxPlazoPrestamo.TabIndex = 19
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(293, 240)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(42, 23)
+        Me.Button2.TabIndex = 20
+        Me.Button2.Text = "+"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'AgregarEjemplar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(970, 337)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.cbxPlazoPrestamo)
         Me.Controls.Add(Me.lblPlazoPrestamo)
         Me.Controls.Add(Me.btnSeleccionarLibro)
@@ -261,4 +272,5 @@ Partial Class AgregarEjemplar
     Friend WithEvents btnSeleccionarLibro As Button
     Friend WithEvents lblPlazoPrestamo As Label
     Friend WithEvents cbxPlazoPrestamo As ComboBox
+    Friend WithEvents Button2 As Button
 End Class

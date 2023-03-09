@@ -24,10 +24,8 @@ Partial Class AgregarAutor
     Private Sub InitializeComponent()
         Me.lblNombre = New System.Windows.Forms.Label()
         Me.lblApellido = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.txtApellido = New System.Windows.Forms.TextBox()
-        Me.txtNacionalidad = New System.Windows.Forms.TextBox()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.btnLimpiarCamposAutor = New System.Windows.Forms.Button()
         Me.btnGuardarAutor = New System.Windows.Forms.Button()
@@ -51,18 +49,10 @@ Partial Class AgregarAutor
         Me.lblApellido.TabIndex = 1
         Me.lblApellido.Text = "Apellido:"
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(22, 140)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(72, 13)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Nacionalidad:"
-        '
         'txtNombre
         '
         Me.txtNombre.Location = New System.Drawing.Point(100, 35)
+        Me.txtNombre.MaxLength = 25
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(144, 20)
         Me.txtNombre.TabIndex = 3
@@ -70,20 +60,14 @@ Partial Class AgregarAutor
         'txtApellido
         '
         Me.txtApellido.Location = New System.Drawing.Point(100, 85)
+        Me.txtApellido.MaxLength = 20
         Me.txtApellido.Name = "txtApellido"
         Me.txtApellido.Size = New System.Drawing.Size(144, 20)
         Me.txtApellido.TabIndex = 4
         '
-        'txtNacionalidad
-        '
-        Me.txtNacionalidad.Location = New System.Drawing.Point(100, 137)
-        Me.txtNacionalidad.Name = "txtNacionalidad"
-        Me.txtNacionalidad.Size = New System.Drawing.Size(144, 20)
-        Me.txtNacionalidad.TabIndex = 5
-        '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(347, 247)
+        Me.btnCancelar.Location = New System.Drawing.Point(182, 204)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelar.TabIndex = 11
@@ -92,7 +76,7 @@ Partial Class AgregarAutor
         '
         'btnLimpiarCamposAutor
         '
-        Me.btnLimpiarCamposAutor.Location = New System.Drawing.Point(266, 247)
+        Me.btnLimpiarCamposAutor.Location = New System.Drawing.Point(101, 204)
         Me.btnLimpiarCamposAutor.Name = "btnLimpiarCamposAutor"
         Me.btnLimpiarCamposAutor.Size = New System.Drawing.Size(75, 23)
         Me.btnLimpiarCamposAutor.TabIndex = 10
@@ -101,7 +85,7 @@ Partial Class AgregarAutor
         '
         'btnGuardarAutor
         '
-        Me.btnGuardarAutor.Location = New System.Drawing.Point(185, 247)
+        Me.btnGuardarAutor.Location = New System.Drawing.Point(20, 204)
         Me.btnGuardarAutor.Name = "btnGuardarAutor"
         Me.btnGuardarAutor.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardarAutor.TabIndex = 9
@@ -112,17 +96,16 @@ Partial Class AgregarAutor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(434, 282)
+        Me.ClientSize = New System.Drawing.Size(274, 249)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnLimpiarCamposAutor)
         Me.Controls.Add(Me.btnGuardarAutor)
-        Me.Controls.Add(Me.txtNacionalidad)
         Me.Controls.Add(Me.txtApellido)
         Me.Controls.Add(Me.txtNombre)
-        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.lblApellido)
         Me.Controls.Add(Me.lblNombre)
         Me.Name = "AgregarAutor"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CargarAutor"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -131,10 +114,8 @@ Partial Class AgregarAutor
 
     Friend WithEvents lblNombre As Label
     Friend WithEvents lblApellido As Label
-    Friend WithEvents Label3 As Label
     Friend WithEvents txtNombre As TextBox
     Friend WithEvents txtApellido As TextBox
-    Friend WithEvents txtNacionalidad As TextBox
     Friend WithEvents btnCancelar As Button
     Friend WithEvents btnLimpiarCamposAutor As Button
     Friend WithEvents btnGuardarAutor As Button

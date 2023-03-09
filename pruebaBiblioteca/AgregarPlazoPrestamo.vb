@@ -8,6 +8,7 @@
         Me.txtDescripcion.Clear()
         Me.txtDias.Clear()
         Me.Close()
+        moduloBiblioteca.CargarComboPlazoPrestamo()
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtDescripcion.TextChanged

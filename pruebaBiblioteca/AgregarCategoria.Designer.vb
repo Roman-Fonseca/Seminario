@@ -40,13 +40,14 @@ Partial Class AgregarCategoria
         'txtNombreCategoria
         '
         Me.txtNombreCategoria.Location = New System.Drawing.Point(119, 28)
+        Me.txtNombreCategoria.MaxLength = 25
         Me.txtNombreCategoria.Name = "txtNombreCategoria"
-        Me.txtNombreCategoria.Size = New System.Drawing.Size(100, 20)
+        Me.txtNombreCategoria.Size = New System.Drawing.Size(195, 20)
         Me.txtNombreCategoria.TabIndex = 1
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(302, 136)
+        Me.btnCancelar.Location = New System.Drawing.Point(254, 136)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(60, 32)
         Me.btnCancelar.TabIndex = 11
@@ -55,7 +56,7 @@ Partial Class AgregarCategoria
         '
         'btnCargarCategoria
         '
-        Me.btnCargarCategoria.Location = New System.Drawing.Point(226, 136)
+        Me.btnCargarCategoria.Location = New System.Drawing.Point(178, 136)
         Me.btnCargarCategoria.Name = "btnCargarCategoria"
         Me.btnCargarCategoria.Size = New System.Drawing.Size(60, 32)
         Me.btnCargarCategoria.TabIndex = 9
@@ -66,12 +67,13 @@ Partial Class AgregarCategoria
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(366, 180)
+        Me.ClientSize = New System.Drawing.Size(334, 176)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnCargarCategoria)
         Me.Controls.Add(Me.txtNombreCategoria)
         Me.Controls.Add(Me.lblNombreCategoria)
         Me.Name = "AgregarCategoria"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AgregarCategoria"
         Me.ResumeLayout(False)
         Me.PerformLayout()

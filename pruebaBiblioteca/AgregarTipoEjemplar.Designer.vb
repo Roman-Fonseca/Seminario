@@ -31,7 +31,7 @@ Partial Class AgregarTipoEjemplar
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(27, 36)
+        Me.Label1.Location = New System.Drawing.Point(12, 36)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(114, 13)
         Me.Label1.TabIndex = 0
@@ -39,14 +39,15 @@ Partial Class AgregarTipoEjemplar
         '
         'txtNombreTipoEjemplar
         '
-        Me.txtNombreTipoEjemplar.Location = New System.Drawing.Point(147, 33)
+        Me.txtNombreTipoEjemplar.Location = New System.Drawing.Point(132, 33)
+        Me.txtNombreTipoEjemplar.MaxLength = 15
         Me.txtNombreTipoEjemplar.Name = "txtNombreTipoEjemplar"
         Me.txtNombreTipoEjemplar.Size = New System.Drawing.Size(129, 20)
         Me.txtNombreTipoEjemplar.TabIndex = 1
         '
         'btnAgregarTipoEjemplar
         '
-        Me.btnAgregarTipoEjemplar.Location = New System.Drawing.Point(185, 128)
+        Me.btnAgregarTipoEjemplar.Location = New System.Drawing.Point(106, 128)
         Me.btnAgregarTipoEjemplar.Name = "btnAgregarTipoEjemplar"
         Me.btnAgregarTipoEjemplar.Size = New System.Drawing.Size(65, 23)
         Me.btnAgregarTipoEjemplar.TabIndex = 2
@@ -55,7 +56,7 @@ Partial Class AgregarTipoEjemplar
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(275, 128)
+        Me.btnCancelar.Location = New System.Drawing.Point(196, 128)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(65, 23)
         Me.btnCancelar.TabIndex = 3
@@ -66,12 +67,13 @@ Partial Class AgregarTipoEjemplar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(352, 163)
+        Me.ClientSize = New System.Drawing.Size(281, 163)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnAgregarTipoEjemplar)
         Me.Controls.Add(Me.txtNombreTipoEjemplar)
         Me.Controls.Add(Me.Label1)
         Me.Name = "AgregarTipoEjemplar"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AgregarTipoEjemplar"
         Me.ResumeLayout(False)
         Me.PerformLayout()

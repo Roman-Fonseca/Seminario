@@ -36,7 +36,7 @@ Partial Class SeleccionAutor
         Me.dgvAutor.Location = New System.Drawing.Point(15, 59)
         Me.dgvAutor.Name = "dgvAutor"
         Me.dgvAutor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvAutor.Size = New System.Drawing.Size(452, 124)
+        Me.dgvAutor.Size = New System.Drawing.Size(331, 124)
         Me.dgvAutor.TabIndex = 0
         '
         'lblNombreAutor
@@ -57,7 +57,7 @@ Partial Class SeleccionAutor
         '
         'btnSeleccionarAutor
         '
-        Me.btnSeleccionarAutor.Location = New System.Drawing.Point(294, 215)
+        Me.btnSeleccionarAutor.Location = New System.Drawing.Point(173, 215)
         Me.btnSeleccionarAutor.Name = "btnSeleccionarAutor"
         Me.btnSeleccionarAutor.Size = New System.Drawing.Size(75, 23)
         Me.btnSeleccionarAutor.TabIndex = 3
@@ -66,7 +66,7 @@ Partial Class SeleccionAutor
         '
         'brnCancelar
         '
-        Me.brnCancelar.Location = New System.Drawing.Point(392, 215)
+        Me.brnCancelar.Location = New System.Drawing.Point(271, 215)
         Me.brnCancelar.Name = "brnCancelar"
         Me.brnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.brnCancelar.TabIndex = 4
@@ -77,13 +77,14 @@ Partial Class SeleccionAutor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(479, 250)
+        Me.ClientSize = New System.Drawing.Size(362, 246)
         Me.Controls.Add(Me.brnCancelar)
         Me.Controls.Add(Me.btnSeleccionarAutor)
         Me.Controls.Add(Me.txtNombreAutor)
         Me.Controls.Add(Me.lblNombreAutor)
         Me.Controls.Add(Me.dgvAutor)
         Me.Name = "SeleccionAutor"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SeleccionAutor"
         CType(Me.dgvAutor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

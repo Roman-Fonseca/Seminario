@@ -96,4 +96,8 @@ Public Class AgregarEjemplar
             Return False
         End Try
     End Function
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        AgregarPlazoPrestamo.Show()
+    End Sub
 End Class

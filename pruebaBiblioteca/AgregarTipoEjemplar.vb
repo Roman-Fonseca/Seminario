@@ -9,6 +9,7 @@
 
     Private Sub btnAgregarTipoEjemplar_Click(sender As Object, e As EventArgs) Handles btnAgregarTipoEjemplar.Click
         moduloBiblioteca.altaTipoEjemplar()
+        Me.txtNombreTipoEjemplar.Clear()
         Me.Close()
         moduloBiblioteca.CargarComboTipoEjemplar()
 
