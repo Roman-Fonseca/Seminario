@@ -1,4 +1,7 @@
-﻿Public Class Socios
+﻿Imports MySql.Data.MySqlClient
+
+Public Class Socios
+    Dim dt As New DataTable
     Private Sub btnAgregarSocio_Click(sender As Object, e As EventArgs) Handles btnAgregarSocio.Click
         AgregarSocio.Text = "Agregar Socio"
         AgregarSocio.txtEstado.Hide()
@@ -28,4 +31,24 @@
     Private Sub listaSocios_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles listaSocios.CellContentClick
 
     End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles lblNombre.Click
+
+    End Sub
+
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtNombre.TextChanged
+        busquedaDinamicaSocio(txtNombre.Text, listaSocios)
+    End Sub
+
+    Public Sub busquedaDinamicaSocio(ByVal nombre As String, ByVal dgv As DataGridView)
+        Try
+            adaptador = New MySqlDataAdapter("SELECT * FROM socio WHERE nombre like '" & nombre + "%" & "'", GloconexionDB)
+            dt = New DataTable
+            adaptador.Fill(dt)
+            dgv.DataSource = dt
+        Catch ex As Exception
+            MessageBox.Show("Error con busqueda dinamica", ex.ToString)
+        End Try
+    End Sub
+
 End Class

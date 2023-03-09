@@ -28,6 +28,8 @@ Partial Class Socios
         Me.btnModificarSocio = New System.Windows.Forms.Button()
         Me.btnEliminarSocio = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.lblNombre = New System.Windows.Forms.Label()
+        Me.txtNombre = New System.Windows.Forms.TextBox()
         CType(Me.listaSocios, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -35,16 +37,16 @@ Partial Class Socios
         'listaSocios
         '
         Me.listaSocios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.listaSocios.Location = New System.Drawing.Point(229, 35)
+        Me.listaSocios.Location = New System.Drawing.Point(221, 69)
         Me.listaSocios.Name = "listaSocios"
         Me.listaSocios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.listaSocios.Size = New System.Drawing.Size(872, 205)
+        Me.listaSocios.Size = New System.Drawing.Size(777, 205)
         Me.listaSocios.TabIndex = 0
         '
         'btnAgregarSocio
         '
         Me.btnAgregarSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnAgregarSocio.Location = New System.Drawing.Point(835, 266)
+        Me.btnAgregarSocio.Location = New System.Drawing.Point(732, 299)
         Me.btnAgregarSocio.Name = "btnAgregarSocio"
         Me.btnAgregarSocio.Size = New System.Drawing.Size(72, 45)
         Me.btnAgregarSocio.TabIndex = 1
@@ -54,7 +56,7 @@ Partial Class Socios
         'btnModificarSocio
         '
         Me.btnModificarSocio.BackColor = System.Drawing.Color.Yellow
-        Me.btnModificarSocio.Location = New System.Drawing.Point(934, 266)
+        Me.btnModificarSocio.Location = New System.Drawing.Point(831, 299)
         Me.btnModificarSocio.Name = "btnModificarSocio"
         Me.btnModificarSocio.Size = New System.Drawing.Size(72, 45)
         Me.btnModificarSocio.TabIndex = 2
@@ -64,7 +66,7 @@ Partial Class Socios
         'btnEliminarSocio
         '
         Me.btnEliminarSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnEliminarSocio.Location = New System.Drawing.Point(1029, 266)
+        Me.btnEliminarSocio.Location = New System.Drawing.Point(926, 299)
         Me.btnEliminarSocio.Name = "btnEliminarSocio"
         Me.btnEliminarSocio.Size = New System.Drawing.Size(72, 45)
         Me.btnEliminarSocio.TabIndex = 3
@@ -74,18 +76,36 @@ Partial Class Socios
         'PictureBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 35)
+        Me.PictureBox1.Location = New System.Drawing.Point(12, 69)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(191, 205)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 4
         Me.PictureBox1.TabStop = False
         '
+        'lblNombre
+        '
+        Me.lblNombre.AutoSize = True
+        Me.lblNombre.Location = New System.Drawing.Point(218, 41)
+        Me.lblNombre.Name = "lblNombre"
+        Me.lblNombre.Size = New System.Drawing.Size(47, 13)
+        Me.lblNombre.TabIndex = 5
+        Me.lblNombre.Text = "Nombre:"
+        '
+        'txtNombre
+        '
+        Me.txtNombre.Location = New System.Drawing.Point(271, 38)
+        Me.txtNombre.Name = "txtNombre"
+        Me.txtNombre.Size = New System.Drawing.Size(176, 20)
+        Me.txtNombre.TabIndex = 6
+        '
         'Socios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1113, 323)
+        Me.ClientSize = New System.Drawing.Size(1004, 357)
+        Me.Controls.Add(Me.txtNombre)
+        Me.Controls.Add(Me.lblNombre)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.btnEliminarSocio)
         Me.Controls.Add(Me.btnModificarSocio)
@@ -97,6 +117,7 @@ Partial Class Socios
         CType(Me.listaSocios, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -105,4 +126,6 @@ Partial Class Socios
     Friend WithEvents btnModificarSocio As Button
     Friend WithEvents btnEliminarSocio As Button
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents lblNombre As Label
+    Friend WithEvents txtNombre As TextBox
 End Class
