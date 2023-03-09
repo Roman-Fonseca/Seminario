@@ -617,10 +617,10 @@ Module moduloBiblioteca
         Try
             'Alta ejemplar'
             If ConexionMySQL() Then
-                LOC_consulta = "insert into ejemplar(estado,numero_ejemplar,cod_tipo_ejemplar,cod_libro,cod_plazo_prestamo)
-                values('" & AgregarEjemplar.cbxEstado.Text & "','" & AgregarEjemplar.txtNumeroEjemplar.Text & "','" & AgregarEjemplar.cbxTipoEjemplar.SelectedValue & "',
-                '" & GLO_CodLibro & "', '" & AgregarEjemplar.cbxPlazoPrestamo.SelectedValue & "'
-                )"
+                LOC_consulta = "insert into ejemplar(numero_ejemplar,estado,cod_libro,cod_tipo_ejemplar,cod_plazo_prestamo)
+                values('" & AgregarEjemplar.txtNumeroEjemplar.Text & "','" & AgregarEjemplar.cbxEstado.Text & "',
+                 '" & GLO_CodLibro & "','" & AgregarEjemplar.cbxTipoEjemplar.SelectedValue & "',
+                 '" & AgregarEjemplar.cbxPlazoPrestamo.SelectedValue & "')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó ejemplar correctamente")
