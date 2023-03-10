@@ -424,8 +424,19 @@ Public Class AgregarPrestamo
         End Try
     End Function
 
+    Private Sub cbxTipoPrestamo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxTipoPrestamo.SelectedIndexChanged
 
+    End Sub
 
+    Private Sub cbxTipoPrestamo_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbxTipoPrestamo.SelectedValueChanged
+        'Desabilito el dtpFechaDevolucion
+        If Me.cbxTipoPrestamo.Text = "Local" Then
+            Me.dtpFechaDevolucion.Enabled = False
+        End If
 
-
+        'habilito el dtpFechaDevolución
+        If Me.cbxTipoPrestamo.Text = "Externo" Then
+            Me.dtpFechaDevolucion.Enabled = True
+        End If
+    End Sub
 End Class
