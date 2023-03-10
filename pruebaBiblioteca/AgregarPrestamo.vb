@@ -2,6 +2,8 @@
 Imports MySql.Data.MySqlClient
 
 Public Class AgregarPrestamo
+
+    Dim dt As New DataTable
     Private Sub Label1_Click(sender As Object, e As EventArgs)
 
     End Sub
@@ -157,7 +159,7 @@ Public Class AgregarPrestamo
         'Me.listBoxEjemplares.Items.Remove(Me.listBoxEjemplares.SelectedItem)
     End Sub
 
-    Private Sub Label2_Click(sender As Object, e As EventArgs) 
+    Private Sub Label2_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -437,5 +439,24 @@ Public Class AgregarPrestamo
         If Me.cbxTipoPrestamo.Text = "Externo" Then
             Me.dtpFechaDevolucion.Enabled = True
         End If
+    End Sub
+
+    Private Sub txtBuscarEjemplar_TextChanged_1(sender As Object, e As EventArgs) Handles txtBuscarEjemplar.TextChanged
+
+    End Sub
+
+    Public Sub busquedaDinamicaSocio(ByVal nombre As String, ByVal dgv As DataGridView)
+        Try
+            adaptador = New MySqlDataAdapter("SELECT * FROM socio WHERE nombre like '" & nombre + "%" & "'", GloconexionDB)
+            dt = New DataTable
+            adaptador.Fill(dt)
+            Me.dgvSocio.DataSource = dt
+        Catch ex As Exception
+            MessageBox.Show("Error con busqueda dinamica", ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub txtBuscarSocio_TextChanged(sender As Object, e As EventArgs) Handles txtBuscarSocio.TextChanged
+        busquedaDinamicaSocio(txtBuscarSocio.Text, dgvSocio)
     End Sub
 End Class
