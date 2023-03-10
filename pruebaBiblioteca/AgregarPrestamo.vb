@@ -87,7 +87,11 @@ Public Class AgregarPrestamo
                                 MsgBox("El socio tiene prestamos vencidos sin devolver")
                             Else
                                 If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
-                                    altaPrestamo()
+                                    If contarPrestamosActivos(GLO_CodSocioPrestamo) < 3 Then
+                                        altaPrestamo()
+                                    Else
+                                        MsgBox("El socio ya tiene 3 prestamos activos")
+                                    End If
                                 Else
                                     MsgBox("El ejemplar no se encuentra disponible")
                                 End If
@@ -387,6 +391,36 @@ Public Class AgregarPrestamo
             End If
         Catch ex As Exception
 
+        End Try
+    End Function
+
+    Public Function contarPrestamosActivos(cod_socio As Integer) As Integer
+        'Capturo la cantidad de prestamos activos
+        Dim Sql As String = "SELECT COUNT(cod_prestamo_socio) FROM prestamo_socio t1 
+                             WHERE NOT EXISTS (SELECT NULL FROM prestamo_finalizado t2 WHERE t2.cod_prestamo_socio = t1.cod_prestamo_socio)
+                             AND cod_socio = " & cod_socio & ""
+        Dim cantidad As Integer
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("COUNT(cod_prestamo_socio)"))
+                    cantidad = VARIABLE_QUE_CONTENDRA_EL_VALOR
+                    Return cantidad
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
         End Try
     End Function
 
