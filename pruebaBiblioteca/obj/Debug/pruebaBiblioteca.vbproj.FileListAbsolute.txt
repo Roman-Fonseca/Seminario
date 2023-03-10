@@ -598,3 +598,5 @@ C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.xml
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.pdb
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.Sanciones.resources
+C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.Parametros.resources
+C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.PlazoPrestamo.resources

@@ -79,18 +79,22 @@ Public Class AgregarPrestamo
                 End If
             Else
                 If Not moduloBiblioteca.primerPrestamoSocio(GLO_CodSocioPrestamo) Then
-                    If moduloBiblioteca.debeEjemplarAReponer(GLO_CodSocioPrestamo) Then
-                        MsgBox("El socio tiene ejemplares por reponer")
-                    Else
-                        If tienePrestamosVencidosSinDevolver(GLO_CodSocioPrestamo) Then
-                            MsgBox("El socio tiene prestamos vencidos sin devolver")
+                    If Not tieneSancionActiva(GLO_CodSocioPrestamo) Then
+                        If moduloBiblioteca.debeEjemplarAReponer(GLO_CodSocioPrestamo) Then
+                            MsgBox("El socio tiene ejemplares por reponer")
                         Else
-                            If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
-                                altaPrestamo()
+                            If tienePrestamosVencidosSinDevolver(GLO_CodSocioPrestamo) Then
+                                MsgBox("El socio tiene prestamos vencidos sin devolver")
                             Else
-                                MsgBox("El ejemplar no se encuentra disponible")
+                                If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
+                                    altaPrestamo()
+                                Else
+                                    MsgBox("El ejemplar no se encuentra disponible")
+                                End If
                             End If
                         End If
+                    Else
+                        MsgBox("El socio tiene sancion activa")
                     End If
                 Else
                     If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
@@ -307,5 +311,87 @@ Public Class AgregarPrestamo
             consulta = Nothing
         End Try
     End Function
+
+    Public Function tomarCodSancionEspera(cod_socio As Integer) As Integer
+        Dim Sql As String = "SELECT MAX(sancion_espera.cod_sancion_espera) FROM sancion_espera INNER JOIN prestamo_atrasado ON
+                            sancion_espera.cod_sancion_espera = prestamo_atrasado.cod_sancion_espera INNER JOIN prestamo_finalizado 
+                            ON prestamo_atrasado.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado INNER JOIN prestamo_socio 
+                            On prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio 
+                            INNER JOIN socio ON prestamo_socio.cod_socio = 27 LIMIT 1"
+        Dim cod_sancion_e As Integer
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Integer = Trim(Datos("MAX(sancion_espera.cod_sancion_espera)"))
+                    cod_sancion_e = VARIABLE_QUE_CONTENDRA_EL_VALOR
+                    MsgBox("Ultima sancion espera del socio: " & cod_sancion_e)
+                    Return cod_sancion_e
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
+
+
+    Public Function tomar_fecha_finalizacion(cod_socio As Integer) As Date
+        Dim cod_sancion_e As Integer = tomarCodSancionEspera(cod_socio)
+        Dim Sql As String = "SELECT fecha_finalizacion FROM sancion_espera WHERE cod_sancion_espera = " & cod_sancion_e & ""
+        Dim f_finalizacion As Date
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Date = Trim(Datos("fecha_finalizacion"))
+                    f_finalizacion = VARIABLE_QUE_CONTENDRA_EL_VALOR
+                    Return f_finalizacion
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
+
+    Public Function tieneSancionActiva(cod_socio As Integer) As Boolean
+        Dim fecha_finalizacion As Date = tomar_fecha_finalizacion(cod_socio)
+        MsgBox("La fecha de finalizacion es: " & fecha_finalizacion)
+
+        Try
+            If fecha_finalizacion > Today Then
+                MsgBox("Tiene sancion activa")
+                Return True
+            Else
+                MsgBox("No tiene sancion activa")
+                Return False
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Function
+
+
+
+
 
 End Class

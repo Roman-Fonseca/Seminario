@@ -123,4 +123,12 @@ Public Class Form1
     Private Sub SancionesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SancionesToolStripMenuItem.Click
         Sanciones.ShowDialog()
     End Sub
+
+    Private Sub VerParametrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerParametrosToolStripMenuItem.Click
+        Parametros.ShowDialog()
+    End Sub
+
+    Private Sub VerPlazosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerPlazosToolStripMenuItem.Click
+        PlazoPrestamo.ShowDialog()
+    End Sub
 End Class

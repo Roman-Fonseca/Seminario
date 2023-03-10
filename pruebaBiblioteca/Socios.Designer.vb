@@ -40,13 +40,13 @@ Partial Class Socios
         Me.listaSocios.Location = New System.Drawing.Point(221, 69)
         Me.listaSocios.Name = "listaSocios"
         Me.listaSocios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.listaSocios.Size = New System.Drawing.Size(777, 205)
+        Me.listaSocios.Size = New System.Drawing.Size(809, 205)
         Me.listaSocios.TabIndex = 0
         '
         'btnAgregarSocio
         '
         Me.btnAgregarSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnAgregarSocio.Location = New System.Drawing.Point(732, 299)
+        Me.btnAgregarSocio.Location = New System.Drawing.Point(762, 297)
         Me.btnAgregarSocio.Name = "btnAgregarSocio"
         Me.btnAgregarSocio.Size = New System.Drawing.Size(72, 45)
         Me.btnAgregarSocio.TabIndex = 1
@@ -56,7 +56,7 @@ Partial Class Socios
         'btnModificarSocio
         '
         Me.btnModificarSocio.BackColor = System.Drawing.Color.Yellow
-        Me.btnModificarSocio.Location = New System.Drawing.Point(831, 299)
+        Me.btnModificarSocio.Location = New System.Drawing.Point(861, 297)
         Me.btnModificarSocio.Name = "btnModificarSocio"
         Me.btnModificarSocio.Size = New System.Drawing.Size(72, 45)
         Me.btnModificarSocio.TabIndex = 2
@@ -66,7 +66,7 @@ Partial Class Socios
         'btnEliminarSocio
         '
         Me.btnEliminarSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnEliminarSocio.Location = New System.Drawing.Point(926, 299)
+        Me.btnEliminarSocio.Location = New System.Drawing.Point(956, 297)
         Me.btnEliminarSocio.Name = "btnEliminarSocio"
         Me.btnEliminarSocio.Size = New System.Drawing.Size(72, 45)
         Me.btnEliminarSocio.TabIndex = 3
@@ -86,15 +86,16 @@ Partial Class Socios
         'lblNombre
         '
         Me.lblNombre.AutoSize = True
+        Me.lblNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNombre.Location = New System.Drawing.Point(218, 41)
         Me.lblNombre.Name = "lblNombre"
-        Me.lblNombre.Size = New System.Drawing.Size(47, 13)
+        Me.lblNombre.Size = New System.Drawing.Size(69, 20)
         Me.lblNombre.TabIndex = 5
         Me.lblNombre.Text = "Nombre:"
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(271, 38)
+        Me.txtNombre.Location = New System.Drawing.Point(293, 43)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(176, 20)
         Me.txtNombre.TabIndex = 6
@@ -103,7 +104,7 @@ Partial Class Socios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1004, 357)
+        Me.ClientSize = New System.Drawing.Size(1042, 363)
         Me.Controls.Add(Me.txtNombre)
         Me.Controls.Add(Me.lblNombre)
         Me.Controls.Add(Me.PictureBox1)

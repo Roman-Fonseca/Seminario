@@ -1406,7 +1406,11 @@ Module moduloBiblioteca
         horaActual = TimeOfDay
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,fecha_devolucion_real,hora_devolucion_real,cod_socio from prestamo_socio where '" & dia_actual_string & "' > fecha_devolucion AND hora_devolucion < '" & horaActual & "' AND fecha_devolucion_real IS NOT NULL OR fecha_devolucion_real != '0000-00-00'"
+        Dim Consulta As String = "SELECT prestamo_atrasado.cod_prestamo_atrasado, prestamo_finalizado.cod_prestamo_finalizado, 
+                                    prestamo_socio.fecha_prestamo, prestamo_socio.fecha_devolucion, prestamo_finalizado.fecha_finalizacion_real, prestamo_socio.hora_devolucion,
+                                    prestamo_finalizado.hora_finalizacion_real FROM prestamo_atrasado INNER JOIN prestamo_finalizado 
+                                    ON prestamo_atrasado.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado INNER JOIN prestamo_socio 
+                                    ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio;"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
