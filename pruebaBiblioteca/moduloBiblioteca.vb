@@ -745,7 +745,7 @@ Module moduloBiblioteca
         Dim horaPrestamoStr As String
         horaPrestamoStr = horaPrestamo
 
-        Dim hora_devolucionString = AgregarPrestamo.txtHoraDevolucion.Text
+        Dim hora_devolucionString = AgregarPrestamo.dtpHoraDevolucion.Text
         'Dim hora_devolucion As DateTime = DateTime.ParseExact(hora_devolucionString, "hh/mm/ss", CultureInfo.CurrentCulture, DateTimeStyles.None)
 
 
@@ -905,7 +905,7 @@ Module moduloBiblioteca
             Try
                 AgregarPrestamo.cbxTipoPrestamo.Text = CStr(row("tipo_prestamo"))
                 AgregarPrestamo.dtpFechaDevolucion.Value = CStr(row("fecha_devolucion"))
-                AgregarPrestamo.txtHoraDevolucion.Text = row("hora_devolucion").ToString
+                AgregarPrestamo.dtpHoraDevolucion.Text = row("hora_devolucion").ToString
                 AgregarPrestamo.txtBuscarSocio.Text = CStr(row("cod_socio"))
                 Glodatareader.Close()
                 GloconexionDB.Close()
@@ -951,7 +951,7 @@ Module moduloBiblioteca
                 LOC_consulta = "update prestamo_socio set
                 tipo_prestamo = '" & AgregarPrestamo.cbxTipoPrestamo.Text & "', 
                 fecha_devolucion ='" & AgregarPrestamo.dtpFechaDevolucion.Value.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture) & "', 
-                hora_devolucion='" & AgregarPrestamo.txtHoraDevolucion.Text & "', 
+                hora_devolucion='" & AgregarPrestamo.dtpHoraDevolucion.Text & "', 
                 cod_socio= '" & 1 & "' where cod_prestamo_socio= " & cod_prestamo_modificar & ""
                 MsgBox(LOC_consulta)
                 Glocomando.CommandText = LOC_consulta
@@ -1005,7 +1005,7 @@ Module moduloBiblioteca
                 LOC_consulta = "update prestamo_socio set
                 tipo_prestamo = '" & AgregarPrestamo.cbxTipoPrestamo.Text & "', 
                 fecha_devolucion ='" & AgregarPrestamo.dtpFechaDevolucion.Value.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture) & "', 
-                hora_devolucion='" & AgregarPrestamo.txtHoraDevolucion.Text & "', 
+                hora_devolucion='" & AgregarPrestamo.dtpHoraDevolucion.Text & "', 
                 fecha_devolucion_real='" & fechaPrestamoString & "',
                 hora_devolucion_real='" & horaPrestamo & "',
                 cod_socio= '" & 1 & "' where cod_prestamo_socio= " & cod_prestamo_modificar & ""

@@ -25,7 +25,6 @@ Partial Class AgregarPrestamo
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AgregarPrestamo))
         Me.gbxDatosPrestramos = New System.Windows.Forms.GroupBox()
         Me.cbxTipoPrestamo = New System.Windows.Forms.ComboBox()
-        Me.txtHoraDevolucion = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dtpFechaDevolucion = New System.Windows.Forms.DateTimePicker()
         Me.lblHoraDevolucion = New System.Windows.Forms.Label()
@@ -46,6 +45,7 @@ Partial Class AgregarPrestamo
         Me.btnLimpiar = New System.Windows.Forms.Button()
         Me.btnFinalizarPrestamo = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.dtpHoraDevolucion = New System.Windows.Forms.DateTimePicker()
         Me.gbxDatosPrestramos.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvEjemplar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,8 +57,8 @@ Partial Class AgregarPrestamo
         'gbxDatosPrestramos
         '
         Me.gbxDatosPrestramos.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.gbxDatosPrestramos.Controls.Add(Me.dtpHoraDevolucion)
         Me.gbxDatosPrestramos.Controls.Add(Me.cbxTipoPrestamo)
-        Me.gbxDatosPrestramos.Controls.Add(Me.txtHoraDevolucion)
         Me.gbxDatosPrestramos.Controls.Add(Me.Label4)
         Me.gbxDatosPrestramos.Controls.Add(Me.dtpFechaDevolucion)
         Me.gbxDatosPrestramos.Controls.Add(Me.lblHoraDevolucion)
@@ -81,13 +81,6 @@ Partial Class AgregarPrestamo
         Me.cbxTipoPrestamo.Name = "cbxTipoPrestamo"
         Me.cbxTipoPrestamo.Size = New System.Drawing.Size(131, 24)
         Me.cbxTipoPrestamo.TabIndex = 38
-        '
-        'txtHoraDevolucion
-        '
-        Me.txtHoraDevolucion.Location = New System.Drawing.Point(135, 169)
-        Me.txtHoraDevolucion.Name = "txtHoraDevolucion"
-        Me.txtHoraDevolucion.Size = New System.Drawing.Size(131, 22)
-        Me.txtHoraDevolucion.TabIndex = 37
         '
         'Label4
         '
@@ -282,6 +275,15 @@ Partial Class AgregarPrestamo
         Me.PictureBox1.TabIndex = 27
         Me.PictureBox1.TabStop = False
         '
+        'dtpHoraDevolucion
+        '
+        Me.dtpHoraDevolucion.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpHoraDevolucion.Location = New System.Drawing.Point(135, 162)
+        Me.dtpHoraDevolucion.Name = "dtpHoraDevolucion"
+        Me.dtpHoraDevolucion.ShowUpDown = True
+        Me.dtpHoraDevolucion.Size = New System.Drawing.Size(131, 22)
+        Me.dtpHoraDevolucion.TabIndex = 39
+        '
         'AgregarPrestamo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -327,9 +329,9 @@ Partial Class AgregarPrestamo
     Friend WithEvents dgvSocio As DataGridView
     Friend WithEvents BotonAgregarPrestamo As Button
     Friend WithEvents btnCancelarPrestamo As Button
-    Friend WithEvents txtHoraDevolucion As TextBox
     Friend WithEvents btnLimpiar As Button
     Friend WithEvents cbxTipoPrestamo As ComboBox
     Friend WithEvents btnFinalizarPrestamo As Button
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents dtpHoraDevolucion As DateTimePicker
 End Class

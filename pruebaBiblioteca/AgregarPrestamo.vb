@@ -60,7 +60,6 @@ Public Class AgregarPrestamo
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
         Me.txtBuscarEjemplar.Clear()
         Me.txtBuscarSocio.Clear()
-        Me.txtHoraDevolucion.Clear()
         Me.cbxTipoPrestamo.ResetText()
     End Sub
 
