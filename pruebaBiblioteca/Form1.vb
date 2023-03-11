@@ -131,4 +131,16 @@ Public Class Form1
     Private Sub VerPlazosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerPlazosToolStripMenuItem.Click
         PlazoPrestamo.ShowDialog()
     End Sub
+
+    Private Sub VerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerToolStripMenuItem.Click
+        AgregarTiempoMembresia.ShowDialog()
+    End Sub
+
+    Private Sub TiempoDeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TiempoDeToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub VerTiempoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerTiempoToolStripMenuItem.Click
+        TiempoMembresia.ShowDialog()
+    End Sub
 End Class

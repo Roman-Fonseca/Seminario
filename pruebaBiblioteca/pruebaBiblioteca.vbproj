@@ -144,6 +144,12 @@
     <Compile Include="AgregarSocio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AgregarTiempoMembresia.Designer.vb">
+      <DependentUpon>AgregarTiempoMembresia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarTiempoMembresia.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AgregarTipoEjemplar.Designer.vb">
       <DependentUpon>AgregarTipoEjemplar.vb</DependentUpon>
     </Compile>
@@ -270,6 +276,12 @@
     <Compile Include="Socios.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="TiempoMembresia.Designer.vb">
+      <DependentUpon>TiempoMembresia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TiempoMembresia.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AgregarCategoria.resx">
@@ -295,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarSocio.resx">
       <DependentUpon>AgregarSocio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarTiempoMembresia.resx">
+      <DependentUpon>AgregarTiempoMembresia.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarTipoEjemplar.resx">
       <DependentUpon>AgregarTipoEjemplar.vb</DependentUpon>
@@ -351,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Socios.resx">
       <DependentUpon>Socios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TiempoMembresia.resx">
+      <DependentUpon>TiempoMembresia.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

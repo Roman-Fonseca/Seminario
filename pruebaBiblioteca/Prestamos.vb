@@ -84,7 +84,7 @@ Public Class Prestamos
         altaPrestamoFinalizado(cod_prestamo_socio, fecha_actual, hora_actual)
         If MsgBox("¿El libro fue devuelto?", MsgBoxStyle.Information + vbYesNo) = vbYes Then
             If MsgBox("¿En buen estado?", MsgBoxStyle.Information + vbYesNo) = vbYes Then
-                MsgBox("El prestamo fue devuelto en buen estado")
+                MsgBox("El préstamo fue devuelto en buen estado")
             Else
                 If MsgBox("¿Desea registrar ejemplar a reponer?", MsgBoxStyle.Information + vbYesNo) = vbYes Then
                     registrarEjemplarAReponer()
@@ -224,7 +224,7 @@ Public Class Prestamos
                 values('" & cod_prestamo_finalizado & "','No')"
                 MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
-                MsgBox("Se registro ejemplar a reponer correctamente")
+                MsgBox("Se registró ejemplar a reponer correctamente")
             End If
         Catch ex As Exception
             MsgBox(ex.Message)

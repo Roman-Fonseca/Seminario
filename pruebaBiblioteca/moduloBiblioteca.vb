@@ -670,7 +670,11 @@ Module moduloBiblioteca
     End Sub
 
     Public Sub llenarGrillaEjemplares()
-        Dim Consulta As String = "select * from ejemplar"
+        Dim Consulta As String = "SELECT ejemplar.cod_ejemplar, ejemplar.numero_ejemplar, ejemplar.estado, libro.titulo , tipo_ejemplar.descripcion,
+                                  plazo_prestamo.descripcion, plazo_prestamo.dias_plazo FROM ejemplar INNER JOIN libro 
+                                  ON ejemplar.cod_libro = libro.cod_libro INNER JOIN tipo_ejemplar 
+                                  ON ejemplar.cod_tipo_ejemplar = tipo_ejemplar.cod_tipo_ejemplar 
+                                  INNER JOIN plazo_prestamo ON ejemplar.cod_plazo_prestamo = plazo_prestamo.cod_plazo_prestamo;"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta

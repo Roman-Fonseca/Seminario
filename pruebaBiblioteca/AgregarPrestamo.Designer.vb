@@ -138,14 +138,14 @@ Partial Class AgregarPrestamo
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(623, 29)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(413, 211)
+        Me.GroupBox1.Size = New System.Drawing.Size(547, 211)
         Me.GroupBox1.TabIndex = 30
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Seleccionar ejemplar"
         '
         'txtBuscarEjemplar
         '
-        Me.txtBuscarEjemplar.Location = New System.Drawing.Point(130, 32)
+        Me.txtBuscarEjemplar.Location = New System.Drawing.Point(130, 24)
         Me.txtBuscarEjemplar.Name = "txtBuscarEjemplar"
         Me.txtBuscarEjemplar.Size = New System.Drawing.Size(131, 22)
         Me.txtBuscarEjemplar.TabIndex = 21
@@ -154,7 +154,7 @@ Partial Class AgregarPrestamo
         '
         Me.lblBuscarEjemplar.AutoSize = True
         Me.lblBuscarEjemplar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBuscarEjemplar.Location = New System.Drawing.Point(23, 34)
+        Me.lblBuscarEjemplar.Location = New System.Drawing.Point(23, 29)
         Me.lblBuscarEjemplar.Name = "lblBuscarEjemplar"
         Me.lblBuscarEjemplar.Size = New System.Drawing.Size(101, 13)
         Me.lblBuscarEjemplar.TabIndex = 20
@@ -163,17 +163,17 @@ Partial Class AgregarPrestamo
         'dgvEjemplar
         '
         Me.dgvEjemplar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvEjemplar.Location = New System.Drawing.Point(26, 60)
+        Me.dgvEjemplar.Location = New System.Drawing.Point(26, 52)
         Me.dgvEjemplar.Name = "dgvEjemplar"
         Me.dgvEjemplar.ReadOnly = True
         Me.dgvEjemplar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvEjemplar.Size = New System.Drawing.Size(372, 119)
+        Me.dgvEjemplar.Size = New System.Drawing.Size(502, 145)
         Me.dgvEjemplar.TabIndex = 19
         '
         'lblLibro
         '
         Me.lblLibro.AutoSize = True
-        Me.lblLibro.Location = New System.Drawing.Point(79, 44)
+        Me.lblLibro.Location = New System.Drawing.Point(79, 39)
         Me.lblLibro.Name = "lblLibro"
         Me.lblLibro.Size = New System.Drawing.Size(0, 16)
         Me.lblLibro.TabIndex = 18
@@ -187,14 +187,14 @@ Partial Class AgregarPrestamo
         Me.gpbAgregarSocio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gpbAgregarSocio.Location = New System.Drawing.Point(292, 246)
         Me.gpbAgregarSocio.Name = "gpbAgregarSocio"
-        Me.gpbAgregarSocio.Size = New System.Drawing.Size(744, 188)
+        Me.gpbAgregarSocio.Size = New System.Drawing.Size(878, 213)
         Me.gpbAgregarSocio.TabIndex = 31
         Me.gpbAgregarSocio.TabStop = False
         Me.gpbAgregarSocio.Text = "Seleccionar Socio"
         '
         'btnAgregarPrestamo
         '
-        Me.btnAgregarPrestamo.Location = New System.Drawing.Point(231, 190)
+        Me.btnAgregarPrestamo.Location = New System.Drawing.Point(282, 21)
         Me.btnAgregarPrestamo.Name = "btnAgregarPrestamo"
         Me.btnAgregarPrestamo.Size = New System.Drawing.Size(75, 23)
         Me.btnAgregarPrestamo.TabIndex = 26
@@ -224,13 +224,13 @@ Partial Class AgregarPrestamo
         Me.dgvSocio.Location = New System.Drawing.Point(26, 47)
         Me.dgvSocio.Name = "dgvSocio"
         Me.dgvSocio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSocio.Size = New System.Drawing.Size(703, 123)
+        Me.dgvSocio.Size = New System.Drawing.Size(833, 160)
         Me.dgvSocio.TabIndex = 23
         '
         'BotonAgregarPrestamo
         '
         Me.BotonAgregarPrestamo.BackColor = System.Drawing.Color.LawnGreen
-        Me.BotonAgregarPrestamo.Location = New System.Drawing.Point(961, 440)
+        Me.BotonAgregarPrestamo.Location = New System.Drawing.Point(1095, 486)
         Me.BotonAgregarPrestamo.Name = "BotonAgregarPrestamo"
         Me.BotonAgregarPrestamo.Size = New System.Drawing.Size(75, 40)
         Me.BotonAgregarPrestamo.TabIndex = 33
@@ -239,7 +239,7 @@ Partial Class AgregarPrestamo
         '
         'btnCancelarPrestamo
         '
-        Me.btnCancelarPrestamo.Location = New System.Drawing.Point(787, 440)
+        Me.btnCancelarPrestamo.Location = New System.Drawing.Point(921, 486)
         Me.btnCancelarPrestamo.Name = "btnCancelarPrestamo"
         Me.btnCancelarPrestamo.Size = New System.Drawing.Size(75, 40)
         Me.btnCancelarPrestamo.TabIndex = 35
@@ -248,7 +248,7 @@ Partial Class AgregarPrestamo
         '
         'btnLimpiar
         '
-        Me.btnLimpiar.Location = New System.Drawing.Point(877, 440)
+        Me.btnLimpiar.Location = New System.Drawing.Point(1011, 486)
         Me.btnLimpiar.Name = "btnLimpiar"
         Me.btnLimpiar.Size = New System.Drawing.Size(75, 40)
         Me.btnLimpiar.TabIndex = 34
@@ -258,7 +258,7 @@ Partial Class AgregarPrestamo
         'btnFinalizarPrestamo
         '
         Me.btnFinalizarPrestamo.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btnFinalizarPrestamo.Location = New System.Drawing.Point(623, 440)
+        Me.btnFinalizarPrestamo.Location = New System.Drawing.Point(757, 486)
         Me.btnFinalizarPrestamo.Name = "btnFinalizarPrestamo"
         Me.btnFinalizarPrestamo.Size = New System.Drawing.Size(147, 40)
         Me.btnFinalizarPrestamo.TabIndex = 37
@@ -288,7 +288,7 @@ Partial Class AgregarPrestamo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1048, 488)
+        Me.ClientSize = New System.Drawing.Size(1182, 538)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.btnFinalizarPrestamo)
         Me.Controls.Add(Me.btnCancelarPrestamo)

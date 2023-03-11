@@ -56,6 +56,9 @@ Partial Class Form1
         Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SociosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.TiempoDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VerTiempoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -68,7 +71,7 @@ Partial Class Form1
         '
         Me.MenuStrip1.AutoSize = False
         Me.MenuStrip1.BackColor = System.Drawing.Color.Bisque
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SociosToolStripMenuItem, Me.PrestamosToolStripMenuItem, Me.EjemplaresToolStripMenuItem, Me.SancionesToolStripMenuItem, Me.ParametrosToolStripMenuItem, Me.PlazosToolStripMenuItem, Me.LibrosToolStripMenuItem, Me.GenerarToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SociosToolStripMenuItem, Me.PrestamosToolStripMenuItem, Me.EjemplaresToolStripMenuItem, Me.SancionesToolStripMenuItem, Me.ParametrosToolStripMenuItem, Me.PlazosToolStripMenuItem, Me.LibrosToolStripMenuItem, Me.GenerarToolStripMenuItem, Me.TiempoDeToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1378, 71)
@@ -265,7 +268,7 @@ Partial Class Form1
         '
         Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SociosToolStripMenuItem1})
         Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
-        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(147, 30)
+        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
         Me.InformeToolStripMenuItem.Text = "Informe"
         '
         'SociosToolStripMenuItem1
@@ -284,6 +287,26 @@ Partial Class Form1
         Me.Label1.Size = New System.Drawing.Size(193, 39)
         Me.Label1.TabIndex = 16
         Me.Label1.Text = "01-01-2023"
+        '
+        'TiempoDeToolStripMenuItem
+        '
+        Me.TiempoDeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerToolStripMenuItem, Me.VerTiempoToolStripMenuItem})
+        Me.TiempoDeToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TiempoDeToolStripMenuItem.Name = "TiempoDeToolStripMenuItem"
+        Me.TiempoDeToolStripMenuItem.Size = New System.Drawing.Size(177, 67)
+        Me.TiempoDeToolStripMenuItem.Text = "Tiempo de membresia"
+        '
+        'VerToolStripMenuItem
+        '
+        Me.VerToolStripMenuItem.Name = "VerToolStripMenuItem"
+        Me.VerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VerToolStripMenuItem.Text = "Agregar tiempo"
+        '
+        'VerTiempoToolStripMenuItem
+        '
+        Me.VerTiempoToolStripMenuItem.Name = "VerTiempoToolStripMenuItem"
+        Me.VerTiempoToolStripMenuItem.Size = New System.Drawing.Size(189, 26)
+        Me.VerTiempoToolStripMenuItem.Text = "Ver tiempo"
         '
         'Form1
         '
@@ -336,4 +359,7 @@ Partial Class Form1
     Friend WithEvents GenerarToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents InformeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SociosToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents TiempoDeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VerTiempoToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -600,3 +600,5 @@ C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.Sanciones.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.Parametros.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.PlazoPrestamo.resources
+C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.AgregarTiempoMembresia.resources
+C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.TiempoMembresia.resources
