@@ -57,7 +57,8 @@ Module moduloBiblioteca
     End Function
 
     Public Sub mostrarSocios()
-        Dim Consulta As String = "select cod_socio,nombre,apellido,dni,fecha_nacimiento,telefono,direccion,contador_prestamo from socio"
+        Dim Consulta As String = "SELECT socio.cod_socio,socio.nombre,socio.apellido,socio.dni,socio.fecha_nacimiento,socio.telefono,socio.direccion,socio.contador_prestamo,
+        membresia.fecha_registro, membresia.fecha_vencimiento, membresia.cod_membresia FROM membresia JOIN socio ON socio.cod_socio = membresia.cod_socio;"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta

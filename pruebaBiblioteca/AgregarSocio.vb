@@ -23,10 +23,39 @@ Public Class AgregarSocio
         GLO_CambiosSocios = 0
 
         If Me.Text = "Modificar Socio" Then
-            moduloBiblioteca.GuardarSocioModificado()
-            Me.Close()
-            moduloBiblioteca.mostrarSocios()
-
+            If txtNombre.Text <> "" Then
+                If txtApellido.Text <> "" Then
+                    If txtDni.Text <> "" Then
+                        If txtTelefono.Text <> "" Then
+                            If txtDireccion.Text <> "" Then
+                                moduloBiblioteca.GuardarSocioModificado()
+                                Me.Close()
+                                moduloBiblioteca.mostrarSocios()
+                            Else
+                                txtDireccion.Focus()
+                                MsgBox("Debe cargar dirección")
+                                txtDireccion.BackColor = Color.Red
+                            End If
+                        Else
+                            txtTelefono.Focus()
+                            MsgBox("Debe cargar telefono")
+                            txtTelefono.BackColor = Color.Red
+                        End If
+                    Else
+                        txtDni.Focus()
+                        MsgBox("Debe cargar Dni")
+                        txtDni.BackColor = Color.Red
+                    End If
+                Else
+                    txtApellido.Focus()
+                    MsgBox("Debe cargar apellido")
+                    txtApellido.BackColor = Color.Red
+                End If
+            Else
+                txtNombre.Focus()
+                MsgBox("Debe cargar un nombre")
+                txtNombre.BackColor = Color.Red
+            End If
         ElseIf Me.Text = "Agregar Socio" Then
             If txtNombre.Text <> "" Then
                 If txtApellido.Text <> "" Then
