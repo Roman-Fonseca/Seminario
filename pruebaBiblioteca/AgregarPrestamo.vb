@@ -3,6 +3,8 @@ Imports MySql.Data.MySqlClient
 
 Public Class AgregarPrestamo
 
+    Public DIAS_PLAZO_EJEMPLAR As Integer
+
     Dim dt As New DataTable
     Private Sub Label1_Click(sender As Object, e As EventArgs)
 
@@ -15,6 +17,7 @@ Public Class AgregarPrestamo
     Private Sub AgregarPrestamo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'moduloBiblioteca.CargarComboPlazoPrestamo()
         'moduloBiblioteca.CargarComboSocioPrestamo()
+        Me.dtpFechaDevolucion.Enabled = False
         moduloBiblioteca.llenarGrillaEjemplares()
         moduloBiblioteca.llenarGrillaSocios(dgvSocio)
     End Sub
@@ -458,5 +461,37 @@ Public Class AgregarPrestamo
 
     Private Sub txtBuscarSocio_TextChanged(sender As Object, e As EventArgs) Handles txtBuscarSocio.TextChanged
         busquedaDinamicaSocio(txtBuscarSocio.Text, dgvSocio)
+    End Sub
+
+    Private Sub cbxTipoPrestamo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbxTipoPrestamo.KeyPress
+
+    End Sub
+
+    Private Sub dgvEjemplar_LostFocus(sender As Object, e As EventArgs) Handles dgvEjemplar.LostFocus
+
+    End Sub
+
+    Public Function tomarDiasPlazo(cod_ejemplar As Integer) As Integer
+
+    End Function
+
+    Private Sub dtpFechaDevolucion_ValueChanged(sender As Object, e As EventArgs) Handles dtpFechaDevolucion.ValueChanged
+
+    End Sub
+
+    Private Sub dtpFechaDevolucion_Click(sender As Object, e As EventArgs) Handles dtpFechaDevolucion.Click
+
+    End Sub
+
+    Private Sub dgvEjemplar_MouseClick(sender As Object, e As MouseEventArgs) Handles dgvEjemplar.MouseClick
+        'Tomo la cantidad de dias que se puede prestar el libro
+        Me.DIAS_PLAZO_EJEMPLAR = Me.dgvEjemplar.SelectedRows.Item(0).Cells(6).Value
+        'MsgBox(DIAS_PLAZO_EJEMPLAR)
+        dtpFechaDevolucion.MaxDate = DateTime.Now.Date.AddDays(DIAS_PLAZO_EJEMPLAR)
+        If Me.cbxTipoPrestamo.Text = "Externo" Then
+            dtpFechaDevolucion.Enabled = True
+        End If
+
+
     End Sub
 End Class

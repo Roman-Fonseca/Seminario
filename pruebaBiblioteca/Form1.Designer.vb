@@ -55,10 +55,11 @@ Partial Class Form1
         Me.GenerarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SociosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.TiempoDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerTiempoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PrestamosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -266,7 +267,7 @@ Partial Class Form1
         '
         'InformeToolStripMenuItem
         '
-        Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SociosToolStripMenuItem1})
+        Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SociosToolStripMenuItem1, Me.PrestamosToolStripMenuItem1})
         Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
         Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
         Me.InformeToolStripMenuItem.Text = "Informe"
@@ -274,19 +275,8 @@ Partial Class Form1
         'SociosToolStripMenuItem1
         '
         Me.SociosToolStripMenuItem1.Name = "SociosToolStripMenuItem1"
-        Me.SociosToolStripMenuItem1.Size = New System.Drawing.Size(136, 30)
+        Me.SociosToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
         Me.SociosToolStripMenuItem1.Text = "Socios"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Bisque
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(1221, 20)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(193, 39)
-        Me.Label1.TabIndex = 16
-        Me.Label1.Text = "01-01-2023"
         '
         'TiempoDeToolStripMenuItem
         '
@@ -299,7 +289,7 @@ Partial Class Form1
         'VerToolStripMenuItem
         '
         Me.VerToolStripMenuItem.Name = "VerToolStripMenuItem"
-        Me.VerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.VerToolStripMenuItem.Size = New System.Drawing.Size(189, 26)
         Me.VerToolStripMenuItem.Text = "Agregar tiempo"
         '
         'VerTiempoToolStripMenuItem
@@ -307,6 +297,23 @@ Partial Class Form1
         Me.VerTiempoToolStripMenuItem.Name = "VerTiempoToolStripMenuItem"
         Me.VerTiempoToolStripMenuItem.Size = New System.Drawing.Size(189, 26)
         Me.VerTiempoToolStripMenuItem.Text = "Ver tiempo"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Bisque
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(1221, 20)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(193, 39)
+        Me.Label1.TabIndex = 16
+        Me.Label1.Text = "01-01-2023"
+        '
+        'PrestamosToolStripMenuItem1
+        '
+        Me.PrestamosToolStripMenuItem1.Name = "PrestamosToolStripMenuItem1"
+        Me.PrestamosToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
+        Me.PrestamosToolStripMenuItem1.Text = "Prestamos"
         '
         'Form1
         '
@@ -362,4 +369,5 @@ Partial Class Form1
     Friend WithEvents TiempoDeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents VerTiempoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PrestamosToolStripMenuItem1 As ToolStripMenuItem
 End Class

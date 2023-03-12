@@ -224,7 +224,9 @@ Module moduloBiblioteca
         Dim fecha_actual As String = Today.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
         'Tomo la hora actual del sistema
         Dim hora_actual As String = TimeOfDay
-        Dim fecha_vencimiento As Date = DateAdd("d", 30, Today)
+        'Tomo la cantidad de dias a agregar
+        Dim dias_a_agregar As Integer = AgregarSocio.tomarCantidadDias()
+        Dim fecha_vencimiento As Date = DateAdd("d", dias_a_agregar, Today)
         Dim fecha_vencimiento_STR As String = fecha_vencimiento.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
         MsgBox("Fecha vencimiento de tipo date: " & fecha_vencimiento)
         MsgBox("Fecha vencimiento de tipo string: " & fecha_vencimiento_STR)
@@ -242,6 +244,7 @@ Module moduloBiblioteca
         End Try
 
     End Sub
+
 
 
     Public Function altaUbicacion() As Boolean

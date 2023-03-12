@@ -24,6 +24,7 @@ Partial Class AgregarPrestamo
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AgregarPrestamo))
         Me.gbxDatosPrestramos = New System.Windows.Forms.GroupBox()
+        Me.dtpHoraDevolucion = New System.Windows.Forms.DateTimePicker()
         Me.cbxTipoPrestamo = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dtpFechaDevolucion = New System.Windows.Forms.DateTimePicker()
@@ -45,7 +46,6 @@ Partial Class AgregarPrestamo
         Me.btnLimpiar = New System.Windows.Forms.Button()
         Me.btnFinalizarPrestamo = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.dtpHoraDevolucion = New System.Windows.Forms.DateTimePicker()
         Me.gbxDatosPrestramos.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvEjemplar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,8 +73,18 @@ Partial Class AgregarPrestamo
         Me.gbxDatosPrestramos.TabStop = False
         Me.gbxDatosPrestramos.Text = "Datos Prestamo"
         '
+        'dtpHoraDevolucion
+        '
+        Me.dtpHoraDevolucion.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpHoraDevolucion.Location = New System.Drawing.Point(135, 162)
+        Me.dtpHoraDevolucion.Name = "dtpHoraDevolucion"
+        Me.dtpHoraDevolucion.ShowUpDown = True
+        Me.dtpHoraDevolucion.Size = New System.Drawing.Size(131, 22)
+        Me.dtpHoraDevolucion.TabIndex = 39
+        '
         'cbxTipoPrestamo
         '
+        Me.cbxTipoPrestamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbxTipoPrestamo.FormattingEnabled = True
         Me.cbxTipoPrestamo.Items.AddRange(New Object() {"Local", "Externo"})
         Me.cbxTipoPrestamo.Location = New System.Drawing.Point(135, 52)
@@ -164,6 +174,7 @@ Partial Class AgregarPrestamo
         '
         Me.dgvEjemplar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvEjemplar.Location = New System.Drawing.Point(26, 52)
+        Me.dgvEjemplar.MultiSelect = False
         Me.dgvEjemplar.Name = "dgvEjemplar"
         Me.dgvEjemplar.ReadOnly = True
         Me.dgvEjemplar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -222,6 +233,7 @@ Partial Class AgregarPrestamo
         '
         Me.dgvSocio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSocio.Location = New System.Drawing.Point(26, 47)
+        Me.dgvSocio.MultiSelect = False
         Me.dgvSocio.Name = "dgvSocio"
         Me.dgvSocio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvSocio.Size = New System.Drawing.Size(833, 160)
@@ -274,15 +286,6 @@ Partial Class AgregarPrestamo
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 27
         Me.PictureBox1.TabStop = False
-        '
-        'dtpHoraDevolucion
-        '
-        Me.dtpHoraDevolucion.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpHoraDevolucion.Location = New System.Drawing.Point(135, 162)
-        Me.dtpHoraDevolucion.Name = "dtpHoraDevolucion"
-        Me.dtpHoraDevolucion.ShowUpDown = True
-        Me.dtpHoraDevolucion.Size = New System.Drawing.Size(131, 22)
-        Me.dtpHoraDevolucion.TabIndex = 39
         '
         'AgregarPrestamo
         '

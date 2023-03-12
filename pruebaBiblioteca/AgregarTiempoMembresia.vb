@@ -11,6 +11,7 @@ Public Class AgregarTiempoMembresia
 
     Private Sub TextBox2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtDias.KeyPress
         'Permito solamente números en el textbox
+        txtDias.BackColor = Color.White
         If Char.IsDigit(e.KeyChar) Then
             e.Handled = False
         ElseIf Char.IsControl(e.KeyChar) Then
@@ -30,6 +31,7 @@ Public Class AgregarTiempoMembresia
 
     Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtDescripcion.KeyPress
         'Permito solamente letras en el textbox
+        txtDescripcion.BackColor = Color.White
         If Char.IsDigit(e.KeyChar) Then
             e.Handled = True
             MsgBox("Solo se puede ingresar valores de tipo texto", MsgBoxStyle.Exclamation, "Ingreso de Texto")
@@ -80,9 +82,11 @@ Public Class AgregarTiempoMembresia
             ElseIf txtDescripcion.Text = "" Then
                 txtDescripcion.Focus()
                 MsgBox("No puede dejar el campo descripción vacío")
+                txtDescripcion.BackColor = Color.Red
             Else
                 txtDias.Focus()
                 MsgBox("Debe cargar la cantidad de días")
+                txtDias.BackColor = Color.Red
             End If
         Else
             If txtDescripcion.Text <> "" And txtDias.Text <> "" Then
@@ -93,9 +97,11 @@ Public Class AgregarTiempoMembresia
                 Me.Close()
             ElseIf txtDescripcion.Text = "" Then
                 txtDescripcion.Focus()
+                txtDescripcion.BackColor = Color.Red
                 MsgBox("No puede dejar el campo descripción vacío")
             Else
                 txtDias.Focus()
+                txtDias.BackColor = Color.Red
                 MsgBox("Debe cargar la cantidad de días")
             End If
         End If

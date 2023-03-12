@@ -30,6 +30,7 @@ Partial Class Socios
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblNombre = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
+        Me.btnRenovarMembresia = New System.Windows.Forms.Button()
         CType(Me.listaSocios, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -100,11 +101,22 @@ Partial Class Socios
         Me.txtNombre.Size = New System.Drawing.Size(176, 20)
         Me.txtNombre.TabIndex = 6
         '
+        'btnRenovarMembresia
+        '
+        Me.btnRenovarMembresia.BackColor = System.Drawing.Color.Aquamarine
+        Me.btnRenovarMembresia.Location = New System.Drawing.Point(567, 297)
+        Me.btnRenovarMembresia.Name = "btnRenovarMembresia"
+        Me.btnRenovarMembresia.Size = New System.Drawing.Size(170, 45)
+        Me.btnRenovarMembresia.TabIndex = 7
+        Me.btnRenovarMembresia.Text = "Renovar Membresia"
+        Me.btnRenovarMembresia.UseVisualStyleBackColor = False
+        '
         'Socios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1042, 363)
+        Me.Controls.Add(Me.btnRenovarMembresia)
         Me.Controls.Add(Me.txtNombre)
         Me.Controls.Add(Me.lblNombre)
         Me.Controls.Add(Me.PictureBox1)
@@ -129,4 +141,5 @@ Partial Class Socios
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblNombre As Label
     Friend WithEvents txtNombre As TextBox
+    Friend WithEvents btnRenovarMembresia As Button
 End Class

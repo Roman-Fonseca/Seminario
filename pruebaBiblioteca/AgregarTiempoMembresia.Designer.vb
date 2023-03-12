@@ -87,6 +87,7 @@ Partial Class AgregarTiempoMembresia
         'txtDescripcion
         '
         Me.txtDescripcion.Location = New System.Drawing.Point(98, 43)
+        Me.txtDescripcion.MaxLength = 25
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(188, 20)
         Me.txtDescripcion.TabIndex = 1

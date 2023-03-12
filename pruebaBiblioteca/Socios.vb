@@ -51,4 +51,8 @@ Public Class Socios
         End Try
     End Sub
 
+    Private Sub btnRenovarMembresia_Click(sender As Object, e As EventArgs) Handles btnRenovarMembresia.Click
+        MsgBox("¿Está seguro que desea renovar membresia del socio 'Mario Jose Martines 40887755?'", MsgBoxStyle.YesNo)
+        MsgBox("Membresía renovada corectamente")
+    End Sub
 End Class

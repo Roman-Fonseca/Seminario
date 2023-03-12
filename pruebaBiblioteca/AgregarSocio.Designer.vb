@@ -272,11 +272,11 @@ Partial Class AgregarSocio
     Friend WithEvents btnLimpiarCampos As Button
     Friend WithEvents btnCancelar As Button
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents txtEstado As TextBox
     Friend WithEvents lblEstadoSocio As Label
     Friend WithEvents lblFechaNacimiento As Label
     Friend WithEvents txtDni As TextBox
     Friend WithEvents lblDni As Label
     Friend WithEvents dtpFechaNacimiento As DateTimePicker
     Friend WithEvents imgSocio As PictureBox
+    Friend WithEvents txtEstado As TextBox
 End Class

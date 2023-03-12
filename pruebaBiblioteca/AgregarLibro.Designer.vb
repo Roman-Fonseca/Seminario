@@ -326,7 +326,7 @@ Partial Class AgregarLibro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.SystemColors.ScrollBar
+        Me.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.ClientSize = New System.Drawing.Size(825, 456)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.txtCod_libro)
