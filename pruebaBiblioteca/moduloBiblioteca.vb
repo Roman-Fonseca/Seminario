@@ -436,7 +436,7 @@ Module moduloBiblioteca
             AgregarEjemplar.cbxTipoEjemplar.DisplayMember = "descripcion"
             AgregarEjemplar.cbxTipoEjemplar.ValueMember = "cod_tipo_ejemplar"
             AgregarEjemplar.cbxTipoEjemplar.SelectedIndex = -1
-            AgregarEjemplar.cbxTipoEjemplar.Text = "Selecione un tipo de ejemplar"
+            AgregarEjemplar.cbxTipoEjemplar.Text = ""
 
             Glodatareader.Close()
             GloconexionDB.Close()

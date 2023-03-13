@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports Microsoft.ReportingServices.RdlExpressions.ExpressionHostObjectModel
+Imports MySql.Data.MySqlClient
 
 Public Class AgregarEjemplar
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles lblTipoEjemplar.Click
@@ -17,6 +18,7 @@ Public Class AgregarEjemplar
         moduloBiblioteca.CargarComboTipoEjemplar()
         moduloBiblioteca.llenarGrillaLibros(dgvLibros)
         moduloBiblioteca.CargarComboPlazoPrestamo()
+        txtLibro.Enabled = False
     End Sub
 
     Private Sub btnSeleccionarLibro_Click(sender As Object, e As EventArgs)
@@ -38,6 +40,7 @@ Public Class AgregarEjemplar
     Private Sub btnSeleccionarLibro_Click_1(sender As Object, e As EventArgs) Handles btnSeleccionarLibro.Click
         GLO_CodLibro = Me.dgvLibros.SelectedRows.Item(0).Cells(0).Value
         GLO_TituloLibro = Me.dgvLibros.SelectedRows.Item(0).Cells(2).Value
+        txtLibro.BackColor = Color.White
 
         If IsDBNull(buscarUltimoNumeroEjemplar(GLO_CodLibro)) Then
             Me.txtNumeroEjemplar.Text = 1
@@ -47,11 +50,32 @@ Public Class AgregarEjemplar
 
         Me.txtLibro.Text = GLO_TituloLibro.ToString
 
-
     End Sub
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
-        moduloBiblioteca.altaEjemplar()
+
+        If Me.Text = "Agregar Ejemplar" Then
+            If txtLibro.Text <> "" Then
+                If cbxTipoEjemplar.Text <> "" Then
+                    If cbxPlazoPrestamo.Text <> "" Then
+                        moduloBiblioteca.altaEjemplar()
+                    Else
+                        MsgBox("Debe seleccionar un plazo prestamo para el libro", MsgBoxStyle.Information, "Agregar ejemplar")
+                        Me.cbxPlazoPrestamo.Focus()
+                        Me.cbxPlazoPrestamo.BackColor = Color.Red
+                    End If
+                Else
+                    MsgBox("Debe seleccionar el tipo de ejemplar del libro", MsgBoxStyle.Information, "Agregar ejemplar")
+                    Me.cbxTipoEjemplar.Focus()
+                    Me.cbxTipoEjemplar.BackColor = Color.Red
+                End If
+            Else
+                MsgBox("Debe seleccioanr un libro de la grilla de la derecha", MsgBoxStyle.Information, "Agregar ejemplar")
+                txtLibro.Focus()
+                txtLibro.BackColor = Color.Red
+            End If
+        End If
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -99,5 +123,49 @@ Public Class AgregarEjemplar
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         AgregarPlazoPrestamo.Show()
+    End Sub
+
+    Private Sub txtLibro_TextChanged(sender As Object, e As EventArgs) Handles txtLibro.TextChanged
+
+    End Sub
+
+    Private Sub txtLibro_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtLibro.KeyPress
+        Me.BackColor = Color.White
+    End Sub
+
+    Private Sub cbxTipoEjemplar_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxTipoEjemplar.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbxTipoEjemplar_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbxTipoEjemplar.SelectedValueChanged
+        Me.BackColor = Color.White
+    End Sub
+
+    Private Sub cbxEstado_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbxEstado.SelectedValueChanged
+        Me.BackColor = Color.White
+    End Sub
+
+    Private Sub cbxPlazoPrestamo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxPlazoPrestamo.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbxPlazoPrestamo_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbxPlazoPrestamo.SelectedValueChanged
+        Me.BackColor = Color.White
+    End Sub
+
+    Private Sub cbxTipoEjemplar_Click(sender As Object, e As EventArgs) Handles cbxTipoEjemplar.Click
+        Me.BackColor = Color.White
+    End Sub
+
+    Private Sub cbxTipoEjemplar_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cbxTipoEjemplar.SelectionChangeCommitted
+        Me.BackColor = Color.White
+    End Sub
+
+    Private Sub cbxTipoEjemplar_TextChanged(sender As Object, e As EventArgs) Handles cbxTipoEjemplar.TextChanged
+        Me.BackColor = Color.White
+    End Sub
+
+    Private Sub cbxTipoEjemplar_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxTipoEjemplar.MouseClick
+        cbxTipoEjemplar.BackColor = Color.White
     End Sub
 End Class
