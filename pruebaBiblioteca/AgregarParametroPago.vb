@@ -1,10 +1,6 @@
 ﻿Public Class AgregarParametroPago
 
-    Private Sub limpiarCampos()
-        Me.txtMinimo.Clear()
-        Me.txtMaximo.Clear()
-        Me.txtPagoCorrespondiente.Clear()
-    End Sub
+
 
     Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles txtMinimo.TextChanged
 
@@ -15,26 +11,47 @@
     End Sub
 
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
-        Me.limpiarCampos()
+
         Me.Close()
     End Sub
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
-
-        If Me.txtMinimo.Text <> "" Then
-            If Me.txtMaximo.Text <> "" Then
-                If Me.txtPagoCorrespondiente.Text <> "" Then
-                    Me.cargarParametroPago()
-                    Me.Close()
+        If Me.Text = "Agregar parametro pago" Then
+            If Me.txtMinimo.Text <> "" Then
+                If Me.txtMaximo.Text <> "" Then
+                    If Me.txtPagoCorrespondiente.Text <> "" Then
+                        Me.cargarParametroPago()
+                        Parametros.mostrarParametroPago()
+                        Me.limpiarCampos()
+                        Me.Close()
+                    Else
+                        MsgBox("Debe cargar el pago correspondiente", MsgBoxStyle.Information)
+                    End If
                 Else
-                    MsgBox("Debe cargar el pago correspondiente", MsgBoxStyle.Information)
+                    MsgBox("Debe cargar la cantidad máxima de días", MsgBoxStyle.Information)
                 End If
             Else
-                MsgBox("Debe cargar la cantidad máxima de días", MsgBoxStyle.Information)
+                MsgBox("Debe cargar la cantidad minima de días", MsgBoxStyle.Information)
             End If
         Else
-            MsgBox("Debe cargar la cantidad minima de días", MsgBoxStyle.Information)
+            If Me.txtMinimo.Text <> "" Then
+                If Me.txtMaximo.Text <> "" Then
+                    If Me.txtPagoCorrespondiente.Text <> "" Then
+                        Me.cargarParametroPagoModificado(Parametros.COD_PARAMETRO_PAGO_MODIFICAR)
+                        Parametros.mostrarParametroPago()
+                        Me.limpiarCampos()
+                        Me.Close()
+                    Else
+                        MsgBox("Debe cargar el pago correspondiente", MsgBoxStyle.Information)
+                    End If
+                Else
+                    MsgBox("Debe cargar la cantidad máxima de días", MsgBoxStyle.Information)
+                End If
+            Else
+                MsgBox("Debe cargar la cantidad minima de días", MsgBoxStyle.Information)
+            End If
         End If
+
     End Sub
 
     Public Sub cargarParametroPago()
@@ -115,4 +132,27 @@
             btnGuardar.Focus()
         End If
     End Sub
+
+    Public Sub cargarParametroPagoModificado(cod_parametro_pago As Integer)
+        Dim LOC_consulta As String
+        Try
+            If ConexionMySQL() Then
+                LOC_consulta = "UPDATE parametro_pago SET minimo= " & Me.txtMinimo.Text & ",maximo = " & Me.txtMaximo.Text & " ,pago_correspondiente= " & Me.txtPagoCorrespondiente.Text & " 
+                        WHERE cod_parametro_pago = " & cod_parametro_pago & ""
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se modificó parametro pago correctamente")
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Public Sub limpiarCampos()
+        Me.txtMaximo.Clear()
+        Me.txtMinimo.Clear()
+        Me.txtPagoCorrespondiente.Clear()
+    End Sub
+
 End Class

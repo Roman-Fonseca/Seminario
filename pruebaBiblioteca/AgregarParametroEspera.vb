@@ -9,6 +9,29 @@
                 If Me.txtMaximo.Text <> "" Then
                     If Me.txtSancion.Text <> "" Then
                         moduloBiblioteca.cargarParametro()
+                        Parametros.mostrarParametroEspera()
+                        Me.Close()
+                    Else
+                        MsgBox("Debe cargar los días de sanción")
+                        Me.txtSancion.Focus()
+                        Me.txtSancion.BackColor = Color.Red
+                    End If
+                Else
+                    MsgBox("Debe cargar la cantidad máxima de días")
+                    Me.txtMaximo.Focus()
+                    Me.txtMaximo.BackColor = Color.Red
+                End If
+            Else
+                MsgBox("Debe cargar la cantidad mínima de días")
+                Me.txtMinimo.Focus()
+                Me.txtMinimo.BackColor = Color.Red
+            End If
+        Else
+            If Me.txtMinimo.Text <> "" Then
+                If Me.txtMaximo.Text <> "" Then
+                    If Me.txtSancion.Text <> "" Then
+                        Me.cargarParametroEsperaModificado(Parametros.COD_PARAMETRO_ESPERA_MODIFICAR)
+                        Parametros.mostrarParametroEspera()
                         Me.Close()
                     Else
                         MsgBox("Debe cargar los días de sanción")
@@ -110,9 +133,22 @@
     End Sub
 
     Private Sub AgregarParametroEspera_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.txtMinimo.Text = ""
-        Me.txtMaximo.Text = ""
-        Me.txtSancion.Text = ""
         Me.txtMinimo.Focus()
+    End Sub
+
+    Public Sub cargarParametroEsperaModificado(cod_parametro_espera As Integer)
+        Dim LOC_consulta As String
+        Try
+            If ConexionMySQL() Then
+                LOC_consulta = "UPDATE parametro_espera SET minimo= " & Me.txtMinimo.Text & ",maximo = " & Me.txtMaximo.Text & " , dias_sancion = " & Me.txtSancion.Text & " 
+                        WHERE cod_parametro_espera = " & cod_parametro_espera & ""
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se modificó parametro pago correctamente")
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

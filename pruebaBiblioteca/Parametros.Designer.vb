@@ -65,12 +65,12 @@ Partial Class Parametros
         Me.dgvParametro.Location = New System.Drawing.Point(27, 67)
         Me.dgvParametro.Name = "dgvParametro"
         Me.dgvParametro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvParametro.Size = New System.Drawing.Size(343, 179)
+        Me.dgvParametro.Size = New System.Drawing.Size(441, 179)
         Me.dgvParametro.TabIndex = 3
         '
         'btnVolver
         '
-        Me.btnVolver.Location = New System.Drawing.Point(27, 286)
+        Me.btnVolver.Location = New System.Drawing.Point(27, 271)
         Me.btnVolver.Name = "btnVolver"
         Me.btnVolver.Size = New System.Drawing.Size(99, 35)
         Me.btnVolver.TabIndex = 4
@@ -80,7 +80,7 @@ Partial Class Parametros
         'btnEditarParametro
         '
         Me.btnEditarParametro.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.btnEditarParametro.Location = New System.Drawing.Point(167, 286)
+        Me.btnEditarParametro.Location = New System.Drawing.Point(265, 271)
         Me.btnEditarParametro.Name = "btnEditarParametro"
         Me.btnEditarParametro.Size = New System.Drawing.Size(203, 35)
         Me.btnEditarParametro.TabIndex = 5
@@ -91,13 +91,15 @@ Partial Class Parametros
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(384, 333)
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(492, 323)
         Me.Controls.Add(Me.btnEditarParametro)
         Me.Controls.Add(Me.btnVolver)
         Me.Controls.Add(Me.dgvParametro)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblFiltrar)
+        Me.MaximizeBox = False
         Me.Name = "Parametros"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Parametros"

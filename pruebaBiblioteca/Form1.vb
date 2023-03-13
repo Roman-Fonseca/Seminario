@@ -54,21 +54,30 @@ Public Class Form1
     End Sub
 
     Private Sub SanciónEsperaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanciónEsperaToolStripMenuItem.Click
+        'Limpio los campos y saco el color
         AgregarParametroEspera.txtMinimo.BackColor = Color.White
         AgregarParametroEspera.txtMaximo.BackColor = Color.White
         AgregarParametroEspera.txtSancion.BackColor = Color.White
-        AgregarParametroEspera.ShowDialog()
+        AgregarParametroEspera.txtMinimo.Text = ""
+        AgregarParametroEspera.txtMaximo.Text = ""
+        AgregarParametroEspera.txtSancion.Text = ""
+        'Cambio el titulo del formulario
+        AgregarParametroPago.Text = "Agregar parametro espera"
+        AgregarParametroPago.btnGuardar.Text = "Cargar"
+        AgregarParametroPago.ShowDialog()
     End Sub
 
     Private Sub SanciónDineroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanciónDineroToolStripMenuItem.Click
+        'Limpio los campos y saco el color
         AgregarParametroPago.txtMinimo.BackColor = Color.White
         AgregarParametroPago.txtMaximo.BackColor = Color.White
         AgregarParametroPago.txtPagoCorrespondiente.BackColor = Color.White
-
         AgregarParametroPago.txtMinimo.Text = ""
         AgregarParametroPago.txtMaximo.Text = ""
         AgregarParametroPago.txtPagoCorrespondiente.Text = ""
-
+        'Cambio el titulo del formulario
+        AgregarParametroPago.Text = "Agregar parametro pago"
+        AgregarParametroPago.btnGuardar.Text = "Cargar"
         AgregarParametroPago.ShowDialog()
     End Sub
 
