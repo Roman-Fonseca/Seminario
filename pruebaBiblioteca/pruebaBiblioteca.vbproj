@@ -247,6 +247,17 @@
     <Compile Include="reportes\informeSocio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="reportes\reporteSocio\DatSetSocios.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatSetSocios.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="reportes\reporteSocio\FormularioReporteSocios.Designer.vb">
+      <DependentUpon>FormularioReporteSocios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="reportes\reporteSocio\FormularioReporteSocios.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="reportes\socio\DataSetSocios.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -354,6 +365,10 @@
       <DependentUpon>informeSocio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reportes\reporteSocio.rdlc" />
+    <EmbeddedResource Include="reportes\reporteSocio\FormularioReporteSocios.resx">
+      <DependentUpon>FormularioReporteSocios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reportes\reporteSocio\ReportSocio.rdlc" />
     <EmbeddedResource Include="reportes\socio\informeSocios.rdlc" />
     <EmbeddedResource Include="reportes\socio\reporteSocios.resx">
       <DependentUpon>reporteSocios.vb</DependentUpon>
@@ -394,6 +409,17 @@
     <None Include="reportes\DsSocios.xss">
       <DependentUpon>DsSocios.xsd</DependentUpon>
     </None>
+    <None Include="reportes\reporteSocio\DatSetSocios.xsc">
+      <DependentUpon>DatSetSocios.xsd</DependentUpon>
+    </None>
+    <None Include="reportes\reporteSocio\DatSetSocios.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatSetSocios.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="reportes\reporteSocio\DatSetSocios.xss">
+      <DependentUpon>DatSetSocios.xsd</DependentUpon>
+    </None>
     <None Include="reportes\socio\DataSetSocios.xsc">
       <DependentUpon>DataSetSocios.xsd</DependentUpon>
     </None>
@@ -422,5 +448,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

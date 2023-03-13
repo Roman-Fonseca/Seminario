@@ -602,3 +602,4 @@ C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.PlazoPrestamo.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.AgregarTiempoMembresia.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.TiempoMembresia.resources
+C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.FormularioReporteSocios.resources

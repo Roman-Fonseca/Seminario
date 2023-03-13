@@ -98,7 +98,7 @@ Public Class Form1
     End Sub
 
     Private Sub SociosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SociosToolStripMenuItem1.Click
-        reporteSocios.ShowDialog()
+        FormularioReporteSocios.ShowDialog()
     End Sub
 
     Private Sub InformeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InformeToolStripMenuItem.Click
