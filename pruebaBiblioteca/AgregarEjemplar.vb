@@ -6,7 +6,7 @@ Public Class AgregarEjemplar
 
     End Sub
 
-    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxEstado.SelectedIndexChanged
+    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -59,6 +59,32 @@ Public Class AgregarEjemplar
                 If cbxTipoEjemplar.Text <> "" Then
                     If cbxPlazoPrestamo.Text <> "" Then
                         moduloBiblioteca.altaEjemplar()
+                        Me.txtLibro.Clear()
+                        Me.cbxTipoEjemplar.Text = ""
+                        Me.cbxPlazoPrestamo.Text = ""
+                    Else
+                        MsgBox("Debe seleccionar un plazo prestamo para el libro", MsgBoxStyle.Information, "Agregar ejemplar")
+                        Me.cbxPlazoPrestamo.Focus()
+                        Me.cbxPlazoPrestamo.BackColor = Color.Red
+                    End If
+                Else
+                    MsgBox("Debe seleccionar el tipo de ejemplar del libro", MsgBoxStyle.Information, "Agregar ejemplar")
+                    Me.cbxTipoEjemplar.Focus()
+                    Me.cbxTipoEjemplar.BackColor = Color.Red
+                End If
+            Else
+                MsgBox("Debe seleccioanr un libro de la grilla de la derecha", MsgBoxStyle.Information, "Agregar ejemplar")
+                txtLibro.Focus()
+                txtLibro.BackColor = Color.Red
+            End If
+        Else
+            If txtLibro.Text <> "" Then
+                If cbxTipoEjemplar.Text <> "" Then
+                    If cbxPlazoPrestamo.Text <> "" Then
+                        Me.GuardarEjemplarModificado(Ejemplares.COD_EJEMPLAR_MODIFICAR)
+                        Me.txtLibro.Clear()
+                        Me.cbxTipoEjemplar.Text = ""
+                        Me.cbxPlazoPrestamo.Text = ""
                     Else
                         MsgBox("Debe seleccionar un plazo prestamo para el libro", MsgBoxStyle.Information, "Agregar ejemplar")
                         Me.cbxPlazoPrestamo.Focus()
@@ -141,7 +167,7 @@ Public Class AgregarEjemplar
         Me.BackColor = Color.White
     End Sub
 
-    Private Sub cbxEstado_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbxEstado.SelectedValueChanged
+    Private Sub cbxEstado_SelectedValueChanged(sender As Object, e As EventArgs)
         Me.BackColor = Color.White
     End Sub
 
@@ -168,4 +194,49 @@ Public Class AgregarEjemplar
     Private Sub cbxTipoEjemplar_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxTipoEjemplar.MouseClick
         cbxTipoEjemplar.BackColor = Color.White
     End Sub
+
+    Private Sub cbxPlazoPrestamo_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxPlazoPrestamo.MouseClick
+        cbxPlazoPrestamo.BackColor = Color.White
+    End Sub
+
+    Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
+        Me.txtBuscarlibro.Clear()
+        Me.txtLibro.Clear()
+        Me.cbxPlazoPrestamo.Text = ""
+        Me.cbxTipoEjemplar.Text = ""
+        Me.txtNumeroEjemplar.Text = ""
+    End Sub
+
+    Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
+        Me.txtBuscarlibro.Clear()
+        Me.txtLibro.Clear()
+        Me.cbxPlazoPrestamo.Text = ""
+        Me.cbxTipoEjemplar.Text = ""
+        Me.txtNumeroEjemplar.Text = ""
+        Me.Close()
+    End Sub
+
+    Public Sub GuardarEjemplarModificado(cod_ejemplar As Integer)
+        Dim LOC_consulta As String
+        Try
+
+            If ConexionMySQL() Then
+                LOC_consulta = "UPDATE ejemplar SET cod_tipo_ejemplar = " & Me.cbxTipoEjemplar.SelectedValue & ", cod_plazo_prestamo = " & Me.cbxTipoEjemplar.SelectedValue & "
+                                WHERE `ejemplar`.`cod_ejemplar` = " & cod_ejemplar & ""
+                Glocomando.CommandText = LOC_consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+                Glodatareader = Glocomando.ExecuteReader
+                Glodatareader.Close()
+                MsgBox("Se Modificó ejemplar Correctamente")
+                GloconexionDB.Close()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            GloconexionDB.Close()
+        End Try
+
+    End Sub
+
 End Class

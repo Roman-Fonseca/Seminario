@@ -72,6 +72,7 @@ Partial Class AgregarParametroEspera
         'txtMinimo
         '
         Me.txtMinimo.Location = New System.Drawing.Point(118, 31)
+        Me.txtMinimo.MaxLength = 2
         Me.txtMinimo.Name = "txtMinimo"
         Me.txtMinimo.Size = New System.Drawing.Size(170, 20)
         Me.txtMinimo.TabIndex = 5
@@ -79,6 +80,7 @@ Partial Class AgregarParametroEspera
         'txtMaximo
         '
         Me.txtMaximo.Location = New System.Drawing.Point(118, 81)
+        Me.txtMaximo.MaxLength = 2
         Me.txtMaximo.Name = "txtMaximo"
         Me.txtMaximo.Size = New System.Drawing.Size(170, 20)
         Me.txtMaximo.TabIndex = 6
@@ -86,13 +88,14 @@ Partial Class AgregarParametroEspera
         'txtSancion
         '
         Me.txtSancion.Location = New System.Drawing.Point(118, 126)
+        Me.txtSancion.MaxLength = 2
         Me.txtSancion.Name = "txtSancion"
         Me.txtSancion.Size = New System.Drawing.Size(170, 20)
         Me.txtSancion.TabIndex = 7
         '
         'btnLimpiar
         '
-        Me.btnLimpiar.Location = New System.Drawing.Point(27, 192)
+        Me.btnLimpiar.Location = New System.Drawing.Point(118, 192)
         Me.btnLimpiar.Name = "btnLimpiar"
         Me.btnLimpiar.Size = New System.Drawing.Size(75, 23)
         Me.btnLimpiar.TabIndex = 8
@@ -101,7 +104,7 @@ Partial Class AgregarParametroEspera
         '
         'Cancelar
         '
-        Me.Cancelar.Location = New System.Drawing.Point(118, 192)
+        Me.Cancelar.Location = New System.Drawing.Point(28, 192)
         Me.Cancelar.Name = "Cancelar"
         Me.Cancelar.Size = New System.Drawing.Size(75, 23)
         Me.Cancelar.TabIndex = 9

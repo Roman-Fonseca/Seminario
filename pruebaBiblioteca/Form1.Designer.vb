@@ -55,11 +55,11 @@ Partial Class Form1
         Me.GenerarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InformeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SociosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrestamosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TiempoDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerTiempoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.PrestamosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -269,14 +269,20 @@ Partial Class Form1
         '
         Me.InformeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SociosToolStripMenuItem1, Me.PrestamosToolStripMenuItem1})
         Me.InformeToolStripMenuItem.Name = "InformeToolStripMenuItem"
-        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
+        Me.InformeToolStripMenuItem.Size = New System.Drawing.Size(147, 30)
         Me.InformeToolStripMenuItem.Text = "Informe"
         '
         'SociosToolStripMenuItem1
         '
         Me.SociosToolStripMenuItem1.Name = "SociosToolStripMenuItem1"
-        Me.SociosToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
+        Me.SociosToolStripMenuItem1.Size = New System.Drawing.Size(167, 30)
         Me.SociosToolStripMenuItem1.Text = "Socios"
+        '
+        'PrestamosToolStripMenuItem1
+        '
+        Me.PrestamosToolStripMenuItem1.Name = "PrestamosToolStripMenuItem1"
+        Me.PrestamosToolStripMenuItem1.Size = New System.Drawing.Size(167, 30)
+        Me.PrestamosToolStripMenuItem1.Text = "Prestamos"
         '
         'TiempoDeToolStripMenuItem
         '
@@ -308,12 +314,6 @@ Partial Class Form1
         Me.Label1.Size = New System.Drawing.Size(193, 39)
         Me.Label1.TabIndex = 16
         Me.Label1.Text = "01-01-2023"
-        '
-        'PrestamosToolStripMenuItem1
-        '
-        Me.PrestamosToolStripMenuItem1.Name = "PrestamosToolStripMenuItem1"
-        Me.PrestamosToolStripMenuItem1.Size = New System.Drawing.Size(180, 30)
-        Me.PrestamosToolStripMenuItem1.Text = "Prestamos"
         '
         'Form1
         '

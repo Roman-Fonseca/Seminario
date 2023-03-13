@@ -516,12 +516,11 @@ Module moduloBiblioteca
     End Function
 
     Public Sub mostrarEjemplares()
-        Dim Consulta As String = "SELECT sancion_prestamo_paga.cod_sancion_prestamo_paga, sancion_prestamo_paga.fecha, 
-                                    sancion_prestamo_paga.hora, sancion_prestamo_paga.pago, sancion_prestamo_paga.motivo, sancion_prestamo_paga.cod_prestamo_finalizado, 
-                                    prestamo_socio.cod_ejemplar, prestamo_socio.cod_socio,socio.nombre, socio.apellido FROM sancion_prestamo_paga 
-                                    INNER JOIN prestamo_finalizado ON sancion_prestamo_paga.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado 
-                                    INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio 
-                                    INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio;"
+        Dim Consulta As String = "SELECT ejemplar.cod_ejemplar, ejemplar.numero_ejemplar, ejemplar.estado, 
+                                    libro.titulo, tipo_ejemplar.descripcion AS tipo, plazo_prestamo.descripcion AS plazo_prestamo 
+                                    FROM ejemplar INNER JOIN libro ON ejemplar.cod_libro = libro.cod_libro INNER JOIN tipo_ejemplar 
+                                    ON ejemplar.cod_tipo_ejemplar = tipo_ejemplar.cod_tipo_ejemplar INNER JOIN plazo_prestamo 
+                                    ON ejemplar.cod_plazo_prestamo = plazo_prestamo.cod_plazo_prestamo"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -564,7 +563,7 @@ Module moduloBiblioteca
             AgregarEjemplar.cbxPlazoPrestamo.DisplayMember = "descripcion"
             AgregarEjemplar.cbxPlazoPrestamo.ValueMember = "cod_plazo_prestamo"
             AgregarEjemplar.cbxPlazoPrestamo.SelectedIndex = -1
-            AgregarEjemplar.cbxPlazoPrestamo.Text = "Selecione una Plazo"
+            AgregarEjemplar.cbxPlazoPrestamo.Text = ""
 
             Glodatareader.Close()
             GloconexionDB.Close()
@@ -623,7 +622,7 @@ Module moduloBiblioteca
             'Alta ejemplar'
             If ConexionMySQL() Then
                 LOC_consulta = "insert into ejemplar(numero_ejemplar,estado,cod_libro,cod_tipo_ejemplar,cod_plazo_prestamo)
-                values('" & AgregarEjemplar.txtNumeroEjemplar.Text & "','" & AgregarEjemplar.cbxEstado.Text & "',
+                values('" & AgregarEjemplar.txtNumeroEjemplar.Text & "','Disponible',
                  '" & GLO_CodLibro & "','" & AgregarEjemplar.cbxTipoEjemplar.SelectedValue & "',
                  '" & AgregarEjemplar.cbxPlazoPrestamo.SelectedValue & "')"
                 MsgBox(LOC_consulta)

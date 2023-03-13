@@ -35,6 +35,13 @@ Public Class Form1
     End Sub
 
     Private Sub AgregarEjemplarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarEjemplarToolStripMenuItem.Click
+        AgregarEjemplar.Text = "Agregar Ejemplar"
+        AgregarEjemplar.btnAgregar.Text = "Cargar Ejemplar"
+        AgregarEjemplar.txtBuscarlibro.Text = ""
+        AgregarEjemplar.txtNumeroEjemplar.Text = ""
+        AgregarEjemplar.txtLibro.Text = ""
+        AgregarEjemplar.cbxPlazoPrestamo.Text = ""
+        AgregarEjemplar.cbxTipoEjemplar.Text = ""
         AgregarEjemplar.ShowDialog()
     End Sub
 
@@ -47,10 +54,21 @@ Public Class Form1
     End Sub
 
     Private Sub SanciónEsperaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanciónEsperaToolStripMenuItem.Click
+        AgregarParametroEspera.txtMinimo.BackColor = Color.White
+        AgregarParametroEspera.txtMaximo.BackColor = Color.White
+        AgregarParametroEspera.txtSancion.BackColor = Color.White
         AgregarParametroEspera.ShowDialog()
     End Sub
 
     Private Sub SanciónDineroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanciónDineroToolStripMenuItem.Click
+        AgregarParametroPago.txtMinimo.BackColor = Color.White
+        AgregarParametroPago.txtMaximo.BackColor = Color.White
+        AgregarParametroPago.txtPagoCorrespondiente.BackColor = Color.White
+
+        AgregarParametroPago.txtMinimo.Text = ""
+        AgregarParametroPago.txtMaximo.Text = ""
+        AgregarParametroPago.txtPagoCorrespondiente.Text = ""
+
         AgregarParametroPago.ShowDialog()
     End Sub
 
@@ -142,5 +160,13 @@ Public Class Form1
 
     Private Sub VerTiempoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerTiempoToolStripMenuItem.Click
         TiempoMembresia.ShowDialog()
+    End Sub
+
+    Private Sub ParametrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ParametrosToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub AgregarParametroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarParametroToolStripMenuItem.Click
+
     End Sub
 End Class

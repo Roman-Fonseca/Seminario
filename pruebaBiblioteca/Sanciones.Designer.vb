@@ -34,6 +34,7 @@ Partial Class Sanciones
         '
         Me.dgvSanciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSanciones.Location = New System.Drawing.Point(23, 52)
+        Me.dgvSanciones.MultiSelect = False
         Me.dgvSanciones.Name = "dgvSanciones"
         Me.dgvSanciones.Size = New System.Drawing.Size(974, 232)
         Me.dgvSanciones.TabIndex = 0

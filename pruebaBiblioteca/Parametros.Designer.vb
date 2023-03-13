@@ -27,6 +27,7 @@ Partial Class Parametros
         Me.Button2 = New System.Windows.Forms.Button()
         Me.dgvParametro = New System.Windows.Forms.DataGridView()
         Me.btnVolver = New System.Windows.Forms.Button()
+        Me.btnEditarParametro = New System.Windows.Forms.Button()
         CType(Me.dgvParametro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -76,11 +77,22 @@ Partial Class Parametros
         Me.btnVolver.Text = "Volver"
         Me.btnVolver.UseVisualStyleBackColor = True
         '
+        'btnEditarParametro
+        '
+        Me.btnEditarParametro.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnEditarParametro.Location = New System.Drawing.Point(167, 286)
+        Me.btnEditarParametro.Name = "btnEditarParametro"
+        Me.btnEditarParametro.Size = New System.Drawing.Size(203, 35)
+        Me.btnEditarParametro.TabIndex = 5
+        Me.btnEditarParametro.Text = "Editar Parámetro"
+        Me.btnEditarParametro.UseVisualStyleBackColor = False
+        '
         'Parametros
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(384, 333)
+        Me.Controls.Add(Me.btnEditarParametro)
         Me.Controls.Add(Me.btnVolver)
         Me.Controls.Add(Me.dgvParametro)
         Me.Controls.Add(Me.Button2)
@@ -100,4 +112,5 @@ Partial Class Parametros
     Friend WithEvents Button2 As Button
     Friend WithEvents dgvParametro As DataGridView
     Friend WithEvents btnVolver As Button
+    Friend WithEvents btnEditarParametro As Button
 End Class

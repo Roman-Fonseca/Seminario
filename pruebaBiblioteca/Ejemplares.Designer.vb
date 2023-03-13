@@ -34,6 +34,7 @@ Partial Class Ejemplares
         '
         Me.listaEjemplares.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.listaEjemplares.Location = New System.Drawing.Point(12, 12)
+        Me.listaEjemplares.MultiSelect = False
         Me.listaEjemplares.Name = "listaEjemplares"
         Me.listaEjemplares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.listaEjemplares.Size = New System.Drawing.Size(607, 301)
