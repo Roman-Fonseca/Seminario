@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="DatSetSocios" targetNamespace="http://tempuri.org/DatSetSocios.xsd" xmlns:mstns="http://tempuri.org/DatSetSocios.xsd" xmlns="http://tempuri.org/DatSetSocios.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="DataSetSociosCargados" targetNamespace="http://tempuri.org/DataSetSociosCargados.xsd" xmlns:mstns="http://tempuri.org/DataSetSociosCargados.xsd" xmlns="http://tempuri.org/DataSetSociosCargados.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,7 +9,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DatSetSocios" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DatSetSocios" msprop:Generator_DataSetName="DatSetSocios">
+  <xs:element name="DataSetSociosCargados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSetSociosCargados" msprop:Generator_DataSetName="DataSetSociosCargados">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="DataTable1" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_UserTableName="DataTable1">
@@ -18,10 +18,11 @@
               <xs:element name="nombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_UserColumnName="nombre" type="xs:string" minOccurs="0" />
               <xs:element name="apellido" msprop:Generator_ColumnPropNameInRow="apellido" msprop:Generator_ColumnPropNameInTable="apellidoColumn" msprop:Generator_ColumnVarNameInTable="columnapellido" msprop:Generator_UserColumnName="apellido" type="xs:string" minOccurs="0" />
               <xs:element name="dni" msprop:Generator_ColumnPropNameInRow="dni" msprop:Generator_ColumnPropNameInTable="dniColumn" msprop:Generator_ColumnVarNameInTable="columndni" msprop:Generator_UserColumnName="dni" type="xs:string" minOccurs="0" />
-              <xs:element name="fecha_nacimiento" msprop:Generator_ColumnPropNameInRow="fecha_nacimiento" msprop:Generator_ColumnPropNameInTable="fecha_nacimientoColumn" msprop:Generator_ColumnVarNameInTable="columnfecha_nacimiento" msprop:Generator_UserColumnName="fecha_nacimiento" type="xs:string" minOccurs="0" />
               <xs:element name="direccion" msprop:Generator_ColumnPropNameInRow="direccion" msprop:Generator_ColumnPropNameInTable="direccionColumn" msprop:Generator_ColumnVarNameInTable="columndireccion" msprop:Generator_UserColumnName="direccion" type="xs:string" minOccurs="0" />
               <xs:element name="telefono" msprop:Generator_ColumnPropNameInRow="telefono" msprop:Generator_ColumnPropNameInTable="telefonoColumn" msprop:Generator_ColumnVarNameInTable="columntelefono" msprop:Generator_UserColumnName="telefono" type="xs:string" minOccurs="0" />
-              <xs:element name="contador_prestamo" msprop:Generator_ColumnPropNameInRow="contador_prestamo" msprop:Generator_ColumnPropNameInTable="contador_prestamoColumn" msprop:Generator_ColumnVarNameInTable="columncontador_prestamo" msprop:Generator_UserColumnName="contador_prestamo" type="xs:string" minOccurs="0" />
+              <xs:element name="fecha_registro" msprop:Generator_ColumnPropNameInRow="fecha_registro" msprop:Generator_ColumnPropNameInTable="fecha_registroColumn" msprop:Generator_ColumnVarNameInTable="columnfecha_registro" msprop:Generator_UserColumnName="fecha_registro" type="xs:string" minOccurs="0" />
+              <xs:element name="hora_registro" msprop:Generator_ColumnPropNameInRow="hora_registro" msprop:Generator_ColumnPropNameInTable="hora_registroColumn" msprop:Generator_ColumnVarNameInTable="columnhora_registro" msprop:Generator_UserColumnName="hora_registro" type="xs:string" minOccurs="0" />
+              <xs:element name="fecha_vencimiento" msprop:Generator_ColumnPropNameInRow="fecha_vencimiento" msprop:Generator_ColumnPropNameInTable="fecha_vencimientoColumn" msprop:Generator_ColumnVarNameInTable="columnfecha_vencimiento" msprop:Generator_UserColumnName="fecha_vencimiento" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

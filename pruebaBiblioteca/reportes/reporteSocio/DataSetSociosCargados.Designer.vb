@@ -20,9 +20,9 @@ Option Explicit On
  Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
  Global.System.ComponentModel.ToolboxItem(true),  _
  Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema"),  _
- Global.System.Xml.Serialization.XmlRootAttribute("DatSetSocios"),  _
+ Global.System.Xml.Serialization.XmlRootAttribute("DataSetSociosCargados"),  _
  Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")>  _
-Partial Public Class DatSetSocios
+Partial Public Class DataSetSociosCargados
     Inherits Global.System.Data.DataSet
     
     Private tableDataTable1 As DataTable1DataTable
@@ -128,7 +128,7 @@ Partial Public Class DatSetSocios
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Public Overrides Function Clone() As Global.System.Data.DataSet
-        Dim cln As DatSetSocios = CType(MyBase.Clone,DatSetSocios)
+        Dim cln As DataSetSociosCargados = CType(MyBase.Clone,DataSetSociosCargados)
         cln.InitVars
         cln.SchemaSerializationMode = Me.SchemaSerializationMode
         Return cln
@@ -199,9 +199,9 @@ Partial Public Class DatSetSocios
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Private Sub InitClass()
-        Me.DataSetName = "DatSetSocios"
+        Me.DataSetName = "DataSetSociosCargados"
         Me.Prefix = ""
-        Me.Namespace = "http://tempuri.org/DatSetSocios.xsd"
+        Me.Namespace = "http://tempuri.org/DataSetSociosCargados.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
         Me.tableDataTable1 = New DataTable1DataTable()
@@ -225,7 +225,7 @@ Partial Public Class DatSetSocios
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Public Shared Function GetTypedDataSetSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-        Dim ds As DatSetSocios = New DatSetSocios()
+        Dim ds As DataSetSociosCargados = New DataSetSociosCargados()
         Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
         Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
         Dim any As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
@@ -289,13 +289,15 @@ Partial Public Class DatSetSocios
         
         Private columndni As Global.System.Data.DataColumn
         
-        Private columnfecha_nacimiento As Global.System.Data.DataColumn
-        
         Private columndireccion As Global.System.Data.DataColumn
         
         Private columntelefono As Global.System.Data.DataColumn
         
-        Private columncontador_prestamo As Global.System.Data.DataColumn
+        Private columnfecha_registro As Global.System.Data.DataColumn
+        
+        Private columnhora_registro As Global.System.Data.DataColumn
+        
+        Private columnfecha_vencimiento As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
@@ -358,14 +360,6 @@ Partial Public Class DatSetSocios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property fecha_nacimientoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnfecha_nacimiento
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public ReadOnly Property direccionColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columndireccion
@@ -382,9 +376,25 @@ Partial Public Class DatSetSocios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property contador_prestamoColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property fecha_registroColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columncontador_prestamo
+                Return Me.columnfecha_registro
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property hora_registroColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnhora_registro
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property fecha_vencimientoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnfecha_vencimiento
             End Get
         End Property
         
@@ -425,9 +435,9 @@ Partial Public Class DatSetSocios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddDataTable1Row(ByVal nombre As String, ByVal apellido As String, ByVal dni As String, ByVal fecha_nacimiento As String, ByVal direccion As String, ByVal telefono As String, ByVal contador_prestamo As String) As DataTable1Row
+        Public Overloads Function AddDataTable1Row(ByVal nombre As String, ByVal apellido As String, ByVal dni As String, ByVal direccion As String, ByVal telefono As String, ByVal fecha_registro As String, ByVal hora_registro As String, ByVal fecha_vencimiento As String) As DataTable1Row
             Dim rowDataTable1Row As DataTable1Row = CType(Me.NewRow,DataTable1Row)
-            Dim columnValuesArray() As Object = New Object() {nombre, apellido, dni, fecha_nacimiento, direccion, telefono, contador_prestamo}
+            Dim columnValuesArray() As Object = New Object() {nombre, apellido, dni, direccion, telefono, fecha_registro, hora_registro, fecha_vencimiento}
             rowDataTable1Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowDataTable1Row)
             Return rowDataTable1Row
@@ -453,10 +463,11 @@ Partial Public Class DatSetSocios
             Me.columnnombre = MyBase.Columns("nombre")
             Me.columnapellido = MyBase.Columns("apellido")
             Me.columndni = MyBase.Columns("dni")
-            Me.columnfecha_nacimiento = MyBase.Columns("fecha_nacimiento")
             Me.columndireccion = MyBase.Columns("direccion")
             Me.columntelefono = MyBase.Columns("telefono")
-            Me.columncontador_prestamo = MyBase.Columns("contador_prestamo")
+            Me.columnfecha_registro = MyBase.Columns("fecha_registro")
+            Me.columnhora_registro = MyBase.Columns("hora_registro")
+            Me.columnfecha_vencimiento = MyBase.Columns("fecha_vencimiento")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -468,14 +479,16 @@ Partial Public Class DatSetSocios
             MyBase.Columns.Add(Me.columnapellido)
             Me.columndni = New Global.System.Data.DataColumn("dni", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndni)
-            Me.columnfecha_nacimiento = New Global.System.Data.DataColumn("fecha_nacimiento", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnfecha_nacimiento)
             Me.columndireccion = New Global.System.Data.DataColumn("direccion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndireccion)
             Me.columntelefono = New Global.System.Data.DataColumn("telefono", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columntelefono)
-            Me.columncontador_prestamo = New Global.System.Data.DataColumn("contador_prestamo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncontador_prestamo)
+            Me.columnfecha_registro = New Global.System.Data.DataColumn("fecha_registro", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfecha_registro)
+            Me.columnhora_registro = New Global.System.Data.DataColumn("hora_registro", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnhora_registro)
+            Me.columnfecha_vencimiento = New Global.System.Data.DataColumn("fecha_vencimiento", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnfecha_vencimiento)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -543,7 +556,7 @@ Partial Public Class DatSetSocios
         Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
             Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
             Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As DatSetSocios = New DatSetSocios()
+            Dim ds As DataSetSociosCargados = New DataSetSociosCargados()
             Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
             any1.Namespace = "http://www.w3.org/2001/XMLSchema"
             any1.MinOccurs = New Decimal(0)
@@ -667,21 +680,6 @@ Partial Public Class DatSetSocios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property fecha_nacimiento() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDataTable1.fecha_nacimientoColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecha_nacimiento' de la tabla 'DataTable1' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDataTable1.fecha_nacimientoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property direccion() As String
             Get
                 Try 
@@ -712,16 +710,46 @@ Partial Public Class DatSetSocios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property contador_prestamo() As String
+        Public Property fecha_registro() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.contador_prestamoColumn),String)
+                    Return CType(Me(Me.tableDataTable1.fecha_registroColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'contador_prestamo' de la tabla 'DataTable1' es DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecha_registro' de la tabla 'DataTable1' es DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.contador_prestamoColumn) = value
+                Me(Me.tableDataTable1.fecha_registroColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property hora_registro() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable1.hora_registroColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'hora_registro' de la tabla 'DataTable1' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable1.hora_registroColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property fecha_vencimiento() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable1.fecha_vencimientoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'fecha_vencimiento' de la tabla 'DataTable1' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable1.fecha_vencimientoColumn) = value
             End Set
         End Property
         
@@ -763,18 +791,6 @@ Partial Public Class DatSetSocios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function Isfecha_nacimientoNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.fecha_nacimientoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub Setfecha_nacimientoNull()
-            Me(Me.tableDataTable1.fecha_nacimientoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsdireccionNull() As Boolean
             Return Me.IsNull(Me.tableDataTable1.direccionColumn)
         End Function
@@ -799,14 +815,38 @@ Partial Public Class DatSetSocios
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function Iscontador_prestamoNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.contador_prestamoColumn)
+        Public Function Isfecha_registroNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable1.fecha_registroColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub Setcontador_prestamoNull()
-            Me(Me.tableDataTable1.contador_prestamoColumn) = Global.System.Convert.DBNull
+        Public Sub Setfecha_registroNull()
+            Me(Me.tableDataTable1.fecha_registroColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function Ishora_registroNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable1.hora_registroColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub Sethora_registroNull()
+            Me(Me.tableDataTable1.hora_registroColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function Isfecha_vencimientoNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable1.fecha_vencimientoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub Setfecha_vencimientoNull()
+            Me(Me.tableDataTable1.fecha_vencimientoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

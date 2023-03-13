@@ -22,7 +22,6 @@ Partial Class FormularioReporteSocios
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -31,17 +30,9 @@ Partial Class FormularioReporteSocios
         Me.dtpFechaFinal = New System.Windows.Forms.DateTimePicker()
         Me.dtpFechaInicio = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'ReportViewer1
-        '
-        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "pruebaBiblioteca.ReportSocio.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(12, 162)
-        Me.ReportViewer1.Name = "ReportViewer1"
-        Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(667, 248)
-        Me.ReportViewer1.TabIndex = 0
         '
         'Panel1
         '
@@ -123,22 +114,32 @@ Partial Class FormularioReporteSocios
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Biblioteca LA"
         '
+        'ReportViewer1
+        '
+        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "pruebaBiblioteca.ReportSociosCargados.rdlc"
+        Me.ReportViewer1.Location = New System.Drawing.Point(12, 159)
+        Me.ReportViewer1.Name = "ReportViewer1"
+        Me.ReportViewer1.ServerReport.BearerToken = Nothing
+        Me.ReportViewer1.Size = New System.Drawing.Size(849, 463)
+        Me.ReportViewer1.TabIndex = 6
+        '
         'FormularioReporteSocios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(884, 450)
-        Me.Controls.Add(Me.Panel1)
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(882, 634)
         Me.Controls.Add(Me.ReportViewer1)
+        Me.Controls.Add(Me.Panel1)
+        Me.MaximizeBox = False
         Me.Name = "FormularioReporteSocios"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormularioReporteSocios"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
@@ -147,4 +148,5 @@ Partial Class FormularioReporteSocios
     Friend WithEvents dtpFechaFinal As DateTimePicker
     Friend WithEvents dtpFechaInicio As DateTimePicker
     Friend WithEvents Label1 As Label
+    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
 End Class
