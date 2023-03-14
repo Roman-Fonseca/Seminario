@@ -1,7 +1,19 @@
 ﻿Public Class AgregarAutor
     Private Sub btnGuardarAutor_Click(sender As Object, e As EventArgs) Handles btnGuardarAutor.Click
-        moduloBiblioteca.altaAutor()
-        LimpiarCampos.limpiarCamposAgregarAutor()
+
+        If txtNombre.Text = "" Then
+            MsgBox("No Puede dejar el campo Nombre Vacío", MsgBoxStyle.Exclamation)
+        Else
+            If txtApellido.Text = "" Then
+                MsgBox("No puede dejar el campo apellido vacío", MsgBoxStyle.Exclamation)
+            Else
+                moduloBiblioteca.altaAutor()
+                LimpiarCampos.limpiarCamposAgregarAutor()
+                Me.Close()
+                AgregarLibro.cargarTablaAutores()
+            End If
+
+        End If
     End Sub
 
     Private Sub btnLimpiarCamposAutor_Click(sender As Object, e As EventArgs) Handles btnLimpiarCamposAutor.Click

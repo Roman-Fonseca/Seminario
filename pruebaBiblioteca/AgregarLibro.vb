@@ -1,8 +1,10 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Threading
+Imports MySql.Data.MySqlClient
 
 Public Class AgregarLibro
 
     Public COD_CATEGORIA As Integer
+    Public COD_AUTOR As Integer
     Private Sub lblTitulo_Click(sender As Object, e As EventArgs) Handles lblTitulo.Click
 
     End Sub
@@ -30,7 +32,8 @@ Public Class AgregarLibro
     Private Sub CargarLibro_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         moduloBiblioteca.CargarComboUbicacion()
         moduloBiblioteca.CargarComboEditorial()
-        moduloBiblioteca.CargarComboCategoria()
+        'moduloBiblioteca.CargarComboCategoria()
+        cargarTablaAutores()
         cargarTablaCategoria()
     End Sub
 
@@ -64,14 +67,16 @@ Public Class AgregarLibro
     End Sub
 
     Private Sub btnLimpiarCamposAutor_Click(sender As Object, e As EventArgs) Handles btnLimpiarCamposAutor.Click
-        LimpiarCampos.limpiarCamposCargarLibro()
+        'LimpiarCampos.limpiarCamposCargarLibro()
     End Sub
 
     Private Sub btnGuardarAutor_Click(sender As Object, e As EventArgs) Handles btnGuardarAutor.Click
-        If Me.Text = "Alta libro" Then
-            moduloBiblioteca.altaLibro()
+        If Me.Text = "Cargar Libro" Then
+            Me.Altalibro()
+            Me.AltaLibroCategoria()
+            Me.AltaLibroAutor()
         Else
-            moduloBiblioteca.modificarLibro()
+            '    moduloBiblioteca.modificarLibro()
         End If
 
     End Sub
@@ -84,11 +89,11 @@ Public Class AgregarLibro
 
     End Sub
 
-    Private Sub GroupBox2_Enter(sender As Object, e As EventArgs) Handles GroupBox2.Enter
+    Private Sub GroupBox2_Enter(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub btnCategoria_Click(sender As Object, e As EventArgs) Handles btnCategoria.Click
+    Private Sub btnCategoria_Click(sender As Object, e As EventArgs)
         COD_CATEGORIA = Me.dgvCategoria.SelectedRows.Item(0).Cells(0).Value
         Me.listBoxCategoria.Items.Add(tomarCodCategoria(COD_CATEGORIA))
     End Sub
@@ -128,7 +133,7 @@ Public Class AgregarLibro
         End Try
     End Function
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs)
         If (listBoxCategoria.SelectedIndex > -1) Then
 
             ' Eliminamos el elemento que se encuentra seleccionado 
@@ -163,4 +168,179 @@ Public Class AgregarLibro
             cbxUbicacion.Focus()
         End If
     End Sub
+
+    Private Sub GroupBox2_Enter_1(sender As Object, e As EventArgs) Handles GroupBox2.Enter
+
+    End Sub
+
+    Private Sub botonAgregarCategoria_Click(sender As Object, e As EventArgs) Handles botonAgregarCategoria.Click
+        Dim cod_categoria As Integer = Me.dgvCategoria.SelectedRows.Item(0).Cells(0).Value
+
+        If Me.listBoxCategoria.FindStringExact(cod_categoria) = -1 Then
+            Me.listBoxCategoria.Items.Add(cod_categoria)
+        Else
+            MsgBox("No puede agregar dos veces la mísma categoría")
+        End If
+
+    End Sub
+
+    Private Sub cbxCategoria_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxCategoria.SelectedIndexChanged
+
+    End Sub
+
+    Public Sub cargarTablaAutores()
+        Dim Consulta As String = "SELECT cod_autor, nombre, apellido FROM autor"
+        Try
+            If ConexionMySQL() Then
+                Glocomando.CommandText = Consulta
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+
+                Glodatareader = Glocomando.ExecuteReader
+
+
+                Dim dt As New DataTable
+                dt.Load(Glodatareader)
+
+
+                Me.dgvAutores.DataSource = dt
+
+
+                Glodatareader.Close()
+                GloconexionDB.Close()
+            Else
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            MsgBox("Error en la conexion")
+        End Try
+    End Sub
+
+    Private Sub btnAgreagrAutor_Click(sender As Object, e As EventArgs) Handles btnAgreagrAutor.Click
+
+        Dim cod_autor As Integer = Me.dgvAutores.SelectedRows.Item(0).Cells(0).Value
+
+        If Me.ListBoxAutores.FindStringExact(cod_autor) = -1 Then
+            Me.ListBoxAutores.Items.Add(cod_autor)
+        Else
+            MsgBox("No puede agregar dos veces el mísmo autor")
+        End If
+
+    End Sub
+
+    Private Sub btnQuitarCategoria_Click(sender As Object, e As EventArgs) Handles btnQuitarCategoria.Click
+        If (listBoxCategoria.SelectedIndex > -1) Then
+            ' Eliminamos el elemento que se encuentra seleccionado 
+            '
+            listBoxCategoria.Items.RemoveAt(listBoxCategoria.SelectedIndex)
+        End If
+    End Sub
+
+    Private Sub quitarAutor_Click(sender As Object, e As EventArgs) Handles quitarAutor.Click
+        If (ListBoxAutores.SelectedIndex > -1) Then
+            ' Eliminamos el elemento que se encuentra seleccionado 
+            '
+            ListBoxAutores.Items.RemoveAt(ListBoxAutores.SelectedIndex)
+        End If
+    End Sub
+
+    Public Sub Altalibro()
+        Dim LOC_consulta As String
+        'Dim cod_libro As String
+
+        Try
+            'Alta libro'
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into libro (titulo, isbn, cod_ubicacion ,cod_editorial) values('" & Me.txtTitulo.Text & "','" & Me.txtIsbn.Text & "','" & Me.cbxUbicacion.SelectedValue & "','" & Me.cbxEditorial.SelectedValue & "')"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccion(LOC_consulta)
+                MsgBox("Se agregó libro correctamente")
+                limpiarCamposCargarLibro()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Public Sub AltaLibroCategoria()
+        Dim a As Integer
+        Dim consulta As String
+        Dim ultimo_libro_cargado As Integer = tomarUltimoLibroCargado()
+        Dim cod_categoria As Integer
+        For a = 0 To listBoxCategoria.Items.Count - 1
+
+            cod_categoria = listBoxCategoria.Items(a)
+            MsgBox(cod_categoria)
+            Try
+                'Alta libro'
+                If ConexionMySQL() Then
+                    consulta = "INSERT INTO `categoria libro` (`cod_categoria`, `cod_libro`) VALUES (" & cod_categoria & ", " & ultimo_libro_cargado & ");"
+                    MsgBox(consulta)
+                    EjecutarTransaccion(consulta)
+                    MsgBox("Se agregó libro correctamente")
+                    limpiarCamposCargarLibro()
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        Next a
+    End Sub
+
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+        AltaLibroCategoria()
+    End Sub
+
+    Public Function tomarUltimoLibroCargado() As Integer
+        Dim Sql As String = "SELECT cod_libro FROM libro ORDER BY cod_libro DESC limit 1;"
+        Dim cod_libro As String
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    cod_libro = Trim(Datos("cod_libro"))
+                    MsgBox("Ultimo libro:" & cod_libro)
+                    Return cod_libro
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+            Return False
+        End Try
+    End Function
+
+    Public Sub AltaLibroAutor()
+        Dim a As Integer
+        Dim consulta As String
+        Dim ultimo_libro_cargado As Integer = tomarUltimoLibroCargado()
+        Dim cod_autor As Integer
+        For a = 0 To ListBoxAutores.Items.Count - 1
+
+            cod_autor = ListBoxAutores.Items(a)
+            MsgBox(cod_autor)
+            Try
+                'Alta libro'
+                If ConexionMySQL() Then
+                    consulta = "INSERT INTO `libro autor` (`cod_libro`, `cod_autor`) VALUES (" & cod_autor & "," & ultimo_libro_cargado & ");"
+                    MsgBox(consulta)
+                    EjecutarTransaccion(consulta)
+                    MsgBox("Se agregó libro-autor correctamente")
+                    limpiarCamposCargarLibro()
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        Next a
+    End Sub
+
 End Class

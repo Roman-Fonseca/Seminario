@@ -30,11 +30,6 @@ Public Class Decision
             registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
         End If
 
-
-
-
-
-
         'Dim resultado As Boolean = NOexistePrestamoAtrasado(GLO_COD_SOCIO)
         'Dim local_fecha_finalizacion As Date
         'MsgBox(resultado)
@@ -797,5 +792,37 @@ Public Class Decision
             consulta = Nothing
         End Try
     End Function
+
+    'Acontinuación se detalla los procedimientos para corrrobarar que el socio puede recibir una sancion maxima de 30 dias
+    Public Function puedeRecibirSancion() As Boolean
+        Dim cod_sancion_espera As Integer = Me.tomarCodSancionEspera(Me.tomarUltimoPrestamoAtrasadoSocio(GLO_COD_SOCIO))
+        Dim fecha_finalizacion As Date = Me.tomarFechaFinalizacion(cod_sancion_espera)
+        Dim fecha_inicio As Date = Me.tomarFechaInicio(cod_sancion_espera)
+        If diffDias(fecha_inicio, fecha_finalizacion) > 30 Then
+            MsgBox("El socio puede recibir sanción")
+        End If
+    End Function
+
+
+    Public Function tomarFechaInicio(cod_sancion_espera As Integer) As Date
+        Dim Sql As String = "SELECT fecha_inicio from sancion_espera WHERE cod_sancion_espera = '" & cod_sancion_espera & "'"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    Dim fecha_inicio As Date = Trim(Datos("fecha_inicio"))
+                    Return fecha_inicio
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            Conexion.Close()
+            consulta = Nothing
+        End Try
+    End Function
+
 
 End Class

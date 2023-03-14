@@ -130,7 +130,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>fecha devolucion</Value>
+                              <Value>fecha prestamo</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -496,7 +496,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>7.07601in</Width>
+  <Width>7.07602in</Width>
   <Page>
     <PageHeader>
       <Height>2.54cm</Height>
@@ -508,6 +508,16 @@
         </Border>
       </Style>
     </PageHeader>
+    <PageFooter>
+      <Height>2.54cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>

@@ -14,9 +14,11 @@
         Else
             moduloBiblioteca.altaCategoria()
             Me.Close()
-            moduloBiblioteca.CargarComboCategoria()
+            'moduloBiblioteca.CargarComboCategoria()
         End If
-        moduloBiblioteca.CargarComboCategoria()
+        'moduloBiblioteca.CargarComboCategoria()
+        moduloBiblioteca.cargarTablaCategoria()
+
     End Sub
 
     Private Sub txtNombreCategoria_TextChanged(sender As Object, e As EventArgs) Handles txtNombreCategoria.TextChanged

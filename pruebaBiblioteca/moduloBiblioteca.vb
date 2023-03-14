@@ -467,26 +467,26 @@ Module moduloBiblioteca
     End Sub
 
     Public Function altaLibro() As Boolean
-        Dim LOC_consulta As String
-        'Dim cod_libro As String
+        'Dim LOC_consulta As String
+        ''Dim cod_libro As String
 
-        Try
-            'Alta libro'
-            If ConexionMySQL() Then
-                LOC_consulta = "insert into libro (isbn,titulo,cod_ubicacion_libro,cod_editorial) values('" & AgregarLibro.txtIsbn.Text & "','" & AgregarLibro.txtTitulo.Text & "','" & AgregarLibro.cbxUbicacion.SelectedValue & "','" & AgregarLibro.cbxEditorial.SelectedValue & "')"
-                MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
-                MsgBox("Se agregó libro correctamente")
-                limpiarCamposCargarLibro()
-                Return True
-            End If
+        'Try
+        '    'Alta libro'
+        '    If ConexionMySQL() Then
+        '        LOC_consulta = "insert into libro (isbn,titulo,cod_ubicacion_libro,cod_editorial) values('" & AgregarLibro.txtIsbn.Text & "','" & AgregarLibro.txtTitulo.Text & "','" & AgregarLibro.cbxUbicacion.SelectedValue & "','" & AgregarLibro.cbxEditorial.SelectedValue & "')"
+        '        MsgBox(LOC_consulta)
+        '        EjecutarTransaccion(LOC_consulta)
+        '        MsgBox("Se agregó libro correctamente")
+        '        limpiarCamposCargarLibro()
+        '        Return True
+        '    End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            Return False
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        '    Return False
+        'End Try
 
-        Return False
+        'Return False
 
     End Function
     Public Function eliminarLibro() As Boolean
