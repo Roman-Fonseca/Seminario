@@ -46,7 +46,6 @@ Partial Class AgregarLibro
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnAgregarCategoria = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btnQuitarCategoria = New System.Windows.Forms.Button()
         Me.botonAgregarCategoria = New System.Windows.Forms.Button()
@@ -286,7 +285,6 @@ Partial Class AgregarLibro
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.Button2)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.btnQuitarCategoria)
         Me.GroupBox2.Controls.Add(Me.botonAgregarCategoria)
@@ -300,17 +298,6 @@ Partial Class AgregarLibro
         Me.GroupBox2.TabIndex = 24
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Categoria/s"
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.Orange
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(104, 181)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(77, 28)
-        Me.Button2.TabIndex = 24
-        Me.Button2.Text = "-"
-        Me.Button2.UseVisualStyleBackColor = False
         '
         'Label4
         '
@@ -505,5 +492,4 @@ Partial Class AgregarLibro
     Friend WithEvents ListBoxAutores As ListBox
     Friend WithEvents txtAutor As TextBox
     Friend WithEvents cbxCategoria As ComboBox
-    Friend WithEvents Button2 As Button
 End Class

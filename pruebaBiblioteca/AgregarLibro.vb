@@ -2,7 +2,7 @@
 Imports MySql.Data.MySqlClient
 
 Public Class AgregarLibro
-
+    Dim dt As New DataTable
     Public COD_CATEGORIA As Integer
     Public COD_AUTOR As Integer
     Private Sub lblTitulo_Click(sender As Object, e As EventArgs) Handles lblTitulo.Click
@@ -287,7 +287,7 @@ Public Class AgregarLibro
         Next a
     End Sub
 
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs)
         AltaLibroCategoria()
     End Sub
 
@@ -341,6 +341,21 @@ Public Class AgregarLibro
                 MsgBox(ex.Message)
             End Try
         Next a
+    End Sub
+
+    Private Sub txtBuscarCategoria_TextChanged(sender As Object, e As EventArgs) Handles txtBuscarCategoria.TextChanged
+        busquedaDinamicaCategoria(txtBuscarCategoria.Text, dgvCategoria)
+    End Sub
+
+    Public Sub busquedaDinamicaCategoria(ByVal nombre As String, ByVal dgv As DataGridView)
+        Try
+            adaptador = New MySqlDataAdapter("SELECT cod_categoria, nombre FROM categoria WHERE nombre like '" & nombre + "%" & "'", GloconexionDB)
+            dt = New DataTable
+            adaptador.Fill(dt)
+            dgv.DataSource = dt
+        Catch ex As Exception
+            MessageBox.Show("Error con busqueda dinamica", ex.ToString)
+        End Try
     End Sub
 
 End Class
