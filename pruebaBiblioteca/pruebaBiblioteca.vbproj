@@ -247,6 +247,17 @@
     <Compile Include="reportes\informeSocio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="reportes\reportePrestamo\DatSetPrestamos.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatSetPrestamos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="reportes\reportePrestamo\FormularioReportePrestamo.Designer.vb">
+      <DependentUpon>FormularioReportePrestamo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="reportes\reportePrestamo\FormularioReportePrestamo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="reportes\reporteSocio\DataSetSociosCargados.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -364,6 +375,10 @@
     <EmbeddedResource Include="reportes\informeSocio.resx">
       <DependentUpon>informeSocio.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="reportes\reportePrestamo\FormularioReportePrestamo.resx">
+      <DependentUpon>FormularioReportePrestamo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reportes\reportePrestamo\ReportPrestamo.rdlc" />
     <EmbeddedResource Include="reportes\reporteSocio.rdlc" />
     <EmbeddedResource Include="reportes\reporteSocio\FormularioReporteSocios.resx">
       <DependentUpon>FormularioReporteSocios.vb</DependentUpon>
@@ -408,6 +423,17 @@
     </None>
     <None Include="reportes\DsSocios.xss">
       <DependentUpon>DsSocios.xsd</DependentUpon>
+    </None>
+    <None Include="reportes\reportePrestamo\DatSetPrestamos.xsc">
+      <DependentUpon>DatSetPrestamos.xsd</DependentUpon>
+    </None>
+    <None Include="reportes\reportePrestamo\DatSetPrestamos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatSetPrestamos.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="reportes\reportePrestamo\DatSetPrestamos.xss">
+      <DependentUpon>DatSetPrestamos.xsd</DependentUpon>
     </None>
     <None Include="reportes\reporteSocio\DataSetSociosCargados.xsc">
       <DependentUpon>DataSetSociosCargados.xsd</DependentUpon>

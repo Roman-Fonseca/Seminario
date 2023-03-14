@@ -603,3 +603,4 @@ C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.AgregarTiempoMembresia.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.TiempoMembresia.resources
 C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.FormularioReporteSocios.resources
+C:\Users\fonse\Documents\pruebaBiblioteca5\pruebaBiblioteca\pruebaBiblioteca\obj\Debug\pruebaBiblioteca.FormularioReportePrestamo.resources

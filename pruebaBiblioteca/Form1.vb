@@ -178,4 +178,8 @@ Public Class Form1
     Private Sub AgregarParametroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarParametroToolStripMenuItem.Click
 
     End Sub
+
+    Private Sub PrestamosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PrestamosToolStripMenuItem1.Click
+        FormularioReportePrestamo.ShowDialog()
+    End Sub
 End Class
