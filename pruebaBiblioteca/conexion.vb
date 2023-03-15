@@ -46,7 +46,8 @@ Module conexion
             End If
 
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("El socio se encuentra en otras tablas. La eliminacion del socio esta restringida", MsgBoxStyle.Critical)
+            'MsgBox(ex.Message)
             GloconexionDB.Close()
         End Try
 

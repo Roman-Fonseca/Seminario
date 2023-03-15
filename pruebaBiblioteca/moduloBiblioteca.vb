@@ -778,7 +778,7 @@ Module moduloBiblioteca
                                 hora_devolucion,cod_ejemplar,cod_socio) 
                                 values('" & AgregarPrestamo.cbxTipoPrestamo.Text & "','" & fechaPrestamoString & "','" & horaPrestamoStr & "','" & fechaDevolucionString & "'
                                 ,'" & hora_devolucionString & "','" & GLO_CodEjemplarPrestamo & "','" & GLO_CodSocioPrestamo & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó prestamo correctamente")
                 moduloBiblioteca.actualizarContadorPrestamo(contador_prestamos, GLO_CodSocioPrestamo)
@@ -1824,7 +1824,7 @@ Module moduloBiblioteca
         Dim Conexion As New MySqlConnection(cadena_conexion)
 
         Dim consulta As New MySqlCommand(Sql, Conexion)
-        MsgBox(Sql)
+        'MsgBox(Sql)
         Try
             If Conexion.State = ConnectionState.Closed Then
                 Conexion.Open()
@@ -1832,7 +1832,7 @@ Module moduloBiblioteca
                 If Datos.Read Then
                     'Declaramos y llenamos
                     Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Boolean = Not IsDBNull(Datos("cod_ejemplar_a_reponer"))
-                    MsgBox("jjjjj: " & VARIABLE_QUE_CONTENDRA_EL_VALOR)
+                    'MsgBox("jjjjj: " & VARIABLE_QUE_CONTENDRA_EL_VALOR)
                     If VARIABLE_QUE_CONTENDRA_EL_VALOR = True Then
                         Return True
                     Else
