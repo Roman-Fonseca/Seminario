@@ -250,6 +250,8 @@ Partial Class AgregarSocio
         Me.Controls.Add(Me.btnLimpiarCampos)
         Me.Controls.Add(Me.btnAgregarSocio)
         Me.Controls.Add(Me.GroupBox1)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarSocio"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Agregar Socio"

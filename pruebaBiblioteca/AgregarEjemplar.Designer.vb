@@ -263,6 +263,8 @@ Partial Class AgregarEjemplar
         Me.Controls.Add(Me.lblNumeroEjemplar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox2)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarEjemplar"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Agregar Ejemplar"

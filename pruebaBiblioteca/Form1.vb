@@ -2,9 +2,9 @@
 Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Dim fecha As Date
-        'fecha = Today
-        'Label1.Text = fecha
+        Dim fecha As Date
+        fecha = Today
+        Label1.Text = fecha
     End Sub
 
     Private Sub AgregarPrestamoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarPrestamoToolStripMenuItem.Click
@@ -62,9 +62,9 @@ Public Class Form1
         AgregarParametroEspera.txtMaximo.Text = ""
         AgregarParametroEspera.txtSancion.Text = ""
         'Cambio el titulo del formulario
-        AgregarParametroPago.Text = "Agregar parametro espera"
-        AgregarParametroPago.btnGuardar.Text = "Cargar"
-        AgregarParametroPago.ShowDialog()
+        AgregarParametroEspera.Text = "Agregar parametro espera"
+        AgregarParametroEspera.btnGuardar.Text = "Cargar"
+        AgregarParametroEspera.ShowDialog()
     End Sub
 
     Private Sub SanciónDineroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SanciónDineroToolStripMenuItem.Click
@@ -181,5 +181,9 @@ Public Class Form1
 
     Private Sub PrestamosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PrestamosToolStripMenuItem1.Click
         FormularioReportePrestamo.ShowDialog()
+    End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
     End Sub
 End Class

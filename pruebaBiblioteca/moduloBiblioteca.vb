@@ -42,7 +42,7 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into socio (nombre,apellido,fecha_nacimiento,dni,telefono,direccion,contador_prestamo) values('" & AgregarSocio.txtNombre.Text & "','" & AgregarSocio.txtApellido.Text & "','" & f_nacimientoStr & "'," & AgregarSocio.txtDni.Text & ",'" & AgregarSocio.txtTelefono.Text & "','" & AgregarSocio.txtDireccion.Text & "','" & 0 & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó correctamente")
                 Return True
@@ -229,14 +229,14 @@ Module moduloBiblioteca
         Dim dias_a_agregar As Integer = AgregarSocio.tomarCantidadDias()
         Dim fecha_vencimiento As Date = DateAdd("d", dias_a_agregar, Today)
         Dim fecha_vencimiento_STR As String = fecha_vencimiento.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
-        MsgBox("Fecha vencimiento de tipo date: " & fecha_vencimiento)
-        MsgBox("Fecha vencimiento de tipo string: " & fecha_vencimiento_STR)
+        'MsgBox("Fecha vencimiento de tipo date: " & fecha_vencimiento)
+        'MsgBox("Fecha vencimiento de tipo string: " & fecha_vencimiento_STR)
 
         Try
             If ConexionMySQL() Then
                 LOC_consulta = "insert into membresia (fecha_registro,hora_registro,ultimo_pago_membresia,fecha_vencimiento,cod_socio) values('" & fecha_actual & "',
                 '" & hora_actual & "','" & fecha_actual & "','" & fecha_vencimiento_STR & "','" & cod_socio & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó membrecia correctamente")
             End If
@@ -255,7 +255,7 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into ubicacion_libro (piso,sector,estante) values('" & AgregarUbicacion.txtPiso.Text & "','" & AgregarUbicacion.txtSector.Text & "','" & AgregarUbicacion.txtEstante.Text & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó ubicación correctamente")
                 Return True
@@ -276,12 +276,11 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into editorial (nombre,contacto,ubicacion) values('" & AgregarEditorial.txtNombreEditorial.Text & "','" & AgregarEditorial.txtContactoEditorial.Text & "','" & AgregarEditorial.txtLocalizacionEditorial.Text & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó editorial correctamente")
                 Return True
             End If
-
         Catch ex As Exception
             MsgBox(ex.Message)
             Return False
@@ -343,7 +342,7 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into categoria (nombre) values('" & AgregarCategoria.txtNombreCategoria.Text & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó categoria correctamente")
                 Return True
@@ -386,7 +385,7 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into autor (nombre,apellido) values('" & AgregarAutor.txtNombre.Text & "','" & AgregarAutor.txtApellido.Text & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó autor correctamente")
                 Return True
@@ -407,7 +406,7 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into tipo_ejemplar (descripcion) values('" & AgregarTipoEjemplar.txtNombreTipoEjemplar.Text & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó Tipo Ejemplar correctamente")
                 Return True
@@ -625,7 +624,7 @@ Module moduloBiblioteca
                 values('" & AgregarEjemplar.txtNumeroEjemplar.Text & "','Disponible',
                  '" & GLO_CodLibro & "','" & AgregarEjemplar.cbxTipoEjemplar.SelectedValue & "',
                  '" & AgregarEjemplar.cbxPlazoPrestamo.SelectedValue & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó ejemplar correctamente")
                 Return True
@@ -647,7 +646,7 @@ Module moduloBiblioteca
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into plazo_prestamo (descripcion,dias_plazo) values('" & AgregarPlazoPrestamo.txtDescripcion.Text & "','" & AgregarPlazoPrestamo.txtDias.Text & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó plazo prestamo correctamente")
                 Return True
@@ -1453,7 +1452,7 @@ Module moduloBiblioteca
                 LOC_consulta = "insert into parametro_espera (minimo,maximo,dias_sancion) 
                 values('" & AgregarParametroEspera.txtMinimo.Text & "'
                 ,'" & AgregarParametroEspera.txtMaximo.Text & "','" & AgregarParametroEspera.txtSancion.Text & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó parametro correctamente")
                 Return True
@@ -1802,6 +1801,7 @@ Module moduloBiblioteca
                     MessageBox.Show(VARIABLE_QUE_CONTENDRA_EL_VALOR)
 
                     'Imprimimos en el cuadro de texto la direccion URL
+
 
 
                     Return VARIABLE_QUE_CONTENDRA_EL_VALOR

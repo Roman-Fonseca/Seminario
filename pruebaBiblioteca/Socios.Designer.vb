@@ -38,16 +38,16 @@ Partial Class Socios
         'listaSocios
         '
         Me.listaSocios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.listaSocios.Location = New System.Drawing.Point(221, 69)
+        Me.listaSocios.Location = New System.Drawing.Point(222, 64)
         Me.listaSocios.Name = "listaSocios"
         Me.listaSocios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.listaSocios.Size = New System.Drawing.Size(809, 205)
+        Me.listaSocios.Size = New System.Drawing.Size(809, 371)
         Me.listaSocios.TabIndex = 0
         '
         'btnAgregarSocio
         '
         Me.btnAgregarSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnAgregarSocio.Location = New System.Drawing.Point(762, 297)
+        Me.btnAgregarSocio.Location = New System.Drawing.Point(754, 458)
         Me.btnAgregarSocio.Name = "btnAgregarSocio"
         Me.btnAgregarSocio.Size = New System.Drawing.Size(72, 45)
         Me.btnAgregarSocio.TabIndex = 1
@@ -57,7 +57,7 @@ Partial Class Socios
         'btnModificarSocio
         '
         Me.btnModificarSocio.BackColor = System.Drawing.Color.Yellow
-        Me.btnModificarSocio.Location = New System.Drawing.Point(861, 297)
+        Me.btnModificarSocio.Location = New System.Drawing.Point(853, 458)
         Me.btnModificarSocio.Name = "btnModificarSocio"
         Me.btnModificarSocio.Size = New System.Drawing.Size(72, 45)
         Me.btnModificarSocio.TabIndex = 2
@@ -67,7 +67,7 @@ Partial Class Socios
         'btnEliminarSocio
         '
         Me.btnEliminarSocio.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnEliminarSocio.Location = New System.Drawing.Point(956, 297)
+        Me.btnEliminarSocio.Location = New System.Drawing.Point(948, 458)
         Me.btnEliminarSocio.Name = "btnEliminarSocio"
         Me.btnEliminarSocio.Size = New System.Drawing.Size(72, 45)
         Me.btnEliminarSocio.TabIndex = 3
@@ -104,7 +104,7 @@ Partial Class Socios
         'btnRenovarMembresia
         '
         Me.btnRenovarMembresia.BackColor = System.Drawing.Color.Aquamarine
-        Me.btnRenovarMembresia.Location = New System.Drawing.Point(567, 297)
+        Me.btnRenovarMembresia.Location = New System.Drawing.Point(559, 458)
         Me.btnRenovarMembresia.Name = "btnRenovarMembresia"
         Me.btnRenovarMembresia.Size = New System.Drawing.Size(170, 45)
         Me.btnRenovarMembresia.TabIndex = 7
@@ -115,7 +115,7 @@ Partial Class Socios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1042, 363)
+        Me.ClientSize = New System.Drawing.Size(1042, 529)
         Me.Controls.Add(Me.btnRenovarMembresia)
         Me.Controls.Add(Me.txtNombre)
         Me.Controls.Add(Me.lblNombre)
@@ -124,6 +124,8 @@ Partial Class Socios
         Me.Controls.Add(Me.btnModificarSocio)
         Me.Controls.Add(Me.btnAgregarSocio)
         Me.Controls.Add(Me.listaSocios)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Socios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Socios"

@@ -86,6 +86,8 @@ Partial Class Sanciones
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnVolver)
         Me.Controls.Add(Me.dgvSanciones)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Sanciones"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sanciones"

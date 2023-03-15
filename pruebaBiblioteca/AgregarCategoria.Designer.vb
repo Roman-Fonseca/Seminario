@@ -72,9 +72,11 @@ Partial Class AgregarCategoria
         Me.Controls.Add(Me.btnCargarCategoria)
         Me.Controls.Add(Me.txtNombreCategoria)
         Me.Controls.Add(Me.lblNombreCategoria)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarCategoria"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "AgregarCategoria"
+        Me.Text = "Agregar Categoria"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

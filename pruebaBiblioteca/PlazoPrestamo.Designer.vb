@@ -85,6 +85,8 @@ Partial Class PlazoPrestamo
         Me.Controls.Add(Me.btnVolver)
         Me.Controls.Add(Me.dgvPlazoPrestamo)
         Me.Controls.Add(Me.Label1)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "PlazoPrestamo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "PlazoPrestamo"

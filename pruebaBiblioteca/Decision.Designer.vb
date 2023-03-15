@@ -61,6 +61,8 @@ Partial Class Decision
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnSancionPago)
         Me.Controls.Add(Me.btnEspera)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Decision"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Decision"

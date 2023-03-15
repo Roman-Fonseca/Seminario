@@ -104,6 +104,8 @@ Partial Class AgregarAutor
         Me.Controls.Add(Me.txtNombre)
         Me.Controls.Add(Me.lblApellido)
         Me.Controls.Add(Me.lblNombre)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarAutor"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CargarAutor"

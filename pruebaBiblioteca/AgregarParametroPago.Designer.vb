@@ -132,6 +132,8 @@ Partial Class AgregarParametroPago
         Me.Controls.Add(Me.lblMaximo)
         Me.Controls.Add(Me.lblMinimo)
         Me.Controls.Add(Me.lblNombreParametro)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarParametroPago"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Agregar Parametro Pago"

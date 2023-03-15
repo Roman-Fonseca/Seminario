@@ -179,6 +179,8 @@ Partial Class Prestamos
         Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.btnModificar)
         Me.Controls.Add(Me.btnAgregar)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Prestamos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prestamos"

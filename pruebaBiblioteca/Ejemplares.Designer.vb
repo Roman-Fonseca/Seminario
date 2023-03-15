@@ -86,6 +86,8 @@ Partial Class Ejemplares
         Me.Controls.Add(Me.btnModificarEjemplar)
         Me.Controls.Add(Me.btnAgregarEjemplar)
         Me.Controls.Add(Me.listaEjemplares)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Ejemplares"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ejemplares"

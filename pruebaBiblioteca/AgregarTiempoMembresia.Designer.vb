@@ -120,6 +120,8 @@ Partial Class AgregarTiempoMembresia
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.lblTitulo)
         Me.Controls.Add(Me.GroupBox1)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarTiempoMembresia"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Agregar Tiempo Membresia"

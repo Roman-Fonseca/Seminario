@@ -40,4 +40,8 @@
             txtNombreCategoria.Focus()
         End If
     End Sub
+
+    Private Sub AgregarCategoria_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.txtNombreCategoria.Clear()
+    End Sub
 End Class

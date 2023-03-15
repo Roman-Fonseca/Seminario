@@ -86,7 +86,7 @@ Partial Class AgregarEditorial
         '
         'btnGuardarEditorial
         '
-        Me.btnGuardarEditorial.Location = New System.Drawing.Point(13, 216)
+        Me.btnGuardarEditorial.Location = New System.Drawing.Point(195, 216)
         Me.btnGuardarEditorial.Name = "btnGuardarEditorial"
         Me.btnGuardarEditorial.Size = New System.Drawing.Size(75, 23)
         Me.btnGuardarEditorial.TabIndex = 6
@@ -95,7 +95,7 @@ Partial Class AgregarEditorial
         '
         'btnLimpiarCamposEditorial
         '
-        Me.btnLimpiarCamposEditorial.Location = New System.Drawing.Point(105, 216)
+        Me.btnLimpiarCamposEditorial.Location = New System.Drawing.Point(12, 216)
         Me.btnLimpiarCamposEditorial.Name = "btnLimpiarCamposEditorial"
         Me.btnLimpiarCamposEditorial.Size = New System.Drawing.Size(75, 23)
         Me.btnLimpiarCamposEditorial.TabIndex = 7
@@ -104,7 +104,7 @@ Partial Class AgregarEditorial
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(196, 216)
+        Me.btnCancelar.Location = New System.Drawing.Point(107, 216)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelar.TabIndex = 8
@@ -125,6 +125,8 @@ Partial Class AgregarEditorial
         Me.Controls.Add(Me.lblLocalizacionEditorial)
         Me.Controls.Add(Me.lblContactoEditorial)
         Me.Controls.Add(Me.lblNombreEditorial)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarEditorial"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AgregarEditorial"

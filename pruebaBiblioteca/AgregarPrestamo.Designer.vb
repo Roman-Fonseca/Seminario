@@ -300,6 +300,8 @@ Partial Class AgregarPrestamo
         Me.Controls.Add(Me.gpbAgregarSocio)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.gbxDatosPrestramos)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarPrestamo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.gbxDatosPrestramos.ResumeLayout(False)

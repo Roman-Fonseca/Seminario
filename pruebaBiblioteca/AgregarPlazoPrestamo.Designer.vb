@@ -91,6 +91,8 @@ Partial Class AgregarPlazoPrestamo
         Me.Controls.Add(Me.txtDescripcion)
         Me.Controls.Add(Me.lblDias)
         Me.Controls.Add(Me.lblDescripcion)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarPlazoPrestamo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Agregar Plazo Prestamo"

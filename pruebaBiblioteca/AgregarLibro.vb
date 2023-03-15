@@ -68,15 +68,69 @@ Public Class AgregarLibro
 
     Private Sub btnLimpiarCamposAutor_Click(sender As Object, e As EventArgs) Handles btnLimpiarCamposAutor.Click
         'LimpiarCampos.limpiarCamposCargarLibro()
+        limpiarCampos()
     End Sub
 
     Private Sub btnGuardarAutor_Click(sender As Object, e As EventArgs) Handles btnGuardarAutor.Click
-        If Me.Text = "Cargar Libro" Then
-            Me.Altalibro()
-            Me.AltaLibroCategoria()
-            Me.AltaLibroAutor()
+        'If Me.Text = "Cargar Libro" Then
+        '    Me.Altalibro()
+        '    Me.AltaLibroCategoria()
+        '    Me.AltaLibroAutor()
+        'Else
+        '    '    moduloBiblioteca.modificarLibro()
+        'End If
+
+        If Me.txtTitulo.Text <> "" Then
+            If cbxUbicacion.SelectedIndex = -1 Then
+                MsgBox("Debe seleccionar ubicación")
+                cbxUbicacion.BackColor = Color.Red
+            Else
+                If cbxEditorial.SelectedIndex = -1 Then
+                    MsgBox("Debe seleccionar una editorial")
+                    cbxEditorial.BackColor = Color.Red
+                Else
+                    If txtLibroEan.Text = "" Then
+                        MsgBox("No puede dejar el campo Libro-EAN vacío")
+                        txtLibroEan.BackColor = Color.Red
+                    Else
+                        If txtPais.Text = "" Then
+                            MsgBox("No puede dejar el campo pais vacío")
+                            txtPais.BackColor = Color.Red
+                        Else
+                            If txtSelloEditorial.Text = "" Then
+                                MsgBox("No puede dejar el campo Sello Editorial vacío")
+                                txtSelloEditorial.BackColor = Color.Red
+                            Else
+                                If txtCorrelativoAlTitulo.Text = "" Then
+                                    MsgBox("No puede dejar el campo Correlativo al titulo vacio")
+                                    txtCorrelativoAlTitulo.BackColor = Color.Red
+                                Else
+                                    If txtDigitoDeControl.Text = "" Then
+                                        MsgBox("No puede dejar el campo Digito de control vacio")
+                                        txtDigitoDeControl.BackColor = Color.Red
+                                    Else
+                                        If listBoxCategoria.Items.Count <= 0 Then
+                                            MsgBox("Debe cargar por los menos una categoria")
+                                        Else
+                                            If ListBoxAutores.Items.Count <= 0 Then
+                                                MsgBox("Debe seleccionar por los menos un autor")
+                                            Else
+                                                Me.Altalibro()
+                                                Me.AltaLibroCategoria()
+                                                Me.AltaLibroAutor()
+                                            End If
+                                        End If
+                                    End If
+
+                                End If
+                            End If
+                        End If
+                    End If
+                End If
+            End If
         Else
-            '    moduloBiblioteca.modificarLibro()
+            MsgBox("Debe cargar el titulo del libro")
+            txtTitulo.BackColor = Color.Red
         End If
 
     End Sub
@@ -155,7 +209,7 @@ Public Class AgregarLibro
     End Sub
 
     Private Sub txtTitulo_TextChanged(sender As Object, e As EventArgs) Handles txtTitulo.TextChanged
-
+        txtTitulo.BackColor = Color.White
     End Sub
 
     Private Sub txtTitulo_Leave(sender As Object, e As EventArgs) Handles txtTitulo.Leave
@@ -247,13 +301,23 @@ Public Class AgregarLibro
 
     Public Sub Altalibro()
         Dim LOC_consulta As String
+        Dim isbn_completo As String
+
+        Dim EAN As String = Me.txtLibroEan.Text
+        Dim pais As String = Me.txtPais.Text
+        Dim sello_editorial As String = Me.txtSelloEditorial.Text
+        Dim correlativo_al_titulo As String = Me.txtCorrelativoAlTitulo.Text
+        Dim digito_control As String = Me.txtDigitoDeControl.Text
+
+        isbn_completo = EAN + "-" + pais + "-" + sello_editorial + "-" + correlativo_al_titulo + "-" + digito_control
+
         'Dim cod_libro As String
 
         Try
             'Alta libro'
             If ConexionMySQL() Then
-                LOC_consulta = "insert into libro (titulo, isbn, cod_ubicacion ,cod_editorial) values('" & Me.txtTitulo.Text & "','" & Me.txtIsbn.Text & "','" & Me.cbxUbicacion.SelectedValue & "','" & Me.cbxEditorial.SelectedValue & "')"
-                MsgBox(LOC_consulta)
+                LOC_consulta = "insert into libro (titulo, isbn, cod_ubicacion ,cod_editorial) values('" & Me.txtTitulo.Text & "','" & isbn_completo & "','" & Me.cbxUbicacion.SelectedValue & "','" & Me.cbxEditorial.SelectedValue & "')"
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó libro correctamente")
                 limpiarCamposCargarLibro()
@@ -271,14 +335,14 @@ Public Class AgregarLibro
         For a = 0 To listBoxCategoria.Items.Count - 1
 
             cod_categoria = listBoxCategoria.Items(a)
-            MsgBox(cod_categoria)
+            'MsgBox(cod_categoria)
             Try
                 'Alta libro'
                 If ConexionMySQL() Then
-                    consulta = "INSERT INTO `categoria libro` (`cod_categoria`, `cod_libro`) VALUES (" & cod_categoria & ", " & ultimo_libro_cargado & ");"
-                    MsgBox(consulta)
+                    consulta = "INSERT INTO `categoria_libro` (`cod_categoria`, `cod_libro`) VALUES (" & cod_categoria & ", " & ultimo_libro_cargado & ");"
+                    'MsgBox(consulta)
                     EjecutarTransaccion(consulta)
-                    MsgBox("Se agregó libro correctamente")
+                    'MsgBox("Se agregó libro correctamente")
                     limpiarCamposCargarLibro()
                 End If
             Catch ex As Exception
@@ -305,7 +369,7 @@ Public Class AgregarLibro
                 If Datos.Read Then
                     'Declaramos y llenamos
                     cod_libro = Trim(Datos("cod_libro"))
-                    MsgBox("Ultimo libro:" & cod_libro)
+                    'MsgBox("Ultimo libro:" & cod_libro)
                     Return cod_libro
                 End If
             End If
@@ -327,14 +391,14 @@ Public Class AgregarLibro
         For a = 0 To ListBoxAutores.Items.Count - 1
 
             cod_autor = ListBoxAutores.Items(a)
-            MsgBox(cod_autor)
+            'MsgBox(cod_autor)
             Try
                 'Alta libro'
                 If ConexionMySQL() Then
-                    consulta = "INSERT INTO `libro autor` (`cod_libro`, `cod_autor`) VALUES (" & cod_autor & "," & ultimo_libro_cargado & ");"
-                    MsgBox(consulta)
+                    consulta = "INSERT INTO `libro_autor` (`cod_libro`, `cod_autor`) VALUES (" & ultimo_libro_cargado & "," & cod_autor & ");"
+                    'MsgBox(consulta)
                     EjecutarTransaccion(consulta)
-                    MsgBox("Se agregó libro-autor correctamente")
+                    'MsgBox("Se agregó libro-autor correctamente")
                     limpiarCamposCargarLibro()
                 End If
             Catch ex As Exception
@@ -358,4 +422,160 @@ Public Class AgregarLibro
         End Try
     End Sub
 
+    Public Sub busquedaDinamicaAutor(ByVal nombre As String, ByVal dgv As DataGridView)
+        Try
+            adaptador = New MySqlDataAdapter("SELECT cod_autor, nombre, apellido FROM autor WHERE nombre like '" & nombre + "%" & "'", GloconexionDB)
+            dt = New DataTable
+            adaptador.Fill(dt)
+            dgv.DataSource = dt
+        Catch ex As Exception
+            MessageBox.Show("Error con busqueda dinamica", ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub txtBuscarAutor_TextChanged(sender As Object, e As EventArgs) Handles txtBuscarAutor.TextChanged
+        busquedaDinamicaAutor(txtBuscarAutor.Text, dgvAutores)
+    End Sub
+
+    Private Sub txtLibroEan_TextChanged(sender As Object, e As EventArgs) Handles txtLibroEan.TextChanged
+        txtLibroEan.BackColor = Color.White
+    End Sub
+
+    Private Sub txtLibroEan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtLibroEan.KeyPress
+        'Permito solamente números en el textbox
+        txtLibroEan.BackColor = Color.White
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf e.KeyChar.IsSeparator(e.KeyChar) Then
+            e.Handled = True  ' Aceptas la introducción de espacios
+        Else
+            e.Handled = True
+        End If
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtPais.Focus()
+        End If
+    End Sub
+
+    Private Sub txtPais_TextChanged(sender As Object, e As EventArgs) Handles txtPais.TextChanged
+        txtPais.BackColor = Color.White
+    End Sub
+
+    Private Sub txtPais_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPais.KeyPress
+        'Permito solamente números en el textbox
+        txtPais.BackColor = Color.White
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf e.KeyChar.IsSeparator(e.KeyChar) Then
+            e.Handled = True  ' Aceptas la introducción de espacios
+        Else
+            e.Handled = True
+        End If
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtSelloEditorial.Focus()
+        End If
+    End Sub
+
+    Private Sub txtSelloEditorial_TextChanged(sender As Object, e As EventArgs) Handles txtSelloEditorial.TextChanged
+        txtSelloEditorial.BackColor = Color.White
+    End Sub
+
+    Private Sub txtSelloEditorial_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSelloEditorial.KeyPress
+        'Permito solamente números en el textbox
+        txtSelloEditorial.BackColor = Color.White
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf e.KeyChar.IsSeparator(e.KeyChar) Then
+            e.Handled = True  ' Aceptas la introducción de espacios
+        Else
+            e.Handled = True
+        End If
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtCorrelativoAlTitulo.Focus()
+        End If
+    End Sub
+
+    Private Sub txtCorrelativoAlTitulo_TextChanged(sender As Object, e As EventArgs) Handles txtCorrelativoAlTitulo.TextChanged
+        txtCorrelativoAlTitulo.BackColor = Color.White
+    End Sub
+
+    Private Sub txtCorrelativoAlTitulo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCorrelativoAlTitulo.KeyPress
+        'Permito solamente números en el textbox
+        txtCorrelativoAlTitulo.BackColor = Color.White
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf e.KeyChar.IsSeparator(e.KeyChar) Then
+            e.Handled = True  ' Aceptas la introducción de espacios
+        Else
+            e.Handled = True
+        End If
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtDigitoDeControl.Focus()
+        End If
+    End Sub
+
+    Private Sub txtDigitoDeControl_TextChanged(sender As Object, e As EventArgs) Handles txtDigitoDeControl.TextChanged
+        txtDigitoDeControl.BackColor = Color.White
+    End Sub
+
+    Private Sub txtDigitoDeControl_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtDigitoDeControl.KeyPress
+        'Permito solamente números en el textbox
+        txtDigitoDeControl.BackColor = Color.White
+        If Char.IsDigit(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf e.KeyChar.IsSeparator(e.KeyChar) Then
+            e.Handled = True  ' Aceptas la introducción de espacios
+        Else
+            e.Handled = True
+        End If
+        'Paso el control al proximo texbox con el botón enter
+        If Asc(e.KeyChar) = 13 Then
+            txtBuscarCategoria.Focus()
+        End If
+    End Sub
+
+    Private Sub cbxUbicacion_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxUbicacion.MouseClick
+        cbxUbicacion.BackColor = Color.White
+    End Sub
+
+    Private Sub cbxEditorial_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxEditorial.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbxEditorial_MouseClick(sender As Object, e As MouseEventArgs) Handles cbxEditorial.MouseClick
+        cbxEditorial.BackColor = Color.White
+    End Sub
+
+    Public Sub limpiarCampos()
+        'limpio todos los cuadros de textos
+        Me.txtTitulo.Clear()
+        Me.cbxUbicacion.SelectedIndex = -1
+        Me.cbxEditorial.SelectedIndex = -1
+        Me.txtCod_libro.Clear()
+        Me.txtLibroEan.Clear()
+        Me.txtPais.Clear()
+        Me.txtSelloEditorial.Clear()
+        Me.txtCorrelativoAlTitulo.Clear()
+        Me.txtDigitoDeControl.Clear()
+
+        Me.txtBuscarAutor.Clear()
+        Me.txtBuscarCategoria.Clear()
+
+        Me.listBoxCategoria.Items.Clear()
+        Me.ListBoxAutores.Items.Clear()
+
+    End Sub
 End Class

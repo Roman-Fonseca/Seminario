@@ -64,6 +64,8 @@ Partial Class TiempoMembresia
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.lblTituloTiempo)
         Me.Controls.Add(Me.dgvTiempoMembresia)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "TiempoMembresia"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Tiempo Membresia"

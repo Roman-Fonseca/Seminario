@@ -100,6 +100,7 @@ Partial Class Parametros
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblFiltrar)
         Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Parametros"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Parametros"

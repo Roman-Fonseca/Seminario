@@ -23,7 +23,6 @@ Partial Class AgregarLibro
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.txtIsbn = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.lblTitulo = New System.Windows.Forms.Label()
         Me.txtTitulo = New System.Windows.Forms.TextBox()
         Me.lblUbicacion = New System.Windows.Forms.Label()
@@ -43,6 +42,17 @@ Partial Class AgregarLibro
         Me.btnSeleccionarAutor = New System.Windows.Forms.Button()
         Me.cbxCategoria = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.txtLibroEan = New System.Windows.Forms.TextBox()
+        Me.txtDigitoDeControl = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtCorrelativoAlTitulo = New System.Windows.Forms.TextBox()
+        Me.txtSelloEditorial = New System.Windows.Forms.TextBox()
+        Me.txtPais = New System.Windows.Forms.TextBox()
+        Me.lblCorrelativoAlTitulo = New System.Windows.Forms.Label()
+        Me.lblSelloEditorial = New System.Windows.Forms.Label()
+        Me.lblPais = New System.Windows.Forms.Label()
+        Me.lblLibro = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnAgregarCategoria = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -60,6 +70,7 @@ Partial Class AgregarLibro
         Me.btnAgreagrAutor = New System.Windows.Forms.Button()
         Me.txtBuscarAutor = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvCategoria, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
@@ -68,19 +79,11 @@ Partial Class AgregarLibro
         '
         'txtIsbn
         '
-        Me.txtIsbn.Location = New System.Drawing.Point(589, 26)
+        Me.txtIsbn.Location = New System.Drawing.Point(20, 208)
         Me.txtIsbn.Name = "txtIsbn"
-        Me.txtIsbn.Size = New System.Drawing.Size(156, 20)
+        Me.txtIsbn.Size = New System.Drawing.Size(129, 20)
         Me.txtIsbn.TabIndex = 0
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(527, 29)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(35, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "ISBN:"
+        Me.txtIsbn.Visible = False
         '
         'lblTitulo
         '
@@ -94,6 +97,7 @@ Partial Class AgregarLibro
         'txtTitulo
         '
         Me.txtTitulo.Location = New System.Drawing.Point(81, 74)
+        Me.txtTitulo.MaxLength = 30
         Me.txtTitulo.Name = "txtTitulo"
         Me.txtTitulo.Size = New System.Drawing.Size(156, 20)
         Me.txtTitulo.TabIndex = 3
@@ -110,7 +114,7 @@ Partial Class AgregarLibro
         'lblEditorial
         '
         Me.lblEditorial.AutoSize = True
-        Me.lblEditorial.Location = New System.Drawing.Point(515, 77)
+        Me.lblEditorial.Location = New System.Drawing.Point(23, 177)
         Me.lblEditorial.Name = "lblEditorial"
         Me.lblEditorial.Size = New System.Drawing.Size(47, 13)
         Me.lblEditorial.TabIndex = 5
@@ -127,7 +131,7 @@ Partial Class AgregarLibro
         '
         'btnAgregarEditorial
         '
-        Me.btnAgregarEditorial.Location = New System.Drawing.Point(749, 71)
+        Me.btnAgregarEditorial.Location = New System.Drawing.Point(243, 172)
         Me.btnAgregarEditorial.Name = "btnAgregarEditorial"
         Me.btnAgregarEditorial.Size = New System.Drawing.Size(46, 23)
         Me.btnAgregarEditorial.TabIndex = 7
@@ -145,7 +149,7 @@ Partial Class AgregarLibro
         'cbxEditorial
         '
         Me.cbxEditorial.FormattingEnabled = True
-        Me.cbxEditorial.Location = New System.Drawing.Point(589, 73)
+        Me.cbxEditorial.Location = New System.Drawing.Point(81, 174)
         Me.cbxEditorial.Name = "cbxEditorial"
         Me.cbxEditorial.Size = New System.Drawing.Size(156, 21)
         Me.cbxEditorial.TabIndex = 9
@@ -199,18 +203,18 @@ Partial Class AgregarLibro
         Me.GroupBox1.Controls.Add(Me.lblAutor)
         Me.GroupBox1.Controls.Add(Me.txtAutor)
         Me.GroupBox1.Controls.Add(Me.btnSeleccionarAutor)
-        Me.GroupBox1.Controls.Add(Me.txtIsbn)
-        Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.cbxCategoria)
         Me.GroupBox1.Controls.Add(Me.lblTitulo)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.txtTitulo)
         Me.GroupBox1.Controls.Add(Me.btnAgregarEditorial)
         Me.GroupBox1.Controls.Add(Me.cbxEditorial)
+        Me.GroupBox1.Controls.Add(Me.txtIsbn)
         Me.GroupBox1.Controls.Add(Me.lblUbicacion)
         Me.GroupBox1.Controls.Add(Me.cbxUbicacion)
         Me.GroupBox1.Controls.Add(Me.lblEditorial)
         Me.GroupBox1.Controls.Add(Me.btnAgregarUbicacion)
+        Me.GroupBox1.Controls.Add(Me.GroupBox4)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(812, 238)
@@ -221,7 +225,7 @@ Partial Class AgregarLibro
         'lblAutor
         '
         Me.lblAutor.AutoSize = True
-        Me.lblAutor.Location = New System.Drawing.Point(35, 160)
+        Me.lblAutor.Location = New System.Drawing.Point(374, 160)
         Me.lblAutor.Name = "lblAutor"
         Me.lblAutor.Size = New System.Drawing.Size(35, 13)
         Me.lblAutor.TabIndex = 13
@@ -230,7 +234,7 @@ Partial Class AgregarLibro
         '
         'txtAutor
         '
-        Me.txtAutor.Location = New System.Drawing.Point(81, 153)
+        Me.txtAutor.Location = New System.Drawing.Point(320, 177)
         Me.txtAutor.Name = "txtAutor"
         Me.txtAutor.Size = New System.Drawing.Size(156, 20)
         Me.txtAutor.TabIndex = 20
@@ -238,7 +242,7 @@ Partial Class AgregarLibro
         '
         'btnSeleccionarAutor
         '
-        Me.btnSeleccionarAutor.Location = New System.Drawing.Point(243, 151)
+        Me.btnSeleccionarAutor.Location = New System.Drawing.Point(391, 203)
         Me.btnSeleccionarAutor.Name = "btnSeleccionarAutor"
         Me.btnSeleccionarAutor.Size = New System.Drawing.Size(46, 23)
         Me.btnSeleccionarAutor.TabIndex = 19
@@ -249,7 +253,7 @@ Partial Class AgregarLibro
         'cbxCategoria
         '
         Me.cbxCategoria.FormattingEnabled = True
-        Me.cbxCategoria.Location = New System.Drawing.Point(81, 185)
+        Me.cbxCategoria.Location = New System.Drawing.Point(168, 208)
         Me.cbxCategoria.Name = "cbxCategoria"
         Me.cbxCategoria.Size = New System.Drawing.Size(156, 21)
         Me.cbxCategoria.TabIndex = 11
@@ -258,12 +262,116 @@ Partial Class AgregarLibro
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(23, 185)
+        Me.Label2.Location = New System.Drawing.Point(330, 208)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(55, 13)
         Me.Label2.TabIndex = 10
         Me.Label2.Text = "Categoria:"
         Me.Label2.Visible = False
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.txtLibroEan)
+        Me.GroupBox4.Controls.Add(Me.txtDigitoDeControl)
+        Me.GroupBox4.Controls.Add(Me.Label1)
+        Me.GroupBox4.Controls.Add(Me.txtCorrelativoAlTitulo)
+        Me.GroupBox4.Controls.Add(Me.txtSelloEditorial)
+        Me.GroupBox4.Controls.Add(Me.txtPais)
+        Me.GroupBox4.Controls.Add(Me.lblCorrelativoAlTitulo)
+        Me.GroupBox4.Controls.Add(Me.lblSelloEditorial)
+        Me.GroupBox4.Controls.Add(Me.lblPais)
+        Me.GroupBox4.Controls.Add(Me.lblLibro)
+        Me.GroupBox4.Location = New System.Drawing.Point(485, 13)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(321, 219)
+        Me.GroupBox4.TabIndex = 21
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "ISBN"
+        '
+        'txtLibroEan
+        '
+        Me.txtLibroEan.Location = New System.Drawing.Point(175, 26)
+        Me.txtLibroEan.MaxLength = 4
+        Me.txtLibroEan.Name = "txtLibroEan"
+        Me.txtLibroEan.Size = New System.Drawing.Size(129, 20)
+        Me.txtLibroEan.TabIndex = 31
+        '
+        'txtDigitoDeControl
+        '
+        Me.txtDigitoDeControl.Location = New System.Drawing.Point(175, 182)
+        Me.txtDigitoDeControl.MaxLength = 2
+        Me.txtDigitoDeControl.Name = "txtDigitoDeControl"
+        Me.txtDigitoDeControl.Size = New System.Drawing.Size(129, 20)
+        Me.txtDigitoDeControl.TabIndex = 30
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(78, 185)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(87, 13)
+        Me.Label1.TabIndex = 29
+        Me.Label1.Text = "Digito de control:"
+        '
+        'txtCorrelativoAlTitulo
+        '
+        Me.txtCorrelativoAlTitulo.Location = New System.Drawing.Point(175, 147)
+        Me.txtCorrelativoAlTitulo.MaxLength = 4
+        Me.txtCorrelativoAlTitulo.Name = "txtCorrelativoAlTitulo"
+        Me.txtCorrelativoAlTitulo.Size = New System.Drawing.Size(129, 20)
+        Me.txtCorrelativoAlTitulo.TabIndex = 28
+        '
+        'txtSelloEditorial
+        '
+        Me.txtSelloEditorial.Location = New System.Drawing.Point(175, 102)
+        Me.txtSelloEditorial.MaxLength = 5
+        Me.txtSelloEditorial.Name = "txtSelloEditorial"
+        Me.txtSelloEditorial.Size = New System.Drawing.Size(129, 20)
+        Me.txtSelloEditorial.TabIndex = 27
+        '
+        'txtPais
+        '
+        Me.txtPais.Location = New System.Drawing.Point(175, 65)
+        Me.txtPais.MaxLength = 3
+        Me.txtPais.Name = "txtPais"
+        Me.txtPais.Size = New System.Drawing.Size(129, 20)
+        Me.txtPais.TabIndex = 26
+        '
+        'lblCorrelativoAlTitulo
+        '
+        Me.lblCorrelativoAlTitulo.AutoSize = True
+        Me.lblCorrelativoAlTitulo.Location = New System.Drawing.Point(69, 150)
+        Me.lblCorrelativoAlTitulo.Name = "lblCorrelativoAlTitulo"
+        Me.lblCorrelativoAlTitulo.Size = New System.Drawing.Size(96, 13)
+        Me.lblCorrelativoAlTitulo.TabIndex = 25
+        Me.lblCorrelativoAlTitulo.Text = "Correlativo al titulo:"
+        '
+        'lblSelloEditorial
+        '
+        Me.lblSelloEditorial.AutoSize = True
+        Me.lblSelloEditorial.Location = New System.Drawing.Point(92, 103)
+        Me.lblSelloEditorial.Name = "lblSelloEditorial"
+        Me.lblSelloEditorial.Size = New System.Drawing.Size(73, 13)
+        Me.lblSelloEditorial.TabIndex = 24
+        Me.lblSelloEditorial.Text = "Sello Editorial:"
+        '
+        'lblPais
+        '
+        Me.lblPais.AutoSize = True
+        Me.lblPais.Location = New System.Drawing.Point(135, 68)
+        Me.lblPais.Name = "lblPais"
+        Me.lblPais.Size = New System.Drawing.Size(30, 13)
+        Me.lblPais.TabIndex = 23
+        Me.lblPais.Text = "Pais:"
+        '
+        'lblLibro
+        '
+        Me.lblLibro.AutoSize = True
+        Me.lblLibro.Location = New System.Drawing.Point(104, 29)
+        Me.lblLibro.Name = "lblLibro"
+        Me.lblLibro.Size = New System.Drawing.Size(61, 13)
+        Me.lblLibro.TabIndex = 22
+        Me.lblLibro.Text = "Libro(EAN):"
         '
         'Button1
         '
@@ -341,6 +449,7 @@ Partial Class AgregarLibro
         'txtBuscarCategoria
         '
         Me.txtBuscarCategoria.Location = New System.Drawing.Point(270, 38)
+        Me.txtBuscarCategoria.MaxLength = 10
         Me.txtBuscarCategoria.Name = "txtBuscarCategoria"
         Me.txtBuscarCategoria.Size = New System.Drawing.Size(102, 20)
         Me.txtBuscarCategoria.TabIndex = 21
@@ -421,6 +530,7 @@ Partial Class AgregarLibro
         'txtBuscarAutor
         '
         Me.txtBuscarAutor.Location = New System.Drawing.Point(269, 38)
+        Me.txtBuscarAutor.MaxLength = 10
         Me.txtBuscarAutor.Name = "txtBuscarAutor"
         Me.txtBuscarAutor.Size = New System.Drawing.Size(102, 20)
         Me.txtBuscarAutor.TabIndex = 27
@@ -429,7 +539,8 @@ Partial Class AgregarLibro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BackColor = System.Drawing.Color.LightGray
         Me.ClientSize = New System.Drawing.Size(855, 562)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
@@ -439,11 +550,15 @@ Partial Class AgregarLibro
         Me.Controls.Add(Me.btnLimpiarCamposAutor)
         Me.Controls.Add(Me.btnGuardarAutor)
         Me.Controls.Add(Me.GroupBox1)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarLibro"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cargar Libro"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.dgvCategoria, System.ComponentModel.ISupportInitialize).EndInit()
@@ -456,7 +571,6 @@ Partial Class AgregarLibro
     End Sub
 
     Friend WithEvents txtIsbn As TextBox
-    Friend WithEvents Label1 As Label
     Friend WithEvents lblTitulo As Label
     Friend WithEvents txtTitulo As TextBox
     Friend WithEvents lblUbicacion As Label
@@ -492,4 +606,15 @@ Partial Class AgregarLibro
     Friend WithEvents ListBoxAutores As ListBox
     Friend WithEvents txtAutor As TextBox
     Friend WithEvents cbxCategoria As ComboBox
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents lblCorrelativoAlTitulo As Label
+    Friend WithEvents lblSelloEditorial As Label
+    Friend WithEvents lblPais As Label
+    Friend WithEvents lblLibro As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txtCorrelativoAlTitulo As TextBox
+    Friend WithEvents txtSelloEditorial As TextBox
+    Friend WithEvents txtPais As TextBox
+    Friend WithEvents txtDigitoDeControl As TextBox
+    Friend WithEvents txtLibroEan As TextBox
 End Class

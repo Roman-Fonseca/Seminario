@@ -60,8 +60,11 @@ Public Class AgregarEjemplar
                     If cbxPlazoPrestamo.Text <> "" Then
                         moduloBiblioteca.altaEjemplar()
                         Me.txtLibro.Clear()
+                        Me.txtNumeroEjemplar.Clear()
                         Me.cbxTipoEjemplar.Text = ""
                         Me.cbxPlazoPrestamo.Text = ""
+                        Me.cbxPlazoPrestamo.SelectedIndex = -1
+                        Me.cbxTipoEjemplar.SelectedIndex = -1
                     Else
                         MsgBox("Debe seleccionar un plazo prestamo para el libro", MsgBoxStyle.Information, "Agregar ejemplar")
                         Me.cbxPlazoPrestamo.Focus()
@@ -82,9 +85,13 @@ Public Class AgregarEjemplar
                 If cbxTipoEjemplar.Text <> "" Then
                     If cbxPlazoPrestamo.Text <> "" Then
                         Me.GuardarEjemplarModificado(Ejemplares.COD_EJEMPLAR_MODIFICAR)
+                        moduloBiblioteca.mostrarEjemplares()
                         Me.txtLibro.Clear()
                         Me.cbxTipoEjemplar.Text = ""
                         Me.cbxPlazoPrestamo.Text = ""
+                        Me.cbxPlazoPrestamo.SelectedIndex = -1
+                        Me.cbxTipoEjemplar.SelectedIndex = -1
+                        Me.Close()
                     Else
                         MsgBox("Debe seleccionar un plazo prestamo para el libro", MsgBoxStyle.Information, "Agregar ejemplar")
                         Me.cbxPlazoPrestamo.Focus()
@@ -202,8 +209,8 @@ Public Class AgregarEjemplar
     Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
         Me.txtBuscarlibro.Clear()
         Me.txtLibro.Clear()
-        Me.cbxPlazoPrestamo.Text = ""
-        Me.cbxTipoEjemplar.Text = ""
+        Me.cbxPlazoPrestamo.SelectedIndex = -1
+        Me.cbxTipoEjemplar.SelectedIndex = -1
         Me.txtNumeroEjemplar.Text = ""
     End Sub
 
@@ -221,7 +228,7 @@ Public Class AgregarEjemplar
         Try
 
             If ConexionMySQL() Then
-                LOC_consulta = "UPDATE ejemplar SET cod_tipo_ejemplar = " & Me.cbxTipoEjemplar.SelectedValue & ", cod_plazo_prestamo = " & Me.cbxTipoEjemplar.SelectedValue & "
+                LOC_consulta = "UPDATE ejemplar SET cod_tipo_ejemplar = " & Me.cbxTipoEjemplar.SelectedValue & ", cod_plazo_prestamo = " & Me.cbxPlazoPrestamo.SelectedValue & "
                                 WHERE `ejemplar`.`cod_ejemplar` = " & cod_ejemplar & ""
                 Glocomando.CommandText = LOC_consulta
                 Glocomando.CommandType = CommandType.Text

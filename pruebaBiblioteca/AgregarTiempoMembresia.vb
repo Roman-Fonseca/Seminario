@@ -52,7 +52,7 @@ Public Class AgregarTiempoMembresia
         Try
             If ConexionMySQL() Then
                 consulta = "INSERT INTO tiempo_membresia (descripcion,dias) VALUES ('" & descripcion & "'," & dias & ")"
-                MsgBox(consulta)
+                'MsgBox(consulta)
                 EjecutarTransaccion(consulta)
                 MsgBox("Se agregó tiempo_membresía correctamente")
                 txtDescripcion.Clear()
@@ -130,7 +130,7 @@ Public Class AgregarTiempoMembresia
 
             If ConexionMySQL() Then
                 consulta = "UPDATE tiempo_membresia SET descripcion = '" & descripcion & "', dias = '" & dias & "' WHERE cod_tiempo_membresia = " & TiempoMembresia.GLO_COD_TIEMPO_MEMBRESIA & ""
-                MsgBox(consulta)
+                'MsgBox(consulta)
                 Glocomando.CommandText = consulta
                 Glocomando.CommandType = CommandType.Text
                 Glocomando.Connection = GloconexionDB

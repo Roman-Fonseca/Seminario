@@ -72,6 +72,8 @@ Partial Class AgregarTipoEjemplar
         Me.Controls.Add(Me.btnAgregarTipoEjemplar)
         Me.Controls.Add(Me.txtNombreTipoEjemplar)
         Me.Controls.Add(Me.Label1)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarTipoEjemplar"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AgregarTipoEjemplar"

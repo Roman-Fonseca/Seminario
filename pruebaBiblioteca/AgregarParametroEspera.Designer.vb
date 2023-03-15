@@ -135,6 +135,8 @@ Partial Class AgregarParametroEspera
         Me.Controls.Add(Me.lblMaximo)
         Me.Controls.Add(Me.lblMinimo)
         Me.Controls.Add(Me.lblNombreParametro)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "AgregarParametroEspera"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Agregar parametro espera"

@@ -142,7 +142,7 @@
             If ConexionMySQL() Then
                 LOC_consulta = "UPDATE parametro_espera SET minimo= " & Me.txtMinimo.Text & ",maximo = " & Me.txtMaximo.Text & " , dias_sancion = " & Me.txtSancion.Text & " 
                         WHERE cod_parametro_espera = " & cod_parametro_espera & ""
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se modificó parametro pago correctamente")
             End If

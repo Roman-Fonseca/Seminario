@@ -61,7 +61,7 @@
 
             If ConexionMySQL() Then
                 LOC_consulta = "insert into parametro_pago (minimo,maximo,pago_correspondiente) values('" & Me.txtMinimo.Text & "','" & Me.txtMaximo.Text & "','" & Me.txtPagoCorrespondiente.Text & "')"
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se agregó parámetro_espera correctamente")
             End If
@@ -139,7 +139,7 @@
             If ConexionMySQL() Then
                 LOC_consulta = "UPDATE parametro_pago SET minimo= " & Me.txtMinimo.Text & ",maximo = " & Me.txtMaximo.Text & " ,pago_correspondiente= " & Me.txtPagoCorrespondiente.Text & " 
                         WHERE cod_parametro_pago = " & cod_parametro_pago & ""
-                MsgBox(LOC_consulta)
+                'MsgBox(LOC_consulta)
                 EjecutarTransaccion(LOC_consulta)
                 MsgBox("Se modificó parametro pago correctamente")
             End If

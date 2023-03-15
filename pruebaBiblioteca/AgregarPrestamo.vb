@@ -93,6 +93,8 @@ Public Class AgregarPrestamo
                                 If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
                                     If contarPrestamosActivos(GLO_CodSocioPrestamo) < 3 Then
                                         altaPrestamo()
+                                        moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
+                                        moduloBiblioteca.llenarGrillaEjemplares()
                                     Else
                                         MsgBox("El socio ya tiene 3 prestamos activos")
                                     End If
@@ -325,7 +327,7 @@ Public Class AgregarPrestamo
                             sancion_espera.cod_sancion_espera = prestamo_atrasado.cod_sancion_espera INNER JOIN prestamo_finalizado 
                             ON prestamo_atrasado.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado INNER JOIN prestamo_socio 
                             On prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio 
-                            INNER JOIN socio ON prestamo_socio.cod_socio = 27 LIMIT 1"
+                            INNER JOIN socio ON prestamo_socio.cod_socio = " & cod_socio & " LIMIT 1"
         Dim cod_sancion_e As Integer
         Dim Conexion As New MySqlConnection(cadena_conexion)
         Dim consulta As New MySqlCommand(Sql, Conexion)
@@ -352,8 +354,43 @@ Public Class AgregarPrestamo
         End Try
     End Function
 
+    Public Function existeSancionEspera(cod_socio As Integer) As Integer
+        Dim Sql As String = "SELECT MAX(sancion_espera.cod_sancion_espera) FROM sancion_espera INNER JOIN prestamo_atrasado ON
+                            sancion_espera.cod_sancion_espera = prestamo_atrasado.cod_sancion_espera INNER JOIN prestamo_finalizado 
+                            ON prestamo_atrasado.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado INNER JOIN prestamo_socio 
+                            On prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio 
+                            INNER JOIN socio ON prestamo_socio.cod_socio = " & cod_socio & "LIMIT 1"
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    'Declaramos y llenamos
+                    Dim VARIABLE_QUE_CONTENDRA_EL_VALOR As Boolean = IsDBNull(Trim(Datos("MAX(sancion_espera.cod_sancion_espera)")))
+                    If VARIABLE_QUE_CONTENDRA_EL_VALOR = False Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
+
 
     Public Function tomar_fecha_finalizacion(cod_socio As Integer) As Date
+
+
         Dim cod_sancion_e As Integer = tomarCodSancionEspera(cod_socio)
         Dim Sql As String = "SELECT fecha_finalizacion FROM sancion_espera WHERE cod_sancion_espera = " & cod_sancion_e & ""
         Dim f_finalizacion As Date

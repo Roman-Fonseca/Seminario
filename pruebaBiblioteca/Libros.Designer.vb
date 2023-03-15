@@ -28,7 +28,13 @@ Partial Class Libros
         Me.btnBorrar = New System.Windows.Forms.Button()
         Me.lblNombre = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.dgvAutoresLibro = New System.Windows.Forms.DataGridView()
+        Me.dgvCategoria = New System.Windows.Forms.DataGridView()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.dgvLibros, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvAutoresLibro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvCategoria, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dgvLibros
@@ -37,7 +43,7 @@ Partial Class Libros
         Me.dgvLibros.Location = New System.Drawing.Point(24, 64)
         Me.dgvLibros.Name = "dgvLibros"
         Me.dgvLibros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvLibros.Size = New System.Drawing.Size(669, 229)
+        Me.dgvLibros.Size = New System.Drawing.Size(588, 229)
         Me.dgvLibros.TabIndex = 0
         '
         'btnVolver
@@ -51,7 +57,7 @@ Partial Class Libros
         '
         'btnModificar
         '
-        Me.btnModificar.Location = New System.Drawing.Point(618, 322)
+        Me.btnModificar.Location = New System.Drawing.Point(537, 322)
         Me.btnModificar.Name = "btnModificar"
         Me.btnModificar.Size = New System.Drawing.Size(75, 23)
         Me.btnModificar.TabIndex = 2
@@ -60,7 +66,7 @@ Partial Class Libros
         '
         'btnBorrar
         '
-        Me.btnBorrar.Location = New System.Drawing.Point(537, 322)
+        Me.btnBorrar.Location = New System.Drawing.Point(451, 322)
         Me.btnBorrar.Name = "btnBorrar"
         Me.btnBorrar.Size = New System.Drawing.Size(75, 23)
         Me.btnBorrar.TabIndex = 3
@@ -84,11 +90,51 @@ Partial Class Libros
         Me.TextBox1.Size = New System.Drawing.Size(173, 20)
         Me.TextBox1.TabIndex = 5
         '
+        'dgvAutoresLibro
+        '
+        Me.dgvAutoresLibro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvAutoresLibro.Location = New System.Drawing.Point(649, 64)
+        Me.dgvAutoresLibro.Name = "dgvAutoresLibro"
+        Me.dgvAutoresLibro.Size = New System.Drawing.Size(240, 106)
+        Me.dgvAutoresLibro.TabIndex = 6
+        '
+        'dgvCategoria
+        '
+        Me.dgvCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvCategoria.Location = New System.Drawing.Point(649, 194)
+        Me.dgvCategoria.Name = "dgvCategoria"
+        Me.dgvCategoria.Size = New System.Drawing.Size(138, 99)
+        Me.dgvCategoria.TabIndex = 7
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(646, 43)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(63, 18)
+        Me.Label1.TabIndex = 8
+        Me.Label1.Text = "Autor/es"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(646, 173)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(84, 18)
+        Me.Label2.TabIndex = 9
+        Me.Label2.Text = "Categoria/s"
+        '
         'Libros
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(731, 379)
+        Me.ClientSize = New System.Drawing.Size(921, 379)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.dgvCategoria)
+        Me.Controls.Add(Me.dgvAutoresLibro)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.lblNombre)
         Me.Controls.Add(Me.btnBorrar)
@@ -96,8 +142,11 @@ Partial Class Libros
         Me.Controls.Add(Me.btnVolver)
         Me.Controls.Add(Me.dgvLibros)
         Me.Name = "Libros"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Libros"
         CType(Me.dgvLibros, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvAutoresLibro, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvCategoria, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -109,4 +158,8 @@ Partial Class Libros
     Friend WithEvents btnBorrar As Button
     Friend WithEvents lblNombre As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents dgvAutoresLibro As DataGridView
+    Friend WithEvents dgvCategoria As DataGridView
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
 End Class
