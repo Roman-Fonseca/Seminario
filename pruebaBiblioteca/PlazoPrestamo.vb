@@ -39,4 +39,28 @@
             MsgBox("Error en la conexion")
         End Try
     End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim cod_plazo_prestamo As Integer = Me.dgvPlazoPrestamo.SelectedRows.Item(0).Cells(0).Value
+        EliminarPlazoPrestamo(cod_plazo_prestamo)
+        mostrarPlazosPrestamos()
+    End Sub
+
+    Public Sub EliminarPlazoPrestamo(cod_plazo_prestamo As Integer)
+        Dim loc_consulta As String
+        Dim a As Integer
+        Try
+            a = MsgBox("¿ Está seguro de eliminar el plazo_prestamo cod_plazo_prestamo: " & cod_plazo_prestamo & " ?", MsgBoxStyle.YesNo, "Biblioteca LA")
+            If a = MsgBoxResult.Yes Then
+                loc_consulta = "DELETE FROM plazo_prestamo WHERE cod_plazo_prestamo = " & cod_plazo_prestamo
+                If ConexionMySQL() Then
+                    EjecutarTransaccion(loc_consulta)
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
 End Class

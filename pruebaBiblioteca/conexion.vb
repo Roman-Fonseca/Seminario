@@ -43,10 +43,11 @@ Module conexion
                 Glocomando.Connection = GloconexionDB
                 Glocomando.ExecuteNonQuery()
                 GloconexionDB.Close()
+                'MsgBox("Se eliminó registro correctamente")
             End If
 
         Catch ex As Exception
-            MsgBox("El socio se encuentra en otras tablas. La eliminacion del socio esta restringida", MsgBoxStyle.Critical)
+            MsgBox("El registro se encuentra en otras tablas. La eliminacion del mísmo esta restringida", MsgBoxStyle.Critical)
             'MsgBox(ex.Message)
             GloconexionDB.Close()
         End Try

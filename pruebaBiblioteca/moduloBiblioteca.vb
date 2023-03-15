@@ -519,7 +519,7 @@ Module moduloBiblioteca
                                     libro.titulo, tipo_ejemplar.descripcion AS tipo, plazo_prestamo.descripcion AS plazo_prestamo 
                                     FROM ejemplar INNER JOIN libro ON ejemplar.cod_libro = libro.cod_libro INNER JOIN tipo_ejemplar 
                                     ON ejemplar.cod_tipo_ejemplar = tipo_ejemplar.cod_tipo_ejemplar INNER JOIN plazo_prestamo 
-                                    ON ejemplar.cod_plazo_prestamo = plazo_prestamo.cod_plazo_prestamo"
+                                    ON ejemplar.cod_plazo_prestamo = plazo_prestamo.cod_plazo_prestamo ORDER BY numero_ejemplar ASC"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta

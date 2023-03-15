@@ -66,6 +66,27 @@
         End If
     End Sub
 
+    Private Sub btnEliminarEjemplar_Click(sender As Object, e As EventArgs) Handles btnEliminarEjemplar.Click
+        Dim cod_ejemplar As Integer = Me.listaEjemplares.SelectedRows.Item(0).Cells(0).Value
+        EliminarEjemplar(cod_ejemplar)
+        moduloBiblioteca.mostrarEjemplares()
+    End Sub
 
+    Public Sub EliminarEjemplar(cod_ejemplar As Integer)
+        Dim loc_consulta As String
+        Dim a As Integer
+        Try
+            a = MsgBox("¿ Está seguro de eliminar el ejemplar cod_ejemplar: " & cod_ejemplar & " ?", MsgBoxStyle.YesNo, "Biblioteca LA")
+            If a = MsgBoxResult.Yes Then
+                loc_consulta = "DELETE FROM ejemplar WHERE cod_ejemplar= " & cod_ejemplar
+                If ConexionMySQL() Then
+                    EjecutarTransaccion(loc_consulta)
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
 
 End Class

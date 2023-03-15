@@ -258,4 +258,27 @@ Public Class Prestamos
         End Try
     End Function
 
+    Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+        Dim cod_prestamo As Integer = (Me.dgvPrestamos.SelectedRows.Item(0).Cells(0).Value)
+        EliminarPrestamo(cod_prestamo)
+    End Sub
+
+    Public Sub EliminarPrestamo(cod_prestamo As Integer)
+        Dim loc_consulta As String
+        Dim a As Integer
+        Try
+            a = MsgBox("¿ Está seguro de eliminar el prestamo cod_prestamo: " & cod_prestamo & " ?", MsgBoxStyle.YesNo, "Biblioteca LA")
+            If a = MsgBoxResult.Yes Then
+                loc_consulta = "delete from prestamo_socio where cod_prestamo_socio= " & cod_prestamo
+                If ConexionMySQL() Then
+                    EjecutarTransaccion(loc_consulta)
+
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
 End Class

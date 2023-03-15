@@ -59,6 +59,7 @@ Public Class AgregarEjemplar
                 If cbxTipoEjemplar.Text <> "" Then
                     If cbxPlazoPrestamo.Text <> "" Then
                         moduloBiblioteca.altaEjemplar()
+                        moduloBiblioteca.mostrarEjemplares()
                         Me.txtLibro.Clear()
                         Me.txtNumeroEjemplar.Clear()
                         Me.cbxTipoEjemplar.Text = ""
