@@ -205,12 +205,13 @@ Partial Class AgregarPrestamo
         '
         'btnAgregarPrestamo
         '
-        Me.btnAgregarPrestamo.Location = New System.Drawing.Point(282, 21)
+        Me.btnAgregarPrestamo.Location = New System.Drawing.Point(281, 21)
         Me.btnAgregarPrestamo.Name = "btnAgregarPrestamo"
         Me.btnAgregarPrestamo.Size = New System.Drawing.Size(75, 23)
         Me.btnAgregarPrestamo.TabIndex = 26
         Me.btnAgregarPrestamo.Text = "Agregar"
         Me.btnAgregarPrestamo.UseVisualStyleBackColor = True
+        Me.btnAgregarPrestamo.Visible = False
         '
         'txtBuscarSocio
         '

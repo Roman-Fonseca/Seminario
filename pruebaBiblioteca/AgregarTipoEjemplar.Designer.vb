@@ -47,7 +47,7 @@ Partial Class AgregarTipoEjemplar
         '
         'btnAgregarTipoEjemplar
         '
-        Me.btnAgregarTipoEjemplar.Location = New System.Drawing.Point(106, 128)
+        Me.btnAgregarTipoEjemplar.Location = New System.Drawing.Point(196, 128)
         Me.btnAgregarTipoEjemplar.Name = "btnAgregarTipoEjemplar"
         Me.btnAgregarTipoEjemplar.Size = New System.Drawing.Size(65, 23)
         Me.btnAgregarTipoEjemplar.TabIndex = 2
@@ -56,7 +56,7 @@ Partial Class AgregarTipoEjemplar
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(196, 128)
+        Me.btnCancelar.Location = New System.Drawing.Point(109, 128)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(65, 23)
         Me.btnCancelar.TabIndex = 3

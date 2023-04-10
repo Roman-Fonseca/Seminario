@@ -187,6 +187,12 @@
     <Compile Include="Ejemplares.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="EjemplaresEliminados.Designer.vb">
+      <DependentUpon>EjemplaresEliminados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EjemplaresEliminados.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -201,7 +207,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LimpiarCampos.vb" />
+    <Compile Include="ModuleAplicarSancionEspera.vb" />
     <Compile Include="moduloBiblioteca.vb" />
+    <Compile Include="ModuloFinalizarPrestamo.vb" />
+    <Compile Include="ModuloValidarPrestamo.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -350,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ejemplares.resx">
       <DependentUpon>Ejemplares.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EjemplaresEliminados.resx">
+      <DependentUpon>EjemplaresEliminados.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>

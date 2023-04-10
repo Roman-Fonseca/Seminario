@@ -143,8 +143,8 @@
                 LOC_consulta = "UPDATE parametro_espera SET minimo= " & Me.txtMinimo.Text & ",maximo = " & Me.txtMaximo.Text & " , dias_sancion = " & Me.txtSancion.Text & " 
                         WHERE cod_parametro_espera = " & cod_parametro_espera & ""
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
-                MsgBox("Se modificó parametro pago correctamente")
+                EjecutarTransaccionModificacion(LOC_consulta)
+                MsgBox("Se modificó parametro espera correctamente")
             End If
 
         Catch ex As Exception

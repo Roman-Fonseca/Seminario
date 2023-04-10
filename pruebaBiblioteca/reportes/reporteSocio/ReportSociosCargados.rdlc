@@ -12,19 +12,19 @@
               <Width>1.99729cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.49458cm</Width>
+              <Width>1.97083cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.97083cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.75917cm</Width>
+              <Width>2.32771cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.62688cm</Width>
+              <Width>2.12959cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.99729cm</Width>
+              <Width>2.34125cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -485,7 +485,7 @@
         <Top>2.13995cm</Top>
         <Left>0.70792cm</Left>
         <Height>1.2cm</Height>
-        <Width>12.52583cm</Width>
+        <Width>14.41729cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -496,7 +496,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>5.53814in</Width>
+  <Width>6.09022in</Width>
   <Page>
     <PageHeader>
       <Height>2.54cm</Height>
@@ -558,6 +558,104 @@
           <Height>1.54658cm</Height>
           <Width>1.67979cm</Width>
           <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox18">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Socios cargados</Value>
+                  <Style>
+                    <FontSize>22pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox15</rd:DefaultName>
+          <Top>0.18175cm</Top>
+          <Left>4.07688cm</Left>
+          <Height>1.07033cm</Height>
+          <Width>8.70708cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox20">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Desde: </Value>
+                  <Style>
+                    <FontFamily>Segoe Script</FontFamily>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox15</rd:DefaultName>
+          <Top>1.57854cm</Top>
+          <Left>4.07688cm</Left>
+          <Height>0.82035cm</Height>
+          <Width>2.97625cm</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox21">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Hasta: </Value>
+                  <Style>
+                    <FontFamily>Segoe Script</FontFamily>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox15</rd:DefaultName>
+          <Top>1.57854cm</Top>
+          <Left>7.15896cm</Left>
+          <Height>0.82035cm</Height>
+          <Width>2.97625cm</Width>
+          <ZIndex>4</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>

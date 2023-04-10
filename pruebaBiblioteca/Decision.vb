@@ -6,29 +6,94 @@ Public Class Decision
 
         Dim fecha_inicio As String = Today.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
 
-        If tienePrestamoAnterior(GLO_COD_SOCIO) Then
-            If tienePrestamoAtrasadoRegistrado(GLO_COD_SOCIO) Then
-                Dim cod_prestamo_atrasado As Integer = ultimoPrestamoAtrasado(GLO_COD_SOCIO)
-                Dim cod_sancion_espera As Integer = tomarCodSancionEspera(cod_prestamo_atrasado)
-                Dim fecha_finalizacion As Date = tomarFechaFinalizacion(cod_sancion_espera)
+        'Compruebo que el socio tenga por lo menos un prestamo registrado
+        If ModuleAplicarSancionEspera.tienePrestamoAnterior(GLO_COD_SOCIO) Then
+            'Compruebo que el socio tenga por lo menos un prestamo atrasado registrado
+            If ModuleAplicarSancionEspera.tienePrestamoAtrasadoRegistrado(GLO_COD_SOCIO) Then
 
-                MsgBox("KKKKK" & fecha_finalizacion)
-                MsgBox("KKKKK" & Today)
+                'Tomo el ultimo cod_prestamo_atrasado del socio
+                Dim cod_prestamo_atrasado As Integer = ModuleAplicarSancionEspera.ultimoPrestamoAtrasado(GLO_COD_SOCIO)
 
+                'Tomo el cod_sancion_espera del ultimo prestamo atrasado del socio
+                Dim cod_sancion_espera As Integer = ModuleAplicarSancionEspera.tomarCodSancionEspera(cod_prestamo_atrasado)
+
+                'Tomo la fecha_finalizacion de la sancion_espera del ultimo prestamo atrasado del socio
+                Dim fecha_finalizacion As Date = ModuleAplicarSancionEspera.tomarFechaFinalizacion(cod_sancion_espera)
+                MsgBox("La fecha de finalizacion de la ultima sancion del socio es: " & fecha_finalizacion)
+
+                'comparo la fecha_finalizacion de la sancion_con la fecha actual
                 If fecha_finalizacion > Today Then
-                    'Agregar dias a sancion_espera
+                    Dim fecha_inicio_sancion_en_curso As Date = ModuleAplicarSancionEspera.tomarFechaInicio(cod_sancion_espera)
+                    Dim LOC_dias_a_agregar As Integer = ModuleAplicarSancionEspera.CalcularSancionEsperaDias(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual)
+                    Dim fecha_finalizacion_ficticio As Date = DateAdd("d", LOC_dias_a_agregar, fecha_finalizacion)
+                    If diffDias(fecha_inicio, fecha_finalizacion_ficticio) > 30 Then
+                        MsgBox("la diferencia entre fecha_inicio y fecha_finalizacion_ficticia excede los 30 dias")
+                        ModuleAplicarSancionEspera.modificarSancionEsperaCasoEspecial(cod_sancion_espera, fecha_inicio)
+                        ModuleAplicarSancionEspera.registrarPrestamoAtrasado(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual,
+                        tomarUltimoPrestamoFinalizado(), cod_sancion_espera)
+                    Else
+                        'Se expande el ultimo cod_sancion_espera asociado al ultimpo prestamo atrasado del socio
+                        ModuleAplicarSancionEspera.modificarSancionEspera(cod_sancion_espera, fecha_finalizacion)
+                        ModuleAplicarSancionEspera.registrarPrestamoAtrasado(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual,
+                        tomarUltimoPrestamoFinalizado(), cod_sancion_espera)
+                    End If
                 Else
-                    'Registrar nueva sancion_espera
-                    cargarSancionEspera(fecha_inicio)
-                    'Registrar nuevo prestamo atrasado con ultimo con_sancion_espera
-                    registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
+                    'registro nueva sancion espera
+                    'Paso como parametro la fecha actual, que es la fecha de inicio de la sancion del socio
+                    ModuleAplicarSancionEspera.cargarSancionEspera(fecha_inicio)
+
+                    'registro nuevo prestamo atrasado con el ultimo sancion espera creado
+                    ModuleAplicarSancionEspera.registrarPrestamoAtrasado(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual,
+                                                                         tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
                 End If
+
+            Else
+                'registro nueva sancion espera
+                'Paso como parametro la fecha actual, que es la fecha de inicio de la sancion del socio
+                ModuleAplicarSancionEspera.cargarSancionEspera(fecha_inicio)
+                'registro nuevo prestamo atrasado con el ultimo sancion espera creado
+                ModuleAplicarSancionEspera.registrarPrestamoAtrasado(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual,
+                                                                        tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
             End If
         Else
-            'Cargar sanción espera y prestamo atrasado
-            cargarSancionEspera(Prestamos.fecha_actual) 'Carga un nuevo sancion_espera para ser asignado a el nuevo registro prestamo_atrasado
-            registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
+            'registro nueva sancion espera
+            'Paso como parametro la fecha actual, que es la fecha de inicio de la sancion del socio
+            ModuleAplicarSancionEspera.cargarSancionEspera(fecha_inicio)
+            'registro nuevo prestamo atrasado con el ultimo sancion espera creado
+            ModuleAplicarSancionEspera.registrarPrestamoAtrasado(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual,
+                                                                    tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
         End If
+
+
+        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        'If tienePrestamoAnterior(GLO_COD_SOCIO) Then
+        '    If tienePrestamoAtrasadoRegistrado(GLO_COD_SOCIO) Then
+        '        Dim cod_prestamo_atrasado As Integer = ultimoPrestamoAtrasado(GLO_COD_SOCIO)
+        '        Dim cod_sancion_espera As Integer = tomarCodSancionEspera(cod_prestamo_atrasado)
+        '        Dim fecha_finalizacion As Date = tomarFechaFinalizacion(cod_sancion_espera)
+
+        '        MsgBox("KKKKK" & fecha_finalizacion)
+        '        MsgBox("KKKKK" & Today)
+
+        '        If fecha_finalizacion > Today Then
+        '            'Agregar dias a sancion_espera
+        '        Else
+        '            'Registrar nueva sancion_espera
+        '            cargarSancionEspera(fecha_inicio)
+        '            'Registrar nuevo prestamo atrasado con ultimo con_sancion_espera
+        '            registrarPrestamoAtrasado(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual, tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
+        '        End If
+        '    Else
+        '        cargarSancionEspera(fecha_inicio)
+        '        registrarPrestamoAtrasado(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual, tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
+        '    End If
+        'Else
+        '    'Cargar sanción espera y prestamo atrasado
+        '    cargarSancionEspera(Prestamos.fecha_actual) 'Carga un nuevo sancion_espera para ser asignado a el nuevo registro prestamo_atrasado
+        '    registrarPrestamoAtrasado(Prestamos.fecha_devolucion, Prestamos.fecha_actual, tomarUltimoPrestamoFinalizado(), tomarUltimoCodSancionEspera())
+        'End If
+
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         'Dim resultado As Boolean = NOexistePrestamoAtrasado(GLO_COD_SOCIO)
         'Dim local_fecha_finalizacion As Date
@@ -82,7 +147,7 @@ Public Class Decision
 
     Private Sub btnSancionPago_Click(sender As Object, e As EventArgs) Handles btnSancionPago.Click
         Dim ultimo_prestamo_finalizado As Integer = tomarUltimoPrestamoFinalizado()
-        moduloBiblioteca.registrarPagoSancion(Prestamos.fecha_devolucion, Prestamos.fecha_actual, ultimo_prestamo_finalizado)
+        moduloBiblioteca.registrarPagoSancion(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual, ultimo_prestamo_finalizado)
         moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Disponible")
         Me.Close()
     End Sub
@@ -448,40 +513,40 @@ Public Class Decision
     '        consulta = Nothing
     '    End Try
     'End Function
-    Public Sub modificarSancionEspera(cod_sancion_espera As Integer, cod_socio As Integer)
-        Dim consulta_local As String
+    'Public Sub modificarSancionEspera(cod_sancion_espera As Integer, cod_socio As Integer)
+    '    Dim consulta_local As String
 
-        Dim fecha_finalizacion As Date
-        fecha_finalizacion = tomarFechaFinalizacion(cod_socio)
+    '    Dim fecha_finalizacion As Date
+    '    fecha_finalizacion = tomarFechaFinalizacion(cod_socio)
 
-        Dim agregar_dias As Integer
-        agregar_dias = CalcularSancionEsperaDias(Prestamos.fecha_devolucion, Prestamos.fecha_actual, GLO_COD_SOCIO, Prestamos.hora_devolucion, Prestamos.hora_actual)
-        MsgBox("Agregar dias: " & agregar_dias)
-        fecha_finalizacion = DateAdd("d", agregar_dias, fecha_finalizacion)
-        MsgBox("Agregar dias: " & fecha_finalizacion)
-
-
-        'convierto fecha_finalizacion en string para el update
-        Dim fecha_finalizacionSTR As String
-        fecha_finalizacionSTR = fecha_finalizacion.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
-        MsgBox(fecha_finalizacionSTR)
+    '    Dim agregar_dias As Integer
+    '    agregar_dias = moduloBiblioteca.CalcularSancionEsperaDias(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual, GLO_COD_SOCIO)
+    '    MsgBox("Agregar dias: " & agregar_dias)
+    '    fecha_finalizacion = DateAdd("d", agregar_dias, fecha_finalizacion)
+    '    MsgBox("Agregar dias: " & fecha_finalizacion)
 
 
-        Try
+    '    convierto fecha_finalizacion en string para el update
+    '    Dim fecha_finalizacionSTR As String
+    '    fecha_finalizacionSTR = fecha_finalizacion.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+    '    MsgBox(fecha_finalizacionSTR)
 
-            If ConexionMySQL() Then
-                consulta_local = "update sancion_espera set fecha_finalizacion = '" & fecha_finalizacionSTR & "' where cod_sancion_espera = " & cod_sancion_espera & ""
-                MsgBox(consulta_local)
-                EjecutarTransaccion(consulta_local)
-                MsgBox("Se agregó correctamente")
 
-            End If
+    '    Try
 
-        Catch ex As Exception
-            MsgBox(ex.Message)
+    '        If ConexionMySQL() Then
+    '            consulta_local = "update sancion_espera set fecha_finalizacion = '" & fecha_finalizacionSTR & "' where cod_sancion_espera = " & cod_sancion_espera & ""
+    '            MsgBox(consulta_local)
+    '            EjecutarTransaccionModificacion(consulta_local)
+    '            MsgBox("Se agregó correctamente")
 
-        End Try
-    End Sub
+    '        End If
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+
+    '    End Try
+    'End Sub
 
     Public Function NOexistePrestamoAtrasado(cod_socio) As Boolean
         Dim cod_prestamo_socio As Integer = cod_socio
@@ -521,7 +586,7 @@ Public Class Decision
     Public Sub cargarSancionEspera(fecha_inicio As Date)
         Dim consulta As String
         Dim fecha_inicioSTR As String = fecha_inicio.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
-        Dim dias_sancion As Integer = moduloBiblioteca.CalcularSancionEsperaDias(Prestamos.fecha_devolucion, Prestamos.fecha_actual, Prestamos.cod_prestamo_socio, Prestamos.hora_devolucion, Prestamos.hora_actual)
+        Dim dias_sancion As Integer = moduloBiblioteca.CalcularSancionEsperaDias(Prestamos.FECHA_DEVOLUCION_PRESTAMO, Prestamos.fecha_actual, Prestamos.cod_prestamo_socio, Prestamos.hora_devolucion, Prestamos.hora_actual)
         Dim fecha_finalizacion As Date = DateAdd("d", dias_sancion, fecha_inicio)
         Dim fecha_finalizacionSTR As String = fecha_finalizacion.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
         MsgBox("Fecha Inicio: " & fecha_inicioSTR)
@@ -531,7 +596,7 @@ Public Class Decision
             If ConexionMySQL() Then
                 consulta = "insert into sancion_espera (fecha_inicio,fecha_finalizacion) values('" & fecha_inicioSTR & "','" & fecha_finalizacionSTR & "')"
                 MsgBox(consulta)
-                EjecutarTransaccion(consulta)
+                EjecutarTransaccionAlta(consulta)
                 MsgBox("Se agregó sancion_espera correctamente")
             End If
         Catch ex As Exception
@@ -694,7 +759,7 @@ Public Class Decision
                         MsgBox("El socio tiene un prestamo atrasado registrado")
                         Return True
                     Else
-                        MsgBox("El socio NOOOO tiene un prestamo atrasado registrado")
+                        MsgBox("El socio NO tiene un prestamo atrasado registrado")
                         Return False
                     End If
                 End If
@@ -709,7 +774,7 @@ Public Class Decision
     Public Function ultimoPrestamoAtrasado(cod_socio As Integer) As Integer
         Dim Sql As String = "SELECT prestamo_atrasado.cod_prestamo_atrasado from prestamo_atrasado 
                             INNER JOIN (SELECT prestamo_finalizado.cod_prestamo_finalizado from prestamo_finalizado 
-                            INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio where prestamo_socio.cod_socio = 19) 
+                            INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio where prestamo_socio.cod_socio = " & cod_socio & ") 
                             AS AX ON prestamo_atrasado.cod_prestamo_finalizado = AX.cod_prestamo_finalizado ORDER BY prestamo_atrasado.cod_prestamo_atrasado DESC LIMIT 1;"
         Dim Conexion As New MySqlConnection(cadena_conexion)
         Dim consulta As New MySqlCommand(Sql, Conexion)
@@ -731,7 +796,7 @@ Public Class Decision
     End Function
 
     Public Function tomarCodSancionEspera(cod_prestamo_atrasado As Integer) As Integer
-        Dim Sql As String = "SELECT cod_sancion_espera from sancion_espera WHERE cod_sancion_espera = '" & cod_prestamo_atrasado & "'"
+        Dim Sql As String = "SELECT cod_sancion_espera FROM prestamo_atrasado WHERE cod_prestamo_atrasado = '" & cod_prestamo_atrasado & "'"
         Dim Conexion As New MySqlConnection(cadena_conexion)
         Dim consulta As New MySqlCommand(Sql, Conexion)
 

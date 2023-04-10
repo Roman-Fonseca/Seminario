@@ -54,7 +54,7 @@
             If a = MsgBoxResult.Yes Then
                 loc_consulta = "DELETE FROM plazo_prestamo WHERE cod_plazo_prestamo = " & cod_plazo_prestamo
                 If ConexionMySQL() Then
-                    EjecutarTransaccion(loc_consulta)
+                    EjecutarTransaccionBaja(loc_consulta)
                 End If
             End If
         Catch ex As Exception
@@ -63,4 +63,7 @@
 
     End Sub
 
+    Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
+
+    End Sub
 End Class

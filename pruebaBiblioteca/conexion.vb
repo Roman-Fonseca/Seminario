@@ -35,7 +35,7 @@ Module conexion
         End If
     End Sub
 
-    Public Sub EjecutarTransaccion(MySQL As String)
+    Public Sub EjecutarTransaccionAlta(MySQL As String)
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = MySQL
@@ -43,12 +43,49 @@ Module conexion
                 Glocomando.Connection = GloconexionDB
                 Glocomando.ExecuteNonQuery()
                 GloconexionDB.Close()
-                'MsgBox("Se eliminó registro correctamente")
+                MsgBox("Se agregó registro correctamente")
+            End If
+
+        Catch ex As Exception
+            MsgBox("No se pudo cargar registro", MsgBoxStyle.Critical)
+            MsgBox(ex.Message)
+            GloconexionDB.Close()
+        End Try
+
+    End Sub
+
+    Public Sub EjecutarTransaccionBaja(MySQL As String)
+        Try
+            If ConexionMySQL() Then
+                Glocomando.CommandText = MySQL
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+                Glocomando.ExecuteNonQuery()
+                GloconexionDB.Close()
+                MsgBox("Se eliminó registro correctamente")
             End If
 
         Catch ex As Exception
             MsgBox("El registro se encuentra en otras tablas. La eliminacion del mísmo esta restringida", MsgBoxStyle.Critical)
             'MsgBox(ex.Message)
+            GloconexionDB.Close()
+        End Try
+    End Sub
+
+    Public Sub EjecutarTransaccionModificacion(MySQL As String)
+        Try
+            If ConexionMySQL() Then
+                Glocomando.CommandText = MySQL
+                Glocomando.CommandType = CommandType.Text
+                Glocomando.Connection = GloconexionDB
+                Glocomando.ExecuteNonQuery()
+                GloconexionDB.Close()
+                MsgBox("Se modificó registro correctamente")
+            End If
+
+        Catch ex As Exception
+            MsgBox("No se pudo modificar registro", MsgBoxStyle.Critical)
+            MsgBox(ex.Message)
             GloconexionDB.Close()
         End Try
 

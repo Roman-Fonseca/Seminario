@@ -10,7 +10,7 @@ Public Class Prestamos
 
 
     Public fecha_devolucion_real As Date
-    Public fecha_devolucion As Date
+    Public FECHA_DEVOLUCION_PRESTAMO As Date
     Public hora_devolucion As DateTime
     Public fecha_actual As Date
     Public hora_actual As DateTime
@@ -19,6 +19,9 @@ Public Class Prestamos
     Dim adaptador As MySqlDataAdapter
 
     Dim filtroEnCurso As Boolean = False
+    Dim se_esta_filtrando_prestamos_en_curso As Boolean
+    Dim entero As Integer
+
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
         AgregarPrestamo.Text = "Agregar Prestamo"
@@ -28,13 +31,17 @@ Public Class Prestamos
 
     Private Sub Prestamos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         moduloBiblioteca.mostrarPrestamos()
+        Me.btnTodosLosPrestamos.BackColor = Color.Green
+        Me.btnPrestamosVencidos.BackColor = Color.White
+        Me.btnEnCurso.BackColor = Color.White
+        Me.btnPrestamosVencidosDevueltos.BackColor = Color.White
     End Sub
 
     Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
         'Capturo cod_prestamo
         cod_prestamo_modificar = Me.dgvPrestamos.SelectedRows.Item(0).Cells(0).Value
         'Capturo cod_socio
-        cod_prestamo_socio = Me.dgvPrestamos.CurrentRow.Cells(8).Value
+        cod_prestamo_socio = Me.dgvPrestamos.CurrentRow.Cells(9).Value
         AgregarPrestamo.Text = "Modificar Prestamo"
 
         AgregarPrestamo.BotonAgregarPrestamo.Text = "Guardar Cambios"
@@ -46,16 +53,28 @@ Public Class Prestamos
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnTodosLosPrestamos.Click
         moduloBiblioteca.mostrarPrestamos()
         Me.btnFinalizarPrestamo.Hide()
+        Me.btnTodosLosPrestamos.BackColor = Color.Green
+        Me.btnPrestamosVencidos.BackColor = Color.White
+        Me.btnEnCurso.BackColor = Color.White
+        Me.btnPrestamosVencidosDevueltos.BackColor = Color.White
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnPrestamosVencidos.Click
-        Me.filtroEnCurso = False
+        Me.se_esta_filtrando_prestamos_en_curso = False
         moduloBiblioteca.mostrarPrestamosVencidos()
+        Me.btnTodosLosPrestamos.BackColor = Color.White
+        Me.btnPrestamosVencidos.BackColor = Color.Green
+        Me.btnEnCurso.BackColor = Color.White
+        Me.btnPrestamosVencidosDevueltos.BackColor = Color.White
         Me.btnFinalizarPrestamo.Show()
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles btnPrestamosVencidosDevueltos.Click
         moduloBiblioteca.mostrarPrestamosVencidosDevueltos()
+        Me.btnTodosLosPrestamos.BackColor = Color.White
+        Me.btnPrestamosVencidos.BackColor = Color.White
+        Me.btnEnCurso.BackColor = Color.White
+        Me.btnPrestamosVencidosDevueltos.BackColor = Color.Green
         Me.btnFinalizarPrestamo.Hide()
         Me.btnFinalizarPrestamo.Hide()
     End Sub
@@ -66,10 +85,12 @@ Public Class Prestamos
 
     Private Sub btnFinalizarPrestamo_Click(sender As Object, e As EventArgs) Handles btnFinalizarPrestamo.Click
 
+
+        'Tomo los valores para finalizar un prestamo_en curso
         'Capturo fecha_devolucion
-        fecha_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(4).Value
+        FECHA_DEVOLUCION_PRESTAMO = Me.dgvPrestamos.SelectedRows.Item(0).Cells(3).Value
         'Capturo hora_devolucion
-        hora_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(5).Value.ToString
+        hora_devolucion = Me.dgvPrestamos.SelectedRows.Item(0).Cells(4).Value.ToString
         'Capturo fecha_actual
         fecha_actual = Today
         'Capturo hora_actual
@@ -79,28 +100,33 @@ Public Class Prestamos
         'Capturo  cod_prestamo_socio
         cod_prestamo_socio = Me.dgvPrestamos.SelectedRows.Item(0).Cells(0).Value
         'Capturo GLO_CodEjemplarPrestamos
-        GLO_CodEjemplarPrestamo = Me.dgvPrestamos.SelectedRows.Item(0).Cells(6).Value
+        GLO_CodEjemplarPrestamo = Me.dgvPrestamos.SelectedRows.Item(0).Cells(5).Value
 
-        altaPrestamoFinalizado(cod_prestamo_socio, fecha_actual, hora_actual)
+
+        'Registro prestamo finalizado
+        'En caso de ser necesario registro ejemplar a reponer
+        ModuloFinalizarPrestamo.altaPrestamoFinalizado(cod_prestamo_socio, fecha_actual, hora_actual)
         If MsgBox("¿El libro fue devuelto?", MsgBoxStyle.Information + vbYesNo) = vbYes Then
             If MsgBox("¿En buen estado?", MsgBoxStyle.Information + vbYesNo) = vbYes Then
                 MsgBox("El préstamo fue devuelto en buen estado")
             Else
                 If MsgBox("¿Desea registrar ejemplar a reponer?", MsgBoxStyle.Information + vbYesNo) = vbYes Then
-                    registrarEjemplarAReponer()
+                    ModuloFinalizarPrestamo.registrarEjemplarAReponer()
                 End If
             End If
         Else
-            registrarEjemplarAReponer()
+            ModuloFinalizarPrestamo.registrarEjemplarAReponer()
         End If
 
-        If Today > fecha_devolucion Then
+
+
+        If Today > FECHA_DEVOLUCION_PRESTAMO Then
             'Aplicar Sancion
-            MsgBox("El prestamo se devolvió " & diffDias(Today, fecha_devolucion) & " dia/s y " & diffHoras(hora_actual, hora_devolucion) & " tarde")
-            Decision.btnEspera.Text = moduloBiblioteca.CalcularSancionEsperaDias(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " dia/s"
-            Decision.btnSancionPago.Text = "$" & moduloBiblioteca.CalcularSancionPago(fecha_devolucion, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " pesos"
+            MsgBox("El prestamo se devolvió " & diffDias(Today, FECHA_DEVOLUCION_PRESTAMO) & " dia/s y " & diffHoras(hora_actual, hora_devolucion) & " tarde")
+            Decision.btnEspera.Text = moduloBiblioteca.CalcularSancionEsperaDias(FECHA_DEVOLUCION_PRESTAMO, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " dia/s"
+            Decision.btnSancionPago.Text = "$" & moduloBiblioteca.CalcularSancionPago(FECHA_DEVOLUCION_PRESTAMO, fecha_actual, cod_prestamo_socio, hora_devolucion, hora_actual) & " pesos"
             Decision.ShowDialog()
-        ElseIf Today = fecha_devolucion And hora_actual > hora_devolucion Then
+        ElseIf Today = FECHA_DEVOLUCION_PRESTAMO And hora_actual > hora_devolucion Then
             'Mostrar un mensaje con las diferencias de horas
             MsgBox("Prestamo atrasado por: " & diffHoras(hora_actual, hora_devolucion))
             MsgBox("No corresponde ningun tipo de sanción")
@@ -118,8 +144,20 @@ Public Class Prestamos
         'ElseIf fecha_devolucion = fecha_actual Then
         'MsgBox("El prestamo está atrasado por " & diffHoras(hora_actual, hora_devolucion) & "Horas", MsgBoxStyle.Information)
         'End If
+        cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Disponible")
 
-        moduloBiblioteca.mostrarPrestamos()
+        If se_esta_filtrando_prestamos_en_curso = True Then
+            moduloBiblioteca.mostrarPrestamosEnCurso()
+        Else
+            moduloBiblioteca.mostrarPrestamosVencidos()
+        End If
+
+        'If entero = 1 Then
+        '    moduloBiblioteca.mostrarPrestamosEnCurso()
+        'Else
+        '    moduloBiblioteca.mostrarPrestamosVencidos()
+        'End If
+
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs)
@@ -133,7 +171,7 @@ Public Class Prestamos
         'Capturo fecha_actual
         Dim fecha_actual As DateTime
         fecha_actual = Today
-        MsgBox(calcularSancion(fecha_devolucion, fecha_actual))
+        'MsgBox(calcularSancion(fecha_devolucion, fecha_actual))
     End Sub
 
     Private Sub gpbPrestamo_Enter(sender As Object, e As EventArgs) Handles gpbPrestamo.Enter
@@ -148,10 +186,16 @@ Public Class Prestamos
 
     End Sub
 
-    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.filtroEnCurso = True
+    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles btnEnCurso.Click
+        'Me.filtroEnCurso = True
+        'entero = 1
+        Me.se_esta_filtrando_prestamos_en_curso = True
         moduloBiblioteca.mostrarPrestamosEnCurso()
         Me.btnFinalizarPrestamo.Show()
+        Me.btnTodosLosPrestamos.BackColor = Color.White
+        Me.btnPrestamosVencidos.BackColor = Color.White
+        Me.btnEnCurso.BackColor = Color.Green
+        Me.btnPrestamosVencidosDevueltos.BackColor = Color.White
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtSocioBusqueda.TextChanged
@@ -172,10 +216,11 @@ Public Class Prestamos
 
         If Me.filtroEnCurso = False Then
             Try
-                adaptador = New MySqlDataAdapter("Select * from (select prestamo_socio.cod_prestamo_socio, prestamo_socio.tipo_prestamo,prestamo_socio.fecha_prestamo,prestamo_socio.hora_prestamo,
-                prestamo_socio.fecha_devolucion, prestamo_socio.hora_devolucion, prestamo_socio.cod_socio, prestamo_socio.cod_ejemplar,
-                socio.nombre,socio.apellido from prestamo_socio INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio where ('" & dia_actual_string & "' >= fecha_devolucion AND hora_devolucion > '" & horaActual & "') 
-                OR ('" & dia_actual_string & "' >= fecha_devolucion AND hora_devolucion < '" & horaActual & "')) where titulo like '" & titulo + "%" & "'", GloconexionDB)
+                adaptador = New MySqlDataAdapter("SELECT prestamo_socio.cod_prestamo_socio, prestamo_socio.tipo_prestamo,prestamo_socio.fecha_prestamo,prestamo_socio.hora_prestamo,
+        prestamo_socio.fecha_devolucion, prestamo_socio.hora_devolucion, prestamo_socio.cod_socio, prestamo_socio.cod_ejemplar,
+        socio.nombre,socio.apellido FROM prestamo_socio INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio 
+        where ('" & dia_actual_string & "' <= fecha_devolucion AND hora_devolucion < '" & horaActual & "')
+        OR ('" & dia_actual_string & "' <= fecha_devolucion AND hora_devolucion >= '" & horaActual & "' WHERE nombre like '" & titulo + "%" & "'", GloconexionDB)
                 dt = New DataTable
                 adaptador.Fill(dt)
                 dgv.DataSource = dt
@@ -207,7 +252,7 @@ Public Class Prestamos
                 LOC_consulta = "insert into prestamo_finalizado (fecha_finalizacion_real,hora_finalizacion_real,cod_prestamo_socio) 
                 values('" & fecha_finalizacion_real & "','" & hora_devolucion_real & "','" & cod_prestamo_socio & "')"
                 MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se finalizó prestamo correctamente")
             End If
         Catch ex As Exception
@@ -215,21 +260,7 @@ Public Class Prestamos
         End Try
     End Sub
 
-    Public Sub registrarEjemplarAReponer()
-        Dim LOC_consulta As String
-        Dim cod_prestamo_finalizado As Integer = tomarUltimoPrestamoFinalizado()
-        Try
-            If ConexionMySQL() Then
-                LOC_consulta = "insert into ejemplar_a_reponer (cod_prestamo_finalizado,repuesto) 
-                values('" & cod_prestamo_finalizado & "','No')"
-                MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
-                MsgBox("Se registró ejemplar a reponer correctamente")
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
+
 
     Public Function tomarUltimoPrestamoFinalizado() As Integer
         Dim Sql As String = "SELECT MAX(cod_prestamo_finalizado) FROM prestamo_finalizado"
@@ -271,7 +302,7 @@ Public Class Prestamos
             If a = MsgBoxResult.Yes Then
                 loc_consulta = "delete from prestamo_socio where cod_prestamo_socio= " & cod_prestamo
                 If ConexionMySQL() Then
-                    EjecutarTransaccion(loc_consulta)
+                    EjecutarTransaccionBaja(loc_consulta)
 
                 End If
             End If

@@ -88,7 +88,7 @@ Partial Class Socios
         '
         Me.lblNombre.AutoSize = True
         Me.lblNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNombre.Location = New System.Drawing.Point(218, 41)
+        Me.lblNombre.Location = New System.Drawing.Point(218, 32)
         Me.lblNombre.Name = "lblNombre"
         Me.lblNombre.Size = New System.Drawing.Size(69, 20)
         Me.lblNombre.TabIndex = 5
@@ -96,7 +96,7 @@ Partial Class Socios
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(293, 43)
+        Me.txtNombre.Location = New System.Drawing.Point(293, 34)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(176, 20)
         Me.txtNombre.TabIndex = 6
@@ -115,7 +115,9 @@ Partial Class Socios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1042, 529)
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(1072, 529)
         Me.Controls.Add(Me.btnRenovarMembresia)
         Me.Controls.Add(Me.txtNombre)
         Me.Controls.Add(Me.lblNombre)
@@ -124,7 +126,6 @@ Partial Class Socios
         Me.Controls.Add(Me.btnModificarSocio)
         Me.Controls.Add(Me.btnAgregarSocio)
         Me.Controls.Add(Me.listaSocios)
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Socios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

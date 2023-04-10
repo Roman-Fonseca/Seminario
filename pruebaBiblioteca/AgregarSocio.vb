@@ -8,6 +8,7 @@ Public Class AgregarSocio
 
             moduloBiblioteca.ConsultarSocioModificar()
             Me.btnAgregarSocio.Text = "Guardar Cambios"
+            Me.txtDni.Enabled = False
         Else
             If Me.Text = "Agregar Socio" Then
 
@@ -31,6 +32,7 @@ Public Class AgregarSocio
                                 moduloBiblioteca.GuardarSocioModificado()
                                 Me.Close()
                                 moduloBiblioteca.mostrarSocios()
+
                             Else
                                 txtDireccion.Focus()
                                 MsgBox("Debe cargar dirección")
@@ -59,13 +61,17 @@ Public Class AgregarSocio
         ElseIf Me.Text = "Agregar Socio" Then
             If txtNombre.Text <> "" Then
                 If txtApellido.Text <> "" Then
-                    If txtDni.Text <> "" Then
-                        If txtTelefono.Text <> "" Then
+                    If txtDni.Text <> "" And txtDni.Text.Trim.Length > 7 Then
+                        If txtTelefono.Text <> "" And txtTelefono.Text.Trim.Length > 7 Then
                             If txtDireccion.Text <> "" Then
-                                moduloBiblioteca.cargarSocio()
-                                moduloBiblioteca.cargarMembrecia()
-                                Me.Close()
-                                moduloBiblioteca.mostrarSocios()
+                                If Me.dniRegistrado Then
+                                    MsgBox("El dni ya se encuentra registrado", MsgBoxStyle.Information)
+                                Else
+                                    moduloBiblioteca.cargarSocio()
+                                    moduloBiblioteca.cargarMembrecia()
+                                    Me.Close()
+                                    moduloBiblioteca.mostrarSocios()
+                                End If
                             Else
                                 txtDireccion.Focus()
                                 MsgBox("Debe cargar dirección")
@@ -73,12 +79,12 @@ Public Class AgregarSocio
                             End If
                         Else
                             txtTelefono.Focus()
-                            MsgBox("Debe cargar telefono")
+                            MsgBox("Debe cargar telefono, la cantidad minima de caracteres es 6")
                             txtTelefono.BackColor = Color.Red
                         End If
                     Else
                         txtDni.Focus()
-                        MsgBox("Debe cargar Dni")
+                        MsgBox("Debe cargar Dni , la cantidad minima de caracteres es 7")
                         txtDni.BackColor = Color.Red
                     End If
                 Else
@@ -254,4 +260,35 @@ Public Class AgregarSocio
     Private Sub dtpFechaNacimiento_ValueChanged(sender As Object, e As EventArgs) Handles dtpFechaNacimiento.ValueChanged
 
     End Sub
+
+    Public Function dniRegistrado() As Boolean
+        Dim Sql As String = "SELECT COUNT(cod_socio) FROM `socio` WHERE dni = " & Me.txtDni.Text & ""
+        Dim existe As Boolean
+        Dim cantidad As Integer
+        Dim Conexion As New MySqlConnection(cadena_conexion)
+        Dim consulta As New MySqlCommand(Sql, Conexion)
+        Try
+            If Conexion.State = ConnectionState.Closed Then
+                Conexion.Open()
+                Dim Datos As MySqlDataReader = consulta.ExecuteReader
+                If Datos.Read Then
+                    ' llenamos
+                    cantidad = Trim(Datos("COUNT(cod_socio)"))
+                    If cantidad = 0 Then
+                        existe = False
+                        Return existe
+                    Else
+                        existe = True
+                        Return existe
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+            'Cerramos la conexion a la BBDD MySQL
+            Conexion.Close()
+            'Eliminamos de la memoria el objeto CONSULTA que habiamos creado
+            consulta = Nothing
+        End Try
+    End Function
 End Class

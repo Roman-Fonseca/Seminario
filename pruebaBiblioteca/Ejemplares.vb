@@ -68,6 +68,7 @@
 
     Private Sub btnEliminarEjemplar_Click(sender As Object, e As EventArgs) Handles btnEliminarEjemplar.Click
         Dim cod_ejemplar As Integer = Me.listaEjemplares.SelectedRows.Item(0).Cells(0).Value
+        AltaEjemplarEliminado(cod_ejemplar)
         EliminarEjemplar(cod_ejemplar)
         moduloBiblioteca.mostrarEjemplares()
     End Sub
@@ -80,11 +81,37 @@
             If a = MsgBoxResult.Yes Then
                 loc_consulta = "DELETE FROM ejemplar WHERE cod_ejemplar= " & cod_ejemplar
                 If ConexionMySQL() Then
-                    EjecutarTransaccion(loc_consulta)
+                    EjecutarTransaccionBaja(loc_consulta)
                 End If
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
+    Public Sub AltaEjemplarEliminado(cod_ejemplar As Integer)
+
+        Dim LOC_consulta As String
+        'Dim cod_ejemplar As String
+
+        Dim fecha As Date = Today
+
+        Dim fechaString As String
+        fechaString = fecha.ToString("yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture)
+
+        Try
+            'Alta ejemplar'
+            If ConexionMySQL() Then
+                LOC_consulta = "insert into ejemplar_eliminado(fecha,motivo,cod_ejemplar)
+                values('" & fechaString & "','Perdida'," & cod_ejemplar & ")"
+                MsgBox(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+
         End Try
 
     End Sub

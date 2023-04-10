@@ -22,4 +22,8 @@
         Me.Close()
         moduloBiblioteca.CargarComboEditorial()
     End Sub
+
+    Private Sub AgregarEditorial_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

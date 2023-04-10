@@ -64,7 +64,7 @@ Partial Class AgregarPlazoPrestamo
         '
         'btnAgregar
         '
-        Me.btnAgregar.Location = New System.Drawing.Point(180, 96)
+        Me.btnAgregar.Location = New System.Drawing.Point(274, 96)
         Me.btnAgregar.Name = "btnAgregar"
         Me.btnAgregar.Size = New System.Drawing.Size(75, 23)
         Me.btnAgregar.TabIndex = 4
@@ -73,7 +73,7 @@ Partial Class AgregarPlazoPrestamo
         '
         'btnCancelar
         '
-        Me.btnCancelar.Location = New System.Drawing.Point(274, 96)
+        Me.btnCancelar.Location = New System.Drawing.Point(129, 96)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.btnCancelar.TabIndex = 5

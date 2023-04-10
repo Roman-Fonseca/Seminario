@@ -43,8 +43,8 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta = "insert into socio (nombre,apellido,fecha_nacimiento,dni,telefono,direccion,contador_prestamo) values('" & AgregarSocio.txtNombre.Text & "','" & AgregarSocio.txtApellido.Text & "','" & f_nacimientoStr & "'," & AgregarSocio.txtDni.Text & ",'" & AgregarSocio.txtTelefono.Text & "','" & AgregarSocio.txtDireccion.Text & "','" & 0 & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
-                MsgBox("Se agregó correctamente")
+                EjecutarTransaccionAlta(LOC_consulta)
+
                 Return True
             End If
 
@@ -138,7 +138,7 @@ Module moduloBiblioteca
             If a = MsgBoxResult.Yes Then
                 loc_consulta = "delete from socio where cod_socio= " & LOC_cod_socio
                 If ConexionMySQL() Then
-                    EjecutarTransaccion(loc_consulta)
+                    EjecutarTransaccionBaja(loc_consulta)
                     Return True
                 End If
             End If
@@ -174,8 +174,6 @@ Module moduloBiblioteca
                 MsgBox("Se Modificó Correctamente")
                 GloconexionDB.Close()
                 Return True
-
-
             End If
 
         Catch ex As Exception
@@ -237,8 +235,7 @@ Module moduloBiblioteca
                 LOC_consulta = "insert into membresia (fecha_registro,hora_registro,ultimo_pago_membresia,fecha_vencimiento,cod_socio) values('" & fecha_actual & "',
                 '" & hora_actual & "','" & fecha_actual & "','" & fecha_vencimiento_STR & "','" & cod_socio & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
-                MsgBox("Se agregó membrecia correctamente")
+                EjecutarTransaccionAlta(LOC_consulta)
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -256,7 +253,7 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta = "insert into ubicacion_libro (piso,sector,estante) values('" & AgregarUbicacion.txtPiso.Text & "','" & AgregarUbicacion.txtSector.Text & "','" & AgregarUbicacion.txtEstante.Text & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó ubicación correctamente")
                 Return True
             End If
@@ -277,7 +274,7 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta = "insert into editorial (nombre,contacto,ubicacion) values('" & AgregarEditorial.txtNombreEditorial.Text & "','" & AgregarEditorial.txtContactoEditorial.Text & "','" & AgregarEditorial.txtLocalizacionEditorial.Text & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó editorial correctamente")
                 Return True
             End If
@@ -343,7 +340,7 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta = "insert into categoria (nombre) values('" & AgregarCategoria.txtNombreCategoria.Text & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó categoria correctamente")
                 Return True
             End If
@@ -386,7 +383,7 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta = "insert into autor (nombre,apellido) values('" & AgregarAutor.txtNombre.Text & "','" & AgregarAutor.txtApellido.Text & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó autor correctamente")
                 Return True
             End If
@@ -407,7 +404,7 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta = "insert into tipo_ejemplar (descripcion) values('" & AgregarTipoEjemplar.txtNombreTipoEjemplar.Text & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó Tipo Ejemplar correctamente")
                 Return True
             End If
@@ -501,7 +498,7 @@ Module moduloBiblioteca
             If a = MsgBoxResult.Yes Then
                 loc_consulta = "delete from socio where cod_socio= " & LOC_cod_autor
                 If ConexionMySQL() Then
-                    EjecutarTransaccion(loc_consulta)
+                    EjecutarTransaccionBaja(loc_consulta)
                     Return True
                 End If
             End If
@@ -625,8 +622,7 @@ Module moduloBiblioteca
                  '" & GLO_CodLibro & "','" & AgregarEjemplar.cbxTipoEjemplar.SelectedValue & "',
                  '" & AgregarEjemplar.cbxPlazoPrestamo.SelectedValue & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
-                MsgBox("Se agregó ejemplar correctamente")
+                EjecutarTransaccionAlta(LOC_consulta)
                 Return True
             End If
 
@@ -647,7 +643,7 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta = "insert into plazo_prestamo (descripcion,dias_plazo) values('" & AgregarPlazoPrestamo.txtDescripcion.Text & "','" & AgregarPlazoPrestamo.txtDias.Text & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó plazo prestamo correctamente")
                 Return True
             End If
@@ -779,7 +775,7 @@ Module moduloBiblioteca
                                 values('" & AgregarPrestamo.cbxTipoPrestamo.Text & "','" & fechaPrestamoString & "','" & horaPrestamoStr & "','" & fechaDevolucionString & "'
                                 ,'" & hora_devolucionString & "','" & GLO_CodEjemplarPrestamo & "','" & GLO_CodSocioPrestamo & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó prestamo correctamente")
                 moduloBiblioteca.actualizarContadorPrestamo(contador_prestamos, GLO_CodSocioPrestamo)
                 Return True
@@ -816,7 +812,7 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta2 = "INSERT INTO `ejemplar_libro prestamo_socio`(`cod_ejemplar_libro`, `cod_prestamo_socio`) VALUES ('" & cod_ejemplar & "','" & cod_ultimo_prestamo & "')"
                 MsgBox(LOC_consulta2)
-                EjecutarTransaccion(LOC_consulta2)
+                EjecutarTransaccionAlta(LOC_consulta2)
                 MsgBox("Se agregó prestamo correctamente")
             End If
         Catch ex As Exception
@@ -859,7 +855,11 @@ Module moduloBiblioteca
     'End Sub
 
     Public Sub mostrarPrestamos()
-        Dim Consulta As String = "select cod_prestamo_socio,tipo_prestamo,fecha_prestamo,hora_prestamo,fecha_devolucion,hora_devolucion,cod_socio, cod_ejemplar from prestamo_socio"
+        Dim Consulta As String = "SELECT prestamo_socio.cod_prestamo_socio, prestamo_socio.tipo_prestamo, prestamo_socio.fecha_prestamo,
+        prestamo_socio.hora_prestamo, prestamo_socio.fecha_devolucion, prestamo_socio.hora_devolucion, ejemplar.cod_ejemplar,
+        ejemplar.numero_ejemplar, libro.titulo, prestamo_socio.cod_socio, socio.nombre, socio.apellido, socio.telefono
+        FROM prestamo_socio INNER JOIN ejemplar on prestamo_socio.cod_ejemplar = ejemplar.cod_ejemplar
+        INNER JOIN libro ON ejemplar.cod_libro = libro.cod_libro INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio;"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1112,7 +1112,7 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta = "insert into prestamo_atrasado (dias_sancion,motivo,cod_prestamo_finalizado,cod_sancion_espera) values('" & dias_sancion & "','" & motivo & "','" & cod_prestamo_finalizado & "', '" & cod_sancion_espera & "')"
                 MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó prestamo_atrasado correctamente")
             End If
         Catch ex As Exception
@@ -1164,7 +1164,7 @@ Module moduloBiblioteca
             If ConexionMySQL() Then
                 LOC_consulta = "insert into sancion_prestamo_paga (fecha,hora,pago,motivo,cod_prestamo_finalizado) values('" & fecha & "','" & hora_actual & "','" & pago & "','" & motivo & "','" & cod_prestamo_finalizado & "')"
                 MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó registro_pago correctamente")
             End If
         Catch ex As Exception
@@ -1303,7 +1303,7 @@ Module moduloBiblioteca
         End While
 
         If bandera = 0 Then
-            MsgBox("Fuera de rango")
+            MsgBox("Fuera de rango-sancion-paga")
         End If
 
         reader.Close()
@@ -1322,10 +1322,14 @@ Module moduloBiblioteca
         horaActual = TimeOfDay
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "select prestamo_socio.cod_prestamo_socio, prestamo_socio.tipo_prestamo,prestamo_socio.fecha_prestamo,prestamo_socio.hora_prestamo,
-        prestamo_socio.fecha_devolucion, prestamo_socio.hora_devolucion, prestamo_socio.cod_socio, prestamo_socio.cod_ejemplar,
-        socio.nombre,socio.apellido from prestamo_socio INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio where ('" & dia_actual_string & "' >= fecha_devolucion AND hora_devolucion > '" & horaActual & "') 
-            OR ('" & dia_actual_string & "' >= fecha_devolucion AND hora_devolucion < '" & horaActual & "')"
+        Dim Consulta As String = "SELECT t1.cod_prestamo_socio, t1.fecha_prestamo, t1.hora_prestamo, t1.fecha_devolucion,
+        t1.hora_devolucion, ejemplar.cod_ejemplar, libro.titulo , socio.cod_socio, socio.nombre, socio.apellido, socio.telefono 
+        FROM prestamo_socio t1 INNER JOIN ejemplar on t1.cod_ejemplar = ejemplar.cod_ejemplar 
+        INNER JOIN libro ON ejemplar.cod_libro = libro.cod_libro INNER JOIN socio on t1.cod_socio = socio.cod_socio 
+        WHERE NOT EXISTS (SELECT NULL FROM prestamo_finalizado t2 WHERE t2.cod_prestamo_socio = t1.cod_prestamo_socio)
+        AND (t1.fecha_devolucion < '" & dia_actual_string & "') OR 
+        (t1.fecha_devolucion = '" & dia_actual_string & "' AND t1.hora_devolucion < '" & horaActual & "')"
+        MsgBox(Consulta)
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1363,14 +1367,20 @@ Module moduloBiblioteca
         'Capturo la hora actual
         'Capturo la hora actual del sistema
         Dim horaActual As DateTime
-        horaActual = TimeOfDay
+        horaActual = TimeOfDay.ToString
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "select prestamo_socio.cod_prestamo_socio, prestamo_socio.tipo_prestamo,prestamo_socio.fecha_prestamo,prestamo_socio.hora_prestamo,
-        prestamo_socio.fecha_devolucion, prestamo_socio.hora_devolucion, prestamo_socio.cod_socio, prestamo_socio.cod_ejemplar,
-        socio.nombre,socio.apellido from prestamo_socio INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio 
-        where ('" & dia_actual_string & "' <= fecha_devolucion AND hora_devolucion < '" & horaActual & "')
-        OR ('" & dia_actual_string & "' <= fecha_devolucion AND hora_devolucion >= '" & horaActual & "')"
+
+        Dim Consulta As String = "SELECT t1.cod_prestamo_socio, t1.fecha_prestamo, t1.hora_prestamo, t1.fecha_devolucion, 
+        t1.hora_devolucion, ejemplar.cod_ejemplar, libro.titulo , socio.cod_socio, socio.nombre, socio.apellido, socio.telefono 
+        FROM prestamo_socio t1 INNER JOIN ejemplar on t1.cod_ejemplar = ejemplar.cod_ejemplar INNER JOIN libro ON ejemplar.cod_libro = libro.cod_libro
+        INNER JOIN socio on t1.cod_socio = socio.cod_socio 
+        WHERE NOT EXISTS (SELECT NULL FROM prestamo_finalizado t2 WHERE t2.cod_prestamo_socio = t1.cod_prestamo_socio)
+        AND (t1.fecha_devolucion > '" & dia_actual_string & "') OR 
+        (t1.fecha_devolucion = '" & dia_actual_string & "' AND t1.hora_devolucion > '" & horaActual & "')"
+        MsgBox(Consulta)
+
+        'Dim consulta As String = "select prestamo_socio.cod_prestamo_socio, prestamo_socio.tipo_prestamo,prestamo_socio.fecha_prestamo,prestamo_socio.hora_prestamo, prestamo_socio.fecha_devolucion, prestamo_socio.hora_devolucion, prestamo_socio.cod_socio, prestamo_socio.cod_ejemplar, socio.nombre,socio.apellido from prestamo_socio INNER JOIN socio ON prestamo_socio.cod_socio = socio.cod_socio where (CURRENT_DATE <= fecha_devolucion AND hora_devolucion <= '13:07:00') AND NOT EXISTS (SELECT NULL FROM prestamo_finalizado WHERE prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio )"
 
         Try
             If ConexionMySQL() Then
@@ -1412,11 +1422,14 @@ Module moduloBiblioteca
         horaActual = TimeOfDay
 
         'Mostrar prestamos donde la fecha actual es mayor a la fecha de devolucion del prestamo
-        Dim Consulta As String = "SELECT prestamo_atrasado.cod_prestamo_atrasado, prestamo_finalizado.cod_prestamo_finalizado, 
-                                    prestamo_socio.fecha_prestamo, prestamo_socio.fecha_devolucion, prestamo_finalizado.fecha_finalizacion_real, prestamo_socio.hora_devolucion,
-                                    prestamo_finalizado.hora_finalizacion_real FROM prestamo_atrasado INNER JOIN prestamo_finalizado 
-                                    ON prestamo_atrasado.cod_prestamo_finalizado = prestamo_finalizado.cod_prestamo_finalizado INNER JOIN prestamo_socio 
-                                    ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio.cod_prestamo_socio;"
+        Dim Consulta As String = "SELECT prestamo_finalizado.cod_prestamo_finalizado, prestamo_socio.fecha_devolucion,
+        prestamo_finalizado.fecha_finalizacion_real, prestamo_socio.hora_devolucion, prestamo_finalizado.hora_finalizacion_real,
+        ejemplar.cod_ejemplar, prestamo_socio.cod_socio, socio.nombre, socio.apellido from prestamo_finalizado 
+        INNER JOIN prestamo_socio ON prestamo_finalizado.cod_prestamo_socio = prestamo_socio. cod_prestamo_socio 
+        INNER JOIN ejemplar ON prestamo_socio.cod_ejemplar = ejemplar.cod_ejemplar INNER JOIN socio 
+        ON prestamo_socio.cod_socio = socio.cod_socio WHERE (prestamo_finalizado.fecha_finalizacion_real > prestamo_socio.fecha_devolucion)
+        OR (prestamo_finalizado.fecha_finalizacion_real = prestamo_socio.fecha_devolucion 
+        AND prestamo_finalizado.hora_finalizacion_real > prestamo_socio.hora_devolucion)"
         Try
             If ConexionMySQL() Then
                 Glocomando.CommandText = Consulta
@@ -1453,7 +1466,7 @@ Module moduloBiblioteca
                 values('" & AgregarParametroEspera.txtMinimo.Text & "'
                 ,'" & AgregarParametroEspera.txtMaximo.Text & "','" & AgregarParametroEspera.txtSancion.Text & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó parametro correctamente")
                 Return True
             End If

@@ -95,4 +95,8 @@ Public Class Libros
     Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress
         Me.busquedaDinamicaLibro(Me.TextBox1.Text, dgvLibros)
     End Sub
+
+    Private Sub btnBorrar_Click(sender As Object, e As EventArgs) Handles btnBorrar.Click
+
+    End Sub
 End Class

@@ -39,7 +39,7 @@ Public Class FormularioReportePrestamo
             ON ejemplar.cod_libro = libro.cod_libro INNER JOIN plazo_prestamo 
             ON ejemplar.cod_plazo_prestamo = plazo_prestamo.cod_plazo_prestamo WHERE prestamo_socio.cod_prestamo_socio 
             NOT IN (SELECT prestamo_finalizado.cod_prestamo_socio from prestamo_finalizado) AND prestamo_socio.tipo_prestamo='Externo' 
-            AND (CURRENT_DATE >= fecha_devolucion AND prestamo_socio.hora_devolucion > CURRENT_TIME) AND prestamo_socio.fecha_devolucion >= '" & fecha_inicio_STR & "' AND prestamo_socio.fecha_prestamo < '" & fecha_final_STR & "';"
+            AND (CURRENT_DATE >= fecha_devolucion AND prestamo_socio.hora_devolucion > CURRENT_TIME) AND prestamo_socio.fecha_devolucion >= '" & fecha_final_STR & "' AND prestamo_socio.fecha_prestamo < '" & fecha_inicio_STR & "';"
             MsgBox(consulta)
             Dim conexion As New MySqlConnection()
             conexion.ConnectionString = cadenaConexion
@@ -86,6 +86,7 @@ Public Class FormularioReportePrestamo
             Dim report As ReportDataSource = New ReportDataSource("DatSetPrestamos", sociosDT)
             ReportViewer1.LocalReport.DataSources.Add(report)
             ReportViewer1.RefreshReport()
+
         End If
 
     End Sub

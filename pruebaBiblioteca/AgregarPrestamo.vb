@@ -73,50 +73,105 @@ Public Class AgregarPrestamo
         GLO_CodSocioPrestamo = Me.dgvSocio.SelectedRows.Item(0).Cells(0).Value
         GLO_CodEjemplarPrestamo = Me.dgvEjemplar.SelectedRows.Item(0).Cells(0).Value
 
-        If membresiaEnRegla(GLO_CodSocioPrestamo) Then
-            If Me.cbxTipoPrestamo.Text.Equals("Local") Then
-                If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
-                    moduloBiblioteca.altaPrestamo()
-                    moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
+        If Me.cbxTipoPrestamo.Text = "Externo" Then
+            'Compruebo que la membresia este activa
+            If ModuloValidarPrestamo.membresiaActiva(GLO_CodSocioPrestamo) Then
+                MsgBox("La membresia del socio está activa", MsgBoxStyle.Information)
+                'Compruebo que el socio no tenga ejemplares por reponer
+                If ModuloValidarPrestamo.TieneEjemplaresPorReponer(GLO_CodSocioPrestamo) Then
+                    MsgBox("El socio tiene ejemplares por reponer", MsgBoxStyle.Exclamation)
+                    'Compruebo que el socio no tenga prestamos vencidos por reponer
                 Else
-                    MsgBox("El ejemplar seleccionado no se encuentra disponible")
-                End If
-            Else
-                If Not moduloBiblioteca.primerPrestamoSocio(GLO_CodSocioPrestamo) Then
-                    If Not tieneSancionActiva(GLO_CodSocioPrestamo) Then
-                        If moduloBiblioteca.debeEjemplarAReponer(GLO_CodSocioPrestamo) Then
-                            MsgBox("El socio tiene ejemplares por reponer")
+                    MsgBox("El socio No tiene ejemplares por reponer")
+                    If ModuloValidarPrestamo.tieneAlgunPrestamoVencidoPorDevolver(GLO_CodSocioPrestamo) Then
+                        MsgBox("El socio tiene prestamos vencidos por devolver", MsgBoxStyle.Exclamation)
+                    Else
+                        'Compruebo que el socio no tenga una sancion activa
+                        ''''Aclaracion''''''''
+                        ''''Debo declarar una funcion que me permita obtener el ultimo prestamo atrasado del socio, para obtener fecha_finalizacion''''
+                        If ModuloValidarPrestamo.socioTieneSancionActiva(GLO_CodSocioPrestamo) Then
+                            MsgBox("El socio tiene sancion en curso")
                         Else
-                            If tienePrestamosVencidosSinDevolver(GLO_CodSocioPrestamo) Then
-                                MsgBox("El socio tiene prestamos vencidos sin devolver")
+                            'Compruebo que el socio no tenga mas de tres prestamo externos en curso
+                            If ModuloValidarPrestamo.tomarCantidadPrestamosEnCurso(GLO_CodSocioPrestamo) > 2 Then
+                                MsgBox("El socio ya tiene 3 prestamos en curso", MsgBoxStyle.Exclamation)
                             Else
-                                If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
-                                    If contarPrestamosActivos(GLO_CodSocioPrestamo) < 3 Then
-                                        altaPrestamo()
-                                        moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
-                                        moduloBiblioteca.llenarGrillaEjemplares()
-                                    Else
-                                        MsgBox("El socio ya tiene 3 prestamos activos")
-                                    End If
+                                If ModuloValidarPrestamo.EjemplarEstáDisponible(GLO_CodEjemplarPrestamo) Then
+                                    altaPrestamo()
+                                    moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
+                                    moduloBiblioteca.llenarGrillaEjemplares()
                                 Else
-                                    MsgBox("El ejemplar no se encuentra disponible")
+                                    MsgBox("El ejemplar no está disponible", MsgBoxStyle.Information)
                                 End If
                             End If
                         End If
-                    Else
-                        MsgBox("El socio tiene sancion activa")
-                    End If
-                Else
-                    If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
-                        altaPrestamo()
-                        moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
-                    Else
-                        MsgBox("El ejemplar no se encuentra disponible")
                     End If
                 End If
+            Else
+                MsgBox("La membresia del socio está vencida", MsgBoxStyle.Exclamation)
+            End If
 
+        Else
+            If ModuloValidarPrestamo.membresiaActiva(GLO_CodSocioPrestamo) Then
+                If ModuloValidarPrestamo.EjemplarEstáDisponible(GLO_CodEjemplarPrestamo) Then
+                    'cargo prestamo local
+                    altaPrestamo()
+                    moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
+                    moduloBiblioteca.llenarGrillaEjemplares()
+                Else
+                    MsgBox("El ejemplar no está disponible")
+                End If
+            Else
+                MsgBox("La membresia del socio está vencida", MsgBoxStyle.Exclamation)
             End If
         End If
+
+
+        'If membresiaEnRegla(GLO_CodSocioPrestamo) Then
+        '    If Me.cbxTipoPrestamo.Text.Equals("Local") Then
+        '        If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
+        '            moduloBiblioteca.altaPrestamo()
+        '            moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
+        '        Else
+        '            MsgBox("El ejemplar seleccionado no se encuentra disponible")
+        '        End If
+        '    Else
+        '        If Not moduloBiblioteca.primerPrestamoSocio(GLO_CodSocioPrestamo) Then
+        '            If Not tieneSancionActiva(GLO_CodSocioPrestamo) Then
+        'If moduloBiblioteca.debeEjemplarAReponer(GLO_CodSocioPrestamo) Then
+        '                    MsgBox("El socio tiene ejemplares por reponer")
+        '                Else
+        '                    If tienePrestamosVencidosSinDevolver(GLO_CodSocioPrestamo) Then
+        '                        MsgBox("El socio tiene prestamos vencidos sin devolver")
+        '                    Else
+        '                        If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
+        'If contarPrestamosActivos(GLO_CodSocioPrestamo) < 3 Then
+        'altaPrestamo()
+        'moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
+        'moduloBiblioteca.llenarGrillaEjemplares()
+        '                            Else
+        '                                MsgBox("El socio ya tiene 3 prestamos activos")
+        '                            End If
+        '                        Else
+        '                            MsgBox("El ejemplar no se encuentra disponible")
+        '                        End If
+        '                    End If
+        '                End If
+        '            Else
+        '                MsgBox("El socio tiene sancion activa")
+        '            End If
+        '        Else
+        'If compararEstadoEjemplar(GLO_CodEjemplarPrestamo) Then
+        '                altaPrestamo()
+        '                moduloBiblioteca.cambiarEstadoEjemplar(GLO_CodEjemplarPrestamo, "Prestado")
+        '            Else
+        '                MsgBox("El ejemplar no se encuentra disponible")
+        '            End If
+        '        End If
+
+        '    End If
+        'End If
+
         'If Decision.primerPrestamoSocio(GLO_CodSocioPrestamo) = True Then
         'MsgBox("Primer prestamo del socio")
         'Else

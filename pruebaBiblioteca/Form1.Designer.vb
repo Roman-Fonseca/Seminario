@@ -162,19 +162,19 @@ Partial Class Form1
         'TodosToolStripMenuItem
         '
         Me.TodosToolStripMenuItem.Name = "TodosToolStripMenuItem"
-        Me.TodosToolStripMenuItem.Size = New System.Drawing.Size(170, 30)
+        Me.TodosToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
         Me.TodosToolStripMenuItem.Text = "Todos"
         '
         'EliminadosToolStripMenuItem
         '
         Me.EliminadosToolStripMenuItem.Name = "EliminadosToolStripMenuItem"
-        Me.EliminadosToolStripMenuItem.Size = New System.Drawing.Size(170, 30)
+        Me.EliminadosToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
         Me.EliminadosToolStripMenuItem.Text = "Eliminados"
         '
         'PrestadosToolStripMenuItem
         '
         Me.PrestadosToolStripMenuItem.Name = "PrestadosToolStripMenuItem"
-        Me.PrestadosToolStripMenuItem.Size = New System.Drawing.Size(170, 30)
+        Me.PrestadosToolStripMenuItem.Size = New System.Drawing.Size(180, 30)
         Me.PrestadosToolStripMenuItem.Text = "Prestados"
         '
         'SancionesToolStripMenuItem

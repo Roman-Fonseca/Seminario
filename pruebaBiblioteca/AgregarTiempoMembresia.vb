@@ -53,7 +53,7 @@ Public Class AgregarTiempoMembresia
             If ConexionMySQL() Then
                 consulta = "INSERT INTO tiempo_membresia (descripcion,dias) VALUES ('" & descripcion & "'," & dias & ")"
                 'MsgBox(consulta)
-                EjecutarTransaccion(consulta)
+                EjecutarTransaccionAlta(consulta)
                 MsgBox("Se agregó tiempo_membresía correctamente")
                 txtDescripcion.Clear()
                 txtDias.Clear()

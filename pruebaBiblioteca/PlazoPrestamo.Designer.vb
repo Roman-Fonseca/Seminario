@@ -45,6 +45,7 @@ Partial Class PlazoPrestamo
         Me.dgvPlazoPrestamo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPlazoPrestamo.Location = New System.Drawing.Point(12, 71)
         Me.dgvPlazoPrestamo.Name = "dgvPlazoPrestamo"
+        Me.dgvPlazoPrestamo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvPlazoPrestamo.Size = New System.Drawing.Size(334, 143)
         Me.dgvPlazoPrestamo.TabIndex = 1
         '

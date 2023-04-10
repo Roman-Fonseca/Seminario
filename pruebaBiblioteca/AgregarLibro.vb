@@ -133,6 +133,9 @@ Public Class AgregarLibro
             txtTitulo.BackColor = Color.Red
         End If
 
+        Me.limpiarCampos()
+
+
     End Sub
 
     Private Sub Label3_Click_1(sender As Object, e As EventArgs) Handles Label3.Click
@@ -318,7 +321,7 @@ Public Class AgregarLibro
             If ConexionMySQL() Then
                 LOC_consulta = "insert into libro (titulo, isbn, cod_ubicacion ,cod_editorial) values('" & Me.txtTitulo.Text & "','" & isbn_completo & "','" & Me.cbxUbicacion.SelectedValue & "','" & Me.cbxEditorial.SelectedValue & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionAlta(LOC_consulta)
                 MsgBox("Se agregó libro correctamente")
                 limpiarCamposCargarLibro()
             End If
@@ -341,7 +344,7 @@ Public Class AgregarLibro
                 If ConexionMySQL() Then
                     consulta = "INSERT INTO `categoria_libro` (`cod_categoria`, `cod_libro`) VALUES (" & cod_categoria & ", " & ultimo_libro_cargado & ");"
                     'MsgBox(consulta)
-                    EjecutarTransaccion(consulta)
+                    EjecutarTransaccionAlta(consulta)
                     'MsgBox("Se agregó libro correctamente")
                     limpiarCamposCargarLibro()
                 End If
@@ -397,7 +400,7 @@ Public Class AgregarLibro
                 If ConexionMySQL() Then
                     consulta = "INSERT INTO `libro_autor` (`cod_libro`, `cod_autor`) VALUES (" & ultimo_libro_cargado & "," & cod_autor & ");"
                     'MsgBox(consulta)
-                    EjecutarTransaccion(consulta)
+                    EjecutarTransaccionAlta(consulta)
                     'MsgBox("Se agregó libro-autor correctamente")
                     limpiarCamposCargarLibro()
                 End If

@@ -62,8 +62,8 @@
             If ConexionMySQL() Then
                 LOC_consulta = "insert into parametro_pago (minimo,maximo,pago_correspondiente) values('" & Me.txtMinimo.Text & "','" & Me.txtMaximo.Text & "','" & Me.txtPagoCorrespondiente.Text & "')"
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
-                MsgBox("Se agregó parámetro_espera correctamente")
+                EjecutarTransaccionAlta(LOC_consulta)
+                MsgBox("Se agregó parámetro_pago correctamente")
             End If
 
         Catch ex As Exception
@@ -140,7 +140,7 @@
                 LOC_consulta = "UPDATE parametro_pago SET minimo= " & Me.txtMinimo.Text & ",maximo = " & Me.txtMaximo.Text & " ,pago_correspondiente= " & Me.txtPagoCorrespondiente.Text & " 
                         WHERE cod_parametro_pago = " & cod_parametro_pago & ""
                 'MsgBox(LOC_consulta)
-                EjecutarTransaccion(LOC_consulta)
+                EjecutarTransaccionModificacion(LOC_consulta)
                 MsgBox("Se modificó parametro pago correctamente")
             End If
 
@@ -155,4 +155,7 @@
         Me.txtPagoCorrespondiente.Clear()
     End Sub
 
+    Private Sub AgregarParametroPago_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

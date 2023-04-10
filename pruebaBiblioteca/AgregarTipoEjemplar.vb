@@ -8,10 +8,21 @@
     End Sub
 
     Private Sub btnAgregarTipoEjemplar_Click(sender As Object, e As EventArgs) Handles btnAgregarTipoEjemplar.Click
-        moduloBiblioteca.altaTipoEjemplar()
-        Me.txtNombreTipoEjemplar.Clear()
-        Me.Close()
-        moduloBiblioteca.CargarComboTipoEjemplar()
+
+        If Me.txtNombreTipoEjemplar.Text <> "" Then
+            moduloBiblioteca.altaTipoEjemplar()
+            Me.txtNombreTipoEjemplar.Clear()
+            Me.Close()
+            moduloBiblioteca.CargarComboTipoEjemplar()
+        Else
+            MsgBox("No puede dejar el campo vacío", MsgBoxStyle.Exclamation)
+        End If
+
+
+
+    End Sub
+
+    Private Sub AgregarTipoEjemplar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class

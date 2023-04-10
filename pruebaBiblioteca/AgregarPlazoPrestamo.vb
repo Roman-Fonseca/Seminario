@@ -4,11 +4,21 @@
     End Sub
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
-        moduloBiblioteca.altaPlazoPrestamo()
-        Me.txtDescripcion.Clear()
-        Me.txtDias.Clear()
-        Me.Close()
-        moduloBiblioteca.CargarComboPlazoPrestamo()
+        If Me.txtDescripcion.Text <> "" Then
+            If Me.txtDias.Text <> "" Then
+                moduloBiblioteca.altaPlazoPrestamo()
+                Me.txtDescripcion.Clear()
+                Me.txtDias.Clear()
+                Me.Close()
+                moduloBiblioteca.CargarComboPlazoPrestamo()
+            Else
+                MsgBox("No puede dejar el campo días vacío")
+            End If
+        Else
+            MsgBox("No puede dejar el campo descripcion vacío")
+        End If
+
+
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtDescripcion.TextChanged
